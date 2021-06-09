@@ -1,6 +1,6 @@
 package com.example.hello.controller;
 
-import com.example.hello.dto.UesrRequest;
+import com.example.hello.dto.GetRequestDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -84,7 +84,7 @@ public class GetApiController {
 
 
     @GetMapping("query-param3")
-    public String queryParam3(UesrRequest userRequest){
+    public String queryParam3(GetRequestDto userRequest){
         //@RequestParam 을 붙여주지않고, 객체를 전달해주면 물음표 뒤에 있는 값들은 스프링 부트에서 판단해준다.
         //?user=yoonji&email=jineon@gamil.com&age=25   에서
         //key(user, email, age)에 해당하는 것들을 해당객체(DTO)에서 찾아 변수 매칭을 해준다.

@@ -1,6 +1,6 @@
 package com.example.hello.dto;
 
-public class UesrRequest {
+public class GetRequestDto {
     private String name;
     private String email;
     private int age;
