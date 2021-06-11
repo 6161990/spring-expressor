@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
-// 단순한 api를 만드는 서버를 작성할 수도 있지만
-// 실제로 page를 return 하는 서버를 작성할 수도 있음
+// 단순한 api를 만드는 서버를 작성할 수도 있지만 실제로 page를 return 하는 서버를 작성할 수도 있음
 @Controller //html 리소스를 찾게됨
 public class PageController {
 
