@@ -23,6 +23,10 @@ public class HelloApplication {
 //        UrlEncoder urlEncoder = context.getBean(UrlEncoder.class);
 //
 //        Encoder encoder = new Encoder(base64Encoder);
+
+          //@ Configuration으로 Bean 직접 주입할 시,
+          // Encoder encoder = context.getBean("urlEncode", Encoder.class);
+
 //        String url = "www.naver.com/books/it?page=10&size=20&name=spring-boot";
 //        String result = encoder.encode(url);
 //        System.out.println(result);
