@@ -1,4 +1,4 @@
-package com.example.hello.objectMapper;
+package hello.objectMapper;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

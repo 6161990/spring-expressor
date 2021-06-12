@@ -1,4 +1,4 @@
-package com.example.hello.dto;
+package hello.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;

@@ -1,4 +1,4 @@
-package ch5JavaOnly;
+package ch5JavaOnlyForExplainDI;
 
 import java.util.Base64;
 

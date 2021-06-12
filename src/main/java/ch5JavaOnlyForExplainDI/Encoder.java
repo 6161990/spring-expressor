@@ -1,4 +1,4 @@
-package ch5JavaOnly;
+package ch5JavaOnlyForExplainDI;
 
 public class Encoder {
     private IEncoder iEncoder;

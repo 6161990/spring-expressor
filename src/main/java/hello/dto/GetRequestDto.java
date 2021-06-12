@@ -1,4 +1,4 @@
-package com.example.hello.dto;
+package hello.dto;
 
 public class GetRequestDto {
     private String name;

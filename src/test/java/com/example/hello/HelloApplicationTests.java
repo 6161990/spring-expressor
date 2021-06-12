@@ -1,6 +1,6 @@
 package com.example.hello;
 
-import com.example.hello.objectMapper.User;
+import hello.objectMapper.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
