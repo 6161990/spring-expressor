@@ -10,19 +10,19 @@ public class AopBrowser implements IBrowser {
     private Runnable before;
     private Runnable after;
 
-    public AopBrowser(String url, Runnable before, Runnable after){
-        this.url=url;
-        this.before=before;
-        this.after=after;
+    public AopBrowser(String url, Runnable before, Runnable after) {
+        this.url = url;
+        this.before = before;
+        this.after = after;
     }
 
     @Override
     public Html show() {
         before.run();
 
-        if(html == null){
+        if (html == null) {
             this.html = new Html(url);
-            System.out.println("AopBrowser html loading from : "+ url);
+            System.out.println("AopBrowser html loading from : " + url);
             try {
                 Thread.sleep(1500);
             } catch (InterruptedException e) {
@@ -31,7 +31,7 @@ public class AopBrowser implements IBrowser {
         }
 
         after.run();
-        System.out.println("AopBrowser html cache : "+url);
+        System.out.println("AopBrowser html cache : " + url);
         return html;
     }
 }

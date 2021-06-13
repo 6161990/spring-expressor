@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1d8c225c-7178-4fb8-9b24-ce02dc027dac" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/adepter/AirConditioner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/adepter/AirConditioner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/adepter/Cleaner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/adepter/Cleaner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/adepter/HairDryer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/adepter/HairDryer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/adepter/SocketAdepter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/adepter/SocketAdepter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/aop/AopBrowser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/aop/AopBrowser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/decorator/A3.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/decorator/A3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/decorator/A4.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/decorator/A4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/decorator/Audi.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/decorator/Audi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/decorator/AudiDecorator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/decorator/AudiDecorator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/decorator/ICar.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/decorator/ICar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/facade/Ftp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/facade/Ftp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/facade/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/facade/Reader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/facade/SftpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/facade/SftpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/facade/Writer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/facade/Writer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/observer/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/observer/Button.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/proxy/Browser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/proxy/Browser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/proxy/BrowserProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/proxy/BrowserProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/proxy/Html.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/proxy/Html.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/singleton/Aclasszz.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/singleton/Aclasszz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/singleton/Bclasszz.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/singleton/Bclasszz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/singleton/SocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/singleton/SocketClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/strategy/AppendStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/strategy/AppendStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/strategy/Base64Strategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/strategy/Base64Strategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/strategy/Encoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/strategy/Encoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/strategy/NormalStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Design Pattern/src/com/company/design/strategy/NormalStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/ch5ExplainForloC/ApplicationContextProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/ch5ExplainForloC/Base64Encoder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/ch5ExplainForloC/Encoder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/ch5ExplainForloC/IEncoder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/ch5ExplainForloC/UrlEncoder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/ch5JavaOnlyForExplainDI/Base64Encoder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/ch5JavaOnlyForExplainDI/Encoder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/ch5JavaOnlyForExplainDI/IEncoder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/ch5JavaOnlyForExplainDI/UrlEncoder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/hello/HelloApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/hello/controller/ApiController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/hello/controller/DeleteController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/hello/controller/GetApiController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/hello/controller/PageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/hello/controller/PostApiController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/hello/controller/PutApiController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/hello/dto/CarDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/hello/dto/GetRequestDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/hello/dto/PostRequestDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/hello/dto/PutRequestDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/hello/dto/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/java/hello/objectMapper/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/main/resources/static/main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SpringBoot-practice/src/test/java/com/example/hello/HelloApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1tsHCDcyxflEmFbdRcVksVqA8E5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="LocdiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="locdi.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.locdi.LocdiApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1d8c225c-7178-4fb8-9b24-ce02dc027dac" name="Default Changelist" comment="" />
+      <created>1623550763328</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1623550763328</updated>
+      <workItem from="1623550764446" duration="16000" />
+    </task>
+    <servers />
+  </component>
+</project>

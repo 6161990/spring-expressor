@@ -10,14 +10,14 @@ public class SocketClient {
 
     }
 
-    public static SocketClient getInstance(){
-        if(socketClient == null){
+    public static SocketClient getInstance() {
+        if (socketClient == null) {
             socketClient = new SocketClient();
         }
         return socketClient;
     }
 
-    public void connect(){
+    public void connect() {
         System.out.println("connect");
     }
 }

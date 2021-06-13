@@ -5,14 +5,15 @@ public class Button {
     private String name;
     private IButtonListener buttonListener;
 
-    public Button(String name){
+    public Button(String name) {
         this.name = name;
     }
 
-    public void click(String message){
+    public void click(String message) {
         buttonListener.clickEvent(message);
     }
-    public void addListener(IButtonListener buttonListener){
+
+    public void addListener(IButtonListener buttonListener) {
         this.buttonListener = buttonListener;
     }
 }

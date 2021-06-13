@@ -7,13 +7,13 @@ public class SftpClient {
     private Reader fileReader;
     private Writer fileWriter;
 
-    public SftpClient(String host, int port, String path, String fileName){
+    public SftpClient(String host, int port, String path, String fileName) {
         this.ftpProtocol = new Ftp(host, port, path);
         this.fileReader = new Reader(fileName);
         this.fileWriter = new Writer(fileName);
     }
 
-    public void connect(){
+    public void connect() {
         ftpProtocol.connect();
         ftpProtocol.moveDirectory();
         fileReader.fileConnect();
@@ -21,15 +21,15 @@ public class SftpClient {
 
     }
 
-    public void write(){
+    public void write() {
         fileWriter.Write();
     }
 
-    public void read(){
+    public void read() {
         fileReader.fileRead();
     }
 
-    public void disConnect(){
+    public void disConnect() {
         fileReader.fileDisconnect();
         fileWriter.fileDisconnect();
         ftpProtocol.disConnect();

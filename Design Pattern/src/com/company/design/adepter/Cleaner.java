@@ -1,6 +1,6 @@
 package com.company.design.adepter;
 
-public class Cleaner implements Electronic220v{
+public class Cleaner implements Electronic220v {
 
     @Override
     public void connect() {

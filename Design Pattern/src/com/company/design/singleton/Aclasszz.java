@@ -4,11 +4,11 @@ public class Aclasszz {
 
     private SocketClient socketClient;
 
-    public Aclasszz(){
+    public Aclasszz() {
         this.socketClient = SocketClient.getInstance();
     }
 
-    public SocketClient getSocketClient(){
+    public SocketClient getSocketClient() {
         return this.socketClient;
     }
 }

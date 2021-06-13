@@ -4,10 +4,11 @@ public class Bclasszz {
 
     private SocketClient socketClient;
 
-    public Bclasszz(){
+    public Bclasszz() {
         this.socketClient = SocketClient.getInstance();
     }
-    public SocketClient getSocketClient(){
+
+    public SocketClient getSocketClient() {
         return this.socketClient;
     }
 }
