@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1d8c225c-7178-4fb8-9b24-ce02dc027dac" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../API(GET,POSET,PUT,DELETE)/src/main/java/ch5ExplainForloC/ApplicationContextProvider.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API(GET,POSET,PUT,DELETE)/src/main/java/ch5ExplainForloC/Base64Encoder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API(GET,POSET,PUT,DELETE)/src/main/java/ch5ExplainForloC/Encoder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API(GET,POSET,PUT,DELETE)/src/main/java/ch5ExplainForloC/IEncoder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API(GET,POSET,PUT,DELETE)/src/main/java/ch5ExplainForloC/UrlEncoder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API(GET,POSET,PUT,DELETE)/src/main/java/ch5JavaOnlyForExplainDI/Base64Encoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/locdi/ch5JavaOnlyForExplainDI/Base64Encoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API(GET,POSET,PUT,DELETE)/src/main/java/ch5JavaOnlyForExplainDI/Encoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/locdi/ch5JavaOnlyForExplainDI/Encoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API(GET,POSET,PUT,DELETE)/src/main/java/ch5JavaOnlyForExplainDI/IEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/locdi/ch5JavaOnlyForExplainDI/IEncoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API(GET,POSET,PUT,DELETE)/src/main/java/ch5JavaOnlyForExplainDI/UrlEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/locdi/ch5JavaOnlyForExplainDI/UrlEncoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API(GET,POSET,PUT,DELETE)/src/main/java/hello/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../API(GET,POSET,PUT,DELETE)/src/main/java/hello/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/locdi/LocdiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/locdi/LocdiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-    </list>
+    <list default="true" id="1d8c225c-7178-4fb8-9b24-ce02dc027dac" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,7 +20,12 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="locdi" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -77,13 +68,15 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -105,6 +98,7 @@
       <option name="presentableId" value="Default" />
       <updated>1623550763328</updated>
       <workItem from="1623550764446" duration="777000" />
+      <workItem from="1623552887128" duration="146000" />
     </task>
     <servers />
   </component>
