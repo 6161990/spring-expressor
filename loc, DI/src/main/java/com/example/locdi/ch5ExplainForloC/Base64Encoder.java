@@ -1,4 +1,4 @@
-package ch5ExplainForloC;
+package com.example.locdi.ch5ExplainForloC;
 
 import org.springframework.stereotype.Component;
 

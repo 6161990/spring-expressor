@@ -1,11 +1,8 @@
-package ch5ExplainForloC;
-
-import org.springframework.stereotype.Component;
+package com.example.locdi.ch5JavaOnlyForExplainDI;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-@Component
 public class UrlEncoder implements IEncoder {
     public String encode(String message) {
         try {
