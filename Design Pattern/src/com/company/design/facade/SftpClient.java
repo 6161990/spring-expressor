@@ -1,5 +1,6 @@
 package com.company.design.facade;
 
+
 public class SftpClient {
 
     private Ftp ftpProtocol;
