@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>레이아웃</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <header>header</header>
+    <div id="content">
+        <main id="main-area" layout:fragment="layoutContent">
+            <p>기본 컨텐츠</p>
+            <p> 도라에몽 </p>
+        </main>
+
+        <div id="side-area">
+            사이드바
+        </div>
+    </div>
+    <footer>
+        바닥글
+    </footer>
+</body>
+</html>
