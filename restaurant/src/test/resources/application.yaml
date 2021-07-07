@@ -1,4 +1,5 @@
-
+server:
+  port: 9092
 
 naver:
   url:
