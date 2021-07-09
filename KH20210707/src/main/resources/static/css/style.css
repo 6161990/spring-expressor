@@ -25,6 +25,9 @@ form{
     display: flex;
     flex-direction: column;
 }
+.error-message{
+    color: #cc2626;
+}
 
 footer {
     display: flex;
