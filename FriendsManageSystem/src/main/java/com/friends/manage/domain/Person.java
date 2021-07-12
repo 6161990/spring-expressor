@@ -1,8 +1,13 @@
 package com.friends.manage.domain;
 
+import com.sun.istack.NotNull;
+import lombok.*;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
+import java.util.Objects;
 
 //JPA
 //  DB의 종류에 상관없이 이용가능하다.
@@ -10,45 +15,67 @@ import javax.persistence.Id;
 
 
 @Entity //값을 담고 있는 객체 , 실제 저장하고 불러오는 건 repository
+
+//생성자 : 의미가 없는 생성자를 만들면 중요한 로직이 묻힐 수도 있음
+@NoArgsConstructor //인자가없는 Constructor
+@AllArgsConstructor //인자가 있는 Constructor
+@RequiredArgsConstructor //NOT NULL로 설정된 인자로 구성된 Constructor
+
+//데이터 (하위 4개는 @Data 하나로 치환가능함. but, 쓰지 않는 것이 좋다는 의견도 많음.
+@Getter
+@Setter
+@ToString //(exclude = "phoneNumber")
+//필드가 추가될 때마다 toString을 수정해줘야하므로 클래스에 설정
+//핸드폰 번호를 노출시키지 않기 위해 toString에서 제외
+//but, exclude는 해당 필드에만 적용시키는 것이 바람직.
+@EqualsAndHashCode
+
 public class Person {
     @Id  //pk
     @GeneratedValue  //자동생성
     private Long id;
 
+    //@Getter
+    //@Setter 모든 필드에서 중복되므로 클래스에 설정
+    @NonNull
     private String name;
 
+    @NonNull
     private int age;
 
-    public Long getId() {
-        return id;
+    private String hobby;
+
+    private String bloodType;
+
+    private String address;
+
+    private LocalDate birthday;
+
+    private String job;
+
+    @ToString.Exclude
+    private String phoneNumber;
+
+/* 필드가 수정될 때 마다 equals와 hashCode 를 수정해줘야함 -> @EqualsAndHashCode
+    public boolean equals(Object object){
+        if(object == null){
+            return false;
+        }
+        Person person = (Person) object;
+
+        if (!person.getName().equals(this.getName())){
+            return false;
+        }
+        if (person.getAge() != this.getAge()){
+            return false;
+        }
+        return true;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public int hashCode(){
+        return (name + age).hashCode();
     }
+*/
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
-    }
 }
