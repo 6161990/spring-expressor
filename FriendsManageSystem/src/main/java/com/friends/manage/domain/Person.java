@@ -3,9 +3,7 @@ package com.friends.manage.domain;
 import com.sun.istack.NotNull;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -18,7 +16,7 @@ import java.util.Objects;
 
 //생성자 : 의미가 없는 생성자를 만들면 중요한 로직이 묻힐 수도 있음
 @NoArgsConstructor //인자가없는 Constructor
-@AllArgsConstructor //인자가 있는 Constructor
+//@AllArgsConstructor //인자가 있는 Constructor
 @RequiredArgsConstructor //NOT NULL로 설정된 인자로 구성된 Constructor
 
 //데이터 (하위 4개는 @Data 하나로 치환가능함. but, 쓰지 않는 것이 좋다는 의견도 많음.
@@ -55,6 +53,36 @@ public class Person {
 
     @ToString.Exclude
     private String phoneNumber;
+
+    @OneToOne(cascade = CascadeType.PERSIST) //Person Entity에서 block에 관한 영속성을 함께 관리하겠다는 듯
+    private Block block; //person과 (name)으로로연결하기 위해
+
+    public Person(String name, int age, String bloodType) {
+        this.name = name;
+        this.age = age;
+        this.bloodType = bloodType;
+    }
+
+    public Person(Long id, String name, int age, String hobby, String bloodType, String address, LocalDate birthday, String job, String phoneNumber, Block block) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.hobby = hobby;
+        this.bloodType = bloodType;
+        this.address = address;
+        this.birthday = birthday;
+        this.job = job;
+        this.phoneNumber = phoneNumber;
+        this.block = block;
+    }
+    /*
+    이렇게 block에 관한 필드가 여러개있다면 따로 클래스로 빼두는 것이 좋음
+    private boolean block;
+    private String blockReason;
+    private LocalDate blockStartDate;
+    private LocalDate blockEndDate;
+     */
+
 
 /* 필드가 수정될 때 마다 equals와 hashCode 를 수정해줘야함 -> @EqualsAndHashCode
     public boolean equals(Object object){

@@ -38,8 +38,8 @@ class PersonRepositoryTest {
 
     @Test
     void constructorTest(){
-        Person person = new Person(1L, "martin", 30, "reading", "O" ,
-                "분당", LocalDate.of(1992,3,12),"programmer","010-2222-3333");
+//        Person person = new Person(1L, "martin", 30, "reading", "O" ,
+//                "분당", LocalDate.of(1992,3,12),"programmer","010-2222-3333");
 
         //NOT NULL로 설정된 인자로 구성된 Constructor (@RequiredArgsConstructor)
         Person person1 = new Person("marson",32);
