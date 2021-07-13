@@ -29,11 +29,19 @@ class PersonServiceTest {
     void getPeopleExcludeBlocks(){
         givenPeople();
 
-
         List<Person> result = personService.getPeopleExcludeBlocks();
         //System.out.println(result);
         result.forEach(System.out::println); //list의 각 객체가 한 줄씩 출력
     }
+
+    @Test
+    void getPeopleByName(){
+        givenPeople();
+
+        List<Person> result = personService.getPeopleByName("martin");
+        result.forEach(System.out::println);
+    }
+
 
     @Test
     void cascadeTest(){

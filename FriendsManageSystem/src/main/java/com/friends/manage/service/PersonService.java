@@ -24,15 +24,23 @@ public class PersonService {
 //    private BlockRepository blockRepository;
 
     public List<Person> getPeopleExcludeBlocks(){
-        List<Person> people = personRepository.findAll();
+     //   List<Person> people = personRepository.findAll();
     //    List<Block> blocks = blockRepository.findAll();
     //    List<String> blockName = blocks.stream().map(Block::getName).collect(Collectors.toList());;
 
     //    return people.stream().filter(person -> !blockName.contains(person.getName())).collect(Collectors.toList());
-         return people.stream().filter(person -> person.getBlock() == null).collect(Collectors.toList());
+    //    return people.stream().filter(person -> person.getBlock() == null).collect(Collectors.toList());
+        return personRepository.findByBlockIsNull();
     }
     //stream.map으로 Block에 있는 회원의 이름을 get. List<String>으로 받기 위해 collect
     //filter 어떤 조건에 일치하는 값만 돌려주는 함수
+
+    public List<Person> getPeopleByName(String name) {
+        //   List<Person> people = personRepository.findAll();
+        //   return people.stream().filter(person -> person.getName().equals(name)).collect(Collectors.toList());
+        //전체 데이터를 다 가져옴 => select all
+        return personRepository.findByName(name);
+    }
 
     @Transactional(readOnly = true)
     public Person getPerson(Long id){
@@ -55,4 +63,6 @@ public class PersonService {
 
         return person;
     }
+
+
 }

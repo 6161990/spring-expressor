@@ -4,6 +4,7 @@ import com.friends.manage.domain.Person;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.w3c.dom.stylesheets.LinkStyle;
 
 import javax.persistence.CascadeType;
@@ -36,6 +37,39 @@ class PersonRepositoryTest {
         assertThat(people.size()).isEqualTo(1);
         assertThat(people.get(0).getName()).isEqualTo("martin");
         assertThat(people.get(0).getAge()).isEqualTo(30);
+    }
+
+    @Test
+    void findByBloodType(){
+        givenPerson("martin",10,"A");
+        givenPerson("sojin",13,"B");
+        givenPerson("sora",10,"A");
+        givenPerson("dongjin",13,"B");
+
+        List<Person> result = personRepository.findByBloodType("A");
+        result.forEach(System.out::println);
+    }
+
+    @Test
+    void findByBirthdayBetween(){
+        givenPerson("martin",10,"A",LocalDate.of(1991,8,4));
+        givenPerson("sojin",13,"B",LocalDate.of(1993,9,1));
+        givenPerson("sora",10,"A",LocalDate.of(1995,4,1));
+        givenPerson("dongjin",13,"B",LocalDate.of(1991,8,24));
+
+        List<Person> result = personRepository.findByBirthdayBetween(LocalDate.of(1991,8,1),
+                LocalDate.of(1991,8,31));
+        result.forEach(System.out::println);
+    }
+
+    private void givenPerson(String name, int age, String bloodType, LocalDate birthday) {
+       Person person = new Person(name, age, bloodType);
+       person.setBirthday(birthday);
+       personRepository.save(person);
+    }
+
+    private void givenPerson(String name, int age, String bloodType) {
+        personRepository.save(new Person(name, age, bloodType));
     }
 
     @Test
