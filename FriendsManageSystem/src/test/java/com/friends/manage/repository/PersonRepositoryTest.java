@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.w3c.dom.stylesheets.LinkStyle;
 
+import javax.persistence.CascadeType;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,7 @@ class PersonRepositoryTest {
 
     @Test
     void crud(){
+
         Person person = new Person();
         person.setName("martin");
         person.setAge(30);

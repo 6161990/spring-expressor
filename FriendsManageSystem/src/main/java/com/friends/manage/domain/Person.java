@@ -54,7 +54,11 @@ public class Person {
     @ToString.Exclude
     private String phoneNumber;
 
-    @OneToOne(cascade = CascadeType.PERSIST) //Person Entity에서 block에 관한 영속성을 함께 관리하겠다는 듯
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true /*fetch = FetchType.LAZY */)
+    //PERSIST : Person Entity에서 block에 관한 영속성을 함께 관리하겠다는 뜻
+    //MERGE : LocalDate 필드 통합
+    //REMOVE : 함께 삭제 -> CascadeType.ALL 이면 다 해결
+    @ToString.Exclude
     private Block block; //person과 (name)으로로연결하기 위해
 
     public Person(String name, int age, String bloodType) {
