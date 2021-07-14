@@ -2,6 +2,7 @@ package com.friends.manage.repository;
 
 import com.friends.manage.domain.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,5 +22,9 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     List<Person> findByBloodType(String bloodType); //같은 혈액형은 많다.
 
-    List<Person> findByBirthdayBetween(LocalDate startDate, LocalDate endDate);
+  //  List<Person> findByBirthdayBetween(LocalDate startDate, LocalDate endDate);
+    @Query(value = "select person from Person person where person.birthday.monthOfBirthday =?1")
+            //and person.birthday.dayOfBirthday=?2")
+    //JPA Query : entity 기반으로 쿼리를 실행시키는 문법
+    List<Person> findByMonthOfBirth(int monthOfBirthday /*, int dayOfBirthday*/);
 }

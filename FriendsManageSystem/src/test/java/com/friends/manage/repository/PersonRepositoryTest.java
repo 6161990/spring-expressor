@@ -1,6 +1,7 @@
 package com.friends.manage.repository;
 
 import com.friends.manage.domain.Person;
+import com.friends.manage.domain.dto.Birthday;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -55,16 +56,17 @@ class PersonRepositoryTest {
         givenPerson("martin",10,"A",LocalDate.of(1991,8,4));
         givenPerson("sojin",13,"B",LocalDate.of(1993,9,1));
         givenPerson("sora",10,"A",LocalDate.of(1995,4,1));
-        givenPerson("dongjin",13,"B",LocalDate.of(1991,8,24));
+        givenPerson("dongjin",13,"B",LocalDate.of(1996,8,30));
 
-        List<Person> result = personRepository.findByBirthdayBetween(LocalDate.of(1991,8,1),
-                LocalDate.of(1991,8,31));
+      //  List<Person> result = personRepository.findByBirthdayBetween(LocalDate.of(1991,8,1),LocalDate.of(1991,8,31));
+        List<Person> result = personRepository.findByMonthOfBirth(8);
         result.forEach(System.out::println);
     }
 
     private void givenPerson(String name, int age, String bloodType, LocalDate birthday) {
        Person person = new Person(name, age, bloodType);
-       person.setBirthday(birthday);
+    //   person.setBirthday(new Birthday(birthday.getYear(),birthday.getMonthValue(),birthday.getDayOfMonth()));
+       person.setBirthday(new Birthday(birthday));
        personRepository.save(person);
     }
 
@@ -74,8 +76,7 @@ class PersonRepositoryTest {
 
     @Test
     void constructorTest(){
-//        Person person = new Person(1L, "martin", 30, "reading", "O" ,
-//                "분당", LocalDate.of(1992,3,12),"programmer","010-2222-3333");
+      // Person person = new Person(1L, "martin", 30, "reading", "O" , "분당", LocalDate.of(1992,3,12),"programmer","010-2222-3333");
 
         //NOT NULL로 설정된 인자로 구성된 Constructor (@RequiredArgsConstructor)
         Person person1 = new Person("marson",32);

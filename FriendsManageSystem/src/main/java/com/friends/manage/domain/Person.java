@@ -1,9 +1,12 @@
 package com.friends.manage.domain;
 
+import com.friends.manage.domain.dto.Birthday;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -47,7 +50,9 @@ public class Person {
 
     private String address;
 
-    private LocalDate birthday;
+    @Valid
+    @Embedded
+    private Birthday birthday;
 
     private String job;
 
@@ -67,18 +72,7 @@ public class Person {
         this.bloodType = bloodType;
     }
 
-    public Person(Long id, String name, int age, String hobby, String bloodType, String address, LocalDate birthday, String job, String phoneNumber, Block block) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.hobby = hobby;
-        this.bloodType = bloodType;
-        this.address = address;
-        this.birthday = birthday;
-        this.job = job;
-        this.phoneNumber = phoneNumber;
-        this.block = block;
-    }
+
     /*
     이렇게 block에 관한 필드가 여러개있다면 따로 클래스로 빼두는 것이 좋음
     private boolean block;
