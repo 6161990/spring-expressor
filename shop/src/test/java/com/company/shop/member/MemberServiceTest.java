@@ -1,12 +1,22 @@
 package com.company.shop.member;
 
+import com.company.shop.AppConfig;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class MemberServiceTest {
+   //의존성 주입 전
+   // MemberService memberService = new MemberServiceImpl(new MemoryMemberRepository());
 
-    MemberService memberService = new MemberServiceImpl();
+    // 후
+    MemberService memberService;
 
+    @BeforeEach //test 실행 전 무조건 실행되는 메소드 에노테이션
+    public void beforeEach(){
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
     @Test
     void join() {
         //given

@@ -8,7 +8,9 @@ import com.company.shop.member.MemberServiceImpl;
 public class MemberApp {
 
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
+        AppConfig appConfig = new AppConfig();
+        //MemberService memberService = new MemberServiceImpl(new MemoryMemberRepository()); 의존성 주입 전
+        MemberService memberService = appConfig.memberService(); // 후
         Member member = new Member(1L,"tagu", Grade.VIP);
         memberService.join(member);
 
