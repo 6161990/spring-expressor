@@ -27,5 +27,6 @@ public class OrderApp {
         Order order = orderService.createOrder(memberId,"IPhone", 1300000);
         System.out.println("order = "+ order);
         System.out.println("discount Price ="+ order.calculatePrice());
+
     }
 }
