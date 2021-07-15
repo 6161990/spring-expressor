@@ -20,8 +20,8 @@ public class WeatherController {
         // https://openweathermap.org/current
         // 회원가입후 , 인증키를 받은 후 받은 인증키를 appid 변수값에 적용
         final String city = "seoul";
-        final String endpoint = "http://api.openweathermap.org/data/2.5/wearher";
-        final String appid = "0c0937c1a3207e719ec18739478a3859";
+        //final String endpoint = "http://api.openweathermap.org/data/2.5/wearher";
+        //final String appid = "0c0937c1a3207e719ec18739478a3859";
         final String url = endpoint +"?q="+ city + "&appid=" +appid;
 
         ResponseEntity<String> response = rest.getForEntity(url, String.class);
