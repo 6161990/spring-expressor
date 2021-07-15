@@ -1,11 +1,17 @@
 package com.friends.manage.domain;
 
+import com.friends.manage.controller.dto.PersonDto;
 import com.friends.manage.domain.dto.Birthday;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Where;
+import org.springframework.util.StringUtils;
 
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 
 //JPA
@@ -31,6 +37,7 @@ import javax.validation.Valid;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
+@Where(clause = "deleted = false") //person객체를 사용하는 모든 쿼리문에 추가
 public class Person {
     @Id  //pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //자동생성
@@ -39,14 +46,19 @@ public class Person {
     //@Getter
     //@Setter 모든 필드에서 중복되므로 클래스에 설정
     @NonNull
+    @NotEmpty
+    @Column(nullable = false)
     private String name;
 
     @NonNull
+    @Min(1)
     private int age;
 
     private String hobby;
 
     @NonNull
+    @NotEmpty
+    @Column(nullable = false)
     private String bloodType;
 
     private String address;
@@ -60,6 +72,8 @@ public class Person {
     @ToString.Exclude
     private String phoneNumber;
 
+    @ColumnDefault("0")
+    private boolean deleted; // 데이터를 잘못 삭제 하는 경우를 대비
 
     //{CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true /*fetch = FetchType.LAZY */)
     //PERSIST : Person Entity에서 block에 관한 영속성을 함께 관리하겠다는 뜻
@@ -69,7 +83,31 @@ public class Person {
     @ToString.Exclude
     private Block block; //person과 (name)으로로연결하기 위해
 
+    public void set(PersonDto personDto) {
+        if (personDto.getAge() != 0) {
+            this.setAge(personDto.getAge());
+        }
 
+        if (!StringUtils.isEmpty(personDto.getHobby())) {
+            this.setHobby(personDto.getHobby());
+        }
+
+        if (!StringUtils.isEmpty(personDto.getBloodType())) {
+            this.setBloodType(personDto.getBloodType());
+        }
+
+        if (!StringUtils.isEmpty(personDto.getAddress())) {
+            this.setAddress(personDto.getAddress());
+        }
+
+        if (!StringUtils.isEmpty(personDto.getJob())) {
+            this.setJob(personDto.getJob());
+        }
+
+        if (!StringUtils.isEmpty(personDto.getPhoneNumber())) {
+            this.setPhoneNumber(personDto.getPhoneNumber());
+        }
+    }
 
 
     /*

@@ -1,7 +1,10 @@
 package com.friends.manage.service;
 
+import com.friends.manage.controller.PersonController;
+import com.friends.manage.controller.dto.PersonDto;
 import com.friends.manage.domain.Block;
 import com.friends.manage.domain.Person;
+import com.friends.manage.domain.dto.Birthday;
 import com.friends.manage.repository.BlockRepository;
 import com.friends.manage.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Table;
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /* repository 같은 경우는 JPARepository를 상속 받기 때문에 에노테이션이 필요없지만
@@ -44,8 +50,8 @@ public class PersonService {
 
     @Transactional(readOnly = true)
     public Person getPerson(Long id){
-        Person person = personRepository.findById(id).get();
-        log.info("person : {}",person);
+        //Person person = personRepository.findById(id).get();
+
         /*
         log는 logback을 이용해서 log 출력을 제한할 수 있는 장점이 있음
         System.out.println 보다 사용권장
@@ -59,10 +65,79 @@ public class PersonService {
         이 때 ToString.Exclude를 지정. 불필요한 쿼리가 찍히는 것을 방지 할 수 있음.
         eager로 하고 optional = false ("항상 필요하다") 로 한 뒤, 모두 givenBlockPerson()로 data를 넣으면
         inner로 조인됨. => jpa를 사용하면 몇가지 옵션으로 알아서 쿼리문을 작성해줌.
+
+
+        한편, findById로 select해올 때 받는 타입을 Optional로 해야 오류가 나지 않는다.
+        값이 없을 수도 있기 때문에 NPE를 막기위해서다
         */
 
-        return person;
+        // 방법 1
+        /* Optional<Person> person1 = personRepository.findById(id);
+
+        if(person1.isPresent()) {
+            return person1.get();
+        } else{
+            return null;
+        }
+
+         */
+
+        //방법 2
+        Person person3 = personRepository.findById(id).orElse(null);
+        log.info("person : {}",person3);
+
+        return person3;
     }
 
+    @Transactional
+    public void put(Person person){
+        personRepository.save(person);
+    }
 
+    @Transactional
+    public void modify(Long id, PersonDto personDto) {
+        Person person = personRepository.findById(id).orElseThrow(()-> new RuntimeException("아이디가 존재하지 않습니다."));
+
+        if(!person.getName().equals(personDto.getName())){
+            throw new RuntimeException("이름이 다릅니다.");
+        }
+
+        person.set(personDto);
+//        personAtDb.setName(personDto.getName());
+//        personAtDb.setPhoneNumber(personDto.getPhoneNumber());
+//        personAtDb.setJob(personDto.getJob());
+//
+//        if(personDto.getBirthday() != null){
+//            personAtDb.setBirthday(new Birthday(personDto.getBirthday()));
+//        }
+//        personAtDb.setAddress(personDto.getAddress());
+//        personAtDb.setPhoneNumber(personDto.getPhoneNumber());
+//        personAtDb.setBloodType(personDto.getBloodType());
+//        personAtDb.setHobby(personDto.getHobby());
+//        personAtDb.setAge(personDto.getAge());
+
+        personRepository.save(person);
+    }
+
+    @Transactional
+    public void modify(Long id, String name){
+        Person person = personRepository.findById(id).orElseThrow(()-> new RuntimeException("아이디가 존재하지 않습니다."));
+        person.setName(name);
+
+        personRepository.save(person);
+    }
+
+    @Transactional
+    public void delete(Long id){
+       // Person person = personRepository.findById(id).orElseThrow(()-> new RuntimeException("아이디가 존재하지 않습니다."));
+       // personRepository.delete(person);
+
+        //위 두 줄을 이 한줄로 처리 가능
+       // personRepository.deleteById(id);
+
+        //하지만 현업에서는 데이터가 잘못 삭제되는경우를 대비해
+        Person person = personRepository.findById(id).orElseThrow(()-> new RuntimeException("아이디가 존재하지 않습니다."));
+        person.setDeleted(true);
+        personRepository.save(person);
+    }
 }

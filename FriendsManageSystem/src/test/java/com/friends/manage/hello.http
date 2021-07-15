@@ -1,0 +1,7 @@
+GET http://localhost:8083/api/helloworld
+
+###
+
+GET http://localhost:8083/api/person/1
+
+###

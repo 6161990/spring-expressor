@@ -27,4 +27,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
             //and person.birthday.dayOfBirthday=?2")
     //JPA Query : entity 기반으로 쿼리를 실행시키는 문법
     List<Person> findByMonthOfBirth(int monthOfBirthday /*, int dayOfBirthday*/);
+
+    @Query(value = "select * from Person person where person.deleted = true",nativeQuery = true)
+    List<Person> findPeopleDeleted();
 }
