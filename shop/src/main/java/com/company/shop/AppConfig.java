@@ -9,7 +9,10 @@ import com.company.shop.member.MemberServiceImpl;
 import com.company.shop.member.MemoryMemberRepository;
 import com.company.shop.order.OrderService;
 import com.company.shop.order.OrderServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration //애플리케이션의 구성정보는 담당하는 곳
 public class AppConfig {
     // AppConfig ; 애플리케이션의 실제동작에 필요한 구현 객체를 생성해주는 클래스
     // 생성한 객체 인스턴스의 참조를 생성자를 통해서 주입해준다
@@ -18,6 +21,7 @@ public class AppConfig {
     // MemberServiceImpl 과 OrderServiceImpl의 생성자를 통해서 어떤 구현 객체를 주입할지는 오직 외부 AppConfig에서 결정됨
     // MemberServiceImpl 과 OrderServiceImpl은 이제부터 '의존관계에 대한 고민은 외부'에 맡기고 실행에만 집중 할 수 있음
 
+    @Bean //스프링 컨테이너에 등록
     public MemberService memberService(){
         return new MemberServiceImpl(memberRepository());
         // AppConfig 객체는 MemoryMemberRepository 객체를 생성하고 그 참조값을 MemberServiceImpl을 생성하면서 생성자로 전달한다.
@@ -25,6 +29,7 @@ public class AppConfig {
         // => 의존성 주입 Dependency Injection
     }
 
+    @Bean
     public OrderService orderService(){
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
@@ -32,10 +37,12 @@ public class AppConfig {
     //but 이것도 자세히 보면 중복이 있고 역할에 따른 구현이 잘 보이지 않음
     // MemoryMemberRepository의 중복, 구현체 분리 / FixDiscountPolicy 의 구현체 분리
 
-    private MemberRepository memberRepository() {
+    @Bean
+    public MemberRepository memberRepository() {
         return new MemoryMemberRepository();
     }
 
+    @Bean
     public DiscountPolicy discountPolicy(){
     //    return new FixDiscountPolicy(); 할인 정책 변경
         return new RateDiscountPolicy();
