@@ -52,6 +52,7 @@ public class PersonController {
     public void deletePerson(@PathVariable Long id){
         personService.delete(id);
         log.info("person -> {}", personRepository.findAll());
+       // return personRepository.findPeopleDeleted().stream().anyMatch(person -> person.getId().equals(id));
     }
 
 }
