@@ -2,10 +2,10 @@ package com.friends.manage.service;
 
 import com.friends.manage.controller.PersonController;
 import com.friends.manage.controller.dto.PersonDto;
-import com.friends.manage.domain.Block;
+
 import com.friends.manage.domain.Person;
 import com.friends.manage.domain.dto.Birthday;
-import com.friends.manage.repository.BlockRepository;
+
 import com.friends.manage.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,20 +26,20 @@ public class PersonService {
     @Autowired
     private PersonRepository personRepository;
 
-//    @Autowired
-//    private BlockRepository blockRepository;
+/*    @Autowired
+    private BlockRepository blockRepository;
 
     public List<Person> getPeopleExcludeBlocks(){
-     //   List<Person> people = personRepository.findAll();
-    //    List<Block> blocks = blockRepository.findAll();
-    //    List<String> blockName = blocks.stream().map(Block::getName).collect(Collectors.toList());;
+        List<Person> people = personRepository.findAll();
+        List<Block> blocks = blockRepository.findAll();
+        List<String> blockName = blocks.stream().map(Block::getName).collect(Collectors.toList());;
 
-    //    return people.stream().filter(person -> !blockName.contains(person.getName())).collect(Collectors.toList());
-    //    return people.stream().filter(person -> person.getBlock() == null).collect(Collectors.toList());
+        return people.stream().filter(person -> !blockName.contains(person.getName())).collect(Collectors.toList());
+        return people.stream().filter(person -> person.getBlock() == null).collect(Collectors.toList());
         return personRepository.findByBlockIsNull();
     }
     //stream.map으로 Block에 있는 회원의 이름을 get. List<String>으로 받기 위해 collect
-    //filter 어떤 조건에 일치하는 값만 돌려주는 함수
+    //filter 어떤 조건에 일치하는 값만 돌려주는 함수*/
 
     public List<Person> getPeopleByName(String name) {
         //   List<Person> people = personRepository.findAll();

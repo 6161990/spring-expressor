@@ -1,6 +1,6 @@
 package com.friends.manage.repository;
 
-import com.friends.manage.domain.Block;
+/* import com.friends.manage.domain.Block;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,6 +11,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+
+// 해당 클래스 리팩토링 과정에서 삭제
+
 @Transactional
 @SpringBootTest
 class BlockRepositoryTest {
@@ -35,4 +38,4 @@ class BlockRepositoryTest {
         assertThat(blocks.get(1).getName()).isEqualTo("sophia");
         assertThat(blocks.get(2).getName()).isEqualTo("martin");
     }
-}
+}*/

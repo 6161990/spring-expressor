@@ -18,9 +18,9 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     //find = select , by = where , name = parameter(person 테이블의 name)
     List<Person> findByName(String name);
 
-    List<Person> findByBlockIsNull(); // 차단이 되지 않은 person을 가져오겠다.
+  //    List<Person> findByBlockIsNull(); // 차단이 되지 않은 person을 가져오겠다.
 
-    List<Person> findByBloodType(String bloodType); //같은 혈액형은 많다.
+  //  List<Person> findByBloodType(String bloodType); //같은 혈액형은 많다.
 
   //  List<Person> findByBirthdayBetween(LocalDate startDate, LocalDate endDate);
     @Query(value = "select person from Person person where person.birthday.monthOfBirthday =?1")

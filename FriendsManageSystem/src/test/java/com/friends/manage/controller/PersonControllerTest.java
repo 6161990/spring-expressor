@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -19,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @Slf4j
+@Transactional
 class PersonControllerTest {
 
     @Autowired
@@ -69,7 +71,7 @@ class PersonControllerTest {
                 MockMvcRequestBuilders.put("/api/person/1")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content("{\n" +
-                        "    \"name\":\"martin2\",\n" +
+                        "    \"name\":\"martin\",\n" +
                         "    \"age\": 20,\n" +
                         "    \"bloodType\": \"A\"\n" +
                         "}"))

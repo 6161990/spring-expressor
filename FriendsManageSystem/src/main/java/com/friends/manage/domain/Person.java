@@ -9,9 +9,11 @@ import org.springframework.util.StringUtils;
 
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
 
 
 //JPA
@@ -50,16 +52,17 @@ public class Person {
     @Column(nullable = false)
     private String name;
 
-    @NonNull
+    /* @NonNull
     @Min(1)
     private int age;
+     getAge로 년도에 +1을 더해 생일 가져오기기     */
 
     private String hobby;
 
-    @NonNull
+    /* @NonNull
     @NotEmpty
     @Column(nullable = false)
-    private String bloodType;
+    private String bloodType; */
 
     private String address;
 
@@ -69,31 +72,23 @@ public class Person {
 
     private String job;
 
-    @ToString.Exclude
+  //  @ToString.Exclude
     private String phoneNumber;
 
     @ColumnDefault("0")
     private boolean deleted; // 데이터를 잘못 삭제 하는 경우를 대비
 
-    //{CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true /*fetch = FetchType.LAZY */)
-    //PERSIST : Person Entity에서 block에 관한 영속성을 함께 관리하겠다는 뜻
-    //MERGE : LocalDate 필드 통합
-    //REMOVE : 함께 삭제 -> CascadeType.ALL 이면 다 해결
+    /* {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true fetch = FetchType.LAZY )
+    PERSIST : Person Entity에서 block에 관한 영속성을 함께 관리하겠다는 뜻
+    MERGE : LocalDate 필드 통합
+    REMOVE : 함께 삭제 -> CascadeType.ALL 이면 다 해결
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private Block block; //person과 (name)으로로연결하기 위해
+    private Block block; person과 (name)으로로연결하기 위해 */
 
     public void set(PersonDto personDto) {
-        if (personDto.getAge() != 0) {
-            this.setAge(personDto.getAge());
-        }
-
         if (!StringUtils.isEmpty(personDto.getHobby())) {
             this.setHobby(personDto.getHobby());
-        }
-
-        if (!StringUtils.isEmpty(personDto.getBloodType())) {
-            this.setBloodType(personDto.getBloodType());
         }
 
         if (!StringUtils.isEmpty(personDto.getAddress())) {
@@ -107,8 +102,23 @@ public class Person {
         if (!StringUtils.isEmpty(personDto.getPhoneNumber())) {
             this.setPhoneNumber(personDto.getPhoneNumber());
         }
+
+        if(personDto.getBirthday() != null){
+            this.setBirthday(Birthday.of(personDto.getBirthday()));
+        }
     }
 
+    public Integer getAge(){
+        if(this.birthday != null){
+            return LocalDate.now().getYear() - this.birthday.getYearOfBirthday() + 1;
+        }else{
+            return null;
+        }
+    }
+
+    public boolean isBirthdayToday(){
+        return LocalDate.now().equals(LocalDate.of(this.birthday.getYearOfBirthday(), this.birthday.getMonthOfBirthday(), this.birthday.getDayOfBirthday()));
+    }
 
     /*
     이렇게 block에 관한 필드가 여러개있다면 따로 클래스로 빼두는 것이 좋음

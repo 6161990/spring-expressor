@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
+/* 해당 클래스 리팩토링 과정에서 삭제.
 @Entity
 @Data
 @NoArgsConstructor
@@ -29,4 +30,4 @@ public class Block {
 
     private LocalDate endDate;
 
-}
+}*/
