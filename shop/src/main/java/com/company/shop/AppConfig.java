@@ -23,6 +23,7 @@ public class AppConfig {
 
     @Bean //스프링 컨테이너에 등록
     public MemberService memberService(){
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
         // AppConfig 객체는 MemoryMemberRepository 객체를 생성하고 그 참조값을 MemberServiceImpl을 생성하면서 생성자로 전달한다.
         // 클라이언트인 MemberServiceImpl 입장에서 보면 의존관계를 마치 외부에서 주입시켜주는 것 같다고해서
@@ -31,6 +32,7 @@ public class AppConfig {
 
     @Bean
     public OrderService orderService(){
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
@@ -39,6 +41,7 @@ public class AppConfig {
 
     @Bean
     public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
