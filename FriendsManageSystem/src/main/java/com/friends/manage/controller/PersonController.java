@@ -31,8 +31,8 @@ public class PersonController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED) // data가 생성되었다는 것을 명확하게 알 수 있게끔. 단순 200ok 가 아니라 create 201 번 ok
-    public void postPerson(@RequestBody Person person){
-        personService.put(person);
+    public void postPerson(@RequestBody PersonDto personDto){
+        personService.put(personDto);
         log.info("person -> {}", personRepository.findAll());
     }
 

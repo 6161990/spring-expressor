@@ -12,7 +12,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -43,9 +45,12 @@ class PersonControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    private MappingJackson2HttpMessageConverter messageConverter;
+
     @BeforeEach
     void beforeEach(){
-        mockMvc = MockMvcBuilders.standaloneSetup(personController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(personController).setMessageConverters(messageConverter).build();
     }
 
     @Test
@@ -55,12 +60,40 @@ class PersonControllerTest {
                 MockMvcRequestBuilders.get("/api/person/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("martin"));
+                .andExpect(jsonPath("$.name").value("martin"))
+                .andExpect(jsonPath("hobby").isEmpty())
+                .andExpect(jsonPath("address").isEmpty())
+                .andExpect(jsonPath("$.birthday").value("1991-08-15"))
+                /* .andExpect(jsonPath("$.birthday.yearOfBirthday").value(1991))
+                .andExpect(jsonPath("$.birthday.monthOfBirthday").value(8))
+                .andExpect(jsonPath("$.birthday.dayOfBirthday").value(15)) */
+                .andExpect(jsonPath("$.job").isEmpty())
+                .andExpect(jsonPath("$.phoneNumber").isEmpty())
+                .andExpect(jsonPath("$.deleted").value(false))
+                .andExpect(jsonPath("$.age").isNumber())
+                .andExpect(jsonPath("$.birthdayToday").isBoolean());
+
+        /* but, test에 대한 몇 가지 오류가 있음
+           1. age : 내년이 되면 이 테스가 실패. 나이는 한살 더 먹기 때문에 .. 그럼 how? .value(false)) -> .isNumber())
+           2. birthdayToday : 일년에 하루 정도  test가 실패할 수 있는 잠재적 오류 코드 : .value(false)) -> .isBoolean());
+           3. birthday : 원하는 데이터 형태는 1991-08-15 인데 여기는 아님. JsonSerialization을 활용해 1991-08-15 형태로 바꿔서 내려받기
+         */
+        //(jsonPath("$.name").value("martin")); 는 json객체에 대한 검증
+        //assertThat(result.getName()).isEqualsTo("martin"); 는 자바 객체에 대한 검증 , 같은 원리다.
+        /*jsonPath
+            $ : 객체를 의미함
+            .name : 객체의 name attribute를 가져옴, getName()을 사용한다고 생각하면 됨
+            . 체이닝을 통해서 recursive하게 데이터 추출이 가능
+            value(A) 값이 A와 동일한지 검증함
+            imEmpty() 값이 빈 값인지 검증함
+            isNumber() 값이 숫자값인지 검증함
+            isBoolean() true/false 값인지 검증함
+             */
     }
 
     @Test
     void postPerson() throws Exception{
-     //   mockMvc = MockMvcBuilders.standaloneSetup(personController).build();
+     /*   mockMvc = MockMvcBuilders.standaloneSetup(personController).build();
         mockMvc.perform(
                  MockMvcRequestBuilders.post("/api/person")
       //          MockMvcRequestBuilders.post("/api/person?name=martin2&age=20&bloodType=A"))
@@ -72,7 +105,26 @@ class PersonControllerTest {
                         "}"))
                 .andDo(print())
                // .andExpect(status().isOk());
+                .andExpect(status().isCreated());*/
+        PersonDto dto = PersonDto.of("martin", "programming", "판교", LocalDate.now(), "programmer", "010-1111-2222");
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/api/person")
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .content(toJsonString(dto)))
+                .andDo(print())
                 .andExpect(status().isCreated());
+
+        Person result = personRepository.findAll(Sort.by(Sort.Direction.DESC, "id")).get(0);
+
+        assertAll(
+                () -> assertThat(result.getName()).isEqualTo("martin"),
+                () -> assertThat(result.getHobby()).isEqualTo("programming"),
+                () -> assertThat(result.getAddress()).isEqualTo("판교"),
+                () -> assertThat(result.getBirthday()).isEqualTo(Birthday.of(LocalDate.now())),
+                () -> assertThat(result.getJob()).isEqualTo("programmer"),
+                () -> assertThat(result.getPhoneNumber()).isEqualTo("010-1111-2222")
+        );
     }
 
     @Test
