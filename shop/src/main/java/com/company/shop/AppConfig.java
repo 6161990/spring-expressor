@@ -33,7 +33,8 @@ public class AppConfig {
     @Bean
     public OrderService orderService(){
         System.out.println("call AppConfig.orderService");
-        return new OrderServiceImpl(memberRepository(), discountPolicy());
+      return new OrderServiceImpl(memberRepository(), discountPolicy());
+       // return null;
     }
 
     //but 이것도 자세히 보면 중복이 있고 역할에 따른 구현이 잘 보이지 않음

@@ -1,9 +1,15 @@
 package com.company.shop.order;
 
+import com.company.shop.annotation.MainDiscountPolicy;
 import com.company.shop.discount.DiscountPolicy;
 import com.company.shop.member.Member;
 import com.company.shop.member.MemberRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
+//@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService{
 
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -21,7 +27,8 @@ public class OrderServiceImpl implements OrderService{
 
 
     //AppConfig 를 통해서 구현당함
-    public OrderServiceImpl(MemberRepository memberRepository,DiscountPolicy discountPolicy) {
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.discountPolicy = discountPolicy;
         this.memberRepository = memberRepository;
     }
