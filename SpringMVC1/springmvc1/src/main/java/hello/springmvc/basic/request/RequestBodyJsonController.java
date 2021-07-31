@@ -37,6 +37,8 @@ public class RequestBodyJsonController {
         log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
 
         response.getWriter().write("ok");
+        //HttpServletRequest를 사용해서 직접 http 메세지 바디에서 데이터를 읽어옴 -> streamUtils로  문자로 변환
+        //문자로 된 json 데이터를 jackson 라이브러리인 objectMapper를 사용해서 자바 객체로 변환
     }
 
     @ResponseBody
@@ -46,6 +48,8 @@ public class RequestBodyJsonController {
         HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
         log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
         return "ok";
+        // @RequestBody를 사용해 http 메세지에서 데이터를 꺼내고 messageBody에 저장 ->
+        // 문자로 된 json 객체인 messageBody를 objectMapper를 통해 자바 객체로 변환
     }
 
     @ResponseBody
@@ -53,6 +57,8 @@ public class RequestBodyJsonController {
     public String requestBodyJsonV3(@RequestBody HelloData data){
         log.info("username={}, age={}", data.getUsername(), data.getAge());
         return "ok";
+        //@RequestBody에 직접 만든 객체 지정
+        //객체를 알아서 컨버터가 변환해줌
     }
     
     @ResponseBody
@@ -61,6 +67,7 @@ public class RequestBodyJsonController {
         HelloData data = httpEntity.getBody();
         log.info("username={}, age={}", data.getUsername(), data.getAge());
         return "ok";
+        //HttpEntity로도 불러올 수 있음
     }
 
     //Json이 메세지 컨버터에 의해 객체로 되었다가 나갈 때 다시 메세지 컨버터에 의해 JSON으로 변환되어 나가 BODY에 찍힘
@@ -69,6 +76,8 @@ public class RequestBodyJsonController {
     public HelloData requestBodyJsonV5(@RequestBody HelloData data){
         log.info("username={}, age={}", data.getUsername(), data.getAge());
         return data;
+        //응답의 경우에도 @ResponseBody를 사용하면 해당 객체를 HTTP 메시지 바디에 직접 넣어줄 수 있다.
+        //물론 이 경우에도 HttpEntity를 사용해도 된다.
     }
 
 }

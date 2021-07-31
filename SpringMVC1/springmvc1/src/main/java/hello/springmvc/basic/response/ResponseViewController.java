@@ -13,10 +13,13 @@ public class ResponseViewController {
         ModelAndView mav = new ModelAndView("response/hello")
                 .addObject("data","hello!!");
         return mav;
+        //model과 view니까 각각 attribute를 지정해주어야함
+        //viewName = " response/hello "
+        //model = addObject
     }
 
     @RequestMapping("/response-view-v2")
-    public String resposneViewV2(Model model){
+    public String responseViewV2(Model model){
         model.addAttribute("data", "hello!");
         return "response/hello";
     }
