@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="py-5 text-center">
+        <h2>상품 등록 폼</h2>
+    </div>
+
+    <form action="item.html" th:action th:object="${item}" method="post">
+        <div>
+            <label for="itemName">상품명</label>
+            <input type="text" id="itemName" th:field="*{itemName}" class="form-control" placeholder="이름을 입력하세요">
+        </div>
+        <div>
+            <label for="price">가격</label>
+            <input type="text" id="price" th:field="*{price}" class="form-control" placeholder="가격을 입력하세요">
+        </div>
+        <div>
+            <label for="quantity">수량</label>
+            <input type="text" id="quantity" th:field="*{quantity}" class="form-control" placeholder="수량을 입력하세요">
+        </div>
+
+        <hr class="my-4">
+        <!-- single checkbox -->
+        <div>판매 여부</div>
+        <div>
+            <div class="form-check">
+            <!--  단일 체크박스 체크 안하면 false가 아니라 null 로 들어가는 문제 해결법 1 (스프링이 제공)
+                체크 on을 -> true로 넘기고, null을 -> false로 넘겨주는 하이픈 스킬 '_'open
+                <input type="checkbox" id="open" name="open" class="form-check-input">
+                <input type="checkbox" name="_open" value="on"/> -->
+            <!-- 타임리프로 해결하는 문제 해결법 2 / 내부를 살펴보면 위의 hidden을 자동으로 만들어줌 -->
+                <input type="checkbox" id="open" th:field="*{open}" class="form-check-input">
+                <label for="open" class="form-check-label">판매 오픈</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col">
+                <button class="w-100 btn btn-primary btn-lg" type="submit">상품 등록</button>
+            </div>
+            <div class="col">
+                <button class="w-100 btn btn-secondary btn-lg"
+                        onclick="location.href='items.html'"
+                        th:onclick="|location.href='@{/form/items}'|"
+                        type="button">취소</button>
+            </div>
+        </div>
+
+    </form>
+
+</div> <!-- /container -->
+</body>
+</html>
