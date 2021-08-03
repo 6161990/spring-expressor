@@ -58,6 +58,7 @@ public class MappingController {
 
     /**
      * PathVariable 사용 다중
+     * 마찬가지로 생략 가능 하다.
      */
     @GetMapping("/mapping/users/{userId}/orders/{orderId}")
     public String mappingPath(@PathVariable String userId, @PathVariable Long orderId) {
@@ -66,6 +67,7 @@ public class MappingController {
     }
 
     /**
+     * 특정 파라미터가 있거나 없는 조건 추가. 잘 사용 x
      * 파라미터로 추가 매핑
      * params="mode",
      * params="!mode"
