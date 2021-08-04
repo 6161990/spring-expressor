@@ -20,39 +20,39 @@ public class MessageSourceTest {
     MessageSource ms;
 
     @Test
-    void helloMessage(){
+    void helloMessage() {
         String result = ms.getMessage("hello", null, null);
         assertThat(result).isEqualTo("안녕");
     }
 
     @Test
-    void notFoundMessageCode(){
+    void notFoundMessageCode() {
         //ms.getMessage("no_node", null, null);
-        assertThatThrownBy(() -> ms.getMessage("no_code",null, null))
+        assertThatThrownBy(() -> ms.getMessage("no_code", null, null))
                 .isInstanceOf(NoSuchMessageException.class);
 
     }
 
     @Test
-    void notFoundMessageCodeDefaultMessage(){
+    void notFoundMessageCodeDefaultMessage() {
         String result = ms.getMessage("no_code", null, "기본 메세지", null);
         assertThat(result).isEqualTo("기본 메세지");
     }
 
     @Test
-    void argumentMessage(){
+    void argumentMessage() {
         String message = ms.getMessage("hello.name", new Object[]{"yoonji zzang!"}, null);
         assertThat(message).isEqualTo("안녕 yoonji zzang!");
     }
 
     @Test
-    void defaultLang(){
+    void defaultLang() {
         assertThat(ms.getMessage("hello", null, null)).isEqualTo("안녕");
         assertThat(ms.getMessage("hello", null, Locale.KOREA)).isEqualTo("안녕");
     }
 
     @Test
-    void enLang(){
-        assertThat(ms.getMessage("hello",null,Locale.ENGLISH)).isEqualTo("hello");
+    void enLang() {
+        assertThat(ms.getMessage("hello", null, Locale.ENGLISH)).isEqualTo("hello");
     }
 }

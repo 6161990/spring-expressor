@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TemplateController {
 
     @GetMapping("/fragment")
-    public String template(){
+    public String template() {
         return "template/fragment/fragmentMain";
     }
 
     @GetMapping("layout")
-    public String layout(){
+    public String layout() {
         return "template/layout/layoutMain";
     }
 
     @GetMapping("/layoutExtend")
-    public String layoutExtend(){
+    public String layoutExtend() {
         return "template/layoutExtend/layoutExtendMain";
     }
 

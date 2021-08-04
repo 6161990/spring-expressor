@@ -11,13 +11,13 @@ public class MessageCodesResolverTest {
     MessageCodesResolver codesResolver = new DefaultMessageCodesResolver();
 
     @Test
-    void messageCodesResolverObject(){
+    void messageCodesResolverObject() {
         String[] messageCodes = codesResolver.resolveMessageCodes("required", "item");
         assertThat(messageCodes).containsExactly("required.item", "required");
     }
 
     @Test
-    void messageCodesResolverField(){
+    void messageCodesResolverField() {
         String[] messageCodes = codesResolver.resolveMessageCodes("required", "item", "itemName", String.class);
         assertThat(messageCodes).containsExactly(
                 "required.item.itemName",
@@ -26,4 +26,5 @@ public class MessageCodesResolverTest {
                 "required"
         );
     }
+
 }

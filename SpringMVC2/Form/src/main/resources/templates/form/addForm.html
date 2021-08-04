@@ -37,11 +37,11 @@
         <div>판매 여부</div>
         <div>
             <div class="form-check">
-            <!--  단일 체크박스 체크 안하면 false가 아니라 null 로 들어가는 문제 해결법 1 (스프링이 제공)
-                체크 on을 -> true로 넘기고, null을 -> false로 넘겨주는 하이픈 스킬 '_'open
-                <input type="checkbox" id="open" name="open" class="form-check-input">
-                <input type="checkbox" name="_open" value="on"/> -->
-            <!-- 타임리프로 해결하는 문제 해결법 2 / 내부를 살펴보면 위의 hidden을 자동으로 만들어줌 -->
+                <!--  단일 체크박스 체크 안하면 false가 아니라 null 로 들어가는 문제 해결법 1 (스프링이 제공)
+                    체크 on을 -> true로 넘기고, null을 -> false로 넘겨주는 하이픈 스킬 '_'open
+                    <input type="checkbox" id="open" name="open" class="form-check-input">
+                    <input type="checkbox" name="_open" value="on"/> -->
+                <!-- 타임리프로 해결하는 문제 해결법 2 / 내부를 살펴보면 위의 hidden을 자동으로 만들어줌 -->
                 <input type="checkbox" id="open" th:field="*{open}" class="form-check-input">
                 <label for="open" class="form-check-label">판매 오픈</label>
             </div>
@@ -73,7 +73,8 @@
             <select th:field="*{deliveryCode}" class="form-select">
                 <option value="">==배송 방식 선택==</option>
                 <option th:each="deliveryCode : ${deliveryCodes}" th:value="${deliveryCode.code}"
-                        th:text="${deliveryCode.displayName}">FAST</option>
+                        th:text="${deliveryCode.displayName}">FAST
+                </option>
             </select>
         </div>
 
@@ -89,7 +90,8 @@
                 <button class="w-100 btn btn-secondary btn-lg"
                         onclick="location.href='items.html'"
                         th:onclick="|location.href='@{/form/items}'|"
-                        type="button">취소</button>
+                        type="button">취소
+                </button>
             </div>
         </div>
 
