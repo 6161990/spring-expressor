@@ -1,7 +1,6 @@
 package hello.login.domain.member;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -10,7 +9,7 @@ import java.util.*;
 @Repository
 public class MemberRepository {
 
-    private static Map<Long, Member> store = new HashMap<>();
+    private static final Map<Long, Member> store = new HashMap<>();
     private static long sequence = 0L;
 
     public Member save(Member member){
