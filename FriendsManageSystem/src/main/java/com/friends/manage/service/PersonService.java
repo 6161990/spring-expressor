@@ -83,7 +83,7 @@ public class PersonService {
          */
 
         //방법 2
-        Person person3 = personRepository.findById(id).orElse(null);
+        Person person3 = personRepository.findById(id).orElse(null); //후의 Mockito test의 장점을 살펴볼 수 있음
         log.info("person : {}",person3);
 
         return person3;

@@ -1,24 +1,42 @@
 package com.friends.manage.service;
 
 
+import com.friends.manage.controller.dto.PersonDto;
 import com.friends.manage.domain.Person;
 import com.friends.manage.repository.PersonRepository;
 import org.assertj.core.api.Assertions;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
-@SpringBootTest
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+//@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class PersonServiceTest {
-    @Autowired
+
+    @InjectMocks //테스트의 대상이 되는 클래스
     private PersonService personService;
     
-    @Autowired
+    @Mock //대상이 되는 클래스에서 Autowired하고 있는 클래스
     private PersonRepository personRepository;
-    
+
+    // => @Mock이 설정된 클래스는 Mock으로 만들어서 @InjectMocks이 설정된 클래스에 주입시킨다.
+    // Mock은 가짜임. 빈껍데기 이기 때문에 기존 test코드를 돌리면 오류가 남.
+    // Mock테스트용 코드를 따로 작성해야함
+
+
 /*   @Autowired
     private BlockRepository blockRepository;
 
@@ -28,16 +46,49 @@ class PersonServiceTest {
     void getPeopleByName(){
     //    givenPeople();
 
+/*
+        기존 코드
         List<Person> result = personService.getPeopleByName("martin");
         Assertions.assertThat(result.size()).isEqualTo(1);
-        Assertions.assertThat(result.get(0).getName()).isEqualTo("martin");
+        Assertions.assertThat(result.get(0).getName()).isEqualTo("martin");*/
+
+        when(personRepository.findByName("martin"))  //when == if 실제로 호출되는 것이 아니라 호출되었다고 가정
+                .thenReturn(Lists.newArrayList(new Person("martin")));
+        List<Person> result = personService.getPeopleByName("martin");
+
+        assertThat(result.size()).isEqualTo(1);
+        assertThat(result.get(0).getName()).isEqualTo("martin");
     }
 
     @Test
     void getPerson(){
-        Person person = personService.getPerson(3L);
+        when(personRepository.findById(1L))
+                .thenReturn(Optional.of(new Person("martin")));
+        Person person = personService.getPerson(1L);
+        assertThat(person.getName()).isEqualTo("martin");
 
-        Assertions.assertThat(person.getName()).isEqualTo("dennis");
+/*        Person person = personService.getPerson(3L);
+        assertThat(person.getName()).isEqualTo("dennis");*/
+    }
+
+    @Test
+    void getPersonIfNotFound(){
+        when(personRepository.findById(1L))
+                .thenReturn(Optional.empty());
+
+        Person person = personService.getPerson(1L);
+        assertThat(person).isNull();
+    }
+
+    @Test
+    void put(){
+        PersonDto dto = PersonDto.of("martin","programming","판교", LocalDate.now(),"programmer", "010-1111-2222");
+        personService.put(dto);
+
+        //Mock test 새로운 방식으로 void 리턴 메소드 test를 진행
+        verify(personRepository, times(1)).save(any(Person.class));
+        //진행했던 Mock에 대한 verify , Person.class 에대한 save가 어떤 것이든지 진행되었는지.
+        //한번인지, 두번인지 혹은 한번도 실행(naver)하지 않았는지 .. times
     }
 
 
