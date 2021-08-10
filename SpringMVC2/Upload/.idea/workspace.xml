@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f1c413c-c687-49e8-aec3-8dff5d478a69" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hello/upload/controller/ItemController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hello/upload/controller/ItemForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hello/upload/controller/ServletUploadControllerV1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hello/upload/controller/ServletUploadControllerV2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hello/upload/controller/SpringUploadController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hello/upload/domain/Item.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hello/upload/domain/ItemRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hello/upload/domain/UploadFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hello/upload/file/FileStore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/item-form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/item-view.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/upload-form.html" afterDir="false" />
-    </list>
+    <list default="true" id="1f1c413c-c687-49e8-aec3-8dff5d478a69" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -107,7 +92,7 @@
       <option name="presentableId" value="Default" />
       <updated>1628549782857</updated>
       <workItem from="1628549784419" duration="4663000" />
-      <workItem from="1628558222851" duration="9528000" />
+      <workItem from="1628558222851" duration="9850000" />
     </task>
     <servers />
   </component>
