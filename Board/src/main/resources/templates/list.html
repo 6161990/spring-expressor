@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>JPA 게시판 목록</title>
+</head>
+<body>
+<div id="contents">
+    <table>
+        <thead>
+        <tr>
+            <th class="one wide">번호</th>
+            <th class="ten wide">글제목</th>
+            <th class="two wide">작성자</th>
+            <th class="three wide">작성일</th>
+            <th class="three wide">조회수</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <!-- CONTENTS !-->
+        <tr th:each="post : ${postList}">
+            <td>
+                <span th:text="${post.id}"></span>
+            </td>
+            <td>
+                <a th:href="@{'/boards/' + ${post.id}}">
+                    <span th:text="${post.title}"></span>
+                </a>
+            </td>
+            <td>
+                <span th:text="${post.writer}"></span>
+            </td>
+            <td>
+                <span th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd')}"></span>
+            </td>
+            <td>
+                <span th:text="${post.viewCount}"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <button onclick="location.href='addForm.html'"
+            th:onclick="|location.href='@{/boards/add}'|"
+            type="button" >게시글 등록</button>
+    
+</div>
+
+</body>
+</html>
