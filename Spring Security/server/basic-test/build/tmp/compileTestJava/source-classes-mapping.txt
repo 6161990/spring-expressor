@@ -1,0 +1,2 @@
+com/sp/fc/Test1.java
+ com.sp.fc.Test1
