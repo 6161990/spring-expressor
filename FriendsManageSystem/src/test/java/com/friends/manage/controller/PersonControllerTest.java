@@ -8,6 +8,7 @@ import com.friends.manage.domain.dto.Birthday;
 import com.friends.manage.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +23,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -51,6 +53,20 @@ class PersonControllerTest {
                 .webAppContextSetup(wac)
                 .alwaysDo(print())
                 .build();
+    }
+
+    @Test
+    void getAll() throws Exception {
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/api/person")
+                        .param("page", "1")
+                        .param("size", "2"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.totalPages").value(3))
+                .andExpect(jsonPath("$.totalElements").value(6))
+                .andExpect(jsonPath("$.numberOfElements").value(2))
+                .andExpect(jsonPath("$.content.[0].name").value("dennis"))
+                .andExpect(jsonPath("$.content.[1].name").value("sophia"));
     }
 
     @Test

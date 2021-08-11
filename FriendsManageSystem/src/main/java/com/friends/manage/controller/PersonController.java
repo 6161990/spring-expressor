@@ -9,11 +9,15 @@ import com.friends.manage.repository.PersonRepository;
 import com.friends.manage.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/person") //scope에 의해 하위 메소드들이 해당 주소로 mapping됨
@@ -25,6 +29,11 @@ public class PersonController {
 
     @Autowired
     private PersonRepository personRepository;
+
+    @GetMapping
+    public Page<Person> getAll(@PageableDefault Pageable pageable) {
+        return personService.getAll(pageable);
+    }
 
     //@RequestMapping(method = RequestMethod.GET)
     @GetMapping("/{id}")

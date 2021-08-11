@@ -11,6 +11,8 @@ import com.friends.manage.exception.RenameIsNotPermittedException;
 import com.friends.manage.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,6 +44,10 @@ public class PersonService {
     }
     //stream.map으로 Block에 있는 회원의 이름을 get. List<String>으로 받기 위해 collect
     //filter 어떤 조건에 일치하는 값만 돌려주는 함수*/
+
+    public Page<Person> getAll(Pageable pageable) {
+        return personRepository.findAll(pageable);
+    }
 
     public List<Person> getPeopleByName(String name) {
         //   List<Person> people = personRepository.findAll();
