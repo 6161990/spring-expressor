@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.sp.fc.Test1" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-08-11T03:08:16" hostname="DESKTOP-4730154" time="0.045">
-  <properties/>
-  <testcase name="1. 테스트" classname="com.sp.fc.Test1" time="0.045"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

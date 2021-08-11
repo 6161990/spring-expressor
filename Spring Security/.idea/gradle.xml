@@ -9,8 +9,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/comp/common-utils" />
             <option value="$PROJECT_DIR$/server/basic-test" />
+            <option value="$PROJECT_DIR$/server/login-basic" />
+            <option value="$PROJECT_DIR$/server/login-custom-filter" />
           </set>
         </option>
       </GradleProjectSettings>

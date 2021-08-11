@@ -1,40 +1,39 @@
 package com.sp.fc.web.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HomeController {
 
-    @RequestMapping("/")
-    public String index(){
-        return "홈페이지";
+    @GetMapping("/")
+    public SecurityMessage hello(@AuthenticationPrincipal UserDetails user){
+        return SecurityMessage.builder()
+                .user(user)
+                .message("hello")
+                .build();
     }
 
-    @RequestMapping("/auth")
-    public Authentication auth(){
-        return SecurityContextHolder.getContext()
-                .getAuthentication();
-    }
 
-    //이 페이지에 접근하는 사람들은 괄호 안에 지정한 authority가 있어야 함
     @PreAuthorize("hasAnyAuthority('ROLE_USER')")
-    @RequestMapping("/user")
-    public SecurityMessage user(){
+    @GetMapping("/user")
+    public SecurityMessage user(@AuthenticationPrincipal UserDetails user){
         return SecurityMessage.builder()
-                .auth(SecurityContextHolder.getContext().getAuthentication())
-                .message("user 정보")
+                .user(user)
+                .message("user page")
                 .build();
     }
+
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @RequestMapping("/admin")
-    public SecurityMessage admin(){
+    @GetMapping("/admin")
+    public SecurityMessage admin(@AuthenticationPrincipal UserDetails user){
         return SecurityMessage.builder()
-                .auth(SecurityContextHolder.getContext().getAuthentication())
-                .message("admin 정보")
+                .user(user)
+                .message("admin page")
                 .build();
     }
+
 }
