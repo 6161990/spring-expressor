@@ -1,6 +1,6 @@
 apply from:"../web-common.gradle"
 
 dependencies {
-    compile project(":web-student-teacher")
+    compile project(":comp-user-admin")
+    compile project(":web-user-admin")
 }
-
