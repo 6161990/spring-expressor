@@ -13,10 +13,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Order(1)
-@Configuration
+@Order(2)
+@EnableWebSecurity(debug = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
 
     private final StudentManager studentManager;
     private final TeacherManager teacherManager;
@@ -25,7 +25,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.studentManager = studentManager;
         this.teacherManager = teacherManager;
     }
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

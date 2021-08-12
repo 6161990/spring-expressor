@@ -12,8 +12,8 @@
             <option value="$PROJECT_DIR$/server/basic-authentication-test" />
             <option value="$PROJECT_DIR$/server/basic-test" />
             <option value="$PROJECT_DIR$/server/login-basic" />
-            <option value="$PROJECT_DIR$/server/login-custom-filter" />
             <option value="$PROJECT_DIR$/server/login-multi-chain" />
+            <option value="$PROJECT_DIR$/web/student-teacher" />
           </set>
         </option>
       </GradleProjectSettings>
