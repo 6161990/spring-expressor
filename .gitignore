@@ -2,3 +2,5 @@
 *.js
 *.js
 *.css
+*.map
+*.html
