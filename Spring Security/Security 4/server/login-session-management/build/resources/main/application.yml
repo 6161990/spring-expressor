@@ -1,5 +1,8 @@
 server:
-  port: 9056
+  port: 9057
+  servlet:
+    session:
+      timeout: 60s
 
 spring:
 
@@ -14,7 +17,7 @@ spring:
       path: /h2-console
 
   datasource:
-    url: jdbc:h2:file:~/dev/temp/h2db/rememberme;
+    url: jdbc:h2:file:~/dev/temp/h2db/sessionmng;
     driverClassName: org.h2.Driver
     username: sa
     password:

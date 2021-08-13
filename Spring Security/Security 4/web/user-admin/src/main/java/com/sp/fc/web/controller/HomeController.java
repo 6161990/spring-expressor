@@ -25,6 +25,10 @@ public class HomeController {
         return "loginForm";
     }
 
+    @GetMapping("/login-required")
+    public String loginRequired(){
+        return "LoginRequired";
+    }
     @GetMapping("/login-error")
     public String loginError(Model model){
         model.addAttribute("loginError", true);
@@ -36,9 +40,15 @@ public class HomeController {
         return "AccessDenied";
     }
 
+    @GetMapping("/access-denied2")
+    public String accessDenied2(){
+        return "AccessDenied2";
+    }
+
     @PreAuthorize("hasAnyAuthority('ROLE_USER')")
     @GetMapping("/user-page")
     public String userPage(){
+        if(true) throw new YouCannotAccessUserPage();
         return "UserPage";
     }
 
