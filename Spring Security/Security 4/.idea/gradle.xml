@@ -18,7 +18,6 @@
             <option value="$PROJECT_DIR$/server/login-rememberme" />
             <option value="$PROJECT_DIR$/server/login-session-management" />
             <option value="$PROJECT_DIR$/server/login-userdetails" />
-            <option value="$PROJECT_DIR$/server/src" />
             <option value="$PROJECT_DIR$/web/student-teacher" />
             <option value="$PROJECT_DIR$/web/user-admin" />
           </set>
