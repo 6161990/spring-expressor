@@ -24,7 +24,8 @@ public class HelloController {
         return "hello";
     }*/
 
-    @PreAuthorize("hasRole('USER')")
+//    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("@nameCheck.check(#name)")
     @GetMapping("/greeting/{name}")
     public String greeting(@PathVariable String name){
         return "hello "+ securityMessageService.message(name);

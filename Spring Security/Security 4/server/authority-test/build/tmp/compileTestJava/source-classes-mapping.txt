@@ -1,5 +1,3 @@
-com/sp/fc/web/test/AuthorityBasicTest.java
- com.sp.fc.web.test.AuthorityBasicTest
 com/sp/fc/web/test/SpELTest.java
  com.sp.fc.web.test.Horse
  com.sp.fc.web.test.Horse$HorseBuilder
@@ -7,3 +5,8 @@ com/sp/fc/web/test/SpELTest.java
  com.sp.fc.web.test.Person$PersonBuilder
  com.sp.fc.web.test.SpELTest
  com.sp.fc.web.test.SpELTest$1
+com/sp/fc/web/test/AuthorityBasicTest.java
+ com.sp.fc.web.test.AuthorityBasicTest
+com/sp/fc/web/test/PaperTest.java
+ com.sp.fc.web.test.PaperTest
+ com.sp.fc.web.test.PaperTest$1
