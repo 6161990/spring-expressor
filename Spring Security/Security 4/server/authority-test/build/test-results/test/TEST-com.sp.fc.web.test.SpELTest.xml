@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.sp.fc.web.test.SpELTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-08-16T03:45:37" hostname="DESKTOP-4730154" time="0.192">
+  <properties/>
+  <testcase name="1. 기본 테스트" classname="com.sp.fc.web.test.SpELTest" time="0.167"/>
+  <testcase name="2. 값 변경" classname="com.sp.fc.web.test.SpELTest" time="0.002"/>
+  <testcase name="3. 메소드 호출" classname="com.sp.fc.web.test.SpELTest" time="0.015"/>
+  <testcase name="4. Context 테스트" classname="com.sp.fc.web.test.SpELTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
