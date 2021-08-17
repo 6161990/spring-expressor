@@ -1,6 +1,7 @@
 package com.sp.fc.web.service;
 
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -21,14 +22,20 @@ public class PaperService implements InitializingBean {
         paperDB.put(paper.getPaperId(), paper);
     }
 
+    @PostFilter("notPrepareState(filterObject)")
     public List<Paper> getMyPapers(String username) {
+//        return paperDB.values().stream().collect(Collectors.toList());
         return paperDB.values().stream().filter(
                 paper -> paper.getStudentIds().contains(username)
         ).collect(Collectors.toList());
     }
 
+//    @PostAuthorize("returnObject.studentIds.contains(principal.username)") 보통 service에서 하지 않음
     public Paper getPaper(Long paperId) {
         return paperDB.get(paperId);
     }
 
+    public List<Paper> getAllPapers() {
+        return paperDB.values().stream().collect(Collectors.toList());
+    }
 }

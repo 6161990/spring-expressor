@@ -34,18 +34,46 @@ public class PaperTest extends WebIntegrationTest {
             .title("시험지2")
             .tutorId("tutor1")
             .studentIds(List.of("user2"))
-            .state(Paper.State.PREPARE)
+            .state(Paper.State.READY)
             .build();
+
+    private Paper paper3 = Paper.builder()
+            .paperId(3L)
+            .title("시험지3")
+            .tutorId("tutor1")
+            .studentIds(List.of("user1"))
+            .state(Paper.State.READY)
+            .build();
+
+    @DisplayName("5. 교장선생님은 모든 시험지를 볼 수 있다.")
+    @Test
+    void test_5(){
+        paperService.setPaper(paper1);
+        paperService.setPaper(paper2);
+        paperService.setPaper(paper3);
+
+        client = new TestRestTemplate("primary", "1111");
+        ResponseEntity<List<Paper>> response = client.exchange(uri("/paper/getPapersByPrimary"),
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<Paper>>() {
+                });
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(3, response.getBody().size());
+        System.out.println(response.getBody());
+    }
 
     @DisplayName("1. user1이 시험지 리스트 조회한다.")
     @Test
     void test_1(){
         paperService.setPaper(paper1);
+        paperService.setPaper(paper2);
+        paperService.setPaper(paper3);
+
         client = new TestRestTemplate("user1", "1111");
         ResponseEntity<List<Paper>> response = client.exchange(uri("/paper/mypapers"),
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<Paper>>() {
         });
         assertEquals(200, response.getStatusCodeValue());
+        assertEquals(1, response.getBody().size());
         System.out.println(response.getBody());
     }
 
