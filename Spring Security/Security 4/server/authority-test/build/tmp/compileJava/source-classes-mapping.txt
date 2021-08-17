@@ -1,7 +1,7 @@
 com/sp/fc/web/AuthorityTestApplication.java
  com.sp.fc.web.AuthorityTestApplication
-com/sp/fc/web/service/PaperService.java
- com.sp.fc.web.service.PaperService
+com/sp/fc/web/config/CustomSecurityTag.java
+ com.sp.fc.web.config.CustomSecurityTag
 com/sp/fc/web/config/SecurityConfig.java
  com.sp.fc.web.config.SecurityConfig
  com.sp.fc.web.config.SecurityConfig$1
@@ -17,14 +17,16 @@ com/sp/fc/web/controller/HelloController.java
  com.sp.fc.web.controller.HelloController
 com/sp/fc/web/service/SecurityMessageService.java
  com.sp.fc.web.service.SecurityMessageService
+com/sp/fc/web/config/CustomMethodSecurityMetadataSource.java
+ com.sp.fc.web.config.CustomMethodSecurityMetadataSource
 com/sp/fc/web/config/CustomVoter.java
  com.sp.fc.web.config.CustomVoter
 com/sp/fc/web/config/MethodSecurityConfiguration.java
  com.sp.fc.web.config.MethodSecurityConfiguration
  com.sp.fc.web.config.MethodSecurityConfiguration$1
+com/sp/fc/web/service/PaperService.java
+ com.sp.fc.web.service.PaperService
 com/sp/fc/web/config/CustomPermissionEvaluator.java
  com.sp.fc.web.config.CustomPermissionEvaluator
-com/sp/fc/web/config/CustomMethodSecurityMetadataSource.java
- com.sp.fc.web.config.CustomMethodSecurityMetadataSource
 com/sp/fc/web/controller/PaperController.java
  com.sp.fc.web.controller.PaperController

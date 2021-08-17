@@ -1,6 +1,7 @@
 package com.sp.fc.web.service;
 
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,7 @@ public class PaperService implements InitializingBean {
         return paperDB.get(paperId);
     }
 
+    @Secured({"ROLE_PRIMARY", "ROLE_RUN_AS_PRIMARY"})
     public List<Paper> getAllPapers() {
         return paperDB.values().stream().collect(Collectors.toList());
     }

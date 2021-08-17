@@ -34,6 +34,12 @@ public class PaperController {
         return paperService.getMyPapers(user.getUsername());
     }
 
+    @Secured({"ROLE_USER","RUN_AS_PRIMARY"})
+    @GetMapping("/allpapers")
+    public List<Paper> allPapers(@AuthenticationPrincipal User user){
+        return paperService.getAllPapers();
+    }
+
 //    @PreAuthorize("hasPermission(#paperId,'paper','read')")
     //paperId로 paper에 read할 수 있는 permission만들기
     @PostAuthorize("returnObject.studentIds.contains(principal.username)")

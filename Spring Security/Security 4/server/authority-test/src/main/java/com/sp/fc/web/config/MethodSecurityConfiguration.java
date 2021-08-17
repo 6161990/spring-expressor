@@ -8,6 +8,8 @@ import org.springframework.security.access.expression.method.DefaultMethodSecuri
 import org.springframework.security.access.expression.method.ExpressionBasedPreInvocationAdvice;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionOperations;
+import org.springframework.security.access.intercept.RunAsManager;
+import org.springframework.security.access.intercept.RunAsManagerImpl;
 import org.springframework.security.access.method.MethodSecurityMetadataSource;
 import org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter;
 import org.springframework.security.access.vote.AffirmativeBased;
@@ -18,6 +20,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.core.Authentication;
 
+import javax.annotation.security.RunAs;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +48,13 @@ public class MethodSecurityConfiguration extends GlobalMethodSecurityConfigurati
 
     protected MethodSecurityMetadataSource customMethodSecurityMetadataSource() {
         return new CustomMethodSecurityMetadataSource();
+    }
+
+    @Override
+    protected RunAsManager runAsManager() {
+        RunAsManagerImpl runAsManager = new RunAsManagerImpl();
+        runAsManager.setKey("runas");
+        return runAsManager;
     }
 
     @Override

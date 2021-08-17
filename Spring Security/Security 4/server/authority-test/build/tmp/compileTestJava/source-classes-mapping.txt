@@ -13,3 +13,4 @@ com/sp/fc/web/test/PaperTest.java
  com.sp.fc.web.test.PaperTest$2
  com.sp.fc.web.test.PaperTest$3
  com.sp.fc.web.test.PaperTest$4
+ com.sp.fc.web.test.PaperTest$5
