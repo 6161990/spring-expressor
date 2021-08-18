@@ -14,7 +14,8 @@ public class PaperUserTestApp {
         SpringApplication.run(PaperUserTestApp.class, args);
     }
 
-    //server쪽 application에서는 잘 스캔이되는데 test에서는 잘 스캔이 안되는 경우가 있어서 , 별도로 config bean을 만들고 설정함.
+    //server쪽 application에서는 잘 스캔이되는데 test에서는 잘 스캔이 안되는 경우가 있어서 ,
+    // 별도로 config bean을 만들고 설정함.
     @Configuration
     @ComponentScan("com.sp.fc.user")
     @EnableJpaRepositories(basePackages = {

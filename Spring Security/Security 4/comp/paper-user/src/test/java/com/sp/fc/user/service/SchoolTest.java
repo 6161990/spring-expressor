@@ -15,7 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //db에 데이터를 넣고 빼는 integration test이기 때문에
 @DataJpaTest
-//db 데이터 소스를 h2 db의 inMemory방식으로 만들고 repository 객체는 스프링 컨테이너 안에서 기본적으로 만들어짐
+//db 데이터 소스를 h2 db의 inMemory방식으로 만들고
+// repository 객체는 스프링 컨테이너 안에서 기본적으로 만들어짐
 //repository까지만 만들어주므로 서비스는 직접 만들어야함
 public class SchoolTest {
 
@@ -38,7 +39,9 @@ public class SchoolTest {
 
     @BeforeEach
     void before(){
-        this.schoolRepository.deleteAll(); // test는 처음에 기존 데이터를 다 삭제하고 하는 것이 완전. test는 순서가 정해지지 않고 돌아가기 때문
+        this.schoolRepository.deleteAll();
+        // test는 처음에 기존 데이터를 다 삭제하고 하는 것이 완전.
+        // test는 순서가 정해지지 않고 돌아가기 때문
         this.schoolService = new SchoolService(schoolRepository);
         this.schoolTestHelper = new SchoolTestHelper(schoolService);
         school = this.schoolTestHelper.createSchool("테스트 학교","서울");
