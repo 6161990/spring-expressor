@@ -1,0 +1,9 @@
+com/sp/fc/config/PaperUserModule.java
+ com.sp.fc.config.PaperUserModule
+com/sp/fc/user/domain/School.java
+ com.sp.fc.user.domain.School
+ com.sp.fc.user.domain.School$SchoolBuilder
+com/sp/fc/user/repository/SchoolRepository.java
+ com.sp.fc.user.repository.SchoolRepository
+com/sp/fc/user/service/SchoolService.java
+ com.sp.fc.user.service.SchoolService

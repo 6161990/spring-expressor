@@ -18,6 +18,7 @@
         <module name="sp-fastcampus-spring-sec.server-login-basic.main" />
         <module name="sp-fastcampus-spring-sec.web-student-teacher.main" />
         <module name="sp-fastcampus-spring-sec.comp-user-admin.test" />
+        <module name="sp-fastcampus-spring-sec.comp-paper-user.test" />
         <module name="sp-fastcampus-spring-sec.web-user-admin.test" />
         <module name="sp-fastcampus-spring-sec.server-basic-test.main" />
         <module name="sp-fastcampus-spring-sec.server-authority-test.main" />
@@ -33,6 +34,7 @@
         <module name="sp-fastcampus-spring-sec.server-login-userdetails.main" />
         <module name="sp-fastcampus-spring-sec.test-web-util.test" />
         <module name="sp-fastcampus-spring-sec.web-user-admin.main" />
+        <module name="sp-fastcampus-spring-sec.comp-paper-user.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="15" />
