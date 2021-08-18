@@ -11,6 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/comp/user-admin" />
+            <option value="$PROJECT_DIR$/server/authority-acl" />
             <option value="$PROJECT_DIR$/server/authority-test" />
             <option value="$PROJECT_DIR$/server/basic-authentication-test" />
             <option value="$PROJECT_DIR$/server/basic-test" />
@@ -26,6 +27,5 @@
         </option>
       </GradleProjectSettings>
     </option>
-    <option name="offlineMode" value="true" />
   </component>
 </project>
