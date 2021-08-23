@@ -7,3 +7,15 @@ com/sp/fc/user/repository/SchoolRepository.java
  com.sp.fc.user.repository.SchoolRepository
 com/sp/fc/user/service/SchoolService.java
  com.sp.fc.user.service.SchoolService
+com/sp/fc/user/domain/User.java
+ com.sp.fc.user.domain.User
+ com.sp.fc.user.domain.User$UserBuilder
+com/sp/fc/user/service/UserService.java
+ com.sp.fc.user.service.UserService
+com/sp/fc/user/repository/UserRepository.java
+ com.sp.fc.user.repository.UserRepository
+com/sp/fc/user/domain/Authority.java
+ com.sp.fc.user.domain.Authority
+ com.sp.fc.user.domain.Authority$AuthorityBuilder
+com/sp/fc/user/service/UserSecurityService.java
+ com.sp.fc.user.service.UserSecurityService

@@ -127,10 +127,10 @@ public class UserService {
         });
     }
 
-
     public long countTeacher() {
         return userRepository.countAllByAuthoritiesIn(Authority.ROLE_TEACHER);
     }
+
     public long countTeacher(long schoolId) {
         return userRepository.countAllByAuthoritiesIn(schoolId, Authority.ROLE_TEACHER);
     }
@@ -138,6 +138,7 @@ public class UserService {
     public long countStudent() {
         return userRepository.countAllByAuthoritiesIn(Authority.ROLE_STUDENT);
     }
+
     public long countStudent(long schoolId) {
         return userRepository.countAllByAuthoritiesIn(schoolId, Authority.ROLE_STUDENT);
     }

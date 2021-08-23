@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+ // DaoSecurityProvider는 UserDetailsService를 필요로하기 때문에 그때 UserSecurityService 를 넘겨주면 됨 
 
 @Service
 @RequiredArgsConstructor
