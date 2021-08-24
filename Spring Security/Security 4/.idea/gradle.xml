@@ -10,6 +10,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/comp/paper" />
             <option value="$PROJECT_DIR$/comp/paper-user" />
             <option value="$PROJECT_DIR$/comp/user-admin" />
             <option value="$PROJECT_DIR$/server/authority-acl" />
