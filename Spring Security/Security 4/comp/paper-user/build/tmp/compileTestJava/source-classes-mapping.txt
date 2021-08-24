@@ -1,5 +1,3 @@
-com/sp/fc/user/service/helper/SchoolTestHelper.java
- com.sp.fc.user.service.helper.SchoolTestHelper
 com/sp/fc/user/service/SchoolTest.java
  com.sp.fc.user.service.SchoolTest
 com/sp/fc/user/service/helper/UserTestHelper.java
@@ -13,5 +11,7 @@ com/sp/fc/user/service/TeacherTest.java
  com.sp.fc.user.service.TeacherTest
 com/sp/fc/user/service/helper/WithUserTest.java
  com.sp.fc.user.service.helper.WithUserTest
+com/sp/fc/user/service/helper/SchoolTestHelper.java
+ com.sp.fc.user.service.helper.SchoolTestHelper
 com/sp/fc/user/service/StudentTest.java
  com.sp.fc.user.service.StudentTest

@@ -1,0 +1,6 @@
+com/sp/fc/web/config/OnlinePaperSecurityConfig.java
+ com.sp.fc.web.config.OnlinePaperSecurityConfig
+com/sp/fc/web/OnlinePaperApplication.java
+ com.sp.fc.web.OnlinePaperApplication
+com/sp/fc/web/controller/HomeController.java
+ com.sp.fc.web.controller.HomeController

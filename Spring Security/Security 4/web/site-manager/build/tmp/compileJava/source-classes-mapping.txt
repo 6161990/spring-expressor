@@ -1,0 +1,2 @@
+com/sp/fc/site/manager/controller/ManagerController.java
+ com.sp.fc.site.manager.controller.ManagerController

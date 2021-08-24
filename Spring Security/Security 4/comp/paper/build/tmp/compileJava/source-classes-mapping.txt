@@ -1,0 +1,30 @@
+com/sp/fc/paper/domain/PaperTemplate.java
+ com.sp.fc.paper.domain.PaperTemplate
+ com.sp.fc.paper.domain.PaperTemplate$PaperTemplateBuilder
+com/sp/fc/paper/repository/PaperRepository.java
+ com.sp.fc.paper.repository.PaperRepository
+com/sp/fc/paper/service/ProblemService.java
+ com.sp.fc.paper.service.ProblemService
+com/sp/fc/paper/domain/Paper.java
+ com.sp.fc.paper.domain.Paper
+ com.sp.fc.paper.domain.Paper$PaperBuilder
+ com.sp.fc.paper.domain.Paper$PaperState
+com/sp/fc/paper/service/PaperTemplateService.java
+ com.sp.fc.paper.service.PaperTemplateService
+com/sp/fc/paper/repository/ProblemRepository.java
+ com.sp.fc.paper.repository.ProblemRepository
+com/sp/fc/paper/repository/PaperAnswerRepository.java
+ com.sp.fc.paper.repository.PaperAnswerRepository
+com/sp/fc/paper/service/PaperService.java
+ com.sp.fc.paper.service.PaperService
+com/sp/fc/config/PaperModule.java
+ com.sp.fc.config.PaperModule
+com/sp/fc/paper/domain/PaperAnswer.java
+ com.sp.fc.paper.domain.PaperAnswer
+ com.sp.fc.paper.domain.PaperAnswer$PaperAnswerBuilder
+ com.sp.fc.paper.domain.PaperAnswer$PaperAnswerId
+com/sp/fc/paper/domain/Problem.java
+ com.sp.fc.paper.domain.Problem
+ com.sp.fc.paper.domain.Problem$ProblemBuilder
+com/sp/fc/paper/repository/PaperTemplateRepository.java
+ com.sp.fc.paper.repository.PaperTemplateRepository

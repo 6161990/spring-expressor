@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
@@ -12,7 +13,9 @@
         <module name="sp-fastcampus-spring-sec.web-student-teacher.test" />
         <module name="sp-fastcampus-spring-sec.server-login-basic.test" />
         <module name="sp-fastcampus-spring-sec.server-authority-test.test" />
+        <module name="sp-fastcampus-spring-sec.server-paper-app.test" />
         <module name="sp-fastcampus-spring-sec.server-basic-test.test" />
+        <module name="sp-fastcampus-spring-sec.web-site-manager.test" />
         <module name="sp-fastcampus-spring-sec.server-login-rememberme.test" />
         <module name="sp-fastcampus-spring-sec.server-login-session-management.test" />
         <module name="sp-fastcampus-spring-sec.server-login-basic.main" />
@@ -20,6 +23,9 @@
         <module name="sp-fastcampus-spring-sec.comp-user-admin.test" />
         <module name="sp-fastcampus-spring-sec.comp-paper-user.test" />
         <module name="sp-fastcampus-spring-sec.comp-paper.test" />
+        <module name="sp-fastcampus-spring-sec.web-site-teacher.test" />
+        <module name="sp-fastcampus-spring-sec.web-site-manager.main" />
+        <module name="sp-fastcampus-spring-sec.web-site-student.main" />
         <module name="sp-fastcampus-spring-sec.web-user-admin.test" />
         <module name="sp-fastcampus-spring-sec.server-basic-test.main" />
         <module name="sp-fastcampus-spring-sec.server-authority-test.main" />
@@ -31,11 +37,14 @@
         <module name="sp-fastcampus-spring-sec.server-login-rememberme.main" />
         <module name="sp-fastcampus-spring-sec.server-login-multi-chain.main" />
         <module name="sp-fastcampus-spring-sec.comp-user-admin.main" />
+        <module name="sp-fastcampus-spring-sec.server-paper-app.main" />
         <module name="sp-fastcampus-spring-sec.server-basic-authentication-test.main" />
+        <module name="sp-fastcampus-spring-sec.web-site-student.test" />
         <module name="sp-fastcampus-spring-sec.server-login-userdetails.main" />
         <module name="sp-fastcampus-spring-sec.test-web-util.test" />
         <module name="sp-fastcampus-spring-sec.comp-paper.main" />
         <module name="sp-fastcampus-spring-sec.web-user-admin.main" />
+        <module name="sp-fastcampus-spring-sec.web-site-teacher.main" />
         <module name="sp-fastcampus-spring-sec.comp-paper-user.main" />
       </profile>
     </annotationProcessing>

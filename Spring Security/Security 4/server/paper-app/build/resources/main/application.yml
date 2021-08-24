@@ -1,0 +1,36 @@
+server:
+  port: 9060
+
+
+spring:
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://yoondb.c211zdu3utat.ap-northeast-2.rds.amazonaws.com:3306/study
+    username: admin
+    password: yunzhi0816
+
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false
+    check-template-location: true
+    suffix: .html
+
+#  web:
+#    resources:
+#      static-locations:
+
+logging:
+  level:
+    org.springframework.web: trace
