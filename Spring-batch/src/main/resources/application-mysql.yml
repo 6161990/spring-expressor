@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/spring_batch?rewriteBatchedStatements=true # mySql에서 bulk insert를 사용하기 위한 option,
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: yunzhi0816
+  batch:
+    initialize-schema: never
+  jpa:
+    hibernate:
+      ddl-auto: update
+      # person 테이블이 없는 경우에는 생성해주고 변경된경우에는 스키마를 update함.
+      # person 엔티티는 jpa에 의해 테이블이 생성됨. jdbc 테스트지만 jpa도 함께 update하기 위해 설정
