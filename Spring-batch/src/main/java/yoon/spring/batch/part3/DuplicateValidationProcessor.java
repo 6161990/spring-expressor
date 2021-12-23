@@ -39,3 +39,12 @@ public class DuplicateValidationProcessor<T> implements ItemProcessor<T, T> {
      * 제네릭 T 타입을 Person 타입 뿐만아니라 다른 클래스 타입도 해당 프로세서를 이용할 수 있도록 확장을 고려하였다.
      */
 }
+
+
+/**
+ * step은 chunk 한 개 기준으로 트랜잭션이 동작하기 때문에 에러가 발생전에 수행됐던 동작은 롤백되지않고 정상처리 된다.
+ * items 100 , chunk.size = 10 , 총 chunk 동작 횟수 = 10
+ * chunk 1-9는 정상처리, chunk 10에서 Exception이 발생한 경우
+ * chunk 1-9에서 처리된 데이터는 정상 저장되고, Job과 Step의 상태는 FAILED 처리
+ * 배치 재 실행 시 chunk 10부터 처리할 수 있도록 배치를 만든다.
+ */

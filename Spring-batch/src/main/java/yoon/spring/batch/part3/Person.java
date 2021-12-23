@@ -32,7 +32,6 @@ public class Person {
         this.address = address;
     }
 
-
     public boolean isNotEmptyName() {
         return Objects.nonNull(this.name) && !name.isEmpty();
     }
