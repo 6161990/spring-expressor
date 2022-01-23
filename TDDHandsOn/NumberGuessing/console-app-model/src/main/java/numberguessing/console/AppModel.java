@@ -7,7 +7,7 @@ public final class AppModel {
     }
 
     public boolean isCompleted() {
-        return true;
+        return false;
     }
 
     public String flushOutput() {
