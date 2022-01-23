@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9656bce4-c927-4c8c-bcf8-79d6c81086d9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/console-app-model/src/main/java/numberguessing/console/AppModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-app-model/src/main/java/numberguessing/console/AppModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/console-app-model/src/test/java/numberguessing/console/AppModel_specs.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-app-model/src/test/java/numberguessing/console/AppModel_specs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,13 +66,55 @@
       <recent name="numberguessing.console" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.AppModel_specs.sut_correctly_prints_select_mode_message">
+  <component name="RunManager" selected="Gradle.AppModel_specs.sut_correctly_prints_single_player_game_start_message">
+    <configuration name="AppModel_specs.sut_correctly_exits" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;numberguessing.console.AppModel_specs.sut_correctly_exits&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":console-app-model:test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="AppModel_specs.sut_correctly_prints_select_mode_message" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" value="--tests &quot;numberguessing.console.AppModel_specs.sut_correctly_prints_select_mode_message&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":console-app-model:test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="AppModel_specs.sut_correctly_prints_single_player_game_start_message" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;numberguessing.console.AppModel_specs.sut_correctly_prints_single_player_game_start_message&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -108,6 +153,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.AppModel_specs.sut_correctly_prints_single_player_game_start_message" />
+        <item itemvalue="Gradle.AppModel_specs.sut_correctly_exits" />
         <item itemvalue="Gradle.AppModel_specs.sut_correctly_prints_select_mode_message" />
         <item itemvalue="Gradle.AppModel_specs.sut_is_incompleted_when_it_is_initialized" />
       </list>
@@ -124,7 +171,9 @@
       <workItem from="1642770410975" duration="234000" />
       <workItem from="1642908356931" duration="267000" />
       <workItem from="1642908661814" duration="1004000" />
-      <workItem from="1642910521263" duration="1465000" />
+      <workItem from="1642910521263" duration="1767000" />
+      <workItem from="1642912425400" duration="637000" />
+      <workItem from="1642978692552" duration="462000" />
     </task>
     <servers />
   </component>

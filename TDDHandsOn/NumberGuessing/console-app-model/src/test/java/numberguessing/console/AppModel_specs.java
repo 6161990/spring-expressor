@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AppModel_specs {
 
@@ -22,5 +23,27 @@ public class AppModel_specs {
 
         assertThat(actual).isEqualTo("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE +
                 "3: Exit" + NEW_LINE + "Enter selection: "); //assertThat : 테스트 검증 로직을 간단하게 작성하도록 도와주는 도구 (assertj 제공)
+    }
+
+    @Test
+    void sut_correctly_exits() { // sut가 올바로 종료된다.
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+
+        sut.processInput("3");
+
+        boolean actual = sut.isCompleted();
+        assertTrue(actual);
+    }
+
+    @Test
+    void sut_correctly_prints_single_player_game_start_message() { // 단일 플레이어 모드가 시작되었음을 알리는 메세지가 잘 출력되는지 확인
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.flushOutput();
+        sut.processInput("1");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
+                + NEW_LINE + "Enter your guess: ");
     }
 }
