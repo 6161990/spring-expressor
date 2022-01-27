@@ -1,5 +1,7 @@
 package numberguessing.console;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -46,4 +48,19 @@ public class AppModel_specs {
         assertThat(actual).isEqualTo("Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
                 + NEW_LINE + "Enter your guess: ");
     }
+
+    @ParameterizedTest // JUnit 5
+    @CsvSource({"50, 40", "30, 29", "89, 9"})  //ParameterizedTest의 파라미터를 제공해주는 여러 방법 중 하나
+    // CsvSource 는 , 를 사용해 값을 분리해 테스트 메소드에 각각 순서대로 넣어줌
+    void sut_correctly_prints_too_low_message_in_single_player_game(int answer, int guess) { // answer는 게임 프로그램이 설정한 값 , guess는 사용자가 압력한 값
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("1");
+        sut.flushOutput();
+        sut.processInput(Integer.toString(guess)); // answer = 50 , guess = 40
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("Your guess is too low." + NEW_LINE + "Enter your guess: ");
+    }
+
 }

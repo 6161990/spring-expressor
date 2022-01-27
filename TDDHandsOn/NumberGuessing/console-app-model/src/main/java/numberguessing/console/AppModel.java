@@ -27,6 +27,8 @@ public final class AppModel {
                     + NEW_LINE + "Enter your guess: ";
         } else if(input.equals("3")){
             completed = true;
+        } else if(input.equals("40")){
+            output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
         }
     }
 }
