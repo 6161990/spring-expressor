@@ -36,6 +36,9 @@ public final class AppModel {
         int guess = Integer.parseInt(input);
         if(guess < answer){
             output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
+        } else if (guess > answer) {
+            output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
+
         }
     }
 }

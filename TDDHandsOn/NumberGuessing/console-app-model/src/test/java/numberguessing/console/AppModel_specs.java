@@ -63,4 +63,15 @@ public class AppModel_specs {
         assertThat(actual).isEqualTo("Your guess is too low." + NEW_LINE + "Enter your guess: ");
     }
 
+    @ParameterizedTest
+    @CsvSource({"50,60", "80,81"})
+    void sut_correctly_prints_too_high_message_in_single_player_game(int answer, int guess) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("1");
+        sut.flushOutput();
+        sut.processInput(Integer.toString(guess));
+
+        String actual = sut.flushOutput();
+        assertThat(actual).isEqualTo("Your guess is too high." + NEW_LINE + "Enter your guess: ");
+    }
 }
