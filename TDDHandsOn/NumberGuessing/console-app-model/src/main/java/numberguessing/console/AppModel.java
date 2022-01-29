@@ -23,7 +23,7 @@ public final class AppModel {
         return output;
     }
 
-    public void processInput(String input) {
+    public void processInput(String input) { // 상태변화를 관리하는 방법이 필요함. 게임 모드를 선택하는 건지, 플레이어가 진행중인지 분리할 필요가 있음.
         if(input.equals("1")) {
             output = "Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
                     + NEW_LINE + "Enter your guess: ";
