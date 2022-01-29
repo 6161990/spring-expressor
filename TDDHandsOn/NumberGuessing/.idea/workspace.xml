@@ -5,9 +5,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9656bce4-c927-4c8c-bcf8-79d6c81086d9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring2_Vaildation/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring2_Vaildation/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring2_Vaildation/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring2_Vaildation/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring2_Vaildation/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring2_Vaildation/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring2_Vaildation/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring2_Vaildation/src/main/java/com/example/vaildation/VaildationApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring2_Vaildation/src/main/java/com/example/vaildation/annotaion/YearMonth.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring2_Vaildation/src/main/java/com/example/vaildation/controller/ApiController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring2_Vaildation/src/main/java/com/example/vaildation/dto/Car.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring2_Vaildation/src/main/java/com/example/vaildation/dto/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring2_Vaildation/src/main/java/com/example/vaildation/validator/YearMonthValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring2_Vaildation/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Spring2_Vaildation/src/test/java/com/example/vaildation/VaildationApplicationTests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/console-app-model/src/main/java/numberguessing/console/AppModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-app-model/src/main/java/numberguessing/console/AppModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console-app-model/src/test/java/numberguessing/console/AppModel_specs.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-app-model/src/test/java/numberguessing/console/AppModel_specs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vaildation/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vaildation/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vaildation/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vaildation/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vaildation/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vaildation/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vaildation/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vaildation/src/main/java/com/example/vaildation/VaildationApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vaildation/src/main/java/com/example/vaildation/annotaion/YearMonth.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vaildation/src/main/java/com/example/vaildation/controller/ApiController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vaildation/src/main/java/com/example/vaildation/dto/Car.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vaildation/src/main/java/com/example/vaildation/dto/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vaildation/src/main/java/com/example/vaildation/validator/YearMonthValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vaildation/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Vaildation/src/test/java/com/example/vaildation/VaildationApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../swagger/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../swagger/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../swagger/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../swagger/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../swagger/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../swagger/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../swagger/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../swagger/src/main/java/com/example/swagger/SwaggerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../swagger/src/main/java/com/example/swagger/controller/ApiController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../swagger/src/main/java/com/example/swagger/dto/UserReq.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../swagger/src/main/java/com/example/swagger/dto/UserRes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../swagger/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../swagger/src/test/java/com/example/swagger/SwaggerApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,6 +237,7 @@
       <workItem from="1642912425400" duration="637000" />
       <workItem from="1642978692552" duration="737000" />
       <workItem from="1643242009114" duration="845000" />
+      <workItem from="1643415626437" duration="397000" />
     </task>
     <servers />
   </component>
