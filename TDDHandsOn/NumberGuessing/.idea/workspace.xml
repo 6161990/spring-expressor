@@ -107,7 +107,7 @@
       <recent name="numberguessing.console" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.AppModel_specs.sut_correctly_prints_too_high_message_in_single_player_game">
+  <component name="RunManager" selected="Gradle.AppModel_specs.sut_correctly_prints_correct_message_in_single_player_game">
     <configuration name="AppModel_specs.sut_correctly_exits" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -129,12 +129,12 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="AppModel_specs.sut_correctly_prints_select_mode_message" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AppModel_specs.sut_correctly_prints_correct_message_in_single_player_game" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;numberguessing.console.AppModel_specs.sut_correctly_prints_select_mode_message&quot;" />
+        <option name="scriptParameters" value="--tests &quot;numberguessing.console.AppModel_specs.sut_correctly_prints_correct_message_in_single_player_game&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -215,11 +215,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.AppModel_specs.sut_correctly_prints_correct_message_in_single_player_game" />
         <item itemvalue="Gradle.AppModel_specs.sut_correctly_prints_too_high_message_in_single_player_game" />
         <item itemvalue="Gradle.AppModel_specs.sut_correctly_prints_too_low_message_in_single_player_game" />
         <item itemvalue="Gradle.AppModel_specs.sut_correctly_prints_single_player_game_start_message" />
         <item itemvalue="Gradle.AppModel_specs.sut_correctly_exits" />
-        <item itemvalue="Gradle.AppModel_specs.sut_correctly_prints_select_mode_message" />
       </list>
     </recent_temporary>
   </component>
@@ -238,7 +238,7 @@
       <workItem from="1642912425400" duration="637000" />
       <workItem from="1642978692552" duration="737000" />
       <workItem from="1643242009114" duration="845000" />
-      <workItem from="1643415626437" duration="798000" />
+      <workItem from="1643415626437" duration="1101000" />
     </task>
     <servers />
   </component>

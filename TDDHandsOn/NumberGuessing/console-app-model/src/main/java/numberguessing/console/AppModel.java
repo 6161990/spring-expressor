@@ -38,7 +38,8 @@ public final class AppModel {
             output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
         } else if (guess > answer) {
             output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
-
+        } else if (guess == answer) {
+            output = "Correct! ";
         }
     }
 }
