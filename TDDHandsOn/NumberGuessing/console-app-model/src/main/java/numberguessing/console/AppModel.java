@@ -32,7 +32,7 @@ public final class AppModel {
                 output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
             } else if (guess > answer) {
                 output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
-            } else if (guess == answer) {
+            } else {
                 output = "Correct! ";
             }
         } else {
@@ -40,10 +40,8 @@ public final class AppModel {
                 output = "Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
                         + NEW_LINE + "Enter your guess: ";
                 singlePlayerMode = true;
-                return;
-            } else if(input.equals("3")){
+            } else {
                 completed = true;
-                return;
             }
         }
     }

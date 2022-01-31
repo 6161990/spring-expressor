@@ -64,13 +64,13 @@
       <recent name="numberguessing.console" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.AppModel_specs.sut_correctly_prints_correct_message_in_single_player_game">
-    <configuration name="AppModel_specs.sut_correctly_exits" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.AppModel_specs">
+    <configuration name="AppModel_specs" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;numberguessing.console.AppModel_specs.sut_correctly_exits&quot;" />
+        <option name="scriptParameters" value="--tests &quot;numberguessing.console.AppModel_specs&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -172,11 +172,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.AppModel_specs" />
         <item itemvalue="Gradle.AppModel_specs.sut_correctly_prints_correct_message_in_single_player_game" />
         <item itemvalue="Gradle.AppModel_specs.sut_correctly_prints_too_high_message_in_single_player_game" />
         <item itemvalue="Gradle.AppModel_specs.sut_correctly_prints_too_low_message_in_single_player_game" />
         <item itemvalue="Gradle.AppModel_specs.sut_correctly_prints_single_player_game_start_message" />
-        <item itemvalue="Gradle.AppModel_specs.sut_correctly_exits" />
       </list>
     </recent_temporary>
   </component>
