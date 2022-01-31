@@ -27,22 +27,30 @@ public final class AppModel {
 
     public void processInput(String input) {
         if(singlePlayerMode){
-            int guess = Integer.parseInt(input);
-            if(guess < answer){
-                output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
-            } else if (guess > answer) {
-                output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
-            } else {
-                output = "Correct! ";
-            }
+            processSinglePlayerGame(input);
         } else {
-            if(input.equals("1")) {
-                output = "Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
-                        + NEW_LINE + "Enter your guess: ";
-                singlePlayerMode = true;
-            } else {
-                completed = true;
-            }
+            processModelSelection(input);
+        }
+    }
+
+    private void processSinglePlayerGame(String input) {
+        int guess = Integer.parseInt(input);
+        if(guess < answer){
+            output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
+        } else if (guess > answer) {
+            output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
+        } else {
+            output = "Correct! ";
+        }
+    }
+
+    private void processModelSelection(String input) {
+        if(input.equals("1")) {
+            output = "Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
+                    + NEW_LINE + "Enter your guess: ";
+            singlePlayerMode = true;
+        } else {
+            completed = true;
         }
     }
 }
