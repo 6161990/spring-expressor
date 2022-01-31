@@ -89,4 +89,23 @@ public class AppModel_specs {
 
         assertThat(actual).startsWith("Correct! ");
     }
+
+    //싱글 플레이어 게임이 종료되었을 때 주요 요구사항 1 - 사용자가 몇 번 추측을 했는지 출력하는 기능
+    @ParameterizedTest
+    @ValueSource(ints = {1, 10, 100})
+    void sut_correctly_prints_guess_count_if_single_player_game_finished(int fails) { // 실패횟수
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50)); // 정답 50
+        sut.processInput("1"); //싱글 플레이어 모드
+        for(int i=0; i < fails; i++){
+            sut.processInput("30"); // 실패횟수 만큼 오답
+        }
+
+        sut.flushOutput();
+        sut.processInput("50"); // 정답
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).contains((fails + 1) + " guesses." + NEW_LINE); // 실패횟수+ 성공횟수
+
+    }
 }
