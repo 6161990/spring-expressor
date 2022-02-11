@@ -108,4 +108,17 @@ public class AppModel_specs {
         assertThat(actual).contains((fails + 1) + " guesses." + NEW_LINE); // 실패횟수+ 성공횟수
 
     }
+
+    // 싱글 플레이어 게임이 종료 되었을 때, 사용자가 한 번에 맞췄다면 output 문장에 guesses(복수) 형태가 아니라 guess(단수) 형태여야한다.
+    @Test
+    void sut_correctly_prints_one_guess_if_single_player_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50)); // 정답 50
+        sut.processInput("1"); //싱글 플레이어 모드
+        sut.flushOutput();
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).contains("1 guess.");
+    }
 }
