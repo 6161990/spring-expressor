@@ -4,6 +4,8 @@ import numberguessing.PositiveIntegerGenerator;
 
 public final class AppModel {
     private static final String NEW_LINE = System.lineSeparator();
+    private static final String SELECT_MODE = "1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE +
+            "3: Exit" + NEW_LINE + "Enter selection: ";
     boolean completed;
     private String output;
     private int answer;
@@ -12,8 +14,7 @@ public final class AppModel {
 
     public AppModel(PositiveIntegerGenerator generator) {
         completed = false;
-        output = "1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE +
-                "3: Exit" + NEW_LINE + "Enter selection: ";
+        output = SELECT_MODE;
         answer = generator.generateLessThanOrEqualToHundread();
         singlePlayerMode = false;
         tries = 0;
@@ -43,8 +44,7 @@ public final class AppModel {
         } else if (guess > answer) {
             output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
         } else {
-            output = "Correct! " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + "1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE + "3: Exit"
-                    + NEW_LINE + "Enter selection: ";
+            output = "Correct! " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + SELECT_MODE;
         }
     }
 
