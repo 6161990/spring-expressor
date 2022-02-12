@@ -121,4 +121,18 @@ public class AppModel_specs {
 
         assertThat(actual).contains("1 guess.");
     }
+
+    // 한번의 싱글 플레이어 게임이 끝났을 때, MODE 선택지가 잘 출력되는지 확인하는 테스트
+    @Test
+    void sut_prints_select_mode_message_if_single_player_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("1");
+        sut.flushOutput();
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE + "3: Exit"
+                + NEW_LINE + "Enter selection: ");
+    }
 }
