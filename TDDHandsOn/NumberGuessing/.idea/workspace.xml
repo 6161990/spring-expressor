@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9656bce4-c927-4c8c-bcf8-79d6c81086d9" name="Changes" comment="">
+    <list default="true" id="9656bce4-c927-4c8c-bcf8-79d6c81086d9" name="Changes" comment="테스트 추가에 따른 코드 수정 사항 반영">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/console-app-model/src/test/java/numberguessing/console/AppModel_specs.java" beforeDir="false" afterPath="$PROJECT_DIR$/console-app-model/src/test/java/numberguessing/console/AppModel_specs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +63,7 @@
       <recent name="numberguessing.console" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.AppModel_specs.sut_prints_select_mode_message_if_single_player_game_finished">
+  <component name="RunManager" selected="Gradle.AppModel_specs">
     <configuration name="AppModel_specs" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -172,10 +171,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.AppModel_specs" />
         <item itemvalue="Gradle.AppModel_specs.sut_prints_select_mode_message_if_single_player_game_finished" />
         <item itemvalue="Gradle.AppModel_specs.sut_correctly_prints_one_guess_if_single_player_game_finished" />
         <item itemvalue="Gradle.AppModel_specs.sut_correctly_prints_guess_count_if_single_player_game_finished" />
-        <item itemvalue="Gradle.AppModel_specs" />
         <item itemvalue="Gradle.AppModel_specs.sut_correctly_prints_correct_message_in_single_player_game" />
       </list>
     </recent_temporary>
@@ -199,8 +198,30 @@
       <workItem from="1643597008985" duration="1862000" />
       <workItem from="1644015262880" duration="114000" />
       <workItem from="1644537819197" duration="693000" />
-      <workItem from="1644642891404" duration="625000" />
+      <workItem from="1644642891404" duration="1321000" />
     </task>
+    <task id="LOCAL-00001" summary="한번의 싱글 플레이어 게임이 끝났을 때, MODE 선택지가 잘 출력되는지 확인하는 테스트">
+      <created>1644643800780</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1644643800780</updated>
+    </task>
+    <task id="LOCAL-00002" summary="workspace.xml 변경사항">
+      <created>1644643859715</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1644643859715</updated>
+    </task>
+    <task id="LOCAL-00003" summary="테스트 추가에 따른 코드 수정 사항 반영">
+      <created>1644644292373</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1644644292373</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,5 +256,9 @@
       <path value="$PROJECT_DIR$/.." />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+    <MESSAGE value="한번의 싱글 플레이어 게임이 끝났을 때, MODE 선택지가 잘 출력되는지 확인하는 테스트" />
+    <MESSAGE value="workspace.xml 변경사항" />
+    <MESSAGE value="테스트 추가에 따른 코드 수정 사항 반영" />
+    <option name="LAST_COMMIT_MESSAGE" value="테스트 추가에 따른 코드 수정 사항 반영" />
   </component>
 </project>
