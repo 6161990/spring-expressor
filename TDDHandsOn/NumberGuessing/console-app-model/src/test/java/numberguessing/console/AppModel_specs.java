@@ -219,4 +219,23 @@ public class AppModel_specs {
 
         assertThat(actual).endsWith("Enter " + player1 + "'s guess: ");
     }
+
+    // 다중 플레이어 게임에서 추측값 설명문이 각 플레이어 이름대로 잘 출력되는지 테스트 - 두번째 플레이어
+    @ParameterizedTest
+    @CsvSource({"Foo, Bar, Baz", "Bar, Baz, Foo", "Baz, Foo, Bar"})
+    void sut_correctly_prompts_second_player_name(String player1, String player2, String player3) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2"); // 게임 모드 선택
+        sut.flushOutput(); // 플레이어 이름 입력 설명문
+        sut.processInput(String.join(", ", player1, player2, player3)); // 플레이어 이름 입력
+        sut.flushOutput(); // 추측값 제시문
+        sut.processInput("10"); // 플레이어 1의 게임 - 오답
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("Enter " + player2 + "'s guess: ");
+
+
+    }
+
 }
