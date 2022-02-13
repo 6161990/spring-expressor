@@ -4,6 +4,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.stream.Stream;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -147,5 +149,22 @@ public class AppModel_specs {
 
         boolean actual = sut.isCompleted();
         assertTrue(actual);
+    }
+
+    // 반복 플레이어를 해도 답이 잘 출력이 되는지 확인하는 테스트
+    // 그러나 코드 수정없이 바로 성공해버림, RED -> GREEN 이 안됨
+    @ParameterizedTest
+    @ValueSource(strings = "1,10,100")
+    void sut_generates_answer_for_each_game(String source) {
+        int[] answers = Stream.of(source.split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answers));
+        for(int answer : answers) {
+            sut.processInput("1");
+            sut.flushOutput();
+            sut.processInput(Integer.toString(answer));
+        }
+
+        String actual = sut.flushOutput();
+        assertThat(actual).startsWith("Correct! ");
     }
 }
