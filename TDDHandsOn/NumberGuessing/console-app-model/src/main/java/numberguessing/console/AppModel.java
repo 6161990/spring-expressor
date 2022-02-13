@@ -53,8 +53,8 @@ public final class AppModel {
     private Processor getMultiPlayerGameProcessor() {
         return input -> {
             String[] players = input.split(",");
-            output = "I'm thinking of a number between 1 and 100. Enter " + players[0] + "'s guess: ";
-            return null;
+            output = "I'm thinking of a number between 1 and 100." + "Enter " + players[0] + "'s guess: ";
+            return input2 -> null;
         };
     }
 
