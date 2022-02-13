@@ -177,4 +177,31 @@ public class AppModel_specs {
      * 2. 1에서 겪은 궁극적 원인은 answer 에 있었음. 반복하여 테스트 할 때 생성되는 answer값이 계속해서 새로 생성되지 않는 로직이었음. 그래서 답은 계속 "1"
      *    로직에서 answer가 생성되는 시점을 게임 모드 선택 이후로 변경해야함. => 그러면 1,10,100 으로 테스트를 해도 성공함.
      * */
+
+
+    // 다중 플레이어 게임
+    // 다중 플레이어 게임을 선택했을 때, 올바른 출력문이 나오는지
+    @Test
+    void sut_correctly_prints_multiplayer_game_setup_message() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.flushOutput();
+        sut.processInput("2");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ");
+    }
+
+    // 다중 플레이어 게임에서 두 명의 사용자 이름을 입력하면, 게임 설명문이 잘 출력되는지 테스트
+    @Test
+    void sut_correctly_prints_multiplayer_game_start_message() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.flushOutput();
+        sut.processInput("Foo, Bar");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).startsWith("I'm thinking of a number between 1 and 100.");
+    }
 }
