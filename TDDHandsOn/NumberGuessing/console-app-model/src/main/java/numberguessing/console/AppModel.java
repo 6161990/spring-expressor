@@ -15,16 +15,12 @@ public final class AppModel {
     boolean completed;
     private String output;
     private int answer;
-    private boolean singlePlayerMode;
-    private int tries;
     private Processor processor;
 
     public AppModel(PositiveIntegerGenerator generator) {
         this.generator = generator;
         completed = false;
         output = SELECT_MODE;
-        singlePlayerMode = false;
-        tries = 0;
         processor = this::processModelSelection;
     }
 
@@ -44,7 +40,6 @@ public final class AppModel {
         if(input.equals("1")) {
             output = "Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
                     + NEW_LINE + "Enter your guess: ";
-            singlePlayerMode = true;
             answer = generator.generateLessThanOrEqualToHundred();
             return getSinglePlayerGameProcessor(1);
         } else {
@@ -64,7 +59,6 @@ public final class AppModel {
                 return getSinglePlayerGameProcessor(tries + 1);
             } else {
                 output = "Correct! " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + SELECT_MODE;
-                singlePlayerMode = false;
                 return this::processModelSelection;
             }
         };
