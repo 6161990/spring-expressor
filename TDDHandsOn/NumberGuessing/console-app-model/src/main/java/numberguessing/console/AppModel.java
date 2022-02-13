@@ -43,14 +43,19 @@ public final class AppModel {
             return getSinglePlayerGameProcessor(answer, 1);
         } else if(input.equals("2")) {
             output = "Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ";
-            return input2 -> {
-                output = "I'm thinking of a number between 1 and 100.";
-                return null;
-            };
+            return getMultiPlayerGameProcessor();
         } else {
             completed = true;
             return null;
         }
+    }
+
+    private Processor getMultiPlayerGameProcessor() {
+        return input -> {
+            String[] players = input.split(",");
+            output = "I'm thinking of a number between 1 and 100. Enter " + players[0] + "'s guess: ";
+            return null;
+        };
     }
 
     private Processor getSinglePlayerGameProcessor(int answer, int tries) {

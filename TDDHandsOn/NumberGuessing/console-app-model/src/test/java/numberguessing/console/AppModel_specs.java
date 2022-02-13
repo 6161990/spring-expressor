@@ -1,4 +1,5 @@
 package numberguessing.console;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -203,5 +204,19 @@ public class AppModel_specs {
         String actual = sut.flushOutput();
 
         assertThat(actual).startsWith("I'm thinking of a number between 1 and 100.");
+    }
+
+    // 다중 플레이어 게임에서 추측값 설명문이 각 플레이어 이름대로 잘 출력되는지 테스트 - 첫번째 플레이어
+    @ParameterizedTest
+    @CsvSource({"Foo, Bar, Baz", "Bar, Baz, Foo", "Baz, Foo, Bar"})
+    void sut_correctly_propmts_first_player_name(String player1, String player2, String player3) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.flushOutput();
+        sut.processInput(String.join(", ", player1, player2, player3));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("Enter " + player1 + "'s guess: ");
     }
 }
