@@ -135,4 +135,17 @@ public class AppModel_specs {
         assertThat(actual).endsWith("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE + "3: Exit"
                 + NEW_LINE + "Enter selection: ");
     }
+
+    // MODE 선택지가 나오고 플레이어의 선택에 따라 MODE가 잘 돌아가는지 확인하는 테스트
+    @Test
+    void sut_returns_to_mode_selection_if_single_player_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+
+        sut.processInput("1");
+        sut.processInput("50");
+        sut.processInput("3");
+
+        boolean actual = sut.isCompleted();
+        assertTrue(actual);
+    }
 }
