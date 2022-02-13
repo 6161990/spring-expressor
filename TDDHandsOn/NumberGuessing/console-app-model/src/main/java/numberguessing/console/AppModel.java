@@ -20,7 +20,7 @@ public final class AppModel {
         this.generator = generator;
         completed = false;
         output = SELECT_MODE;
-        processor = this::processModelSelection;
+        processor = this::processModeSelection;
     }
 
     public boolean isCompleted() {
@@ -35,7 +35,7 @@ public final class AppModel {
         processor = processor.run(input);
     }
 
-    private Processor processModelSelection(String input) {
+    private Processor processModeSelection(String input) {
         if(input.equals("1")) {
             output = "Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
                     + NEW_LINE + "Enter your guess: ";
@@ -58,7 +58,7 @@ public final class AppModel {
                 return getSinglePlayerGameProcessor(answer, tries + 1);
             } else {
                 output = "Correct! " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + SELECT_MODE;
-                return this::processModelSelection;
+                return this::processModeSelection;
             }
         };
     }
