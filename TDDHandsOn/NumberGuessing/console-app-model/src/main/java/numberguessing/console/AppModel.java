@@ -46,26 +46,27 @@ public final class AppModel {
                     + NEW_LINE + "Enter your guess: ";
             singlePlayerMode = true;
             answer = generator.generateLessThanOrEqualToHundred();
-            return getSinglePlayerGameProcessor();
+            return getSinglePlayerGameProcessor(1);
         } else {
             completed = true;
             return null;
         }
     }
 
-    private Processor getSinglePlayerGameProcessor() {
+    private Processor getSinglePlayerGameProcessor(int tries) {
         return input -> {
-            tries++;
             int guess = Integer.parseInt(input);
             if (guess < answer) {
                 output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
+                return getSinglePlayerGameProcessor(tries + 1);
             } else if (guess > answer) {
                 output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
+                return getSinglePlayerGameProcessor(tries + 1);
             } else {
                 output = "Correct! " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + SELECT_MODE;
                 singlePlayerMode = false;
+                return this::processModelSelection;
             }
-            return null;
         };
     }
 
