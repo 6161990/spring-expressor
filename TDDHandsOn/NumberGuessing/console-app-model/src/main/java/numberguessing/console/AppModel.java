@@ -14,7 +14,6 @@ public final class AppModel {
     private final PositiveIntegerGenerator generator;
     boolean completed;
     private String output;
-    private int answer;
     private Processor processor;
 
     public AppModel(PositiveIntegerGenerator generator) {
@@ -40,23 +39,23 @@ public final class AppModel {
         if(input.equals("1")) {
             output = "Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
                     + NEW_LINE + "Enter your guess: ";
-            answer = generator.generateLessThanOrEqualToHundred();
-            return getSinglePlayerGameProcessor(1);
+            int answer = generator.generateLessThanOrEqualToHundred();
+            return getSinglePlayerGameProcessor(answer, 1);
         } else {
             completed = true;
             return null;
         }
     }
 
-    private Processor getSinglePlayerGameProcessor(int tries) {
+    private Processor getSinglePlayerGameProcessor(int answer, int tries) {
         return input -> {
             int guess = Integer.parseInt(input);
             if (guess < answer) {
                 output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
-                return getSinglePlayerGameProcessor(tries + 1);
+                return getSinglePlayerGameProcessor(answer, tries + 1);
             } else if (guess > answer) {
                 output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
-                return getSinglePlayerGameProcessor(tries + 1);
+                return getSinglePlayerGameProcessor(answer, tries + 1);
             } else {
                 output = "Correct! " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + SELECT_MODE;
                 return this::processModelSelection;
