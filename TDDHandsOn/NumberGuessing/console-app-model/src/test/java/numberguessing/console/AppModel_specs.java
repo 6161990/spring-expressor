@@ -152,7 +152,6 @@ public class AppModel_specs {
     }
 
     // 반복 플레이어를 해도 답이 잘 출력이 되는지 확인하는 테스트
-    // 그러나 코드 수정없이 바로 성공해버림, RED -> GREEN 이 안됨
     @ParameterizedTest
     @ValueSource(strings = "1, 10, 100")
     void sut_generates_answer_for_each_game(String source) {
@@ -169,11 +168,13 @@ public class AppModel_specs {
     }
     /**
      * 해당 테스트에서 겪었던 문제 두 가지
-     * 1. Red Green Refactoring 순환 Test 가 안됨. 테스트 코드 작성 후 테스트가 바로 성공해버림
+     * 1. Red Green Refactoring 순환 Test 가 안됨. 테스트 코드 작성 후 테스트가 바로 성공해버림 (1,10,100) 순으로 인자 값을 주었기 때문. (100,10,1)순으로 주면 정상적으로 테스트 실패 (Red 단계이므로 실패가 정상)
      *  -> 이유 :  input 10일 때, 두 번째 아웃풋 발생 (output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";)
      *            싱글 플레이어 모드가 true인 채로, 다시 답을 입력하는 데 싱글 플레이어를 선택하는 "1"이  processSinglePlayerGame(input)으로 들어감. => 테스트 성공
      *            그 다음 테스트에서는 answer[3](=100)이 processModeSelection() input 값으로 들어가서 else 문을 타버려서 게임 종료.
      *            바로 직전 output 값인 Correct! 로 assert 검증들어가기 때문에 테스트 결국 성공.
      *
+     * 2. 1에서 겪은 궁극적 원인은 answer 에 있었음. 반복하여 테스트 할 때 생성되는 answer값이 계속해서 새로 생성되지 않는 로직이었음. 그래서 답은 계속 "1"
+     *    로직에서 answer가 생성되는 시점을 게임 모드 선택 이후로 변경해야함. => 그러면 1,10,100 으로 테스트를 해도 성공함.
      * */
 }
