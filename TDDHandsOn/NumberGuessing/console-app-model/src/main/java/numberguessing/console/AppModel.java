@@ -45,6 +45,7 @@ public final class AppModel {
             output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
         } else {
             output = "Correct! " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + SELECT_MODE;
+            singlePlayerMode = false;
         }
     }
 
