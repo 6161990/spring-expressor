@@ -154,17 +154,26 @@ public class AppModel_specs {
     // 반복 플레이어를 해도 답이 잘 출력이 되는지 확인하는 테스트
     // 그러나 코드 수정없이 바로 성공해버림, RED -> GREEN 이 안됨
     @ParameterizedTest
-    @ValueSource(strings = "1,10,100")
+    @ValueSource(strings = "1, 10, 100")
     void sut_generates_answer_for_each_game(String source) {
         int[] answers = Stream.of(source.split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
         var sut = new AppModel(new PositiveIntegerGeneratorStub(answers));
         for(int answer : answers) {
-            sut.processInput("1");
-            sut.flushOutput();
-            sut.processInput(Integer.toString(answer));
+            sut.processInput("1"); // 모드 게임을 선택하는 "1"
+            sut.flushOutput(); //  "Single player game I'm thinking of ....."
+            sut.processInput(Integer.toString(answer)); // 답 입력
         }
 
         String actual = sut.flushOutput();
         assertThat(actual).startsWith("Correct! ");
     }
+    /**
+     * 해당 테스트에서 겪었던 문제 두 가지
+     * 1. Red Green Refactoring 순환 Test 가 안됨. 테스트 코드 작성 후 테스트가 바로 성공해버림
+     *  -> 이유 :  input 10일 때, 두 번째 아웃풋 발생 (output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";)
+     *            싱글 플레이어 모드가 true인 채로, 다시 답을 입력하는 데 싱글 플레이어를 선택하는 "1"이  processSinglePlayerGame(input)으로 들어감. => 테스트 성공
+     *            그 다음 테스트에서는 answer[3](=100)이 processModeSelection() input 값으로 들어가서 else 문을 타버려서 게임 종료.
+     *            바로 직전 output 값인 Correct! 로 assert 검증들어가기 때문에 테스트 결국 성공.
+     *
+     * */
 }
