@@ -46,23 +46,27 @@ public final class AppModel {
                     + NEW_LINE + "Enter your guess: ";
             singlePlayerMode = true;
             answer = generator.generateLessThanOrEqualToHundred();
+            return getSinglePlayerGameProcessor();
         } else {
             completed = true;
+            return null;
         }
-        return null;
     }
 
-    private void processSinglePlayerGame(String input) {
-        tries++;
-        int guess = Integer.parseInt(input);
-        if(guess < answer){
-            output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
-        } else if (guess > answer) {
-            output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
-        } else {
-            output = "Correct! " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + SELECT_MODE;
-            singlePlayerMode = false;
-        }
+    private Processor getSinglePlayerGameProcessor() {
+        return input -> {
+            tries++;
+            int guess = Integer.parseInt(input);
+            if (guess < answer) {
+                output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
+            } else if (guess > answer) {
+                output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
+            } else {
+                output = "Correct! " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + SELECT_MODE;
+                singlePlayerMode = false;
+            }
+            return null;
+        };
     }
 
 }
