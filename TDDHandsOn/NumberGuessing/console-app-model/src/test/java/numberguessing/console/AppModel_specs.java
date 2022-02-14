@@ -252,4 +252,20 @@ public class AppModel_specs {
         String actual = sut.flushOutput();
         assertThat(actual).endsWith("Enter " + player3 + "'s guess: ");
     }
+
+    // 다중 플레이어 게임에서 모든 플레이어의 답이 오답이면 다시 첫번째 플레이어 차례로 돌아오는지 테스트
+    @ParameterizedTest
+    @CsvSource({"Foo, Bar, Baz", "Bar, Baz, Foo", "Baz, Foo, Bar"})
+    void sut_correctly_rounds_player(String player1, String player2, String player3) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput(String.join(", ", player1, player2, player3));
+        sut.processInput("90");
+        sut.processInput("90");
+        sut.flushOutput();
+        sut.processInput("980");
+
+        String actual = sut.flushOutput();
+        assertThat(actual).endsWith("Enter " + player1 + "'s guess: ");
+    }
 }
