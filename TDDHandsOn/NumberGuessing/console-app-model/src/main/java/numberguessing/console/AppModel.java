@@ -58,7 +58,10 @@ public final class AppModel {
             output = "I'm thinking of a number between 1 and 100." + "Enter " + players[0] + "'s guess: ";
             return input2 -> {
                 output = "Enter " + players[1] + "'s guess: ";
-                return null;
+                return input3 -> {
+                    output = "Enter " + players[2] + "'s guess: ";
+                    return null;
+                };
             };
         };
     }

@@ -206,7 +206,7 @@ public class AppModel_specs {
         assertThat(actual).startsWith("I'm thinking of a number between 1 and 100.");
     }
 
-    // 다중 플레이어 게임에서 추측값 설명문이 각 플레이어 이름대로 잘 출력되는지 테스트 - 첫번째 플레이어
+    // 다중 플레이어 게임에서 첫 번째 플레이어의 답을 기다리는 메세자의 출력 테스트
     @ParameterizedTest
     @CsvSource({"Foo, Bar, Baz", "Bar, Baz, Foo", "Baz, Foo, Bar"})
     void sut_correctly_propmts_first_player_name(String player1, String player2, String player3) {
@@ -220,7 +220,7 @@ public class AppModel_specs {
         assertThat(actual).endsWith("Enter " + player1 + "'s guess: ");
     }
 
-    // 다중 플레이어 게임에서 추측값 설명문이 각 플레이어 이름대로 잘 출력되는지 테스트 - 두번째 플레이어
+    // 다중 플레이어 게임에서 두 번째 플레이어의 답을 기다리는 메세자의 출력 테스트
     @ParameterizedTest
     @CsvSource({"Foo, Bar, Baz", "Bar, Baz, Foo", "Baz, Foo, Bar"})
     void sut_correctly_prompts_second_player_name(String player1, String player2, String player3) {
@@ -234,8 +234,22 @@ public class AppModel_specs {
         String actual = sut.flushOutput();
 
         assertThat(actual).endsWith("Enter " + player2 + "'s guess: ");
-
-
     }
 
+    // 다중 플레이어 게임에서 세 번째 플레이어의 답을 기다리는 메세자의 출력 테스트
+    @ParameterizedTest
+    @CsvSource({"Foo, Bar, Baz", "Bar, Baz, Foo", "Baz, Foo, Bar"})
+    void sut_correctly_prompts_third_player_name(String player1, String player2, String player3) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.flushOutput();
+        sut.processInput(String.join(", ", player1, player2, player3));
+        sut.flushOutput();
+        sut.processInput("90");
+        sut.flushOutput();
+        sut.processInput("90");
+
+        String actual = sut.flushOutput();
+        assertThat(actual).endsWith("Enter " + player3 + "'s guess: ");
+    }
 }
