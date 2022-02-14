@@ -47,26 +47,24 @@ public final class AppModel {
             return getSinglePlayerGameProcessor(answer, 1);
         } else if(input.equals("2")) {
             outputBuffer.append("Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ");
-            return getMultiPlayerGameProcessor();
+            return startMultiPlayerGame();
         } else {
             completed = true;
             return null;
         }
     }
 
-    private Processor getMultiPlayerGameProcessor() {
+    private Processor startMultiPlayerGame() {
         return input -> {
             Object[] players = Stream.of(input.split(",")).map(String::trim).toArray(); // 플레이어 이름 옆에 공백이 하나 더 들어가서 처리(CsvSource 에 들어간 배열값을 자세히보라), toArray의 반환타입이 Object이기 때문에 반환타입 수정.
             outputBuffer.append("I'm thinking of a number between 1 and 100.");
-            outputBuffer.append("Enter " + players[0] + "'s guess: ");
-            return input2 -> {
-                outputBuffer.append("Enter " + players[1] + "'s guess: ");
-                return input3 -> {
-                    outputBuffer.append("Enter " + players[2] + "'s guess: ");
-                    return null;
-                };
-            };
+            return getMultiPlayerGameProcessor(players, 1);
         };
+    }
+
+    private Processor getMultiPlayerGameProcessor(Object[] players, int tries) {
+        outputBuffer.append("Enter " + players[tries - 1] + "'s guess: ");
+        return input -> getMultiPlayerGameProcessor(players, tries + 1); // input : 어떤 입력값을 받아서 처리 결과로 멀티 프로세서를 만들도록 하는 구조
     }
 
     private Processor getSinglePlayerGameProcessor(int answer, int tries) {
