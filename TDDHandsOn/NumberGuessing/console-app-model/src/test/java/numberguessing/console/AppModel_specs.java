@@ -268,4 +268,32 @@ public class AppModel_specs {
         String actual = sut.flushOutput();
         assertThat(actual).endsWith("Enter " + player1 + "'s guess: ");
     }
+
+    // 다중 플레이어 게임에서 사용자의 입력값이 정답보다 작으면 마지막에 값을 입력한 사용자의 이름이 담긴 출력문이 나오는지 테스트
+    @ParameterizedTest
+    @CsvSource({"50, 49, 1, Foo", "30, 29, 2, Bar"})
+    void sut_correctly_prints_too_low_message_in_multiplayer_game(int answer, int guess, int fails, String lastPlayer){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("2");
+        sut.processInput("Foo, Bar, Baz");
+        for (int i = 0; i < fails - 1; i++) {
+            sut.processInput(Integer.toString(guess));
+        }
+        sut.flushOutput();
+        sut.processInput(Integer.toString(guess));
+        /* output 에 있는 값을 다 빼주고 다음 flashOutput 을 받아오기 위해 한번 더 guess 입력.
+        1: Single player game
+        2: Multiplayer game
+        3: Exit
+        Enter selection:
+        Multiplayer game
+        Enter player names separated with commas:
+        I'm thinking of a number between 1 and 100.
+        Enter Foo's guess: "
+        */
+
+        String actual = sut.flushOutput();
+        assertThat(actual).startsWith(lastPlayer + "'s guess is too low." + NEW_LINE);
+
+    }
 }
