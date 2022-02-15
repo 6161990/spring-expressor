@@ -63,7 +63,7 @@ public final class AppModel {
     }
 
     private Processor getMultiPlayerGameProcessor(Object[] players, int tries) {
-        outputBuffer.append("Enter " + players[tries - 1] + "'s guess: ");
+        outputBuffer.append("Enter " + players[(tries - 1) % players.length] + "'s guess: ");
         return input -> getMultiPlayerGameProcessor(players, tries + 1); // input : 어떤 입력값을 받아서 처리 결과로 멀티 프로세서를 만들도록 하는 구조
     }
 
