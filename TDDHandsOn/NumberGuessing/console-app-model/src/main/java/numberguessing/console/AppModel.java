@@ -70,8 +70,10 @@ public final class AppModel {
             int guess = Integer.parseInt(input);
             if(answer > guess) {
                 outputBuffer.append(player + "'s guess is too low." + NEW_LINE);
-            } else {
+            } else if (answer < guess) {
                 outputBuffer.append(player + "'s guess is too high." + NEW_LINE);
+            } else {
+                outputBuffer.append("Correct! ");
             }
             return getMultiPlayerGameProcessor(players, answer, tries + 1); // input : 어떤 입력값을 받아서 처리 결과로 멀티 프로세서를 만들도록 하는 구조
         };

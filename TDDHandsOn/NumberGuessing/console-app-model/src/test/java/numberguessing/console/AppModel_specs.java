@@ -1,5 +1,6 @@
 package numberguessing.console;
 
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -312,5 +313,20 @@ public class AppModel_specs {
 
         String actual = sut.flushOutput();
         assertThat(actual).startsWith(lastPlayer + "'s guess is too high." + NEW_LINE);
+    }
+
+    // 다중 플레이어에서 정답을 맞췄을 때
+    @ParameterizedTest
+    @ValueSource(ints = {1, 10, 100})
+    void sut_correctly_prints_correct_message_in_multiplayer_game(int answer) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("2");
+        sut.processInput("Foo, Bar, Baz");
+        sut.flushOutput();
+        int guess = answer;
+        sut.processInput(Integer.toString(guess));
+
+        String actual = sut.flushOutput();
+        assertThat(actual).startsWith("Correct! ");
     }
 }
