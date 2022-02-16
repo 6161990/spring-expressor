@@ -1,8 +1,8 @@
 package numberguessing.console;
 
-import java.util.Scanner;
-
 import numberguessing.RandomGenerator;
+
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
