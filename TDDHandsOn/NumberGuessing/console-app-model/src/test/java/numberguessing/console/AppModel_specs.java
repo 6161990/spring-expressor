@@ -296,4 +296,21 @@ public class AppModel_specs {
         assertThat(actual).startsWith(lastPlayer + "'s guess is too low." + NEW_LINE);
 
     }
+
+    // 다중 플레이어 게임에서 사용자의 입력값이 정답보다 크면 마지막에 값을 입력한 사용자의 이름이 담긴 출력문이 나오는지 테스트
+    @ParameterizedTest
+    @CsvSource({"50, 51, 1, Foo", "30, 31, 2, Bar"})
+    void sut_correctly_prints_too_high_message_in_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("2");
+        sut.processInput("Foo, Bar, Baz");
+        for (int i = 0; i < fails - 1; i++) {
+            sut.processInput(Integer.toString(guess));
+        }
+        sut.flushOutput();
+        sut.processInput(Integer.toString(guess));
+
+        String actual = sut.flushOutput();
+        assertThat(actual).startsWith(lastPlayer + "'s guess is too high." + NEW_LINE);
+    }
 }
