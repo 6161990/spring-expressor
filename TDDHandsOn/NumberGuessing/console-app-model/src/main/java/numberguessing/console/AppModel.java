@@ -74,6 +74,8 @@ public final class AppModel {
                 outputBuffer.append(player + "'s guess is too high." + NEW_LINE);
             } else {
                 outputBuffer.append("Correct! ");
+                outputBuffer.append(player + " wins." + NEW_LINE);
+
             }
             return getMultiPlayerGameProcessor(players, answer, tries + 1); // input : 어떤 입력값을 받아서 처리 결과로 멀티 프로세서를 만들도록 하는 구조
         };

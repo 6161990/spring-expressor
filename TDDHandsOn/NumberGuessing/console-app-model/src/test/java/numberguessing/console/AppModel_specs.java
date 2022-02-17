@@ -328,4 +328,21 @@ public class AppModel_specs {
         String actual = sut.flushOutput();
         assertThat(actual).startsWith("Correct! ");
     }
+
+    // 다중 플레이어게임에서 승자를 출력하는 테스트
+    @ParameterizedTest
+    @CsvSource({"0, Foo", "1, Bar", "2, Baz", "3, Foo", "4, Bar"})
+    void sut_correctly_prints_winner_if_multiplayer_game_finished(int fails, String winner) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput("Foo, Bar, Baz");
+        for (int i = 0; i < fails; i++) {
+            sut.processInput("30");
+        }
+        sut.flushOutput();
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+        assertThat(actual).contains(winner + " wins." + NEW_LINE);
+    }
 }
