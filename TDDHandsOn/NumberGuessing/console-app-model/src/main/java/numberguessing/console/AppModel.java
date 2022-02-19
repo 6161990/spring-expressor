@@ -39,6 +39,14 @@ public final class AppModel {
         processor = processor.run(input);
     }
 
+    private void println(String message) {
+        outputBuffer.append(message + NEW_LINE);
+    }
+
+    private void print(String message) {
+        outputBuffer.append(message);
+    }
+
     private Processor processModeSelection(String input) {
         if(input.equals("1")) {
             outputBuffer.append("Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
@@ -46,13 +54,15 @@ public final class AppModel {
             int answer = generator.generateLessThanOrEqualToHundred();
             return getSinglePlayerGameProcessor(answer, 1);
         } else if(input.equals("2")) {
-            outputBuffer.append("Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ");
+            println("Multiplayer game");
+            print("Enter player names separated with commas: ");
             return startMultiPlayerGame();
         } else {
             completed = true;
             return null;
         }
     }
+
 
     private Processor startMultiPlayerGame() {
         return input -> {
