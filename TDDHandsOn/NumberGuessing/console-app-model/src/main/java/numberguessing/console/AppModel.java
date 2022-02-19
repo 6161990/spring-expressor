@@ -68,7 +68,7 @@ public final class AppModel {
     private Processor startMultiPlayerGame() {
         return input -> {
             Object[] players = Stream.of(input.split(",")).map(String::trim).toArray(); // 플레이어 이름 옆에 공백이 하나 더 들어가서 처리(CsvSource 에 들어간 배열값을 자세히보라), toArray의 반환타입이 Object이기 때문에 반환타입 수정.
-            print("I'm thinking of a number between 1 and 100.");
+            println("I'm thinking of a number between 1 and 100.");
             int answer = generator.generateLessThanOrEqualToHundred();
             return getMultiPlayerGameProcessor(players, answer, 1);
         };

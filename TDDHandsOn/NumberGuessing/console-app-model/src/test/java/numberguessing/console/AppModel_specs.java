@@ -203,7 +203,7 @@ public class AppModel_specs {
 
         String actual = sut.flushOutput();
 
-        assertThat(actual).startsWith("I'm thinking of a number between 1 and 100.");
+        assertThat(actual).startsWith("I'm thinking of a number between 1 and 100." + NEW_LINE );
     }
 
     // 다중 플레이어 게임에서 첫 번째 플레이어의 답을 기다리는 메세자의 출력 테스트
