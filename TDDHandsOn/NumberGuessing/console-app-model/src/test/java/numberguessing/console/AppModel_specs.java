@@ -345,4 +345,18 @@ public class AppModel_specs {
         String actual = sut.flushOutput();
         assertThat(actual).contains(winner + " wins." + NEW_LINE);
     }
+
+    // 다중 플레이어게임에서 정답을 맞추고 셀렉트 모드가 출력되는지 테스트
+    @Test
+    void sut_prints_select_mode_message_if_multiplayer_game_finished(){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput("Foo, Bar, Baz");
+        sut.flushOutput();
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+        assertThat(actual).endsWith("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE + "3: Exit"
+                + NEW_LINE + "Enter selection: ");
+    }
 }
