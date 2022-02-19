@@ -97,13 +97,16 @@ public final class AppModel {
         return input -> {
             int guess = Integer.parseInt(input);
             if (guess < answer) {
-                outputBuffer.append("Your guess is too low." + NEW_LINE + "Enter your guess: ");
+                println("Your guess is too low.");
+                print("Enter your guess: ");
                 return getSinglePlayerGameProcessor(answer, tries + 1);
             } else if (guess > answer) {
-                outputBuffer.append("Your guess is too high." + NEW_LINE + "Enter your guess: ");
+                println("Your guess is too high.");
+                print("Enter your guess: ");
                 return getSinglePlayerGameProcessor(answer, tries + 1);
             } else {
-                outputBuffer.append("Correct! " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + SELECT_MODE_MESSAGE);
+                println("Correct! " + tries + (tries == 1 ? " guess." : " guesses."));
+                print(SELECT_MODE_MESSAGE);
                 return this::processModeSelection;
             }
         };
