@@ -3,6 +3,7 @@ package moviebuddy;
 import java.util.List;
 
 import moviebuddy.domain.Movie;
+import moviebuddy.domain.MovieFinder;
 
 /**
  * @author springrunner.kr@gmail.com
@@ -11,11 +12,12 @@ public class MovieBuddyApplicationTest {
 
 	public static void main(String[] args) {
 		MovieBuddyApplication application = new MovieBuddyApplication();
+	    MovieFinder movieFinder = new MovieFinder();
 		
-		List<Movie> result = application.directedBy("Michael Bay");
+		List<Movie> result = movieFinder.directedBy("Michael Bay");
 		assertEquals(3, result.size());
 
-        result = application.releasedYearBy(2015);
+        result = movieFinder.releasedYearBy(2015);
         assertEquals(225, result.size());
 	}
 	
