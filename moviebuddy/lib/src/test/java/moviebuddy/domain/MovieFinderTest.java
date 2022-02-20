@@ -11,7 +11,7 @@ public class MovieFinderTest {
 
 	public static void main(String[] args) {
 		MovieBuddyApplication application = new MovieBuddyApplication();
-	    MovieFinder movieFinder = new MovieFinder();
+	    MovieFinder movieFinder = new CsvMovieFinder();
 		
 		List<Movie> result = movieFinder.directedBy("Michael Bay");
 		assertEquals(3, result.size());
