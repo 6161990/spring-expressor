@@ -2,6 +2,8 @@ package moviebuddy;
 
 import java.util.List;
 
+import moviebuddy.domain.Movie;
+
 /**
  * @author springrunner.kr@gmail.com
  */
