@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -48,6 +49,14 @@ public class MovieFinder {
      * @return 불러온 영화 목록
      */
     public List<Movie> loadMovies() {
+    	// 메타데이터 형식별로 로직을 작성하고 적합 형식을 선택하는 if 분기문 로직 
+    	// 근데 또 다른 형식이 추가된다면? -> 새로운 비즈니스 요구사항이 늘어날 때마다 코드를 수정해야한다면 bug 가 발생할 확률이 매우높다.
+    	// 코드 수정 시, 불안하고 두렵게 됨. -> 오늘의 요구사항을 완성시면서 내일의 변경을 수용할 수 있도록 어플리케이션을 설계해야한다. 
+    	if(mode == "CSV") {
+    		return loadMoviesFromCSV();
+    	} else if(mode == "XML") {
+    		return loadMoviesFromXml();
+    	}
         try {
             final URI resourceUri = ClassLoader.getSystemResource("movie_metadata.csv").toURI();
             final Path data = Path.of(FileSystemUtils.checkFileSystem(resourceUri));
@@ -80,5 +89,17 @@ public class MovieFinder {
         } catch (IOException | URISyntaxException error) {
             throw new ApplicationException("failed to load movies data.", error);
         }
+
     }
+    
+    //CSV 메타데이터로 영화목록을 불러오기 
+    List<Movie> loadMoviesFromCSV() {
+    	return Collections.emptyList();
+    }
+    
+    //XML 메타데이터로 영화목록을 불러오기     
+    List<Movie> loadMoviesFromXml() {
+    	return Collections.emptyList();
+    }
+    
 }
