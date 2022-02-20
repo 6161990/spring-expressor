@@ -1,14 +1,13 @@
-package moviebuddy;
+package moviebuddy.domain;
 
 import java.util.List;
 
-import moviebuddy.domain.Movie;
-import moviebuddy.domain.MovieFinder;
+import moviebuddy.MovieBuddyApplication;
 
 /**
  * @author springrunner.kr@gmail.com
  */
-public class MovieBuddyApplicationTest {
+public class MovieFinderTest {
 
 	public static void main(String[] args) {
 		MovieBuddyApplication application = new MovieBuddyApplication();
