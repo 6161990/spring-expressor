@@ -1,16 +1,36 @@
 package moviebuddy.domain;
 
+import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+
+import moviebuddy.ApplicationException;
 
 public class JaxbMovieReader implements MovieReader{
 
 	@Override
 	public List<Movie> loadMovies() {
-		// TODO Auto-generated method stub
-		return null;
+	
+		try {
+			final JAXBContext jaxb = JAXBContext.newInstance(MovieMetadata.class); //Jaxb 를 사용하기 위해서는 JaxbContext 를 생성해야함. (매개변수로 매핑고자하는 클래스지정)
+			final Unmarshaller unmarshaller = jaxb.createUnmarshaller();
+			
+			final InputStream content = ClassLoader.getSystemResourceAsStream("movie_metadata.xml");
+			final Source source = new StreamSource(content);
+			final MovieMetadata metadata = (MovieMetadata) unmarshaller.unmarshal(source); 
+			
+			return metadata.toMovies();
+		} catch (JAXBException e) {
+			throw new ApplicationException("failed to load movies data", e);
+		} 
 	}
 	
 	@XmlRootElement(name="moviemetadata")
@@ -22,10 +42,15 @@ public class JaxbMovieReader implements MovieReader{
 			return movies;
 		}
 
+
 		public void setMovies(List<MovieData> movies) {
 			this.movies = movies;
 		}
 		
+		public List<Movie> toMovies() {
+			//return movies.stream().map(it-> it.toMovie()).collect(Collectors.toList()); 람다표현식 
+			return movies.stream().map(MovieData::toMovie).collect(Collectors.toList()); //메소드 레퍼런스식 
+		}
 	}
 	
 	public static class MovieData {
@@ -110,6 +135,21 @@ public class JaxbMovieReader implements MovieReader{
 		public void setWatchedDate(String watchedDate) {
 			this.watchedDate = watchedDate;
 		}
+		
+		public Movie toMovie() {
+			String title = getTitle();
+			List<String> genres = getGenres();
+			String language = getLanguage();
+			String country = getCountry();
+			int releaseYear = getReleaseYear();
+			String director = getDirector();
+			List<String> actors = getActors();
+			URL imdbLink = getImdbLink();
+			String watchedDate = getWatchedDate();
+
+			return Movie.of(title, genres, language, country, releaseYear, director, actors, imdbLink, watchedDate);
+		}
+
 	}
 
 }
