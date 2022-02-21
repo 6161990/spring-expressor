@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class MovieFinder {
 	
-	MovieReader movieReader = new CsvMovieReader();
+	MovieReader movieReader = new JaxbMovieReader();
 	
 	/**
      * 저장된 영화 목록에서 감독으로 영화를 검색한다.

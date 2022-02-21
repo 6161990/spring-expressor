@@ -47,9 +47,8 @@ public class JaxbMovieReader implements MovieReader{
 			this.movies = movies;
 		}
 		
-		public List<Movie> toMovies() {
-			//return movies.stream().map(it-> it.toMovie()).collect(Collectors.toList()); 람다표현식 
-			return movies.stream().map(MovieData::toMovie).collect(Collectors.toList()); //메소드 레퍼런스식 
+		public List<Movie> toMovies() { 
+			return movies.stream().map(MovieData::toMovie).collect(Collectors.toList()); //메소드 레퍼런스
 		}
 	}
 	
