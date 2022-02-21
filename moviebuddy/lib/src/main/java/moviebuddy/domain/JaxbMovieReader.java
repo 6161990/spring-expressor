@@ -36,7 +36,7 @@ public class JaxbMovieReader implements MovieReader{
 	@XmlRootElement(name="moviemetadata")
 	public static class MovieMetadata {
 		
-		public List<MovieData> movies;
+		private List<MovieData> movies;
 
 		public List<MovieData> getMovies() {
 			return movies;
