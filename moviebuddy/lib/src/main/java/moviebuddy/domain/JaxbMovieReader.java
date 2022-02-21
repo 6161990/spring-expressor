@@ -3,6 +3,8 @@ package moviebuddy.domain;
 import java.net.URL;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 public class JaxbMovieReader implements MovieReader{
 
 	@Override
@@ -11,6 +13,7 @@ public class JaxbMovieReader implements MovieReader{
 		return null;
 	}
 	
+	@XmlRootElement(name="moviemetadata")
 	public static class MovieMetadata {
 		
 		public List<MovieData> movies;
