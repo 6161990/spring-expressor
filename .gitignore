@@ -1,6 +1,4 @@
 
-*.js
-*.js
 *.css
 *.map
 *.html
@@ -9,5 +7,4 @@ Spring Security/Security 4/server/paper-app/src/main/resources/application.yml
 TDDHandsOn/.DS_Store
 TDDHandsOn/NumberGuessing/.DS_Store
 TDDHandsOn/NumberGuessing/.idea/compiler.xml
-.DS_Store
 TDDHandsOn/.DS_Store
