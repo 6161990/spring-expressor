@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import commentComposerFactory from "./commentComposerFactory";
-import commentRefiner from "./content-refiners/trimWhitespaces";
+import commentRefiner from "./content-refiners/compactWhitespace";
 
 ReactDOM.render(
   <React.StrictMode>
