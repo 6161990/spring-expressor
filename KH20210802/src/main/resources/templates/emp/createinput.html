@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>직원등록 </title>
+</head>
+<body>
+<h1>직원등록</h1>
+<form method="post" th:action="@{/create/complate}">
+직원코드: <input type="text" name="empno">
+직원명: <input type="text" name="empname"> 
+팀코드: <input type="text" name="teamno">
+<input type="submit" value="등록">
+
+</form>
+
+
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>old</th>
+    </tr>
+    <tr th:each="test : ${testList}">
+        <td th:text="${test.id}"></td>
+        <td th:text="${test.name}"></td>
+        <td th:text="${test.old}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
