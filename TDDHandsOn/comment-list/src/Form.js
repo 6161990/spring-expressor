@@ -7,8 +7,8 @@ export function Form({ commentComposer }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const newComment = commentComposer({ author, content }); // form 외부에서 전달된 것
-        onNewComment(newComment); // form 외부에서 전달된 것
+        const newComment = commentComposer({ author, content }); // 사용 후 결과물을 newComment에 입력하고 있다.(간접입력)
+        onNewComment(newComment); // 데이터 입력 뿐, 반환 결과를 출력하고 있지 않다. form 입장에서는 출력, onNewComment입장에서는 입력 -> onNewComment는 Form 에게 간접출력 인터페이스를 제공하고 있다.
         setAuthor("");
         setContent("");
     };
@@ -31,3 +31,8 @@ export function Form({ commentComposer }) {
         <button name="submit">입력</button>
     </form>;
 }
+
+// 분리함으로써
+// 앱 내부에서 정의하고 있는 코드를 직접사용하지않고 입력받아 사용하게한 것.
+// 입력 과정에서 Form 요소는 commentComposer, onNewComment의존성을 갖게되었고
+// commentComposer는 간접 입력을 제공하는 의존성을, onNewComment는 간접 출력을 제공하는 의존성을 갖게 되었다.
