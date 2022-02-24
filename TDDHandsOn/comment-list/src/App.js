@@ -2,19 +2,20 @@ import { useState } from "react";
 import CommentList from "./CommentList";
 
 function App({ commentComposer }) {
-  const [author, setAuthor] = useState("");
-  const [content, setContent] = useState("");
   const [comments, setComments] = useState([]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newComment = commentComposer({ author, content });
-    setComments([...[...comments], newComment]);
-    setAuthor("");
-    setContent("");
-  };
-
   function Form() {
+    const [author, setAuthor] = useState("");
+    const [content, setContent] = useState("");
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const newComment = commentComposer({ author, content });
+      setComments([...[...comments], newComment]);
+      setAuthor("");
+      setContent("");
+    };
+
     return <form onSubmit={handleSubmit}>
       <input
           name="author"
