@@ -15,10 +15,14 @@ function App({ commentComposer }) {
     const [author, setAuthor] = useState("");
     const [content, setContent] = useState("");
 
+    function onNewComment(newComment) {
+      setComments([...[...comments], newComment]);
+    }
+
     const handleSubmit = (e) => {
       e.preventDefault();
       const newComment = commentComposer({ author, content }); // form 외부에서 전달된 것
-      setComments([...[...comments], newComment]); // form 외부에서 전달된 것
+      onNewComment(newComment); // form 외부에서 전달된 것
       setAuthor("");
       setContent("");
     };
