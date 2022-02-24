@@ -14,6 +14,7 @@
       <change beforePath="$PROJECT_DIR$/../../Spring5_moviebuddy/lib/src/main/java/moviebuddy/domain/JaxbMovieReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spring5_moviebuddy/lib/src/main/java/moviebuddy/domain/JaxbMovieReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Spring5_moviebuddy/lib/src/main/java/moviebuddy/domain/MovieReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spring5_moviebuddy/lib/src/main/java/moviebuddy/domain/MovieReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Spring5_moviebuddy/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spring5_moviebuddy/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,7 +83,7 @@
       <updated>1645659165540</updated>
       <workItem from="1645659167315" duration="510000" />
       <workItem from="1645659682972" duration="1142000" />
-      <workItem from="1645734815919" duration="1391000" />
+      <workItem from="1645734815919" duration="1740000" />
     </task>
     <servers />
   </component>

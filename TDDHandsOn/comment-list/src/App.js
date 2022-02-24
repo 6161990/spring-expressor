@@ -2,11 +2,16 @@ import { useState } from "react";
 import CommentList from "./CommentList";
 
 function App({ commentComposer }) {
+
   const [comments, setComments] = useState([]);
+
+  function onNewComment(newComment) {
+    setComments([...[...comments], newComment]);
+  }
 
   return (
     <div>
-      <Form commentComposer={commentComposer} />
+      <Form commentComposer={commentComposer} onNewComment={onNewComment} />
       <CommentList comments={comments}/>
     </div>
   );
@@ -15,9 +20,6 @@ function App({ commentComposer }) {
     const [author, setAuthor] = useState("");
     const [content, setContent] = useState("");
 
-    function onNewComment(newComment) {
-      setComments([...[...comments], newComment]);
-    }
 
     const handleSubmit = (e) => {
       e.preventDefault();
