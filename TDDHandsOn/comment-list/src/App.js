@@ -14,26 +14,30 @@ function App({ commentComposer }) {
     setContent("");
   };
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
+  function Form() {
+    return <form onSubmit={handleSubmit}>
+      <input
           name="author"
           value={author}
           type="text"
           onChange={(e) => setAuthor(e.currentTarget.value)}
           placeholder="작성자"
-        />
-        <input
+      />
+      <input
           name="content"
           value={content}
           type="text"
           onChange={(e) => setContent(e.currentTarget.value)}
           placeholder="내용"
-        />
-        <button name="submit">입력</button>
-      </form>
-      <CommentList comments={comments} />
+      />
+      <button name="submit">입력</button>
+    </form>;
+  }
+
+  return (
+    <div>
+      {Form()}
+      <CommentList comments={comments}/>
     </div>
   );
 }
