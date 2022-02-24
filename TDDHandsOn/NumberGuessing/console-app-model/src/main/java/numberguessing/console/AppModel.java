@@ -18,7 +18,7 @@ public final class AppModel {
     boolean completed;
     private Processor processor;
 
-    public AppModel(PositiveIntegerGenerator generator) {
+    public AppModel(PositiveIntegerGenerator generator) { // 생성자를 통한 입력 : 공개된 인터페이스를 통한 입력 - 직접입력
         this.generator = generator;
         completed = false;
         outputBuffer = new StringBuffer(SELECT_MODE_MESSAGE); // 초기화
@@ -49,10 +49,10 @@ public final class AppModel {
 
     private Processor processModeSelection(String input) {
         if(input.equals("1")) {
+            int answer = generator.generateLessThanOrEqualToHundred(); // 직접입력으로 받은 generator의 인터페이스를 출력하고, answer는 간접 입력을 받고있다.
             println("Single player game");
             println("I'm thinking of a number between 1 and 100.");
             print("Enter your guess: ");
-            int answer = generator.generateLessThanOrEqualToHundred();
             return getSinglePlayerGameProcessor(answer, 1);
         } else if(input.equals("2")) {
             println("Multiplayer game");
