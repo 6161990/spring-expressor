@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="63642c5e-9ab4-48ff-aba8-ad5c2afbea00" name="Changes" comment="" />
+    <list default="true" id="63642c5e-9ab4-48ff-aba8-ad5c2afbea00" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/content-refiners/compositeContentRefinerFactory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,6 +67,7 @@
       <option name="presentableId" value="Default" />
       <updated>1645659165540</updated>
       <workItem from="1645659167315" duration="510000" />
+      <workItem from="1645659682972" duration="533000" />
     </task>
     <servers />
   </component>
@@ -79,5 +84,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
