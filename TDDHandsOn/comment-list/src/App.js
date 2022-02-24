@@ -4,14 +4,21 @@ import CommentList from "./CommentList";
 function App({ commentComposer }) {
   const [comments, setComments] = useState([]);
 
-  function Form() {
+  return (
+    <div>
+      <Form commentComposer={commentComposer} />
+      <CommentList comments={comments}/>
+    </div>
+  );
+
+  function Form({ commentComposer }) {
     const [author, setAuthor] = useState("");
     const [content, setContent] = useState("");
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      const newComment = commentComposer({ author, content });
-      setComments([...[...comments], newComment]);
+      const newComment = commentComposer({ author, content }); // form 외부에서 전달된 것
+      setComments([...[...comments], newComment]); // form 외부에서 전달된 것
       setAuthor("");
       setContent("");
     };
@@ -35,12 +42,6 @@ function App({ commentComposer }) {
     </form>;
   }
 
-  return (
-    <div>
-      {Form()}
-      <CommentList comments={comments}/>
-    </div>
-  );
 }
 
 export default App;
