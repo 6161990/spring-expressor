@@ -19,5 +19,17 @@ public class WayneEnterprisesProductImporter_specs {
         assertThat(actual).hasSize(source.length);
     }
 
+    // WayneEnterprises의 상품 supplierName을 항상 "Wayne" 이라고 설정되어있음을 확인하는 테스트
+    @ParameterizedTest
+    @DomainArgumentsSource
+    void sut_correctly_sets_supplier_name(WayneEnterprisesProduct[] source){
+        var stub = new WayneEnterprisesProductSourceStub(source);
+        var sut = new WayneEnterprisesProductImporter(stub);
+
+        Iterable<Product> actual = sut.fetchProducts();
+
+        assertThat(actual).allMatch(x->x.getSupplierName().equals("WAYNE"));
+    }
+
 
 }
