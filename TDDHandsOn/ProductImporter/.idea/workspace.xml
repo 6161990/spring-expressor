@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="테스트 설명과 비즈니스 로직 수정 For Success">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="타입 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/productimporter/suppliers/wayneenterprises/WayneEnterprisesProductImporter_specs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/productimporter/suppliers/wayneenterprises/WayneEnterprisesProductImporter_specs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +72,7 @@
       <recent name="productimporter.suppliers.wayneenterprises" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.WayneEnterprisesProductImporter_specs.sut_projects_all_products">
+  <component name="RunManager" selected="JUnit.WayneEnterprisesProductImporter_specs.sut_correctly_sets_supplier_name">
     <configuration name="WayneEnterprisesProductImporter_specs.sut_projects_all_products" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -94,6 +94,22 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="WayneEnterprisesProductImporter_specs.sut_correctly_sets_supplier_name" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProductImporter.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="productimporter.suppliers.wayneenterprises.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="productimporter.suppliers.wayneenterprises" />
+      <option name="MAIN_CLASS_NAME" value="productimporter.suppliers.wayneenterprises.WayneEnterprisesProductImporter_specs" />
+      <option name="METHOD_NAME" value="sut_correctly_sets_supplier_name([Lproductimporter.suppliers.wayneenterprises.WayneEnterprisesProduct;)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WayneEnterprisesProductImporter_specs.sut_projects_all_products" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProductImporter.test" />
       <extension name="coverage">
@@ -112,6 +128,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.WayneEnterprisesProductImporter_specs.sut_correctly_sets_supplier_name" />
         <item itemvalue="JUnit.WayneEnterprisesProductImporter_specs.sut_projects_all_products" />
         <item itemvalue="Gradle.WayneEnterprisesProductImporter_specs.sut_projects_all_products" />
       </list>
@@ -127,7 +144,7 @@
       <updated>1646008828851</updated>
       <workItem from="1646008831597" duration="182000" />
       <workItem from="1646009055845" duration="896000" />
-      <workItem from="1646036302789" duration="2146000" />
+      <workItem from="1646036302789" duration="3017000" />
     </task>
     <task id="LOCAL-00001" summary="모든 상품을 가져오는 Test">
       <created>1646009902930</created>
@@ -150,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646038673114</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="타입 수정">
+      <created>1646040477672</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1646040477672</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,6 +196,7 @@
     <MESSAGE value="모든 상품을 가져오는 Test" />
     <MESSAGE value="Test를 위한 Stub 클래스 : 테스트 케이스가 Stub 클래스 생성자로 넘겨주는 값이 곧 답이 되는 셈." />
     <MESSAGE value="테스트 설명과 비즈니스 로직 수정 For Success" />
-    <option name="LAST_COMMIT_MESSAGE" value="테스트 설명과 비즈니스 로직 수정 For Success" />
+    <MESSAGE value="타입 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="타입 수정" />
   </component>
 </project>
