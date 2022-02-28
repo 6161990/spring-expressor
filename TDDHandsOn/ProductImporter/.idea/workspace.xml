@@ -72,7 +72,28 @@
       <recent name="productimporter.suppliers.wayneenterprises" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.WayneEnterprisesProductImporter_specs.sut_correctly_sets_supplier_name">
+  <component name="RunManager" selected="Gradle.WayneEnterprisesProductImporter_specs">
+    <configuration name="WayneEnterprisesProductImporter_specs" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;productimporter.suppliers.wayneenterprises.WayneEnterprisesProductImporter_specs&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="WayneEnterprisesProductImporter_specs.sut_projects_all_products" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -128,6 +149,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.WayneEnterprisesProductImporter_specs" />
         <item itemvalue="JUnit.WayneEnterprisesProductImporter_specs.sut_correctly_sets_supplier_name" />
         <item itemvalue="JUnit.WayneEnterprisesProductImporter_specs.sut_projects_all_products" />
         <item itemvalue="Gradle.WayneEnterprisesProductImporter_specs.sut_projects_all_products" />
