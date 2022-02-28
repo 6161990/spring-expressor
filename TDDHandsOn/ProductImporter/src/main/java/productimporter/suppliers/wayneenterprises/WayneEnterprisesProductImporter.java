@@ -16,7 +16,7 @@ public final class WayneEnterprisesProductImporter implements ProductImporter {
 
     @Override
     public Iterable<Product> fetchProducts() {
-        ArrayList<WayneEnterprisesProduct> products = new ArrayList<>();
+        var products = new ArrayList<>();
         dataSource.fetchProducts().forEach(products::add);
         return Arrays.asList(new Product[products.size()]);
     }

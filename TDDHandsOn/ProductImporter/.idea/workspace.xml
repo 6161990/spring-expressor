@@ -4,23 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/productimporter/ProductSynchronizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/productimporter/ProductSynchronizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/productimporter/suppliers/starkindustries/StarkIndustriesProduct.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/productimporter/suppliers/starkindustries/StarkIndustriesProductImporter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/productimporter/suppliers/starkindustries/StarkIndustriesProductSource.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/productimporter/suppliers/starkindustries/StarkIndustriesProductTranslator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/productimporter/suppliers/wayneenterprises/WayneEnterprisesProductImporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/productimporter/suppliers/wayneenterprises/WayneEnterprisesProductImporter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/productimporter/suppliers/wayneenterprises/WayneEnterprisesProductTranslator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/productimporter/DomainArgumentResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/productimporter/DomainArgumentResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/productimporter/ProductArgumentResolver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/productimporter/ProductInventorySpy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/productimporter/ProductSynchronizer_specs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/productimporter/suppliers/starkindustries/StarkIndustriesProductArgumentResolver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/productimporter/suppliers/starkindustries/StarkIndustriesProductImporter_specs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/productimporter/suppliers/starkindustries/StarkIndustriesProductTranslator_specs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/productimporter/suppliers/wayneenterprises/WayneEnterprisesProductImporter_specs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/productimporter/suppliers/wayneenterprises/WayneEnterprisesProductSourceStub.java" beforeDir="false" />
+    <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="테스트 설명과 비즈니스 로직 수정 For Success">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +30,23 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="25iTIOC7X8ZGDfHV1cksTrNRi8a" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -54,10 +55,67 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="productimporter.suppliers.wayneenterprises" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.WayneEnterprisesProductImporter_specs.sut_projects_all_products">
+    <configuration name="WayneEnterprisesProductImporter_specs.sut_projects_all_products" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;productimporter.suppliers.wayneenterprises.WayneEnterprisesProductImporter_specs.sut_projects_all_products&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="WayneEnterprisesProductImporter_specs.sut_projects_all_products" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProductImporter.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="productimporter.suppliers.wayneenterprises.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="productimporter.suppliers.wayneenterprises" />
+      <option name="MAIN_CLASS_NAME" value="productimporter.suppliers.wayneenterprises.WayneEnterprisesProductImporter_specs" />
+      <option name="METHOD_NAME" value="sut_projects_all_products([Lproductimporter.suppliers.wayneenterprises.WayneEnterprisesProduct;)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.WayneEnterprisesProductImporter_specs.sut_projects_all_products" />
+        <item itemvalue="Gradle.WayneEnterprisesProductImporter_specs.sut_projects_all_products" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -68,11 +126,52 @@
       <option name="presentableId" value="Default" />
       <updated>1646008828851</updated>
       <workItem from="1646008831597" duration="182000" />
-      <workItem from="1646009055845" duration="6000" />
+      <workItem from="1646009055845" duration="896000" />
+      <workItem from="1646036302789" duration="2146000" />
     </task>
+    <task id="LOCAL-00001" summary="모든 상품을 가져오는 Test">
+      <created>1646009902930</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1646009902930</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Test를 위한 Stub 클래스 : 테스트 케이스가 Stub 클래스 생성자로 넘겨주는 값이 곧 답이 되는 셈.">
+      <created>1646010011688</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1646010011688</updated>
+    </task>
+    <task id="LOCAL-00003" summary="테스트 설명과 비즈니스 로직 수정 For Success">
+      <created>1646038673114</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1646038673114</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="모든 상품을 가져오는 Test" />
+    <MESSAGE value="Test를 위한 Stub 클래스 : 테스트 케이스가 Stub 클래스 생성자로 넘겨주는 값이 곧 답이 되는 셈." />
+    <MESSAGE value="테스트 설명과 비즈니스 로직 수정 For Success" />
+    <option name="LAST_COMMIT_MESSAGE" value="테스트 설명과 비즈니스 로직 수정 For Success" />
   </component>
 </project>
