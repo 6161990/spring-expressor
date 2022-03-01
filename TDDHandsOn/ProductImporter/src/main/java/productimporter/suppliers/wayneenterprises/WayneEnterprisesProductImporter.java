@@ -3,6 +3,7 @@ package productimporter.suppliers.wayneenterprises;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import productimporter.Pricing;
 import productimporter.Product;
 import productimporter.ProductImporter;
 
@@ -17,7 +18,7 @@ public final class WayneEnterprisesProductImporter implements ProductImporter {
     @Override
     public Iterable<Product> fetchProducts() {
         return StreamSupport.stream(dataSource.fetchProducts().spliterator(), false)
-                .map(x -> new Product("WAYNE", x.getId(), x.getTitle(), null)).collect(Collectors.toList());
+                .map(x -> new Product("WAYNE", x.getId(), x.getTitle(), new Pricing(null, null))).collect(Collectors.toList());
     }
 
 }
