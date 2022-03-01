@@ -48,7 +48,7 @@ public class WayneEnterprisesProductImporter_specs {
         assertThat(actual.getProductCode()).isEqualTo(source.getId()); // Fail 1
         assertThat(actual.getProductName()).isEqualTo(source.getTitle()); // Fail 2
         assertThat(actual.getPricing().getListPrice()).isEqualByComparingTo(Integer.toString(source.getListPrice())); // Fail 3
-        assertThat(actual.getPricing().getDiscount()).isEqualByComparingTo(Integer.toString(source.getListPrice()-source.getSellingPrice()));
+        assertThat(actual.getPricing().getDiscount()).isEqualByComparingTo(Integer.toString(source.getListPrice()-source.getSellingPrice())); // Fail 4
 
        /**
         * 커머스 업체인 우리는 Product 가격을 정가와 할인가로 분류.
