@@ -19,7 +19,11 @@ public final class WayneEnterprisesProductImporter implements ProductImporter {
     @Override
     public Iterable<Product> fetchProducts() {
         return StreamSupport.stream(dataSource.fetchProducts().spliterator(), false)
-                .map(x -> new Product("WAYNE", x.getId(), x.getTitle(), new Pricing(new BigDecimal(x.getListPrice()), new BigDecimal(x.getListPrice() - x.getSellingPrice())))).collect(Collectors.toList());
+                .map(x -> translate(x)).collect(Collectors.toList());
+    }
+
+    private Product translate(WayneEnterprisesProduct x) {
+        return new Product("WAYNE", x.getId(), x.getTitle(), new Pricing(new BigDecimal(x.getListPrice()), new BigDecimal(x.getListPrice() - x.getSellingPrice())));
     }
 
 }
