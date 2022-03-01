@@ -46,7 +46,7 @@ public class WayneEnterprisesProductImporter_specs {
         Product actual = products.get(0);
 
         assertThat(actual.getProductCode()).isEqualTo(source.getId()); // Fail 1
-        assertThat(actual.getProductName()).isEqualTo(source.getTitle());
+        assertThat(actual.getProductName()).isEqualTo(source.getTitle()); // Fail 2
         assertThat(actual.getPricing().getListPrice()).isEqualByComparingTo(Integer.toString(source.getListPrice()));
         assertThat(actual.getPricing().getDiscount()).isEqualByComparingTo(Integer.toString(source.getListPrice()-source.getSellingPrice()));
 
@@ -61,6 +61,9 @@ public class WayneEnterprisesProductImporter_specs {
         * Expecting : null
         * to be equal to : id5556d543-9a1f-4c84-a06a-77d71d1375f0
         *
+        * Fail 2
+        * Expecting : null
+        * to be equal to : title1c120845-4fd0-4da2-a484-66a4806e16a9
         */
 
     }

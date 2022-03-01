@@ -17,7 +17,7 @@ public final class WayneEnterprisesProductImporter implements ProductImporter {
     @Override
     public Iterable<Product> fetchProducts() {
         return StreamSupport.stream(dataSource.fetchProducts().spliterator(), false)
-                .map(x -> new Product("WAYNE", x.getId(), null, null)).collect(Collectors.toList());
+                .map(x -> new Product("WAYNE", x.getId(), x.getTitle(), null)).collect(Collectors.toList());
     }
 
 }
