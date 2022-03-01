@@ -3,8 +3,8 @@ package productimporter.suppliers.wayneenterprises;
 public final class WayneEnterprisesProduct {
     private final String id;
     private final String title;
-    private final int listPrice;
-    private final int sellingPrice;
+    private final int listPrice; // 정가
+    private final int sellingPrice; // 판매가
 
     public WayneEnterprisesProduct(String id, String title, int listPrice, int sellingPrice) {
         this.id = id;

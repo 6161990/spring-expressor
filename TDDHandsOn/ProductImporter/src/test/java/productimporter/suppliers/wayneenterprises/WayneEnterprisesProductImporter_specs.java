@@ -50,6 +50,13 @@ public class WayneEnterprisesProductImporter_specs {
         assertThat(actual.getPricing().getListPrice()).isEqualByComparingTo(Integer.toString(source.getListPrice()));
         assertThat(actual.getPricing().getDiscount()).isEqualByComparingTo(Integer.toString(source.getListPrice()-source.getSellingPrice()));
 
+       /**
+        * 커머스 업체인 우리는 Product 가격을 정가와 할인가로 분류.
+        * 공급 업체인 WayneEnterprises는 상품(Source)를 정가와 판매가로 분류. (할인가를 제공해주지 않기 때문에 정가-판매가 로 할인가 계산)
+        *
+        * BigDecimal 의 비교 isEqualByComparingTo
+        * compareTo( ) 와 동일하기 때문에 소수점 마지막 0이 달라도 true
+        */
 
     }
 
