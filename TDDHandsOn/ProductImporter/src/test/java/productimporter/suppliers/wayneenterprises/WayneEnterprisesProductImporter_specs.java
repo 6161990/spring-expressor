@@ -4,6 +4,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import productimporter.DomainArgumentsSource;
 import productimporter.Product;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WayneEnterprisesProductImporter_specs {
@@ -29,6 +32,25 @@ public class WayneEnterprisesProductImporter_specs {
         Iterable<Product> actual = sut.fetchProducts();
 
         assertThat(actual).allMatch(x->x.getSupplierName().equals("WAYNE"));
+    }
+
+    // WayneEnterprises의 상품들을 잘 투영하는지 확인하는 테스트
+    @ParameterizedTest
+    @DomainArgumentsSource
+    void sut_correctly_projects_source_properties(WayneEnterprisesProduct source){
+        var stub = new WayneEnterprisesProductSourceStub(source);
+        var sut = new WayneEnterprisesProductImporter(stub);
+
+        List<Product> products = new ArrayList<>();
+        sut.fetchProducts().forEach(products::add);
+        Product actual = products.get(0);
+
+        assertThat(actual.getProductCode()).isEqualTo(source.getId());
+        assertThat(actual.getProductName()).isEqualTo(source.getTitle());
+        assertThat(actual.getPricing().getListPrice()).isEqualByComparingTo(Integer.toString(source.getListPrice()));
+        assertThat(actual.getPricing().getDiscount()).isEqualByComparingTo(Integer.toString(source.getListPrice()-source.getSellingPrice()));
+
+
     }
 
 
