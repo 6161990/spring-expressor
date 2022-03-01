@@ -1,5 +1,6 @@
 package productimporter.suppliers.wayneenterprises;
 
+import java.math.BigDecimal;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -18,7 +19,7 @@ public final class WayneEnterprisesProductImporter implements ProductImporter {
     @Override
     public Iterable<Product> fetchProducts() {
         return StreamSupport.stream(dataSource.fetchProducts().spliterator(), false)
-                .map(x -> new Product("WAYNE", x.getId(), x.getTitle(), new Pricing(null, null))).collect(Collectors.toList());
+                .map(x -> new Product("WAYNE", x.getId(), x.getTitle(), new Pricing(new BigDecimal(x.getListPrice()), null))).collect(Collectors.toList());
     }
 
 }

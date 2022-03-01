@@ -47,7 +47,7 @@ public class WayneEnterprisesProductImporter_specs {
 
         assertThat(actual.getProductCode()).isEqualTo(source.getId()); // Fail 1
         assertThat(actual.getProductName()).isEqualTo(source.getTitle()); // Fail 2
-        assertThat(actual.getPricing().getListPrice()).isEqualByComparingTo(Integer.toString(source.getListPrice()));
+        assertThat(actual.getPricing().getListPrice()).isEqualByComparingTo(Integer.toString(source.getListPrice())); // Fail 3
         assertThat(actual.getPricing().getDiscount()).isEqualByComparingTo(Integer.toString(source.getListPrice()-source.getSellingPrice()));
 
        /**
