@@ -64,9 +64,15 @@ public class WayneEnterprisesProductImporter_specs {
         * Fail 2
         * Expecting : null
         * to be equal to : title1c120845-4fd0-4da2-a484-66a4806e16a9
+
+
+        여기까지의 배움,,!
+        Test 진행 시, WayneEnterprisesProductSource 서비스를 구동시키거나, 종료시킨 적이 없음. 불가능한 일임.
+        DOC 로 대체하여 Test 를 진행함. 여기서 DOC는 Stub: WayneEnterprisesProductSourceStub를 이용했다.
+
+
         */
 
     }
-
 
 }
