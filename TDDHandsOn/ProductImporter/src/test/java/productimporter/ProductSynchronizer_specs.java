@@ -6,8 +6,12 @@ import productimporter.suppliers.wayneenterprises.WayneEnterprisesProductImporte
 import productimporter.suppliers.wayneenterprises.WayneEnterprisesProductSourceStub;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
+import static org.mockito.Mockito.*;
 
 public class ProductSynchronizer_specs {
 
@@ -31,7 +35,7 @@ public class ProductSynchronizer_specs {
          */
     }
 
-    // 올바르지 않은 상품은 저장하지 않음을 확인하는 테스트
+    // 올바르지 않은 상품은 저장하지 않음을 확인하는 테스트 - Spy
     @ParameterizedTest
     @DomainArgumentsSource
     void sut_does_not_save_invalid_product(WayneEnterprisesProduct product) {
@@ -47,5 +51,31 @@ public class ProductSynchronizer_specs {
 
         assertThat(spy.getLog()).isEmpty();
     }
+
+    // 올바르지 않은 상품은 저장하지 않음을 확인하는 테스트 - Mock
+    @ParameterizedTest
+    @DomainArgumentsSource
+    void sut_really_does_not_save_invalid_product() {
+        // Arrange
+        var pricing = new Pricing(BigDecimal.TEN, BigDecimal.ZERO);
+        var product = new Product("supplierName", "productCode", "productName", pricing);
+
+        ProductImporter importer = mock(ProductImporter.class);
+        when(importer.fetchProducts()).thenReturn(Arrays.asList(product));
+
+        ProductValidator validator = mock(ProductValidator.class);
+        when(validator.isValid(product)).thenReturn(false);
+
+        ProductInventory inventory = mock(ProductInventory.class);
+
+        var sut = new ProductSynchronizer(importer, validator, inventory);
+
+        // Act
+        sut.run();
+
+        // Assert
+        verify(inventory, never()).upsertProduct(product); // 해당 상품이 invalid 이므로, upsertProduct를 한번도 호출하지 않았는지를 never() 로 확인
+    }
+
 
 }
