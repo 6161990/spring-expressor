@@ -1,5 +1,7 @@
 package productimporter;
 
+import java.util.stream.StreamSupport;
+
 public final class ProductSynchronizer {
 
     private final ProductImporter importer;
@@ -13,10 +15,18 @@ public final class ProductSynchronizer {
     }
 
     public void run() {
-        for (Product product : importer.fetchProducts()) {
+        /**
+         * Stream 으로 구현 변경
+         * */
+        StreamSupport.stream(importer.fetchProducts().spliterator(), false)
+                .filter(validator::isValid)
+                .forEach(inventory::upsertProduct);
+
+/*        for (Product product : importer.fetchProducts()) {
             if(validator.isValid(product)){
                 inventory.upsertProduct(product);
             }
-        }
+        }*/
+
     }
 }
