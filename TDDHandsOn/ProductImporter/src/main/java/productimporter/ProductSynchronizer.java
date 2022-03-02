@@ -14,7 +14,9 @@ public final class ProductSynchronizer {
 
     public void run() {
         for (Product product : importer.fetchProducts()) {
-            inventory.upsertProduct(product);
+            if(validator.isValid(product)){
+                inventory.upsertProduct(product);
+            }
         }
     }
 }

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="타입 수정">
+    <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="테스트 부연 설명과 로직 수정 For Test Success">
+      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/productimporter/suppliers/wayneenterprises/WayneEnterprisesProductImporter_specs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/productimporter/suppliers/wayneenterprises/WayneEnterprisesProductImporter_specs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/productimporter/ProductSynchronizer_specs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/productimporter/ProductSynchronizer_specs.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +73,28 @@
       <recent name="productimporter.suppliers.wayneenterprises" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.WayneEnterprisesProductImporter_specs">
+  <component name="RunManager" selected="JUnit.ProductSynchronizer_specs.sut_does_not_save_invalid_product">
+    <configuration name="ProductSynchronizer_specs.sut_correctly_saves_products" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;productimporter.ProductSynchronizer_specs.sut_correctly_saves_products&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="WayneEnterprisesProductImporter_specs" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -94,26 +116,37 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="WayneEnterprisesProductImporter_specs.sut_projects_all_products" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;productimporter.suppliers.wayneenterprises.WayneEnterprisesProductImporter_specs.sut_projects_all_products&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
+    <configuration name="ProductSynchronizer_specs.sut_does_not_save_invalid_product" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProductImporter.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="productimporter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="productimporter" />
+      <option name="MAIN_CLASS_NAME" value="productimporter.ProductSynchronizer_specs" />
+      <option name="METHOD_NAME" value="sut_does_not_save_invalid_product(productimporter.suppliers.wayneenterprises.WayneEnterprisesProduct)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WayneEnterprisesProductImporter_specs.sut_correctly_projects_source_properties" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProductImporter.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="productimporter.suppliers.wayneenterprises.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="productimporter.suppliers.wayneenterprises" />
+      <option name="MAIN_CLASS_NAME" value="productimporter.suppliers.wayneenterprises.WayneEnterprisesProductImporter_specs" />
+      <option name="METHOD_NAME" value="sut_correctly_projects_source_properties(productimporter.suppliers.wayneenterprises.WayneEnterprisesProduct)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="WayneEnterprisesProductImporter_specs.sut_correctly_sets_supplier_name" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProductImporter.test" />
@@ -131,28 +164,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WayneEnterprisesProductImporter_specs.sut_projects_all_products" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProductImporter.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="productimporter.suppliers.wayneenterprises.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="productimporter.suppliers.wayneenterprises" />
-      <option name="MAIN_CLASS_NAME" value="productimporter.suppliers.wayneenterprises.WayneEnterprisesProductImporter_specs" />
-      <option name="METHOD_NAME" value="sut_projects_all_products([Lproductimporter.suppliers.wayneenterprises.WayneEnterprisesProduct;)" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ProductSynchronizer_specs.sut_does_not_save_invalid_product" />
+        <item itemvalue="Gradle.ProductSynchronizer_specs.sut_correctly_saves_products" />
         <item itemvalue="Gradle.WayneEnterprisesProductImporter_specs" />
+        <item itemvalue="JUnit.WayneEnterprisesProductImporter_specs.sut_correctly_projects_source_properties" />
         <item itemvalue="JUnit.WayneEnterprisesProductImporter_specs.sut_correctly_sets_supplier_name" />
-        <item itemvalue="JUnit.WayneEnterprisesProductImporter_specs.sut_projects_all_products" />
-        <item itemvalue="Gradle.WayneEnterprisesProductImporter_specs.sut_projects_all_products" />
       </list>
     </recent_temporary>
   </component>
@@ -166,7 +184,9 @@
       <updated>1646008828851</updated>
       <workItem from="1646008831597" duration="182000" />
       <workItem from="1646009055845" duration="896000" />
-      <workItem from="1646036302789" duration="3017000" />
+      <workItem from="1646036302789" duration="4125000" />
+      <workItem from="1646098438610" duration="4433000" />
+      <workItem from="1646180840766" duration="4138000" />
     </task>
     <task id="LOCAL-00001" summary="모든 상품을 가져오는 Test">
       <created>1646009902930</created>
@@ -196,7 +216,140 @@
       <option name="project" value="LOCAL" />
       <updated>1646040477672</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="git ignore">
+      <created>1646041008200</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1646041008200</updated>
+    </task>
+    <task id="LOCAL-00006" summary="git ignore">
+      <created>1646041150154</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1646041150154</updated>
+    </task>
+    <task id="LOCAL-00007" summary="WayneEnterprises의 상품 supplierName을 항상 &quot;Wayne&quot; 이라고 설정되어있음을 확인하는 테스트">
+      <created>1646041166161</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1646041166162</updated>
+    </task>
+    <task id="LOCAL-00008" summary="nullPointException 확인해보기">
+      <created>1646041869904</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1646041869905</updated>
+    </task>
+    <task id="LOCAL-00009" summary="로직 수정 For Test Success">
+      <created>1646041953492</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1646041953492</updated>
+    </task>
+    <task id="LOCAL-00010" summary=" WayneEnterprises의 상품들을 잘 투영하는지 확인하는 테스트">
+      <created>1646099747978</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1646099747978</updated>
+    </task>
+    <task id="LOCAL-00011" summary="테스트 상황 설명">
+      <created>1646102197244</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1646102197244</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Fail 1 과 Success 1">
+      <created>1646102365109</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1646102365109</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Fail 2 과 Success 2">
+      <created>1646102497516</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1646102497516</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Fail 3 과 Success 1로 가는 1단계&#10;Product의 Pricing 생성(but null)">
+      <created>1646102621548</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1646102621548</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fail 3 과 Success 3로 가는 2단계&#10;Product의 Pricing 생성(new BigDecimal, null)">
+      <created>1646102818439</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1646102818439</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Fail 4 과 Success 4&#10;Product의 Pricing 생성(new BigDecimal, new BigDecimal)">
+      <created>1646103063126</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1646103063126</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Refactoring 1 - Extract Method : translate">
+      <created>1646103161791</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1646103161791</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Refactoring 2 - : translate 별도의 책임으로 분리">
+      <created>1646103509508</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1646103509508</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Refactoring 3 - getPricing 메소드의 가독성 강화">
+      <created>1646103932006</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1646103932006</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Stub 실습 정리 : WayneEnterprisesProductSourceStub">
+      <created>1646104414675</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1646104414675</updated>
+    </task>
+    <task id="LOCAL-00021" summary="상품들이 importer, validator를 거쳐 Inventory에 잘 저장이 되는지 확인하는 테스트">
+      <created>1646186458490</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1646186458491</updated>
+    </task>
+    <task id="LOCAL-00022" summary="테스트를 위한 TestDouble ProductInventorySpy 생성 및 구현">
+      <created>1646186637127</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1646186637127</updated>
+    </task>
+    <task id="LOCAL-00023" summary="테스트 부연 설명과 로직 수정 For Test Success">
+      <created>1646188889173</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1646188889173</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +372,24 @@
     <MESSAGE value="Test를 위한 Stub 클래스 : 테스트 케이스가 Stub 클래스 생성자로 넘겨주는 값이 곧 답이 되는 셈." />
     <MESSAGE value="테스트 설명과 비즈니스 로직 수정 For Success" />
     <MESSAGE value="타입 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="타입 수정" />
+    <MESSAGE value="git ignore" />
+    <MESSAGE value="WayneEnterprises의 상품 supplierName을 항상 &quot;Wayne&quot; 이라고 설정되어있음을 확인하는 테스트" />
+    <MESSAGE value="nullPointException 확인해보기" />
+    <MESSAGE value="로직 수정 For Test Success" />
+    <MESSAGE value=" WayneEnterprises의 상품들을 잘 투영하는지 확인하는 테스트" />
+    <MESSAGE value="테스트 상황 설명" />
+    <MESSAGE value="Fail 1 과 Success 1" />
+    <MESSAGE value="Fail 2 과 Success 2" />
+    <MESSAGE value="Fail 3 과 Success 3로 가는 1단계&#10;Product의 Pricing 생성(but null)" />
+    <MESSAGE value="Fail 3 과 Success 3로 가는 2단계&#10;Product의 Pricing 생성(new BigDecimal, null)" />
+    <MESSAGE value="Fail 4 과 Success 4&#10;Product의 Pricing 생성(new BigDecimal, new BigDecimal)" />
+    <MESSAGE value="Refactoring 1 - Extract Method : translate" />
+    <MESSAGE value="Refactoring 2 - : translate 별도의 책임으로 분리" />
+    <MESSAGE value="Refactoring 3 - getPricing 메소드의 가독성 강화" />
+    <MESSAGE value="Stub 실습 정리 : WayneEnterprisesProductSourceStub" />
+    <MESSAGE value="상품들이 importer, validator를 거쳐 Inventory에 잘 저장이 되는지 확인하는 테스트" />
+    <MESSAGE value="테스트를 위한 TestDouble ProductInventorySpy 생성 및 구현" />
+    <MESSAGE value="테스트 부연 설명과 로직 수정 For Test Success" />
+    <option name="LAST_COMMIT_MESSAGE" value="테스트 부연 설명과 로직 수정 For Test Success" />
   </component>
 </project>
