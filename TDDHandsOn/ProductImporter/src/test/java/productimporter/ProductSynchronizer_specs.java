@@ -30,4 +30,22 @@ public class ProductSynchronizer_specs {
          usingRecursiveFieldByFieldElementComparator() : Collection에서 자식까지 모든 필드 비교
          */
     }
+
+    // 올바르지 않은 상품은 저장하지 않음을 확인하는 테스트
+    @ParameterizedTest
+    @DomainArgumentsSource
+    void sut_does_not_save_invalid_product(WayneEnterprisesProduct product) {
+        var lowerBound = new BigDecimal(product.getListPrice() + 10000);// 더 비싼 가격으로 하한가 설정
+        var validator = new ListPriceFilter(lowerBound);
+
+        var stub = new WayneEnterprisesProductSourceStub(product);
+        var importer = new WayneEnterprisesProductImporter(stub);
+        var spy = new ProductInventorySpy();
+        var sut = new ProductSynchronizer(importer, validator, spy);
+
+        sut.run();
+
+        assertThat(spy.getLog()).isEmpty();
+    }
+
 }
