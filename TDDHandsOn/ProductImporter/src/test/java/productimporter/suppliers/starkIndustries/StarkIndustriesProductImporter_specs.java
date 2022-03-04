@@ -61,3 +61,20 @@ public class StarkIndustriesProductImporter_specs {
 
     }
 }
+
+/**
+ * WayneEnterprises 로 구현했던 sut_correctly_projects_source_properties 테스트 케이스와의 차이?
+ *  1. WayneEnterprises 의 경우, WayneEnterprisesProductImporter 를 생성하고 나서 더이상의 구현이 필요없었음
+ *  WayneEnterprisesProductImporter 구현 후, 리팩터링 하는 과정에서 WayneEnterprisesProductTranslator 를 추출함.
+ *  이미 구현된 코드 일부를 책임 분리한 것. 분리된 코드는 이미 충분히 테스트가 되고 있던 상황.
+ *
+ *  하지만, StarkIndustriesProductImporter 경우에는 StarkIndustriesProductTranslator 염두하고 테스트를 했고
+ *  mock 을 사용했다 -> StarkIndustriesProductTranslator 가 해야되는 일은 구현하지 않은 상태에서!
+ *
+ *  ProductImporter 를 구현하고 나서 어떤 결과물을 얻었는지가 각각 다르다.
+ *
+ *  2. WayneEnterprises 보다 StarkIndustries 경우, 테스트 코드가 약간 더 복잡하다.
+ *  -> sut 구현에 대한 지식이 테스트 코드에도 있기 때문.
+ *  WayneEnterprises 가 Translator 를 별도로 분리를 했는지아닌지는 관심대상도 아니고 알 지도 못한다. 걍 public interface 가 제대로 동작하는지만 관심이있다.
+ *  StarkIndustries 는 Translator 가 어떻게 쓰이는지 추측을 했어야한다. 이렇게 구현될 거니까, 테스트도 이렇게 구현되는구나. 그래서 더 장황하고 복잡하게 느껴질 수 있다.
+ * */
