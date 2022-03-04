@@ -16,9 +16,8 @@ public class StarkIndustriesProductImporter implements ProductImporter {
 
     @Override
     public Iterable<Product> fetchProducts() {
-        Iterable<StarkIndustriesProduct> source = productSource.getAllProducts();
         var products = new ArrayList<Product>();
-        for (StarkIndustriesProduct s : source) {
+        for (StarkIndustriesProduct s : productSource.getAllProducts()) {
             products.add(null);
         }
         return products;
