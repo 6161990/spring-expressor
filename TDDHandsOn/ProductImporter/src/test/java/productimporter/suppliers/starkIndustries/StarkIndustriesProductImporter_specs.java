@@ -33,7 +33,7 @@ public class StarkIndustriesProductImporter_specs {
         assertThat(actual).hasSize(sourceProducts.length);
     }
 
-    // starkIndustries 상품을 도메인에 맞게 잘 변형되는지 확인하는 테스트
+    // starkIndustries 상품을 도메인에 맞게 잘 변형되는지 확인하는 테스트 : mockists의 테스트 관점 -> 값을 변환하는 translator에게 특정 조건을 그냥 setUp() 해주었고, 변환된 값의 결과에 대해서는 관심이없다.
     @ParameterizedTest
     @DomainArgumentsSource
     void sut_correctly_translates_source_products(StarkIndustriesProduct[] sourceProducts, Product[] product) {
@@ -43,8 +43,8 @@ public class StarkIndustriesProductImporter_specs {
 
         var translator = mock(StarkIndustriesProductTranslator.class);
 
-        List<Tuple> tuples = IntStream.range(0, Math.min(sourceProducts.length, product.length))
-                .mapToObj(index -> Tuple.tuple(sourceProducts[index], product[index])).collect(Collectors.toList());
+        List<Tuple> tuples = IntStream.range(0, Math.min(sourceProducts.length, product.length))  // intStream 의 배열의 인덱스를 나타내는데 sourceProducts와 product의 길이가 다를 수도 있으니, 작은 값으로 지정
+                .mapToObj(index -> Tuple.tuple(sourceProducts[index], product[index])).collect(Collectors.toList()); //Tuple로 만들기 위해 mapToObj
 
         for(Tuple tuple : tuples){
             Object[] values = tuple.toArray();
