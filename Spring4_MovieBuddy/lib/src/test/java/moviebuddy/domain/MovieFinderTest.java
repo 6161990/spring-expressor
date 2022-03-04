@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import moviebuddy.MovieBuddyFactory;
 
@@ -12,8 +14,9 @@ import moviebuddy.MovieBuddyFactory;
  */
 public class MovieFinderTest {
 
-	final MovieBuddyFactory movieBuddyFactory = new MovieBuddyFactory();
-	final MovieFinder movieFinder = movieBuddyFactory.movieFinder();
+	final ApplicationContext applicationContext = 
+			new AnnotationConfigApplicationContext(MovieBuddyFactory.class); // 애플리케이션 컨텍스트 생성 -> 어노테이션 컨텍스트 정보로
+	final MovieFinder movieFinder = applicationContext.getBean(MovieFinder.class); //  해당 클래스 구성정보를 가져온다.
 
 	
 	@Test
