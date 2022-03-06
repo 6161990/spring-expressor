@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.powermock.reflect.Whitebox;
 
 import java.util.stream.Stream;
 
@@ -373,5 +374,17 @@ public class AppModel_specs {
         boolean actual = sut.isCompleted();
         assertTrue(actual);
 
+    }
+
+    @Test // private 메소드(print()) 테스트
+    void print_correctly_appends_string_to_output_buffer() throws Exception {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut);
+
+        outputBuffer.setLength(0);
+        Whitebox.invokeMethod(sut, "print", "foo");
+
+        String actual = outputBuffer.toString();
+        assertThat(actual).isEqualTo("foo");
     }
 }
