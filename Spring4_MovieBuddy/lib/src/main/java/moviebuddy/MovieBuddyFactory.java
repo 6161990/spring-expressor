@@ -18,7 +18,7 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 	}
 	
 	@Bean
-	@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) // 빈요청을 받을 때마다 새로운 객체를 생 
+	//@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) // 빈요청을 받을 때마다 새로운 객체를 생 
 	public MovieFinder movieFinder() {
 		return new MovieFinder(movieReader()); // 메소드 호출 방식 
 	}
