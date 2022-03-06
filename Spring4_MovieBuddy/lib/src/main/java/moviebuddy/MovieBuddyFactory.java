@@ -3,28 +3,47 @@ package moviebuddy;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Scope;
 
 import moviebuddy.domain.CsvMovieReader;
 import moviebuddy.domain.MovieFinder;
 import moviebuddy.domain.MovieReader;
 
-@Configuration // 빈 구성정보 - Configuration 메타데이터로 사용함을 선언 
+@Configuration // 빈 구성정보 - Configuration 메타데이터로 사용함을 선언
+@Import({MovieBuddyFactory.DataSourceModuleConfig.class, MovieBuddyFactory.DomainModuleConfig.class}) // 다른 클래에서 빈 구성정보를 가져오기위함.
+//  @ImportResource("xml file location")
 public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할 
 	
-	@Bean
-	public MovieReader movieReader() { // 등록된 또 하나의 빈 
-		return new CsvMovieReader();
+	@Configuration
+	static class DomainModuleConfig {
+		
+		@Bean  
+		public MovieFinder movieFinder(MovieReader movieReader) {
+			return new MovieFinder(movieReader);  
+		}
 	}
 	
-	@Bean
-	//@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) // 빈요청을 받을 때마다 새로운 객체를 생 
-	public MovieFinder movieFinder() {
-		return new MovieFinder(movieReader()); // 메소드 호출 방식 
+	@Configuration
+	static class DataSourceModuleConfig {
+		
+		@Bean
+		public MovieReader movieReader() { // 등록된 또 하나의 빈 
+			return new CsvMovieReader();
+		}
+			
 	}
 
 	/**
-	 * 
+	   메소드 호출 방식과 파라미터 호출 방식 
+	 * @Bean
+		//@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) // 빈요청을 받을 때마다 새로운 객체를 생 
+		public MovieFinder movieFinder() {
+			return new MovieFinder(movieReader()); // 메소드 호출 방식 
+		}
+		
+		
 	 *  @Bean  
 		public MovieFinder movieFinder(MovieReader movieReader) {
 			return new MovieFinder(movieReader);  
