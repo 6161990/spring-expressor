@@ -1,7 +1,9 @@
 package moviebuddy;
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 import moviebuddy.domain.CsvMovieReader;
 import moviebuddy.domain.MovieFinder;
@@ -15,7 +17,8 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 		return new CsvMovieReader();
 	}
 	
-	@Bean // 어떤 빈이 있는가 
+	@Bean
+	@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) // 빈요청을 받을 때마다 새로운 객체를 생 
 	public MovieFinder movieFinder() {
 		return new MovieFinder(movieReader()); // 메소드 호출 방식 
 	}
