@@ -387,4 +387,16 @@ public class AppModel_specs {
         String actual = outputBuffer.toString();
         assertThat(actual).isEqualTo("foo");
     }
+
+    @Test // private 메소드(println ()) 테스트
+    void println_correctly_appends_string_and_line_separator_to_output_buffer() throws Exception {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut); // private 필드 가져오기
+
+        outputBuffer.setLength(0);
+        Whitebox.invokeMethod(sut, "println", "foo"); //private 메소드 실행시키
+
+        String actual = outputBuffer.toString();
+        assertThat(actual).isEqualTo("foo"+ NEW_LINE);
+    }
 }
