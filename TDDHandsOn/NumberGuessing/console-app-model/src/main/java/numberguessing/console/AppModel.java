@@ -47,16 +47,17 @@ public final class AppModel {
         outputBuffer.append(message);
     }
 
+    private void printLines(String... lines) {
+        outputBuffer.append(String.join(System.lineSeparator(), lines));
+    }
+
     private Processor processModeSelection(String input) {
         if(input.equals("1")) {
             int answer = generator.generateLessThanOrEqualToHundred(); // 직접입력으로 받은 generator의 인터페이스를 출력하고, answer는 간접 입력을 받고있다.
-            println("Single player game");
-            println("I'm thinking of a number between 1 and 100.");
-            print("Enter your guess: ");
+            printLines("Single player game", "I'm thinking of a number between 1 and 100.", "Enter your guess: ");
             return getSinglePlayerGameProcessor(answer, 1);
         } else if(input.equals("2")) {
-            println("Multiplayer game");
-            print("Enter player names separated with commas: ");
+            printLines("Multiplayer game", "Enter player names separated with commas: ");
             return startMultiPlayerGame();
         } else {
             completed = true;
