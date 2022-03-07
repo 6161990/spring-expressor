@@ -48,7 +48,7 @@ public final class AppModel {
     }
 
     private void printLines(String... lines) {
-        outputBuffer.append(String.join(System.lineSeparator(), lines));
+        outputBuffer.append(String.join(System.lineSeparator(), lines)); // ""-> 라인 별로 joining
     }
 
     private Processor processModeSelection(String input) {
