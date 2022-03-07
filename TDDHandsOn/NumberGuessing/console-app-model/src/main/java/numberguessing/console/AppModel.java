@@ -69,28 +69,34 @@ public final class AppModel {
     private Processor startMultiPlayerGame() {
         return input -> {
             Object[] players = Stream.of(input.split(",")).map(String::trim).toArray(); // 플레이어 이름 옆에 공백이 하나 더 들어가서 처리(CsvSource 에 들어간 배열값을 자세히보라), toArray의 반환타입이 Object이기 때문에 반환타입 수정.
-            println("I'm thinking of a number between 1 and 100.");
             int answer = generator.generateLessThanOrEqualToHundred();
+            println("I'm thinking of a number between 1 and 100.");
+            print("Enter " + players[0] + "'s guess: ");
             return getMultiPlayerGameProcessor(players, answer, 1);
         };
     }
 
     private Processor getMultiPlayerGameProcessor(Object[] players, int answer, int tries) {
-        Object player = players[(tries - 1) % players.length];
-        print("Enter " + player + "'s guess: ");
         return input -> {
             int guess = Integer.parseInt(input);
+
+            Object currentPlayer = players[(tries - 1) % players.length];
+            Object nextPlayer = players[tries % players.length];
+
             if(answer > guess) {
-                println(player + "'s guess is too low.");
+                println(currentPlayer + "'s guess is too low.");
+                print("Enter " + nextPlayer + "'s guess: ");
+                return getMultiPlayerGameProcessor(players, answer, tries + 1); // input : 어떤 입력값을 받아서 처리 결과로 멀티 프로세서를 만들도록 하는 구조
             } else if (answer < guess) {
-                println(player + "'s guess is too high.");
+                println(currentPlayer + "'s guess is too high.");
+                print("Enter " + nextPlayer + "'s guess: ");
+                return getMultiPlayerGameProcessor(players, answer, tries + 1);
             } else {
-                print("Correct! ");
-                println(player + " wins.");
+                println("Correct! "+ currentPlayer + " wins.");
                 print(SELECT_MODE_MESSAGE);
-                return input1 -> processModeSelection(input1);
+                return this::processModeSelection;
             }
-            return getMultiPlayerGameProcessor(players, answer, tries + 1); // input : 어떤 입력값을 받아서 처리 결과로 멀티 프로세서를 만들도록 하는 구조
+
         };
     }
 
