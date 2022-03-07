@@ -39,14 +39,6 @@ public final class AppModel {
         processor = processor.run(input);
     }
 
-    private void println(String message) {
-        outputBuffer.append(message + NEW_LINE);
-    }
-
-    private void print(String message) {
-        outputBuffer.append(message);
-    }
-
     private void printLines(String... lines) {
         outputBuffer.append(String.join(System.lineSeparator(), lines)); // ""-> 라인 별로 joining
     }
@@ -70,8 +62,7 @@ public final class AppModel {
         return input -> {
             Object[] players = Stream.of(input.split(",")).map(String::trim).toArray(); // 플레이어 이름 옆에 공백이 하나 더 들어가서 처리(CsvSource 에 들어간 배열값을 자세히보라), toArray의 반환타입이 Object이기 때문에 반환타입 수정.
             int answer = generator.generateLessThanOrEqualToHundred();
-            println("I'm thinking of a number between 1 and 100.");
-            print("Enter " + players[0] + "'s guess: ");
+            printLines("I'm thinking of a number between 1 and 100.", "Enter " + players[0] + "'s guess: ");
             return getMultiPlayerGameProcessor(players, answer, 1);
         };
     }
@@ -84,16 +75,13 @@ public final class AppModel {
             Object nextPlayer = players[tries % players.length];
 
             if(answer > guess) {
-                println(currentPlayer + "'s guess is too low.");
-                print("Enter " + nextPlayer + "'s guess: ");
+                printLines(currentPlayer + "'s guess is too low.", "Enter " + nextPlayer + "'s guess: ");
                 return getMultiPlayerGameProcessor(players, answer, tries + 1); // input : 어떤 입력값을 받아서 처리 결과로 멀티 프로세서를 만들도록 하는 구조
             } else if (answer < guess) {
-                println(currentPlayer + "'s guess is too high.");
-                print("Enter " + nextPlayer + "'s guess: ");
+                printLines(currentPlayer + "'s guess is too high.", "Enter " + nextPlayer + "'s guess: ");
                 return getMultiPlayerGameProcessor(players, answer, tries + 1);
             } else {
-                println("Correct! "+ currentPlayer + " wins.");
-                print(SELECT_MODE_MESSAGE);
+                printLines("Correct! "+ currentPlayer + " wins.", SELECT_MODE_MESSAGE);
                 return this::processModeSelection;
             }
 
@@ -104,16 +92,13 @@ public final class AppModel {
         return input -> {
             int guess = Integer.parseInt(input);
             if (guess < answer) {
-                println("Your guess is too low.");
-                print("Enter your guess: ");
+                printLines("Your guess is too low.", "Enter your guess: ");
                 return getSinglePlayerGameProcessor(answer, tries + 1);
             } else if (guess > answer) {
-                println("Your guess is too high.");
-                print("Enter your guess: ");
+                printLines("Your guess is too high.", "Enter your guess: ");
                 return getSinglePlayerGameProcessor(answer, tries + 1);
             } else {
-                println("Correct! " + tries + (tries == 1 ? " guess." : " guesses."));
-                print(SELECT_MODE_MESSAGE);
+                printLines("Correct! " + tries + (tries == 1 ? " guess." : " guesses."), SELECT_MODE_MESSAGE);
                 return this::processModeSelection;
             }
         };
