@@ -1,5 +1,6 @@
 package numberguessing.console;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -376,6 +377,7 @@ public class AppModel_specs {
 
     }
 
+    @Disabled
     @Test // private 메소드(print()) 테스트
     void print_correctly_appends_string_to_output_buffer() throws Exception {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
@@ -388,6 +390,7 @@ public class AppModel_specs {
         assertThat(actual).isEqualTo("foo");
     }
 
+    @Disabled
     @Test // private 메소드(println ()) 테스트
     void println_correctly_appends_string_and_line_separator_to_output_buffer() throws Exception {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
@@ -398,5 +401,17 @@ public class AppModel_specs {
 
         String actual = outputBuffer.toString();
         assertThat(actual).isEqualTo("foo"+ NEW_LINE);
+    }
+
+    @Test // private 메소드 (printLines()) 테스트
+    void printLines_correctly_appends_lines() throws Exception {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut);
+
+        outputBuffer.setLength(0);
+        Whitebox.invokeMethod(sut, "printLines", "Foo", "Bar", "Baz");
+
+        String actual = outputBuffer.toString();
+        assertThat(actual).isEqualTo("Foo" + NEW_LINE + "Bar" + NEW_LINE + "Baz");
     }
 }
