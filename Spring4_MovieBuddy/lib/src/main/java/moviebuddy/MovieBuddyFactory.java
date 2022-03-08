@@ -21,19 +21,11 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 	@Configuration
 	static class DomainModuleConfig {
 		
-		@Bean  
-		public MovieFinder movieFinder(MovieReader movieReader) {
-			return new MovieFinder(movieReader);  
-		}
 	}
 	
 	@Configuration
 	static class DataSourceModuleConfig {
 		
-//		@Bean
-//		public MovieReader movieReader() { // 등록된 또 하나의 빈 
-//			return new CsvMovieReader();
-//		}
 			
 	}
 
