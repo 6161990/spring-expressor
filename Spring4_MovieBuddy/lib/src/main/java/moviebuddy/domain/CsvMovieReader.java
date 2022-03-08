@@ -12,9 +12,14 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
 import moviebuddy.ApplicationException;
 import moviebuddy.util.FileSystemUtils;
 
+//@Component 얘를 사용해도 됨! 
+@Repository // -> 데이터 접근 기술이 사용되는 빈을 정의 할 때 사용
 public class CsvMovieReader implements MovieReader {
 
 	/**
