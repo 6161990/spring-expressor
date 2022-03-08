@@ -19,7 +19,7 @@ import moviebuddy.ApplicationException;
 import moviebuddy.util.FileSystemUtils;
 
 //@Component 얘를 사용해도 됨! 
-@Repository // -> 데이터 접근 기술이 사용되는 빈을 정의 할 때 사용
+@Repository("csvMovieReader") // -> 데이터 접근 기술이 사용되는 빈을 정의 할 때 사용. 같은 타입으로 등록된 Bean이 2개일 때, 파라미터 이름을 지정해준다. 
 public class CsvMovieReader implements MovieReader {
 
 	/**
