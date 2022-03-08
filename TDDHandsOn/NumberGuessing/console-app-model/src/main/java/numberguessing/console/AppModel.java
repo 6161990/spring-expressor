@@ -13,15 +13,15 @@ public final class AppModel {
         Processor run(String input);
     }
 
+    private final TextOutput output;
     private final PositiveIntegerGenerator generator;
-    private final StringBuffer outputBuffer;
     boolean completed;
     private Processor processor;
 
     public AppModel(PositiveIntegerGenerator generator) { // 생성자를 통한 입력 : 공개된 인터페이스를 통한 입력 - 직접입력
+        output = new TextOutput(SELECT_MODE_MESSAGE);
         this.generator = generator;
         completed = false;
-        outputBuffer = new StringBuffer(SELECT_MODE_MESSAGE); // 초기화
         processor = this::processModeSelection;
     }
 
@@ -30,9 +30,7 @@ public final class AppModel {
     }
 
     public String flushOutput() {
-        String flushOutput = outputBuffer.toString();
-        outputBuffer.setLength(0); // 버퍼 비워주기
-        return flushOutput;
+        return output.flushOutput();
     }
 
     public void processInput(String input) { // 프로세서를 실행하고 결과값으로 프로세스를 다시 교체하는 역할로 재구현
@@ -40,7 +38,7 @@ public final class AppModel {
     }
 
     private void printLines(String... lines) {
-        outputBuffer.append(String.join(System.lineSeparator(), lines)); // ""-> 라인 별로 joining
+        output.printLines(lines);
     }
 
     private Processor processModeSelection(String input) {
