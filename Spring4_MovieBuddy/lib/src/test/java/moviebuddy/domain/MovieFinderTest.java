@@ -19,17 +19,6 @@ public class MovieFinderTest {
 			
 	@Autowired MovieFinder movieFinder;
 	
-//	@Autowired
-//	MovieFinderTest(MovieFinder movieFinder){
-//		this.movieFinder = movieFinder;
-//	}
-	
-//	@Autowired
-//	void setMovieFinder(MovieFinder movieFinder){
-//		this.movieFinder = movieFinder;
-//	}
-
-	
 	@Test
 	public void NotEmpty_directedBy() {
 		List<Movie> result = movieFinder.directedBy("Michael Bay");
