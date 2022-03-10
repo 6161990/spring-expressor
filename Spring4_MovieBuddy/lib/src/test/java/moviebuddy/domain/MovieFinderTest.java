@@ -4,19 +4,23 @@ import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import moviebuddy.MovieBuddyFactory;
 
-/**
- * @author springrunner.kr@gmail.com
- */
-public class MovieFinderTest {
-
-	final ApplicationContext applicationContext = 
-			new AnnotationConfigApplicationContext(MovieBuddyFactory.class); // 애플리케이션 컨텍스트 생성 -> 어노테이션 컨텍스트 정보로
-	final MovieFinder movieFinder = applicationContext.getBean(MovieFinder.class); //  해당 클래스 구성정보를 가져온다.
+@ExtendWith(SpringExtension.class) //JUnit과 Spring 의 만남
+@ContextConfiguration(classes=MovieBuddyFactory.class) // 하위에 있던 애플리케이션 컨텍스트 생성을없애줘도된다. 이제 테스트도 스프링컨텍스트를 이용하니까! 
+public class MovieFinderTest { 
+			
+	final MovieFinder movieFinder;
+	
+	@Autowired
+	MovieFinderTest(MovieFinder movieFinder){
+		this.movieFinder = movieFinder;
+	}
 
 	
 	@Test
