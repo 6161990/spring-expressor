@@ -15,17 +15,17 @@ import moviebuddy.MovieBuddyFactory;
 @ContextConfiguration(classes=MovieBuddyFactory.class) // 하위에 있던 애플리케이션 컨텍스트 생성을없애줘도된다. 이제 테스트도 스프링컨텍스트를 이용하니까! 
 public class MovieFinderTest { 
 			
-	MovieFinder movieFinder;
+	@Autowired MovieFinder movieFinder;
 	
 //	@Autowired
 //	MovieFinderTest(MovieFinder movieFinder){
 //		this.movieFinder = movieFinder;
 //	}
 	
-	@Autowired
-	void setMovieFinder(MovieFinder movieFinder){
-		this.movieFinder = movieFinder;
-	}
+//	@Autowired
+//	void setMovieFinder(MovieFinder movieFinder){
+//		this.movieFinder = movieFinder;
+//	}
 
 	
 	@Test
