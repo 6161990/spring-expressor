@@ -1,4 +1,4 @@
-package moviebuddy.domain;
+package moviebuddy.data;
 
 import java.io.IOException;
 import java.net.URI;
@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import moviebuddy.ApplicationException;
+import moviebuddy.domain.Movie;
 import moviebuddy.util.FileSystemUtils;
 
 //@Component 얘를 사용해도 됨! 

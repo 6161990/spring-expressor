@@ -1,6 +1,8 @@
-package moviebuddy.domain;
+package moviebuddy.data;
 
 import java.util.List;
+
+import moviebuddy.domain.Movie;
 
 public interface MovieReader {
 	
