@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import moviebuddy.ApplicationException;
 import moviebuddy.domain.Movie;
+import moviebuddy.domain.MovieReader;
 
 @Repository("jaxbMovieReader")
 public class JaxbMovieReader implements MovieReader {

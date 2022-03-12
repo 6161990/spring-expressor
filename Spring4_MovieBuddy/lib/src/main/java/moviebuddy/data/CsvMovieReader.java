@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import moviebuddy.ApplicationException;
 import moviebuddy.domain.Movie;
+import moviebuddy.domain.MovieReader;
 import moviebuddy.util.FileSystemUtils;
 
 //@Component 얘를 사용해도 됨! 
