@@ -14,7 +14,7 @@ public class MovieFinder {
 	private final MovieReader movieReader;
 	
 	@Autowired // 생성자가 하나라면 생략 가능. 선언되어있는 타입을 기반으로 등록된 빈을 찾는다. MovieReader 타입으로 등록된 빈이 2개라면 오류발생 
-	public MovieFinder(@Qualifier("csvMovieReader") MovieReader movieReader) {
+	public MovieFinder(MovieReader movieReader) {
 		this.movieReader = Objects.requireNonNull(movieReader);
 	}
 	
