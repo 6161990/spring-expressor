@@ -60,22 +60,4 @@ test("sut renders all products", async () => {
   expect(rows).toHaveLength(products.length);
 });
 
-test("sut renders selling price header", async () => {
-  const { container } = await renderThenFetch(products);
 
-  const selector = "table.table thead tr th";
-  const headers = Array.from(container.querySelectorAll(selector));
-  expect(headers.map((h) => h.innerHTML)).toContain("Selling Price");
-});
-
-test.each(products)(
-  "sut correctly renders selling price cell",
-  async (product) => {
-    const { container } = await renderThenFetch([product]);
-
-    const selector = "table.table tbody tr td";
-    const cells = Array.from(container.querySelectorAll(selector));
-    expect(cells).toHaveLength(6);
-    expect(cells[5].innerHTML).toBe(product.sellingPrice.toString());
-  }
-);
