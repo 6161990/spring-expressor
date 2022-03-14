@@ -39,5 +39,28 @@ namespace Inventory.Api.Products
             ImmutableArray<ProductView> actual = await response.Content.ReadAsAsync<ImmutableArray<ProductView>>();
             actual.Should().BeEquivalentTo(products, c => c.Including(x => x.SupplierName).Including(x => x.ProductCode));
         }
+
+        [Theory]
+        [InlineAutoData(100000, 10000, 90000] // setting Parameters by order
+        public async Task sut_correctly_calculates_selling_price(
+            int listPrice,
+            int discount,
+            int sellingPrice,
+            string supplierName,
+            string productCode,
+            string productName)
+        {
+            // Arrange
+            var product = new Product(supplierName, productCode, productName, new Pricing(listPrice, discount));
+
+            HttpClient client = BuildClient(products);
+
+            // Act
+            HttpResponseMessage response = await client.GetAsync(Path);
+
+            // Assert
+            ImmutableArray<ProductView> actual = await response.Content.ReadAsAsync<ImmutableArray<ProductView>>();
+            actual[0].SellingPrice.Should().Be(sellingPrice);
+        }
     }
 }
