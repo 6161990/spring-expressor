@@ -60,4 +60,16 @@ test("sut renders all products", async () => {
   expect(rows).toHaveLength(products.length);
 });
 
+test("sut renders selling price header", async () => {
+  const { container } = render(
+      <Products fetchProducts={() => Promise.resolve(products)} />
+      // Products 는 fetchProducts 라는 속성을 가지고 있고 (의존성을 가지고 있다), 비동기로 products를 반환해준다.
+  );
+  await waitForElementToBeRemoved(()=> screen.getByText(/Loading.../i));
+  // 비동기로 가져온 products를 화면에 그리는 걸 기다리는 작업
+
+  let selector = "table.table thead tr th";
+  const cells = Array.from(container.querySelectorAll(selector));
+  expect(cells.map(x => x.innerHTML)).toContain("Selling Price");
+});
 
