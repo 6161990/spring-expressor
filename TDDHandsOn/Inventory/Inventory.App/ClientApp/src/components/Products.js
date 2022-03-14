@@ -36,7 +36,7 @@ function renderProducts(products) {
         <tr>
           <th>Supplier Name</th>
           <th>Product Code</th>
-          <th>Producdt Name</th>
+          <th>Product Name</th>
           <th>List Price</th>
           <th>Discount</th>
           <th>Selling Price</th>
