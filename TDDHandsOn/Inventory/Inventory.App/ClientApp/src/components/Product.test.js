@@ -76,3 +76,11 @@ test("sut renders product name header", async () => {
   expect(cells.map(x => x.innerHTML)).toContain("Product Name");
 });
 
+//selling price 값을 확인하는 테스트
+test.each(products)("sut renders selling price value", async (product) => {
+  const { container } = await renderThenFetch([product]);
+  const selector = "table.table tbody tr td";
+  const cells = Array.from(container.querySelectorAll(selector));
+  expect(cells[5].innerHTML).toBe(product.sellingPrice.toString());
+})
+
