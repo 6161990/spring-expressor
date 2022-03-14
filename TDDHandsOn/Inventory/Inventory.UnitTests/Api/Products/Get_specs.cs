@@ -42,6 +42,7 @@ namespace Inventory.Api.Products
 
         [Theory]
         [InlineAutoData(100000, 10000, 90000] // setting Parameters by order
+        [InlineAutoData(200000, 15000, 185000]
         public async Task sut_correctly_calculates_selling_price(
             int listPrice,
             int discount,
