@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Scope;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 import moviebuddy.data.CsvMovieReader;
 import moviebuddy.domain.MovieFinder;
@@ -17,6 +18,15 @@ import moviebuddy.domain.MovieReader;
 @Import({MovieBuddyFactory.DataSourceModuleConfig.class, MovieBuddyFactory.DomainModuleConfig.class}) // 다른 클래에서 빈 구성정보를 가져오기위함.
 //  @ImportResource("xml file location")
 public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할 
+	
+	@Bean // 스프링 OXM 모듈 구현체 : Jaxb2Marshaller
+	public Jaxb2Marshaller jaxb2Marshaller() {
+		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+		marshaller.setPackagesToScan("moviebuddy"); 
+		// 자동 스캔 탐지 기법과 비슷하게 지정된 패키지에서 XML을 자바 객체로 변환시 사용할 클래스를 찾아서 사용한다. 
+		
+		return marshaller;
+	}
 	
 	@Configuration
 	static class DomainModuleConfig {
