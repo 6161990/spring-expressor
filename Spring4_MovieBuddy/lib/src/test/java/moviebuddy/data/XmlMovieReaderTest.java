@@ -10,15 +10,15 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import moviebuddy.MovieBuddyFactory;
 import moviebuddy.MovieBuddyProfile;
-import moviebuddy.data.JaxbMovieReader;
+import moviebuddy.data.XmlMovieReader;
 import moviebuddy.domain.Movie;
 
 @SpringJUnitConfig(MovieBuddyFactory.class) // 위 둘을 한꺼번에 해결해주는 마법사 
 @ActiveProfiles(MovieBuddyProfile.XML_MODE)
-public class JaxbMovieReaderTest {
+public class XmlMovieReaderTest {
 	
 	@Autowired
-	JaxbMovieReader movieReader;  //구체적인 타입으로 의존 관계로 주입받음. MovieReader로 받으면 동일한 타입의 빈이 있어서 테스트 실패 
+	XmlMovieReader movieReader;  //구체적인 타입으로 의존 관계로 주입받음. MovieReader로 받으면 동일한 타입의 빈이 있어서 테스트 실패 
 	
 	@Test
 	void NotEmpty_LoadedMovies() {

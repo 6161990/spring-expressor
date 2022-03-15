@@ -22,12 +22,12 @@ import moviebuddy.domain.MovieReader;
 
 @Repository("jaxbMovieReader")
 @Profile(MovieBuddyProfile.XML_MODE)
-public class JaxbMovieReader implements MovieReader {
+public class XmlMovieReader implements MovieReader {
 	
 	//외부로부터 unmarshaller 객체를 의존성 주입 받는다.
 	private final Unmarshaller unmarshaller;
 	
-	public JaxbMovieReader(Unmarshaller unmarshaller) {
+	public XmlMovieReader(Unmarshaller unmarshaller) {
 		this.unmarshaller = Objects.requireNonNull(unmarshaller); // 반드시 필요한 객체이기 때문에 requireNonNull로 미리 안전하게 객체를 이용하도록 설
 	}
 	
