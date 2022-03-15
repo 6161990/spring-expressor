@@ -20,7 +20,7 @@ import moviebuddy.MovieBuddyProfile;
 import moviebuddy.domain.Movie;
 import moviebuddy.domain.MovieReader;
 
-@Repository("jaxbMovieReader")
+@Repository("xmlMovieReader")
 @Profile(MovieBuddyProfile.XML_MODE)
 public class XmlMovieReader implements MovieReader {
 	
@@ -28,7 +28,8 @@ public class XmlMovieReader implements MovieReader {
 	private final Unmarshaller unmarshaller;
 	
 	public XmlMovieReader(Unmarshaller unmarshaller) {
-		this.unmarshaller = Objects.requireNonNull(unmarshaller); // 반드시 필요한 객체이기 때문에 requireNonNull로 미리 안전하게 객체를 이용하도록 설
+		this.unmarshaller = Objects.requireNonNull(unmarshaller); 
+		// 반드시 필요한 객체이기 때문에 requireNonNull로 미리 안전하게 객체를 이용하도록 설정 
 	}
 	
 	@Override
