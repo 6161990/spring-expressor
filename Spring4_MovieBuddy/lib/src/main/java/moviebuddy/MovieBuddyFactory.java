@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
@@ -28,6 +29,7 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 		return marshaller;
 	}
 	
+	
 	@Configuration
 	static class DomainModuleConfig {
 		
@@ -35,6 +37,15 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 	
 	@Configuration
 	static class DataSourceModuleConfig {
+		
+		@Profile(MovieBuddyProfile.CSV_MODE)
+		@Bean // 빈을 등록하면서 메타데이터 위치를 넘겨주도록 
+		public CsvMovieReader csvMovieReader() {
+			CsvMovieReader movieReader = new CsvMovieReader();
+			movieReader.setMetadata("movie_metadata.csv");
+			
+			return movieReader;
+		}
 		
 			
 	}
