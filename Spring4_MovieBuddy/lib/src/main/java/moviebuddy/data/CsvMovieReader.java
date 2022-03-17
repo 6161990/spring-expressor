@@ -14,6 +14,9 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -28,7 +31,9 @@ import moviebuddy.util.FileSystemUtils;
 //@Component 얘를 사용해도 됨! 
 @Repository("csvMovieReader") // -> 데이터 접근 기술이 사용되는 빈을 정의 할 때 사용. 같은 타입으로 등록된 Bean이 2개일 때, 파라미터 이름을 지정해준다.
 @Profile(MovieBuddyProfile.CSV_MODE)
-public class CsvMovieReader implements MovieReader, InitializingBean {
+public class CsvMovieReader implements MovieReader, InitializingBean, DisposableBean  {
+	
+	private Logger log = LoggerFactory.getLogger(getClass());
 
 	private String metadata;
 	
@@ -101,6 +106,12 @@ public class CsvMovieReader implements MovieReader, InitializingBean {
 		if(Files.isReadable(Path.of(metadataUrl.toURI())) == false) {
 			throw new ApplicationException(String.format("cannot read to metadata. [%s]", metadata));
 		}
+	}
+
+
+	@Override
+	public void destroy() throws Exception { //CsvMovieReader가 정상적으로 소멸되었음을 로그로 남겨보기 
+		log.info("destroy Bean"); // 현재 테스트(CsvMovieReaderTest)를 스프링 컨테이너를 통해 실행하고 있지 않아서 로그로 직접적확인이 어렵다. 
 	}
 
 }

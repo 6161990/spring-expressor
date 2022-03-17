@@ -19,7 +19,7 @@ public class CsvMovieReaderTest {
 	void Invalid_Metadata() {
 		CsvMovieReader csvMovieReader = new CsvMovieReader();
 		
-		Assertions.assertThrows(FileNotFoundException.class, () ->{
+		Assertions.assertThrows(FileNotFoundException.class, () -> {
 			csvMovieReader.setMetadata("invalid");
 			
 			csvMovieReader.afterPropertiesSet();
