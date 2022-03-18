@@ -22,7 +22,7 @@ import moviebuddy.domain.MovieReader;
 
 @Repository("xmlMovieReader")
 @Profile(MovieBuddyProfile.XML_MODE)
-public class XmlMovieReader implements MovieReader {
+public class XmlMovieReader extends AbstractFileSystemMovieReader implements MovieReader {
 	
 	//외부로부터 unmarshaller 객체를 의존성 주입 받는다.
 	private final Unmarshaller unmarshaller;
