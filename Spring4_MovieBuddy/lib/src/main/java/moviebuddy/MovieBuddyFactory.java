@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
+import moviebuddy.data.AbstractFileSystemMovieReader;
 import moviebuddy.data.CsvMovieReader;
 import moviebuddy.domain.MovieFinder;
 import moviebuddy.domain.MovieReader;
