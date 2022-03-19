@@ -11,16 +11,18 @@ import static org.assertj.core.api.Assertions.assertThat;
  * 요구사항 1. Map 안에 "foo" 가 들어있는지 확인하라.
  * 요구사항 2. Map 안에 "bar" 조건을 추가하라.
  * 요구사항 3. Map 안에 "foo"가 아니면 false 하게 변경하라.
- * 요구사항 4. MatchCondition에 static 메소드를 추가하라.
+ * 요구사항 4. MatchCondition 에 static 메소드를 추가하라.
+ * 요구사항 5. MatchCondition 에 Map key와 value를 확인하는 메소드를 추가하라.
  */
 class MatchConditionTest {
 
     @DisplayName("object가 Map이면서 안에 foo 가 담겨있는지 확인하는 테스트")
     @Test
     void conditionIsFoo() {
-        Object object = Maps.newHashMap("foo", "anyValue");
+        Object object = Maps.newHashMap("foo", "xxxxx");
 
         assertThat(expectedContainedKey("Bar").isSatisfy(object)).isFalse();
+        assertThat(expectedContainedKey("foo", "xxxxx").isSatisfy(object)).isTrue();
         assertThat(expectedContainedKey("foo").isSatisfy(object)).isTrue();
     }
 
