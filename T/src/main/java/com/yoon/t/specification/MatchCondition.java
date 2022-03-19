@@ -3,6 +3,11 @@ package com.yoon.t.specification;
 import java.util.Map;
 
 public class MatchCondition {
+
+    public static MatchCondition expectedContainedKey(String expectedContainedKey, String expectedContainedValue) {
+        return new MatchCondition(expectedContainedKey, expectedContainedValue);
+    }
+
     private String expectedContainedKey;
     private String expectedContainedValue;
 
@@ -11,9 +16,6 @@ public class MatchCondition {
         this.expectedContainedValue = expectedContainedValue;
     }
 
-    public static MatchCondition expectedContainedKey(String expectedContainedKey, String expectedContainedValue) {
-        return new MatchCondition(expectedContainedKey, expectedContainedValue);
-    }
 
     public boolean isSatisfy(Object o){
         if(o instanceof Map) {

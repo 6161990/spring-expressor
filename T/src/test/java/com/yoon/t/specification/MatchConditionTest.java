@@ -14,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Step 4. MatchCondition 에 static 메소드를 추가하라.
  * Step 5. MatchCondition 에 Map key와 value를 확인하는 메소드를 추가하라.
  * Step 6. START REFACTORING
+ * Step 7.
  */
 class MatchConditionTest {
 
