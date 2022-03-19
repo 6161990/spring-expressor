@@ -9,27 +9,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * 요구사항 1. Map 안에 "foo" 가 들어있는지 확인하라.
  * 요구사항 2. Map 안에 "bar" 조건을 추가하라.
+ * 요구사항 3. Map 안에 "foo"가 아니면 false 하게 변경하라.
  */
-class ScheduleTriggerRuleMatchConditionTest {
+class MatchConditionTest {
 
     @DisplayName("object가 Map이면서 안에 foo 가 담겨있는지 확인하는 테스트")
     @Test
     void conditionIsFoo() {
-        Object object = Maps.newHashMap("foo", "anyValue");
 
-        MatchCondition sut = new MatchCondition();
+        Object object = Maps.newHashMap("Foo", "anyValue");
 
-        assertThat(sut.isSatisfy(object)).isTrue();
+        assertThat(new MatchCondition("Foo").isSatisfy(object)).isTrue();
     }
 
-    @DisplayName("object가 Map이면서 안에 bar 가 담겨있는지 확인하는 테스트")
+    @DisplayName("object가 Map이면서 안에 bar가 없는지 확인하는 테스트")
     @Test
     void conditionIsBar() {
         Object object = Maps.newHashMap("bar", "anyValue");
 
-        MatchCondition sut = new MatchCondition();
-
-        assertThat(sut.isSatisfy(object)).isTrue();
+        assertThat(new MatchCondition("bar").isSatisfy(object)).isFalse();
     }
 
 }
