@@ -12,7 +12,7 @@ public class MatchCondition {
     public boolean isSatisfy(Object o){
         if(o instanceof Map) {
             Map<String, String> map = (Map<String, String>) o;
-           return map.containsKey("foo");
+           return map.containsKey(expectedKey);
         }
         return false;
     }

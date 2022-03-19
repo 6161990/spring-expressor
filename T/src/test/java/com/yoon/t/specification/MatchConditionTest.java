@@ -16,18 +16,10 @@ class MatchConditionTest {
     @DisplayName("object가 Map이면서 안에 foo 가 담겨있는지 확인하는 테스트")
     @Test
     void conditionIsFoo() {
+        Object object = Maps.newHashMap("foo", "anyValue");
 
-        Object object = Maps.newHashMap("Foo", "anyValue");
-
-        assertThat(new MatchCondition("Foo").isSatisfy(object)).isTrue();
-    }
-
-    @DisplayName("object가 Map이면서 안에 bar가 없는지 확인하는 테스트")
-    @Test
-    void conditionIsBar() {
-        Object object = Maps.newHashMap("bar", "anyValue");
-
-        assertThat(new MatchCondition("bar").isSatisfy(object)).isFalse();
+        assertThat(new MatchCondition("foo").isSatisfy(object)).isTrue();
+        assertThat(new MatchCondition("Bar").isSatisfy(object)).isFalse();
     }
 
 }
