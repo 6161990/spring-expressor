@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class MatchCondition {
     public boolean isSatisfy(Object o){
-        Map<String, String> map = (Map<String, String>) o;
-        return map.containsKey("foo") || map.containsKey("bar");
+        return (o instanceof Map)
+                && ((Map<String, String>) o).containsKey("foo") || ((Map<String, String>) o).containsKey("bar");
     }
 }
