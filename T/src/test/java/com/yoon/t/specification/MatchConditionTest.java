@@ -26,6 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Step 10. Interface MatchCondition : 가상메서드 굳이 필요없으니까
  *          MapCondition implements MatchCondition
  *  Step 11. PersonAgeAndNameCondition implements MatchCondition
+ *  Step 12. AndCondition 변경 , left/right 변경 -> height 조건 추가
  */
 class MatchConditionTest {
 
@@ -42,12 +43,13 @@ class MatchConditionTest {
     void personAgeAndNameCondition() {
         Map<String, Object> factor = Maps.newHashMap("name", "foo");
 
-        PersonAgeAndNameCondition condition = new PersonAgeAndNameCondition(expected("name", "foo"),
-                expected("age", "18"));
+        AndCondition condition = new AndCondition(new AndCondition(expected("name", "foo"),
+                expected("age", "18")), expected("height", "158"));
 
         assertThat(condition.isSatisfy(factor)).isFalse();
 
         factor.put("age", "18");
+        factor.put("height", "158");
         assertThat(condition.isSatisfy(factor)).isTrue();
 
     }
