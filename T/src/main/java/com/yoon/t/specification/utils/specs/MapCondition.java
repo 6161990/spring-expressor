@@ -6,9 +6,7 @@ import java.util.Map;
 
 public class MapCondition implements MatchCondition {
 
-    /** java.lang.StackOverflowError */
-    public static MapCondition expected(String expectedContainedKey, String expectedContainedValue) {
-        MatchCondition condition = MapCondition.expected(expectedContainedKey, expectedContainedValue);
+    public static MatchCondition expected(String expectedContainedKey, String expectedContainedValue) {
         return new MapCondition(expectedContainedKey, expectedContainedValue);
     }
 
