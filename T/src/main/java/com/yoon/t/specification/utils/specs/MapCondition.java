@@ -1,8 +1,16 @@
-package com.yoon.t.specification;
+package com.yoon.t.specification.utils.specs;
+
+import com.yoon.t.specification.MatchCondition;
 
 import java.util.Map;
 
 public class MapCondition implements MatchCondition {
+
+    /** java.lang.StackOverflowError */
+    public static MapCondition expected(String expectedContainedKey, String expectedContainedValue) {
+        MatchCondition condition = MapCondition.expected(expectedContainedKey, expectedContainedValue);
+        return new MapCondition(expectedContainedKey, expectedContainedValue);
+    }
 
     private final String expectedContainedKey;
     private final String expectedContainedValue;

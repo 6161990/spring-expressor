@@ -1,5 +1,6 @@
 package com.yoon.t.specification;
 
+import com.yoon.t.specification.utils.specs.AndCondition;
 import org.assertj.core.util.Maps;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,8 +26,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Step 9. MapCondition extends MatchCondition : 가상 메서드 isSatisfy
  * Step 10. Interface MatchCondition : 가상메서드 굳이 필요없으니까
  *          MapCondition implements MatchCondition
- *  Step 11. PersonAgeAndNameCondition implements MatchCondition
- *  Step 12. AndCondition 변경 , left/right 변경 -> height 조건 추가
+ * Step 11. PersonAgeAndNameCondition implements MatchCondition
+ * Step 12. AndCondition 변경 , left/right 변경 -> height 조건 추가
+ * Step 13-1. MapCodition(Not 비즈니스) implements MatchCondition(비즈니스) -> 패키지 변경
+ *          그러면 utils이 domain을 의지하게됨 -> 이렇게 하면 x. 두 사이의 관계 재정립
  */
 class MatchConditionTest {
 

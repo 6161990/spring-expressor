@@ -1,6 +1,8 @@
-package com.yoon.t.specification;
+package com.yoon.t.specification.utils.specs;
 
-public class AndCondition implements MatchCondition {
+import com.yoon.t.specification.MatchCondition;
+
+public class  AndCondition implements MatchCondition {
 
     private final MatchCondition left;
     private final MatchCondition right;
