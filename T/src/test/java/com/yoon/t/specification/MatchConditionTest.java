@@ -4,7 +4,9 @@ import org.assertj.core.util.Maps;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.yoon.t.specification.MatchCondition.expectedContainedKey;
+import java.util.Map;
+
+import static com.yoon.t.specification.MatchCondition.expected;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -14,17 +16,29 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Step 4. MatchCondition 에 static 메소드를 추가하라.
  * Step 5. MatchCondition 에 Map key와 value를 확인하는 메소드를 추가하라.
  * Step 6. START REFACTORING
- * Step 7.
+ * Step 7. 더 많은 조건을 만들어보자.
+ *         PersonAgeAndNameCondition
+ *
  */
 class MatchConditionTest {
 
     @DisplayName("object가 Map이면서 안에 foo 가 담겨있는지 확인하는 테스트")
     @Test
     void conditionIsFoo() {
-        Object object = Maps.newHashMap("foo", "ooooo");
+        Object factor = Maps.newHashMap("foo", "ooooo");
 
-        assertThat(expectedContainedKey("foo", "xxxxx").isSatisfy(object)).isFalse();
-        assertThat(expectedContainedKey("foo", "ooooo").isSatisfy(object)).isTrue();
+        assertThat(expected("foo", "xxxxx").isSatisfy(factor)).isFalse();
+        assertThat(expected("foo", "ooooo").isSatisfy(factor)).isTrue();
+    }
+
+    @Test
+    void personAgeAndNameCondition() {
+
+        Map<String, Object> map = Maps.newHashMap("name", "foo");
+
+        boolean satisfy = new PersonAgeAndNameCondition().isSatisfy(map);
+        assertThat(satisfy).isFalse();
+
     }
 
 }

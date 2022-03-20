@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class MatchCondition {
 
-    public static MatchCondition expectedContainedKey(String expectedContainedKey, String expectedContainedValue) {
+    public static MatchCondition expected(String expectedContainedKey, String expectedContainedValue) {
         return new MatchCondition(expectedContainedKey, expectedContainedValue);
     }
 
