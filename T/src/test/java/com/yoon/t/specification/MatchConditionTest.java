@@ -1,6 +1,7 @@
 package com.yoon.t.specification;
 
 import com.yoon.t.specification.utils.specs.AndCondition;
+import com.yoon.t.specification.utils.specs.Condition;
 import com.yoon.t.specification.utils.specs.MapCondition;
 import org.assertj.core.util.Maps;
 import org.junit.jupiter.api.DisplayName;
@@ -8,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-import static com.yoon.t.specification.utils.specs.MapCondition.expected;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -32,6 +32,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Step 13-1. MapCodition(Not 비즈니스) implements MatchCondition(비즈니스) -> 패키지 변경
  *          그러면 utils이 domain을 의지하게됨 -> 이렇게 하면 x. 두 사이의 관계 재정립 중 java.lang.StackOverflowError 발생.
  *      13-2. 서로의 관계를 끊어낸다 1
+ *      13-3. 서로의 관계를 끊어낸다 2 - MapCondition.expected 로 inline
+ *      13-4. 서로의 관계를 끊어낸다 3 - AndCondition과 MapCondition은 Condition을 구현한다.
+ *
  */
 class MatchConditionTest {
 
@@ -40,16 +43,16 @@ class MatchConditionTest {
     void conditionIsFoo() {
         Object factor = Maps.newHashMap("foo", "ooooo");
 
-        assertThat(expected("foo", "xxxxx").isSatisfy(factor)).isFalse();
-        assertThat(expected("foo", "ooooo").isSatisfy(factor)).isTrue();
+        assertThat(MapCondition.expected("foo", "xxxxx").isSatisfy(factor)).isFalse();
+        assertThat(MapCondition.expected("foo", "ooooo").isSatisfy(factor)).isTrue();
     }
 
     @Test
     void personAgeAndNameCondition() {
         Map<String, Object> factor = Maps.newHashMap("name", "foo");
 
-        AndCondition condition = new AndCondition(new AndCondition(expected("name", "foo"),
-                expected("age", "18")), expected("height", "158"));
+        Condition condition = new AndCondition(new AndCondition(MapCondition.expected("name", "foo"),
+                MapCondition.expected("age", "18")), MapCondition.expected("height", "158"));
 
         assertThat(condition.isSatisfy(factor)).isFalse();
 

@@ -1,13 +1,11 @@
 package com.yoon.t.specification.utils.specs;
 
-import com.yoon.t.specification.MatchCondition;
+public class AndCondition implements Condition {
 
-public class  AndCondition implements MatchCondition {
+    private final Condition left;
+    private final Condition right;
 
-    private final MatchCondition left;
-    private final MatchCondition right;
-
-    public AndCondition(MatchCondition left, MatchCondition right) {
+    public AndCondition(Condition left, Condition right) {
         this.left = left;
         this.right = right;
     }

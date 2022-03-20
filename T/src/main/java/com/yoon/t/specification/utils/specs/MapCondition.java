@@ -1,12 +1,10 @@
 package com.yoon.t.specification.utils.specs;
 
-import com.yoon.t.specification.MatchCondition;
-
 import java.util.Map;
 
-public class MapCondition implements MatchCondition {
+public class MapCondition implements Condition {
 
-    public static MatchCondition expected(String expectedContainedKey, String expectedContainedValue) {
+    public static Condition expected(String expectedContainedKey, String expectedContainedValue) {
         return new MapCondition(expectedContainedKey, expectedContainedValue);
     }
 
