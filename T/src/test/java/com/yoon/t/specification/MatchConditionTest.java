@@ -22,7 +22,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  *         하나의 조건을 더 추가하면 PersonAgeAndNameCondition 의 네이밍을 바꿔야한다. = 경직
  *         isSatisfy 가 중복되어 사용되는데 한단계 추상화시킬 필요가 있다.
  *         왜냐, 이런 Condition을 사용하는 Policy 객체는 어떤 컨디션인지 관심없고 MatchCondition 이면된다.
- * Step 9. MapCondition extends MatchCondition
+ * Step 9. MapCondition extends MatchCondition : 가상 메서드 isSatisfy
+ * Step 10. Interface MatchCondition : 가상메서드 굳이 필요없으니까
+ *          MapCondition implements MatchCondition
  */
 class MatchConditionTest {
 

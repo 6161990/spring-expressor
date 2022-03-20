@@ -2,7 +2,7 @@ package com.yoon.t.specification;
 
 import java.util.Map;
 
-public class MapCondition extends MatchCondition {
+public class MapCondition implements MatchCondition {
 
     private final String expectedContainedKey;
     private final String expectedContainedValue;
