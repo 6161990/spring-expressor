@@ -18,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Step 6. START REFACTORING
  * Step 7. 더 많은 조건을 만들어보자.
  *         PersonAgeAndNameCondition
+ * Step 8. Reuse expected
  *
  */
 class MatchConditionTest {
