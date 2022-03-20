@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.BDDAssertions.fail;
 
 public class OrSpecificationTest {
@@ -16,8 +17,19 @@ public class OrSpecificationTest {
         Map<String, Object> factor = Maps.newHashMap("name", "foo");
         factor.put("age", 214);
         factor.put("height", 159);
+    }
 
+    @Test
+    void LessThanEqualsConditionTest() {
+        fail("테스트 필요");
+        Map<String, Object> factor = Maps.newHashMap("name", "foo");
+        factor.put("age", 214);
+        factor.put("height", 159);
 
+        Condition condition = new LessThanEqualsCondition("age", 200);
+
+        assertThat(condition.isSatisfy(Maps.<String, Object>newHashMap("age", 200))).isTrue();
+        assertThat(condition.isSatisfy(Maps.<String, Object>newHashMap("age", 222))).isFalse();
     }
 
     @Test
@@ -26,8 +38,8 @@ public class OrSpecificationTest {
         // age >= 200 || age <= 214
 
         Condition condition = new OrCondition(
-                new LessThanEquals("age",200),
-                new GreaterThanEquals("age",214)
+                new LessThanEqualsCondition("age",200),
+                new GreaterThanEqualsCondition("age",214)
         );
     }
 
