@@ -25,10 +25,11 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Step 9. MapCondition extends MatchCondition : 가상 메서드 isSatisfy
  * Step 10. Interface MatchCondition : 가상메서드 굳이 필요없으니까
  *          MapCondition implements MatchCondition
+ *  Step 11. PersonAgeAndNameCondition implements MatchCondition
  */
 class MatchConditionTest {
 
-    @DisplayName("object가 Map이면서 안에 foo 가 담겨있는지 확인하는 테스트")
+    @DisplayName("object가 Map이면서 안에 foo가 담겨있는지 확인하는 테스트")
     @Test
     void conditionIsFoo() {
         Object factor = Maps.newHashMap("foo", "ooooo");
@@ -39,11 +40,15 @@ class MatchConditionTest {
 
     @Test
     void personAgeAndNameCondition() {
+        Map<String, Object> factor = Maps.newHashMap("name", "foo");
 
-        Map<String, Object> map = Maps.newHashMap("name", "foo");
+        PersonAgeAndNameCondition condition = new PersonAgeAndNameCondition(expected("name", "foo"),
+                expected("age", "18"));
 
-        new PersonAgeAndNameCondition(expected("name", "foo"),
-        expected("age", "18"));
+        assertThat(condition.isSatisfy(factor)).isFalse();
+
+        factor.put("age", "18");
+        assertThat(condition.isSatisfy(factor)).isTrue();
 
     }
 
