@@ -37,7 +37,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Step 14. START REFACTORING
  * Step 15. OrSpecification과 LessThanEquals, GreaterThanEquals 조건을 추가한다.
  *      TODO : LessThanEquals, GreaterThanEquals 완성시키기.
- *
+ * Step 16. Condition static, default 메소드로 and, or, not
  */
 class MatchConditionTest {
 

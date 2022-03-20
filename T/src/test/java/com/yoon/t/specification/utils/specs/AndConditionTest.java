@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
+import static com.yoon.t.specification.utils.specs.MapCondition.expected;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class AndConditionTest {
@@ -14,8 +15,8 @@ class AndConditionTest {
     void personAgeAndNameCondition() {
         Map<String, Object> factor = Maps.newHashMap("name", "foo");
 
-        Condition condition = new AndCondition(new AndCondition(MapCondition.expected("name", "foo"),
-                MapCondition.expected("age", "18")), MapCondition.expected("height", "158"));
+        Condition condition = new AndCondition(new AndCondition(expected("name", "foo"),
+                expected("age", "18")), expected("height", "158"));
 
         assertThat(condition.isSatisfy(factor)).isFalse();
 
@@ -25,4 +26,12 @@ class AndConditionTest {
 
     }
 
+    @Test
+    void andTest() {
+        Condition condition =
+                expected("age", "200")
+                        .and(expected("name", "Foo"))
+                        .and(expected("height", "108"));
+
+    }
 }
