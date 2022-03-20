@@ -1,4 +1,4 @@
-package com.yoon.t.specification;
+package com.yoon.t.specification.utils.specs;
 
 import com.yoon.t.specification.utils.specs.AndCondition;
 import com.yoon.t.specification.utils.specs.Condition;
@@ -34,7 +34,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *      13-2. 서로의 관계를 끊어낸다 1
  *      13-3. 서로의 관계를 끊어낸다 2 - MapCondition.expected 로 inline
  *      13-4. 서로의 관계를 끊어낸다 3 - AndCondition과 MapCondition은 Condition을 구현한다.
- *
+ * Step 14. START REFACTORING
  */
 class MatchConditionTest {
 
@@ -45,21 +45,6 @@ class MatchConditionTest {
 
         assertThat(MapCondition.expected("foo", "xxxxx").isSatisfy(factor)).isFalse();
         assertThat(MapCondition.expected("foo", "ooooo").isSatisfy(factor)).isTrue();
-    }
-
-    @Test
-    void personAgeAndNameCondition() {
-        Map<String, Object> factor = Maps.newHashMap("name", "foo");
-
-        Condition condition = new AndCondition(new AndCondition(MapCondition.expected("name", "foo"),
-                MapCondition.expected("age", "18")), MapCondition.expected("height", "158"));
-
-        assertThat(condition.isSatisfy(factor)).isFalse();
-
-        factor.put("age", "18");
-        factor.put("height", "158");
-        assertThat(condition.isSatisfy(factor)).isTrue();
-
     }
 
 }
