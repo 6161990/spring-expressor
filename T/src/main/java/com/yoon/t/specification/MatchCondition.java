@@ -6,7 +6,7 @@ import com.yoon.t.specification.utils.specs.MapCondition;
 public interface MatchCondition extends Condition{
 
     static MatchCondition expected(String expectedContainedKey, String expectedContainedValue) {
-        return new MapCondition(expectedContainedKey, expectedContainedValue);
+        return MapCondition.expected(expectedContainedKey, expectedContainedValue);
     }
 
     boolean isSatisfy(Object o);
