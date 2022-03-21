@@ -1,9 +1,9 @@
 package com.yoon.t.specification.utils.specs;
 
 import org.assertj.core.util.Maps;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static com.yoon.t.specification.utils.specs.MapCondition.expected;
@@ -28,10 +28,17 @@ class AndConditionTest {
 
     @Test
     void andTest() {
-        Condition condition =
-                expected("age", "200")
-                        .and(expected("name", "Foo"))
-                        .and(expected("height", "108"));
+        Map<String, Object> factor = new HashMap<>();
+
+        Condition condition = new LessThanEqualsCondition("age", 2000)
+                        .and(expected("name", "foo"))
+                        .and(new GreaterThanEqualsCondition("height", 108));
+
+        factor.put("age", 201);
+        factor.put("name", "foo");
+        factor.put("height", 108);
+
+        assertThat(condition.isSatisfy(factor)).isTrue();
 
     }
 }

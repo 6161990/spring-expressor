@@ -36,7 +36,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *      13-4. 서로의 관계를 끊어낸다 3 - AndCondition과 MapCondition은 Condition을 구현한다.
  * Step 14. START REFACTORING
  * Step 15. OrSpecification과 LessThanEquals, GreaterThanEquals 조건을 추가한다.
- *      TODO : LessThanEquals, GreaterThanEquals 완성시키기.
+ *      16-1. LessThanEquals, GreaterThanEquals 조건 구현 완료. 테스트 완료
  * Step 16. Condition static, default 메소드로 and, or, not
  */
 class MatchConditionTest {

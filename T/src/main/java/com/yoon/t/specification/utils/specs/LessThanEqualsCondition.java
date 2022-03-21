@@ -13,11 +13,12 @@ public class LessThanEqualsCondition implements Condition {
     }
 
     @Override
-    public boolean isSatisfy(Object factor) {
-        if(factor instanceof Map) {
-            Map<String, String> map = (Map<String, String>) factor;
-            String key = map.get("key");
+    public boolean isSatisfy(Object o) {
+        if(o instanceof Map) {
+            Map<String, Integer> map = (Map<String, Integer>) o;
+            return map.get("age") < value;
         }
         return false;
     }
+
 }
