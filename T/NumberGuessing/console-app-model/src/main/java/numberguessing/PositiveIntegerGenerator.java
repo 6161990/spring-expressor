@@ -1,4 +1,4 @@
-package numberguessing.console;
+package numberguessing;
 
 public interface PositiveIntegerGenerator {
     int generateLessThanOrEqualToHundread();

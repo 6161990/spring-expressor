@@ -1,7 +1,5 @@
 package numberguessing;
 
-import numberguessing.console.PositiveIntegerGenerator;
-
 import java.util.Random;
 
 public final class RandomGenerator implements PositiveIntegerGenerator {

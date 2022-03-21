@@ -1,5 +1,7 @@
 package numberguessing.console;
 
+import numberguessing.PositiveIntegerGenerator;
+
 public class AppModel {
 
     public AppModel(PositiveIntegerGenerator randomGenerator) {}
