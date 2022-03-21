@@ -7,7 +7,7 @@ public class AppModel {
     public AppModel(PositiveIntegerGenerator randomGenerator) {}
 
     public boolean isCompleted() {
-        return true;
+        return false;
     }
 
     public String flushOutput() {
