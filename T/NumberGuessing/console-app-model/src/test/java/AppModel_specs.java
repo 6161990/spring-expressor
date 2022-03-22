@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AppModel_specs {
 
@@ -24,10 +25,21 @@ public class AppModel_specs {
                 "3: Exit" + NEW_LINE + "Enter selection: ");
 
     }
+
+    @Test
+    void sut_correctly_exist() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("3");
+
+        boolean actual = sut.isCompleted();
+        assertTrue(actual);
+
+    }
 }
 
 /**
  * [Test1. sut가 초기화되고나면 완료된 상태가 아니다] PositiveIntegerGeneratorStub 생성
  * [Test2. sut의 첫 flushOutput 게임모드선택 옵션 메세지다]
+ * [Test3. sut에 게임모드선택메세지출력 후 3을 입력값으로 넣으면 sut는 종료된다]
  *
  * */
