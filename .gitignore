@@ -3,7 +3,6 @@
 *.map
 *.html
 Spring Security/Security 4/server/paper-app/src/main/resources/application.yml
-.DS_Store
 TDDHandsOn/.DS_Store
 TDDHandsOn/NumberGuessing/.DS_Store
 TDDHandsOn/NumberGuessing/.idea/compiler.xml
@@ -11,10 +10,4 @@ TDDHandsOn/.DS_Store
 TDDHandsOn/comment-list/.idea/workspace.xml
 TDDHandsOn/ProductImporter/.idea/workspace.xml
 .DS_Store
-TDDHandsOn/.DS_Store
-TDDHandsOn/ProductImporter/.idea/workspace.xml
-TDDHandsOn/.DS_Store
-.DS_Store
-.DS_Store
-TDDHandsOn/.DS_Store
-.DS_Store
+

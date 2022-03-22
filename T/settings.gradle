@@ -1,1 +1,4 @@
 rootProject.name = 'T'
+include 'console-app'
+include 'console-app-model2'
+
