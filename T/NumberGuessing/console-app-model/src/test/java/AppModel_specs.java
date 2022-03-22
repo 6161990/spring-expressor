@@ -35,11 +35,23 @@ public class AppModel_specs {
         assertTrue(actual);
 
     }
+
+    @Test
+    void sut_correctly_prints_single_player_game_start_message() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.flushOutput();
+        sut.processInput("1");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("Single player game Start!" + NEW_LINE + "I'm thinking of a number between 1 and 100." + NEW_LINE + "Enter your guess: ");
+    }
 }
 
 /**
  * [Test1. sut가 초기화되고나면 완료된 상태가 아니다] PositiveIntegerGeneratorStub 생성
  * [Test2. sut의 첫 flushOutput 게임모드선택 옵션 메세지다]
  * [Test3. sut에 게임모드선택메세지출력 후 3을 입력값으로 넣으면 sut는 종료된다]
+ * [Test4. sut에 싱글게임모드선택 후 게임 시작 메세지가 출력된다.]
  *
  * */
