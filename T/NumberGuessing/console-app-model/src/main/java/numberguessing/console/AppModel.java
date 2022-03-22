@@ -5,11 +5,14 @@ import numberguessing.PositiveIntegerGenerator;
 public class AppModel {
 
     private static final String NEW_LINE = System.lineSeparator();
+    private boolean completed;
 
-    public AppModel(PositiveIntegerGenerator randomGenerator) {}
+    public AppModel(PositiveIntegerGenerator randomGenerator) {
+        completed = false;
+    }
 
     public boolean isCompleted() {
-        return false;
+        return completed;
     }
 
     public String flushOutput() {
@@ -17,6 +20,9 @@ public class AppModel {
                 "3: Exit" + NEW_LINE + "Enter selection: ";
     }
 
-    public void processInput(String nextLine) {
+    public void processInput(String input) {
+        if(input.equals("3")){
+            completed = true;
+        }
     }
 }
