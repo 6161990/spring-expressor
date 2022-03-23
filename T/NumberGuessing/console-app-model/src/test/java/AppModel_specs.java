@@ -2,6 +2,7 @@ import numberguessing.console.AppModel;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -74,6 +75,20 @@ public class AppModel_specs {
         String actual = sut.flushOutput();
         assertThat(actual).isEqualTo("Your guess is too high." + NEW_LINE + "Enter your guess: ");
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 3, 10, 100})
+    void sut_correctly_prints_correct_message_in_single_player_game(int answer) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("1");
+
+        sut.flushOutput();
+        int guess = answer;
+        sut.processInput(Integer.toString(guess));
+
+        String actual = sut.flushOutput();
+        assertThat(actual).isEqualTo("Correct! ");
+    }
 }
 
 /**
@@ -83,5 +98,6 @@ public class AppModel_specs {
  * [Test4. sut에 싱글게임모드선택 후 게임 시작 메세지가 출력된다]
  * [Test5. 싱글 플레이어 게임에서 입력한 정답이 answer보다 작을 경우 해당 메세지가 출력된다]
  * [Test6. 싱글 플레이어 게임에서 입력한 정답이 answer보다 클 경우 해당 메세지가 출력된다]
- *
+ * [Test7. 싱글 플레이어 게임에서 입력한 정답이 answer일 때, 해당 메세지가 출력된다]
+ *          입력값이 게임 모드를 선택하는지, 정답을 입력하는지 알 수 있게 상태 변화를 감지할 수 있는 방법이 필요하다.
  * */
