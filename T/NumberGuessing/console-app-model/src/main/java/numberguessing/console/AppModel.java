@@ -37,13 +37,11 @@ public class AppModel {
                 output = "Correct! ";
             }
         } else {
-            if (input.equals("3")) {
-                completed = true;
-                return;
-            } else if (input.equals("1")) {
+            if (input.equals("1")) {
                 isSinglePlayerMode = true;
                 output = "Single player game Start!" + NEW_LINE + "I'm thinking of a number between 1 and 100." + NEW_LINE + "Enter your guess: ";
-                return;
+            } else {
+                completed = true;
             }
         }
     }
