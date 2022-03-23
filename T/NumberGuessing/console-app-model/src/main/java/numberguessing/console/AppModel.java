@@ -29,20 +29,28 @@ public class AppModel {
 
     public void processInput(String input) {
         if(isSinglePlayerMode) {
-            if (Integer.parseInt(input) < answer) {
-                output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
-            } else if (Integer.parseInt(input) > answer) {
-                output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
-            } else if (Integer.parseInt(input) == answer) {
-                output = "Correct! ";
-            }
+            processSinglePlayerGame(input);
         } else {
-            if (input.equals("1")) {
-                isSinglePlayerMode = true;
-                output = "Single player game Start!" + NEW_LINE + "I'm thinking of a number between 1 and 100." + NEW_LINE + "Enter your guess: ";
-            } else {
-                completed = true;
-            }
+            processModeSelection(input);
+        }
+    }
+
+    private void processModeSelection(String input) {
+        if (input.equals("1")) {
+            isSinglePlayerMode = true;
+            output = "Single player game Start!" + NEW_LINE + "I'm thinking of a number between 1 and 100." + NEW_LINE + "Enter your guess: ";
+        } else {
+            completed = true;
+        }
+    }
+
+    private void processSinglePlayerGame(String input) {
+        if (Integer.parseInt(input) < answer) {
+            output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
+        } else if (Integer.parseInt(input) > answer) {
+            output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
+        } else {
+            output = "Correct! ";
         }
     }
 }
