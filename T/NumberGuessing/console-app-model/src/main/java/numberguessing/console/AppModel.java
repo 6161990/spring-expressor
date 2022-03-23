@@ -9,12 +9,13 @@ public class AppModel {
             "3: Exit" + NEW_LINE + "Enter selection: ";
     private boolean completed;
     private static int answer = 0;
-    private boolean isSinglePlayerMode = true;
+    private boolean isSinglePlayerMode;
 
 
     public AppModel(PositiveIntegerGenerator randomGenerator) {
         answer = randomGenerator.generateLessThanOrEqualToHundread();
         completed = false;
+        isSinglePlayerMode = false;
     }
 
     public boolean isCompleted() {
@@ -27,18 +28,23 @@ public class AppModel {
     }
 
     public void processInput(String input) {
-        if (input.equals("3")) {
-            completed = true;
-            return;
-        } else if (input.equals("1")) {
-            output = "Single player game Start!" + NEW_LINE + "I'm thinking of a number between 1 and 100." + NEW_LINE + "Enter your guess: ";
-            return;
-        }
-
-        if (Integer.parseInt(input) < answer) {
-            output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
-        } else if (Integer.parseInt(input) > answer) {
-            output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
+        if(isSinglePlayerMode) {
+            if (Integer.parseInt(input) < answer) {
+                output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
+            } else if (Integer.parseInt(input) > answer) {
+                output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
+            } else if (Integer.parseInt(input) == answer) {
+                output = "Correct! ";
+            }
+        } else {
+            if (input.equals("3")) {
+                completed = true;
+                return;
+            } else if (input.equals("1")) {
+                isSinglePlayerMode = true;
+                output = "Single player game Start!" + NEW_LINE + "I'm thinking of a number between 1 and 100." + NEW_LINE + "Enter your guess: ";
+                return;
+            }
         }
     }
 }
