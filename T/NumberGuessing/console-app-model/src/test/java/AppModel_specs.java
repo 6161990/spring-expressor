@@ -61,6 +61,19 @@ public class AppModel_specs {
         String actual = sut.flushOutput();
         assertThat(actual).isEqualTo("Your guess is too low." + NEW_LINE + "Enter your guess: ");
     }
+
+    @ParameterizedTest
+    @CsvSource({"20,45" , "56, 99", "12, 35"})
+    void sut_correctly_prints_too_high_message_in_single_player_game(int answer, int guess) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("1");
+
+        sut.flushOutput();
+        sut.processInput(Integer.toString(guess));
+
+        String actual = sut.flushOutput();
+        assertThat(actual).isEqualTo("Your guess is too high." + NEW_LINE + "Enter your guess: ");
+    }
 }
 
 /**
@@ -69,5 +82,6 @@ public class AppModel_specs {
  * [Test3. sut에 게임모드선택메세지출력 후 3을 입력값으로 넣으면 sut는 종료된다]
  * [Test4. sut에 싱글게임모드선택 후 게임 시작 메세지가 출력된다]
  * [Test5. 싱글 플레이어 게임에서 입력한 정답이 answer보다 작을 경우 해당 메세지가 출력된다]
+ * [Test6. 싱글 플레이어 게임에서 입력한 정답이 answer보다 클 경우 해당 메세지가 출력된다]
  *
  * */
