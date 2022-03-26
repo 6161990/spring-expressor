@@ -5,21 +5,21 @@ import java.util.List;
 public class PeopleBuilder {
     private Integer id;
     private String name;
-    private List<String> address;
     private String sex;
     private String race;
     private boolean isAdult;
     private int age;
+    private List<String> address;
 
     public People build() {
-        return new People(id, name, address, sex, race, isAdult, age);
+        return new People(id, name, sex, race, isAdult, age, address);
     }
 
     People buildForTest() {
         if(id == null) {
             id = 1;
         }
-        return new People(id, name, address, sex, race, isAdult, age);
+        return new People(id, name, sex, race, isAdult, age, address);
     }
 
     public PeopleBuilder withId(Integer id) {
@@ -29,16 +29,6 @@ public class PeopleBuilder {
 
     public PeopleBuilder withName(String name) {
         this.name = name;
-        return this;
-    }
-
-    public PeopleBuilder withAddress(List<String> addressList){
-        this.address.addAll(addressList);
-        return this;
-    }
-
-    public  PeopleBuilder withAddress(String address){
-        this.address.add(address);
         return this;
     }
 
@@ -59,6 +49,16 @@ public class PeopleBuilder {
 
     public PeopleBuilder withAge(int age) {
         this.age = age;
+        return this;
+    }
+
+    public PeopleBuilder withAddress(List<String> addressList){
+        this.address.addAll(addressList);
+        return this;
+    }
+
+    public  PeopleBuilder withAddress(String address){
+        this.address.add(address);
         return this;
     }
 
