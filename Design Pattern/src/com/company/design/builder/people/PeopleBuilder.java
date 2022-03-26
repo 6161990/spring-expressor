@@ -1,5 +1,6 @@
 package com.company.design.builder.people;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PeopleBuilder {
@@ -9,13 +10,13 @@ public class PeopleBuilder {
     private String race;
     private boolean isAdult;
     private int age;
-    private List<String> address;
+    private List<String> address = new ArrayList<>();
 
     public People build() {
         return new People(id, name, sex, race, isAdult, age, address);
     }
 
-    People buildForTest() {
+    public People buildForTest() {
         if(id == null) {
             id = 1;
         }
@@ -57,7 +58,7 @@ public class PeopleBuilder {
         return this;
     }
 
-    public  PeopleBuilder withAddress(String address){
+    public PeopleBuilder withAddress(String address){
         this.address.add(address);
         return this;
     }

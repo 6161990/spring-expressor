@@ -13,7 +13,7 @@ public class People {
     private int age;
     private List<String> address;
 
-    People(Integer id,String name, String sex, String race, boolean isAdult, int age, List<String> address) {
+    protected People(Integer id,String name, String sex, String race, boolean isAdult, int age, List<String> address) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -23,11 +23,24 @@ public class People {
         this.address = address;
     }
 
-    People(Integer id, String name, String sex, String race, boolean isAdult, int age, String... address) {
+    protected People(Integer id, String name, String sex, String race, boolean isAdult, int age, String... address) {
         this(id, name, sex, race, isAdult, age, Arrays.asList(address));
     }
 
     public static PeopleBuilder builder() {
         return new PeopleBuilder();
+    }
+
+    @Override
+    public String toString() {
+        return "People{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", race='" + race + '\'' +
+                ", isAdult=" + isAdult +
+                ", age=" + age +
+                ", address=" + address +
+                '}';
     }
 }
