@@ -1,4 +1,4 @@
-package com.company.design.builder;
+package com.company.design.builder.pizza;
 
 import java.util.EnumSet;
 import java.util.Objects;

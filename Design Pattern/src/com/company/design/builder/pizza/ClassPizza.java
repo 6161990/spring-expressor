@@ -1,4 +1,4 @@
-package com.company.design.builder;
+package com.company.design.builder.pizza;
 
 
 public class ClassPizza extends Pizza {
