@@ -10,12 +10,14 @@ public class AppModel {
     private boolean completed;
     private static int answer = 0;
     private boolean isSinglePlayerMode;
+    private int tries;
 
 
     public AppModel(PositiveIntegerGenerator randomGenerator) {
         answer = randomGenerator.generateLessThanOrEqualToHundread();
         completed = false;
         isSinglePlayerMode = false;
+        tries=0;
     }
 
     public boolean isCompleted() {
@@ -45,12 +47,13 @@ public class AppModel {
     }
 
     private void processSinglePlayerGame(String input) {
+        tries++;
         if (Integer.parseInt(input) < answer) {
             output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
         } else if (Integer.parseInt(input) > answer) {
             output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
         } else {
-            output = "Correct! ";
+            output = "Correct! " + tries + " guesses." + NEW_LINE;
         }
     }
 }
