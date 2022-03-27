@@ -53,7 +53,11 @@ public class AppModel {
         } else if (Integer.parseInt(input) > answer) {
             output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
         } else {
-            output = "Correct! " + tries + " guesses." + NEW_LINE;
+            if(tries == 1){
+                output = "Correct! " + "1 guess." + NEW_LINE;
+            } else{
+                output = "Correct! " + tries + " guesses." + NEW_LINE;
+            }
         }
     }
 }
