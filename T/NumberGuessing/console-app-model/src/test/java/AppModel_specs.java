@@ -116,6 +116,19 @@ public class AppModel_specs {
         String actual = sut.flushOutput();
         assertThat(actual).contains("1 guess.");
     }
+
+    @Test
+    void sut_prints_select_mode_message_if_single_player_game_finished(){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("1");
+        sut.flushOutput();
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE +
+                "3: Exit" + NEW_LINE + "Enter selection: ");
+    }
 }
 
 /**
@@ -130,4 +143,6 @@ public class AppModel_specs {
  * [Test8. Refactoring]
  * [Test9. 싱글 플레이어 게임에서 정답을 맞췄을 때, 총 실패횟수를 알려주는 메세지가 출력된다]
  * [Test10. 싱글 플레이어 게임에서 정답을 한번에 맞췄을 때, 'guesses'가 아니라 'guess' 로 출력된다]
+ * [Test10:Refactoring]
+ * [Test11. 싱글 플레이어 모드가 끝나면 다시 select mode가 보여진다]
  * */
