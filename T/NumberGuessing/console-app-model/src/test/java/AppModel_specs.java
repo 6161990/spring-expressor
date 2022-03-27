@@ -89,6 +89,21 @@ public class AppModel_specs {
         String actual = sut.flushOutput();
         assertThat(actual).isEqualTo("Correct! ");
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 10, 100})
+    void sut_correctly_prints_guess_count_if_single_player_game_finished(int fails){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("1");
+        for (int i = 0; i < fails; i++) {
+            sut.processInput("30");
+        }
+        sut.flushOutput();
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+        assertThat(actual).contains((fails + 1) + " guesses." + NEW_LINE);
+    }
 }
 
 /**
@@ -101,4 +116,5 @@ public class AppModel_specs {
  * [Test7. 싱글 플레이어 게임에서 입력한 정답이 answer일 때, 해당 메세지가 출력된다]
  *          입력값이 게임 모드를 선택하는지, 정답을 입력하는지 알 수 있게 상태 변화를 감지할 수 있는 방법이 필요하다.
  * [Test8. Refactoring]
+ * [Test9. 싱글 플레이어 게임에서 정답을 맞췄을 때, 총 실패횟수를 알려주는 메세지가 출력된다]
  * */
