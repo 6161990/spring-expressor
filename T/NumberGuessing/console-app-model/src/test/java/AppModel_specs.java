@@ -1,4 +1,5 @@
 import numberguessing.console.AppModel;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -104,6 +105,17 @@ public class AppModel_specs {
         String actual = sut.flushOutput();
         assertThat(actual).contains((fails + 1) + " guesses." + NEW_LINE);
     }
+
+    @Test
+    void sut_correctly_prints_one_guess_if_single_player_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("1");
+        sut.flushOutput();
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+        assertThat(actual).contains("1 guess.");
+    }
 }
 
 /**
@@ -117,4 +129,5 @@ public class AppModel_specs {
  *          입력값이 게임 모드를 선택하는지, 정답을 입력하는지 알 수 있게 상태 변화를 감지할 수 있는 방법이 필요하다.
  * [Test8. Refactoring]
  * [Test9. 싱글 플레이어 게임에서 정답을 맞췄을 때, 총 실패횟수를 알려주는 메세지가 출력된다]
+ * [Test10. 싱글 플레이어 게임에서 정답을 한번에 맞췄을 때, 'guesses'가 아니라 'guess' 로 출력된다]
  * */
