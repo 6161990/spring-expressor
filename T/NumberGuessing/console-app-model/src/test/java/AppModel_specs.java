@@ -88,7 +88,7 @@ public class AppModel_specs {
         sut.processInput(Integer.toString(guess));
 
         String actual = sut.flushOutput();
-        assertThat(actual).isEqualTo("Correct! ");
+        assertThat(actual).startsWith("Correct! ");
     }
 
     @ParameterizedTest
@@ -145,4 +145,5 @@ public class AppModel_specs {
  * [Test10. 싱글 플레이어 게임에서 정답을 한번에 맞췄을 때, 'guesses'가 아니라 'guess' 로 출력된다]
  * [Test10:Refactoring]
  * [Test11. 싱글 플레이어 모드가 끝나면 다시 select mode가 보여진다]
+ * [Test11:Refactoring]
  * */
