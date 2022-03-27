@@ -53,7 +53,8 @@ public class AppModel {
         } else if (Integer.parseInt(input) > answer) {
             output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
         } else {
-            output = "Correct! " + tries + (tries == 1? " guess."  :  " guesses." ) + NEW_LINE;
+             output = "Correct! " + tries + (tries == 1? " guess."  :  " guesses." ) + NEW_LINE + "1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE +
+                    "3: Exit" + NEW_LINE + "Enter selection: ";
         }
     }
 }
