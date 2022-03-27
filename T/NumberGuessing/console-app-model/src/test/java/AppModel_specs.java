@@ -150,7 +150,7 @@ public class AppModel_specs {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(answers));
 
         for (int answer : answers) {
-            sut.processInput("1");
+            sut.processInput("1"); // 셀렉트 모드에서 싱글플레이어를 선택하는 1이 정답 1로 알아먹는다.
             sut.flushOutput();
             sut.processInput(String.valueOf(answer));
         }
@@ -176,5 +176,5 @@ public class AppModel_specs {
  * [Test11. 싱글 플레이어 모드가 끝나면 다시 select mode가 보여진다]
  * [Test11:Refactoring]
  * [Test12. 싱글 플레이어 모드가 끝나고 돌아간 select mode에서 exit를 선택했을 때 sut는 잘 종료된다]
- * [Test13. 싱글 플레이어 모드는 반복하여 게임을 실행해도 잘 돌아간다]
+ * [Test13. 싱글 플레이어 모드는 반복하여 게임을 실행해도 잘 돌아간다] : 테스트가 실패하지않는다
  * */
