@@ -144,7 +144,7 @@ public class AppModel_specs {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = "1, 10, 100")
+    @ValueSource(strings = "100, 10, 1")
     void sut_generates_answer_for_each_game(String source) {
         int[] answers = Stream.of(source.split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
         var sut = new AppModel(new PositiveIntegerGeneratorStub(answers));
