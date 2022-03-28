@@ -129,6 +129,17 @@ public class AppModel_specs {
         assertThat(actual).endsWith("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE +
                 "3: Exit" + NEW_LINE + "Enter selection: ");
     }
+
+    @Test
+    void sut_returns_to_mode_selection_if_single_player_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("1");
+        sut.processInput("50");
+        sut.processInput("3");
+
+        boolean actual = sut.isCompleted();
+        assertTrue(actual);
+    }
 }
 
 /**
@@ -146,4 +157,5 @@ public class AppModel_specs {
  * [Test10:Refactoring]
  * [Test11. 싱글 플레이어 모드가 끝나면 다시 select mode가 보여진다]
  * [Test11:Refactoring]
+ * [Test12. 싱글 플레이어 모드가 끝나고 돌아간 select mode에서 exit를 선택했을 때 sut는 잘 종료된다]
  * */
