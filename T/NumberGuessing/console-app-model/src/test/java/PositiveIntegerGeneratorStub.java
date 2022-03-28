@@ -7,13 +7,13 @@ public class PositiveIntegerGeneratorStub implements PositiveIntegerGenerator {
 
     public PositiveIntegerGeneratorStub(int... numbers) {
         this.numbers = numbers;
-        this.index = 0;
+        index = 0;
     }
 
     @Override
-    public int generateLessThanOrEqualToHundread() {
+    public int generateLessThanOrEqualToHundred() {
         int number = numbers[index];
-        index = (number + 1) % numbers.length;
+        index = (index + 1) % numbers.length;
         return number;
     }
 }
