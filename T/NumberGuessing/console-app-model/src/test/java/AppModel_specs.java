@@ -5,6 +5,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.stream.Stream;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -140,6 +142,22 @@ public class AppModel_specs {
         boolean actual = sut.isCompleted();
         assertTrue(actual);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = "1, 10, 100")
+    void sut_generates_answer_for_each_game(String source) {
+        int[] answers = Stream.of(source.split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answers));
+
+        for (int answer : answers) {
+            sut.processInput("1");
+            sut.flushOutput();
+            sut.processInput(String.valueOf(answer));
+        }
+
+        String actual = sut.flushOutput();
+        assertThat(actual).startsWith("Correct! ");
+    }
 }
 
 /**
@@ -158,4 +176,5 @@ public class AppModel_specs {
  * [Test11. 싱글 플레이어 모드가 끝나면 다시 select mode가 보여진다]
  * [Test11:Refactoring]
  * [Test12. 싱글 플레이어 모드가 끝나고 돌아간 select mode에서 exit를 선택했을 때 sut는 잘 종료된다]
+ * [Test13. 싱글 플레이어 모드는 반복하여 게임을 실행해도 잘 돌아간다]
  * */
