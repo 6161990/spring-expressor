@@ -13,7 +13,11 @@ public class AppModel {
     private int answer;
     private boolean isSinglePlayerMode;
     private int tries;
+    private Processor processor;
 
+    interface Processor {
+        Processor run(String input); /** 입력을 받아서 처리한 다음에 다음 Processor 를 반환하 는 식으로 */
+    }
 
     public AppModel(PositiveIntegerGenerator randomGenerator) {
         this.randomGenerator = randomGenerator;
@@ -21,6 +25,7 @@ public class AppModel {
         isSinglePlayerMode = false;
         tries=0;
         output = SELECT_MODE_MESSAGE;
+        processor = this::processModeSelection;
     }
 
     public boolean isCompleted() {
@@ -32,14 +37,10 @@ public class AppModel {
     }
 
     public void processInput(String input) {
-        if(isSinglePlayerMode) {
-            processSinglePlayerGame(input);
-        } else {
-            processModeSelection(input);
-        }
+        processor = processor.run(input);
     }
 
-    private void processModeSelection(String input) {
+    private Processor processModeSelection(String input) {
         if (input.equals("1")) {
             isSinglePlayerMode = true;
             answer = randomGenerator.generateLessThanOrEqualToHundred();
@@ -47,6 +48,7 @@ public class AppModel {
         } else {
             completed = true;
         }
+        return null;
     }
 
     private void processSinglePlayerGame(String input) {
@@ -60,4 +62,5 @@ public class AppModel {
              isSinglePlayerMode = false;
         }
     }
+
 }
