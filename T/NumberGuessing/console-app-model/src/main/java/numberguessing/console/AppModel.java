@@ -12,7 +12,6 @@ public class AppModel {
     private boolean completed;
     private int answer;
     private boolean isSinglePlayerMode;
-    private int tries;
     private Processor processor;
 
     interface Processor {
@@ -23,7 +22,6 @@ public class AppModel {
         this.randomGenerator = randomGenerator;
         completed = false;
         isSinglePlayerMode = false;
-        tries=0;
         output = SELECT_MODE_MESSAGE;
         processor = this::processModeSelection;
     }
@@ -45,27 +43,27 @@ public class AppModel {
             isSinglePlayerMode = true;
             answer = randomGenerator.generateLessThanOrEqualToHundred();
             output = "Single player game Start!" + NEW_LINE + "I'm thinking of a number between 1 and 100." + NEW_LINE + "Enter your guess: ";
-            return getSinglePlayGameProcessor();
+            return getSinglePlayGameProcessor(1);
         } else {
             completed = true;
             return null;
         }
     }
 
-    private Processor getSinglePlayGameProcessor() {
+    private Processor getSinglePlayGameProcessor(int tries) {
         return input -> {
-            tries++;
             if (Integer.parseInt(input) < answer) {
                 output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
+                return getSinglePlayGameProcessor(tries +1 );
             } else if (Integer.parseInt(input) > answer) {
                 output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
+                return getSinglePlayGameProcessor(tries +1 );
             } else {
                 output = "Correct! " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + SELECT_MODE_MESSAGE;
                 isSinglePlayerMode = false;
+                return this::processModeSelection;
             }
-            return null;
         };
-
     }
 
 }
