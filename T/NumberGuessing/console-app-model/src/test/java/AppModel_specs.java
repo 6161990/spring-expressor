@@ -177,4 +177,5 @@ public class AppModel_specs {
  * [Step12. 싱글 플레이어 모드가 끝나고 돌아간 select mode에서 exit를 선택했을 때 sut는 잘 종료된다]
  * [Step13. 싱글 플레이어 모드는 반복하여 게임을 실행해도 잘 돌아간다]
  * [Step14. Refactoring 1 - Processor를 도입하여 sut 루프 를 교체해주는 방식으로 변경한다]
+ * [Step15. Refactoring 2 - ModeSelection에서 1이 입력되었을 때 SinglePlayer의 processor를 생성하도록 변경한다]
  * */
