@@ -10,7 +10,6 @@ public class AppModel {
     private final PositiveIntegerGenerator randomGenerator;
     private String output;
     private boolean completed;
-    private boolean isSinglePlayerMode;
     private Processor processor;
 
     interface Processor {
@@ -20,7 +19,6 @@ public class AppModel {
     public AppModel(PositiveIntegerGenerator randomGenerator) {
         this.randomGenerator = randomGenerator;
         completed = false;
-        isSinglePlayerMode = false;
         output = SELECT_MODE_MESSAGE;
         processor = this::processModeSelection;
     }
@@ -39,7 +37,6 @@ public class AppModel {
 
     private Processor processModeSelection(String input) {
         if (input.equals("1")) {
-            isSinglePlayerMode = true;
             int answer = randomGenerator.generateLessThanOrEqualToHundred();
             output = "Single player game Start!" + NEW_LINE + "I'm thinking of a number between 1 and 100." + NEW_LINE + "Enter your guess: ";
             return getSinglePlayGameProcessor(1, answer);
@@ -59,7 +56,6 @@ public class AppModel {
                 return getSinglePlayGameProcessor(tries +1 , answer);
             } else {
                 output = "Correct! " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + SELECT_MODE_MESSAGE;
-                isSinglePlayerMode = false;
                 return this::processModeSelection;
             }
         };

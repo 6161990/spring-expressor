@@ -180,4 +180,5 @@ public class AppModel_specs {
  * [Step15. Refactoring 2 - ModeSelection에서 1이 입력되었을 때 SinglePlayer의 processor를 생성하도록 변경한다]
  * [Step16. Refactoring 3 - tries 필드를 없앤다]
  * [Step17. Refactoring 4 - answer 필드를 없앤다]
+ * [Step18. Refactoring 5 - 해당 Refactoring 진행 후, 최종적으로 필요없어진 부분을 제거한다]
  * */
