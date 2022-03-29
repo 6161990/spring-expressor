@@ -1,5 +1,4 @@
 import numberguessing.console.AppModel;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -161,20 +160,25 @@ public class AppModel_specs {
 }
 
 /**
- * [Test1. sut가 초기화되고나면 완료된 상태가 아니다] PositiveIntegerGeneratorStub 생성
- * [Test2. sut의 첫 flushOutput 게임모드선택 옵션 메세지다]
- * [Test3. sut에 게임모드선택메세지출력 후 3을 입력값으로 넣으면 sut는 종료된다]
- * [Test4. sut에 싱글게임모드선택 후 게임 시작 메세지가 출력된다]
- * [Test5. 싱글 플레이어 게임에서 입력한 정답이 answer보다 작을 경우 해당 메세지가 출력된다]
- * [Test6. 싱글 플레이어 게임에서 입력한 정답이 answer보다 클 경우 해당 메세지가 출력된다]
- * [Test7. 싱글 플레이어 게임에서 입력한 정답이 answer일 때, 해당 메세지가 출력된다]
+ * [Step1. sut가 초기화되고나면 완료된 상태가 아니다] PositiveIntegerGeneratorStub 생성
+ * [Step2. sut의 첫 flushOutput 게임모드선택 옵션 메세지다]
+ * [Step3. sut에 게임모드선택메세지출력 후 3을 입력값으로 넣으면 sut는 종료된다]
+ * [Step4. sut에 싱글게임모드선택 후 게임 시작 메세지가 출력된다]
+ * [Step5. 싱글 플레이어 게임에서 입력한 정답이 answer보다 작을 경우 해당 메세지가 출력된다]
+ * [Step6. 싱글 플레이어 게임에서 입력한 정답이 answer보다 클 경우 해당 메세지가 출력된다]
+ * [Step7. 싱글 플레이어 게임에서 입력한 정답이 answer일 때, 해당 메세지가 출력된다]
  *          입력값이 게임 모드를 선택하는지, 정답을 입력하는지 알 수 있게 상태 변화를 감지할 수 있는 방법이 필요하다.
- * [Test8. Refactoring]
- * [Test9. 싱글 플레이어 게임에서 정답을 맞췄을 때, 총 실패횟수를 알려주는 메세지가 출력된다]
- * [Test10. 싱글 플레이어 게임에서 정답을 한번에 맞췄을 때, 'guesses'가 아니라 'guess' 로 출력된다]
- * [Test10:Refactoring]
- * [Test11. 싱글 플레이어 모드가 끝나면 다시 select mode가 보여진다]
- * [Test11:Refactoring]
- * [Test12. 싱글 플레이어 모드가 끝나고 돌아간 select mode에서 exit를 선택했을 때 sut는 잘 종료된다]
- * [Test13. 싱글 플레이어 모드는 반복하여 게임을 실행해도 잘 돌아간다]
+ * [Step8. Refactoring]
+ * [Step9. 싱글 플레이어 게임에서 정답을 맞췄을 때, 총 실패횟수를 알려주는 메세지가 출력된다]
+ * [Step10. 싱글 플레이어 게임에서 정답을 한번에 맞췄을 때, 'guesses'가 아니라 'guess' 로 출력된다]
+ * [Step10. Refactoring]
+ * [Step11. 싱글 플레이어 모드가 끝나면 다시 select mode가 보여진다]
+ * [Step11. Refactoring]
+ * [Step12. 싱글 플레이어 모드가 끝나고 돌아간 select mode에서 exit를 선택했을 때 sut는 잘 종료된다]
+ * [Step13. 싱글 플레이어 모드는 반복하여 게임을 실행해도 잘 돌아간다]
+ * [Step14. Refactoring 1 - Processor를 도입하여 sut 루프 를 교체해주는 방식으로 변경한다]
+ * [Step15. Refactoring 2 - ModeSelection에서 1이 입력되었을 때 SinglePlayer의 processor를 생성하도록 변경한다]
+ * [Step16. Refactoring 3 - tries 필드를 없앤다]
+ * [Step17. Refactoring 4 - answer 필드를 없앤다]
+ * [Step18. Refactoring 5 - 해당 Refactoring 진행 후, 최종적으로 필요없어진 부분을 제거한다]
  * */
