@@ -179,4 +179,5 @@ public class AppModel_specs {
  * [Step14. Refactoring 1 - Processor를 도입하여 sut 루프 를 교체해주는 방식으로 변경한다]
  * [Step15. Refactoring 2 - ModeSelection에서 1이 입력되었을 때 SinglePlayer의 processor를 생성하도록 변경한다]
  * [Step16. Refactoring 3 - tries 필드를 없앤다]
+ * [Step17. Refactoring 4 - answer 필드를 없앤다]
  * */

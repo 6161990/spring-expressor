@@ -10,7 +10,6 @@ public class AppModel {
     private final PositiveIntegerGenerator randomGenerator;
     private String output;
     private boolean completed;
-    private int answer;
     private boolean isSinglePlayerMode;
     private Processor processor;
 
@@ -41,23 +40,23 @@ public class AppModel {
     private Processor processModeSelection(String input) {
         if (input.equals("1")) {
             isSinglePlayerMode = true;
-            answer = randomGenerator.generateLessThanOrEqualToHundred();
+            int answer = randomGenerator.generateLessThanOrEqualToHundred();
             output = "Single player game Start!" + NEW_LINE + "I'm thinking of a number between 1 and 100." + NEW_LINE + "Enter your guess: ";
-            return getSinglePlayGameProcessor(1);
+            return getSinglePlayGameProcessor(1, answer);
         } else {
             completed = true;
             return null;
         }
     }
 
-    private Processor getSinglePlayGameProcessor(int tries) {
+    private Processor getSinglePlayGameProcessor(int tries, int answer) {
         return input -> {
             if (Integer.parseInt(input) < answer) {
                 output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
-                return getSinglePlayGameProcessor(tries +1 );
+                return getSinglePlayGameProcessor(tries +1 , answer);
             } else if (Integer.parseInt(input) > answer) {
                 output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
-                return getSinglePlayGameProcessor(tries +1 );
+                return getSinglePlayGameProcessor(tries +1 , answer);
             } else {
                 output = "Correct! " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + SELECT_MODE_MESSAGE;
                 isSinglePlayerMode = false;
