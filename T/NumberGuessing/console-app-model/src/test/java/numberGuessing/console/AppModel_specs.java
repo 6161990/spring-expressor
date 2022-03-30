@@ -42,7 +42,16 @@ public class AppModel_specs {
         assertTrue(sut.isCompleted());
     }
 
+    @DisplayName("sut 에 싱글게임모드선택 후 게임 시작 메세지가 출력된다")
+    @Test
     void sut_correctly_prints_single_player_game_start_message() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("1");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("Single player game Start!" + NEW_LINE + "I'm thinking of a number between 1 and 100."
+                + NEW_LINE + "Enter your guess: ");
     }
 
     void sut_correctly_prints_too_low_message_in_single_player_game(int answer, int guess) {
@@ -79,6 +88,8 @@ public class AppModel_specs {
  *          "2: Multiplayer game" + NEW_LINE + "3: Exit" + NEW_LINE + "Enter selection: "
  * [Step3. sut 진행중 3을 입력값으로 넣으면 sut 는 종료된다(Test)]
  * [Step4. sut 에 싱글게임모드선택 후 게임 시작 메세지가 출력된다(Test)]
+ *   SinglePlayerStart Message = "Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
+ *                 + NEW_LINE + "Enter your guess: "
  * [Step5. 싱글 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다(Test)]
  * [Step6. 싱글 플레이어 게임에서 입력한 정답이 answer 보다 클 경우 해당 메세지가 출력된다(Test)]
  * [Step7. 싱글 플레이어 게임에서 입력한 정답이 answer 일 때, 해당 메세지가 출력된다(Test)]
