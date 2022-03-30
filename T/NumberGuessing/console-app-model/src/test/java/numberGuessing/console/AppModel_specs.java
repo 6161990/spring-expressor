@@ -41,6 +41,7 @@ public class AppModel_specs {
     void sut_correctly_prints_too_high_message_in_single_player_game(int answer, int guess) {
     }
 
+
     void sut_correctly_prints_correct_message_in_single_player_game(int answer) {
     }
 
