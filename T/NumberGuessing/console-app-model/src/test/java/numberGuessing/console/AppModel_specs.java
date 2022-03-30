@@ -62,7 +62,6 @@ public class AppModel_specs {
     void sut_correctly_prints_too_low_message_in_single_player_game(int answer, int guess) {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
         sut.processInput("1");
-        sut.flushOutput();
         sut.processInput(Integer.toString(guess));
 
         String actual = sut.flushOutput();
