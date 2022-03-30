@@ -8,6 +8,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppModel_specs {
 
+    private static final String NEW_LINE = System.lineSeparator();
+
     @DisplayName("sut 가 처음 초기화되면 isCompleted 가 false 다.")
     @Test
     void sut_is_incompleted_when_it_is_initialized(){
@@ -16,7 +18,15 @@ public class AppModel_specs {
         assertThat(actual).isFalse();
     }
 
+    @DisplayName("sut 의 첫 flushOutput 은 게임모드선택 옵션 메세지다.")
+    @Test
     void sut_correctly_prints_select_mode_message() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE +
+                "3: Exit" + NEW_LINE + "Enter selection: ");
     }
 
     void sut_correctly_exist() {
@@ -54,6 +64,8 @@ public class AppModel_specs {
  * [Step1. sut 가 초기화되고나면 완료된 상태가 아니다(Test)]
  *          PositiveIntegerGeneratorStub 생성한다.
  * [Step2. sut 의 첫 flushOutput 게임모드선택 옵션 메세지다(Test)]
+ *   GameModeSelection Message = "1: Single player game" + NEW_LINE +
+ *          "2: Multiplayer game" + NEW_LINE + "3: Exit" + NEW_LINE + "Enter selection: "
  * [Step3. sut 에 게임모드선택메세지출력 후 3을 입력값으로 넣으면 sut 는 종료된다(Test)]
  * [Step4. sut 에 싱글게임모드선택 후 게임 시작 메세지가 출력된다(Test)]
  * [Step5. 싱글 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다(Test)]
