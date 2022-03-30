@@ -3,6 +3,8 @@ package numberGuessing.console;
 import numberGuessing.PositiveIntegerGeneratorStub;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -54,7 +56,18 @@ public class AppModel_specs {
                 + NEW_LINE + "Enter your guess: ");
     }
 
+    @DisplayName("싱글 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다")
+    @ParameterizedTest
+    @CsvSource({"50, 40", "30, 29", "89, 9"})
     void sut_correctly_prints_too_low_message_in_single_player_game(int answer, int guess) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("1");
+        sut.flushOutput();
+        sut.processInput(Integer.toString(guess));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("Your guess is too low." + NEW_LINE + "Enter your guess: ");
     }
 
     void sut_correctly_prints_too_high_message_in_single_player_game(int answer, int guess) {

@@ -9,10 +9,12 @@ public class AppModel {
             "3: Exit" + NEW_LINE + "Enter selection: ";
     private boolean completed;
     private String output;
+    private int answer;
 
     public AppModel(PositiveIntegerGenerator randomGenerator) {
         completed = false;
         output = SELECT_MODE_MESSAGE;
+        answer = randomGenerator.generateLessThanEqualToHundred();
     }
 
     public boolean isCompleted() {
@@ -27,6 +29,8 @@ public class AppModel {
         if(input.equals("1")){
             output ="Single player game Start!" + NEW_LINE + "I'm thinking of a number between 1 and 100."
                                      + NEW_LINE + "Enter your guess: ";
+        } else if(Integer.parseInt(input) < answer) {
+            output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
         } else if(input.equals("3")){
             completed = true;
         }
