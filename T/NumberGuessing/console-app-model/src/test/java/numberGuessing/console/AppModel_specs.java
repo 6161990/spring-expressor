@@ -1,8 +1,19 @@
 package numberGuessing.console;
 
+import numberGuessing.PositiveIntegerGeneratorStub;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class AppModel_specs {
 
+    @DisplayName("sut 가 처음 초기화되면 isCompleted 가 false 다.")
+    @Test
     void sut_is_incompleted_when_it_is_initialized(){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        boolean actual = sut.isCompleted();
+        assertThat(actual).isFalse();
     }
 
     void sut_correctly_prints_select_mode_message() {
@@ -19,7 +30,6 @@ public class AppModel_specs {
 
     void sut_correctly_prints_too_high_message_in_single_player_game(int answer, int guess) {
     }
-
 
     void sut_correctly_prints_correct_message_in_single_player_game(int answer) {
     }
