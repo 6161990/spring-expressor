@@ -114,7 +114,17 @@ public class AppModel_specs {
         assertThat(actual).contains((fails + 1) + " guesses." + NEW_LINE);
     }
 
+    @DisplayName("싱글 플레이어 게임에서 정답을 한번에 맞췄을 때, 'guesses' 가 아니라 'guess' 로 출력된다")
+    @Test
     void sut_correctly_prints_one_guess_if_single_player_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("1");
+        sut.flushOutput();
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).contains("1 guess." + NEW_LINE);
     }
 
     void sut_prints_select_mode_message_if_single_player_game_finished(){
