@@ -1,4 +1,4 @@
-import numberguessing.PositiveIntegerGenerator;
+package numberGuessing;
 
 public class PositiveIntegerGeneratorStub implements PositiveIntegerGenerator {
 
@@ -11,9 +11,9 @@ public class PositiveIntegerGeneratorStub implements PositiveIntegerGenerator {
     }
 
     @Override
-    public int generateLessThanOrEqualToHundred() {
+    public int generateLessThanEqualToHundred() {
         int number = numbers[index];
-        index = (index + 1) % numbers.length;
+        index = (index+1) % numbers.length;
         return number;
     }
 }
