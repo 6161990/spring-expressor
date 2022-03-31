@@ -94,7 +94,7 @@ public class AppModel_specs {
 
         String actual = sut.flushOutput();
 
-        assertThat(actual).isEqualTo("Correct! ");
+        assertThat(actual).startsWith("Correct! ");
     }
 
     @DisplayName("싱글 플레이어 게임에서 정답을 맞췄을 때, 총 실패횟수를 알려주는 메세지가 출력된다")
@@ -157,14 +157,14 @@ public class AppModel_specs {
  * [Step9. 싱글 플레이어 게임에서 정답을 맞췄을 때, 총 실패횟수를 알려주는 메세지가 출력된다(Test)]
  *      FailsCountMessage = "(fails + 1) + " guesses." + NEW_LINE"
  * [Step10. 싱글 플레이어 게임에서 정답을 한번에 맞췄을 때, 'guesses' 가 아니라 'guess' 로 출력된다(Test)]
- * [Step10. Refactoring]
- * [Step11. 싱글 플레이어 모드가 끝나면 다시 select mode 가 보여진다(Test)]
  * [Step11. Refactoring]
- * [Step12. 싱글 플레이어 모드가 끝나고 돌아간 select mode 에서 exit 를 선택했을 때 sut 는 잘 종료된다(Test)]
- * [Step13. 싱글 플레이어 모드는 반복하여 게임을 실행해도 잘 돌아간다(Test)]
- * [Step14. Refactoring 1 - Processor 를 도입하여 sut 루프 를 교체해주는 방식으로 변경한다]
- * [Step15. Refactoring 2 - ModeSelection 에서 1이 입력되었을 때 SinglePlayer 의 processor 를 생성하도록 변경한다]
- * [Step16. Refactoring 3 - tries 필드를 없앤다]
- * [Step17. Refactoring 4 - answer 필드를 없앤다]
- * [Step18. Refactoring 5 - 해당 Refactoring 진행 후, 최종적으로 필요없어진 부분을 제거한다]
+ * [Step12. 싱글 플레이어 모드가 끝나면 다시 select mode 가 보여진다(Test)]
+ * [Step13. Refactoring]
+ * [Step14. 싱글 플레이어 모드가 끝나고 돌아간 select mode 에서 exit 를 선택했을 때 sut 는 잘 종료된다(Test)]
+ * [Step15. 싱글 플레이어 모드는 반복하여 게임을 실행해도 잘 돌아간다(Test)]
+ * [Step16. Refactoring 1 - Processor 를 도입하여 sut 루프 를 교체해주는 방식으로 변경한다]
+ * [Step17. Refactoring 2 - ModeSelection 에서 1이 입력되었을 때 SinglePlayer 의 processor 를 생성하도록 변경한다]
+ * [Step18. Refactoring 3 - tries 필드를 없앤다]
+ * [Step19. Refactoring 4 - answer 필드를 없앤다]
+ * [Step20. Refactoring 5 - 해당 Refactoring 진행 후, 최종적으로 필요없어진 부분을 제거한다]
  * */
