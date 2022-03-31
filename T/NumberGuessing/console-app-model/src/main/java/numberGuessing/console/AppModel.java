@@ -10,6 +10,7 @@ public class AppModel {
     private boolean completed;
     private String output;
     private static int answer = 0;
+    private int fails;
     private boolean isSinglePlayerMode;
 
     public AppModel(PositiveIntegerGenerator randomGenerator) {
@@ -48,11 +49,14 @@ public class AppModel {
 
     private void processSinglePlayerGame(String input) {
         if(Integer.parseInt(input) < answer) {
+            fails++;
             output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
         } else if(Integer.parseInt(input) > answer) {
+            fails++;
             output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
         } else if (Integer.parseInt(input) == answer) {
-            output = "Correct! ";
+            fails++;
+            output = "Correct! " + fails + " guesses." + NEW_LINE;
         }
     }
 }
