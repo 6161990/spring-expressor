@@ -22,7 +22,6 @@ public class AppModel {
 
     public boolean isCompleted() {
         isSinglePlayerMode = false;
-        output = SELECT_MODE_MESSAGE;
         return completed;
     }
 
@@ -56,7 +55,7 @@ public class AppModel {
         } else if(Integer.parseInt(input) > answer) {
             output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
         } else {
-            output = "Correct! " + tries + (tries == 1? " guess."  :  " guesses." ) + NEW_LINE;
+            output = "Correct! " + tries + (tries == 1? " guess."  :  " guesses." ) + NEW_LINE + SELECT_MODE_MESSAGE;
         }
     }
 }

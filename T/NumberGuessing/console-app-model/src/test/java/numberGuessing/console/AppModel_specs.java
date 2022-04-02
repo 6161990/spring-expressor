@@ -133,10 +133,10 @@ public class AppModel_specs {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
         sut.processInput("1");
         sut.flushOutput();
-        sut.isCompleted();
+        sut.processInput("50");
 
         String actual = sut.flushOutput();
-        assertThat(actual).contains("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE +
+        assertThat(actual).endsWith("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE +
                 "3: Exit" + NEW_LINE + "Enter selection: ");
     }
 
