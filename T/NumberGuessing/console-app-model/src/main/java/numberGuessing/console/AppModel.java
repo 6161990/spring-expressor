@@ -7,6 +7,7 @@ public class AppModel {
     private static final String NEW_LINE = System.lineSeparator();
     private static final String SELECT_MODE_MESSAGE = "1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE +
             "3: Exit" + NEW_LINE + "Enter selection: ";
+    private final PositiveIntegerGenerator randomGenerator;
     private boolean completed;
     private String output;
     private static int answer = 0;
@@ -14,14 +15,13 @@ public class AppModel {
     private boolean isSinglePlayerMode;
 
     public AppModel(PositiveIntegerGenerator randomGenerator) {
+        this.randomGenerator = randomGenerator;
         completed = false;
         output = SELECT_MODE_MESSAGE;
-        answer = randomGenerator.generateLessThanEqualToHundred();
         tries = 0;
     }
 
     public boolean isCompleted() {
-        isSinglePlayerMode = false;
         return completed;
     }
 
@@ -41,6 +41,7 @@ public class AppModel {
     private void processModeSelection(String input) {
         if(input.equals("1")){
             isSinglePlayerMode = true;
+            answer = randomGenerator.generateLessThanEqualToHundred();
             output ="Single player game Start!" + NEW_LINE + "I'm thinking of a number between 1 and 100."
                     + NEW_LINE + "Enter your guess: ";
         } else {

@@ -7,6 +7,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.stream.Stream;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -154,7 +156,21 @@ public class AppModel_specs {
         assertThat(actual).isTrue();
     }
 
+    @DisplayName("싱글 플레이어 모드는 반복하여 게임을 실행해도 잘 돌아간다")
+    @ParameterizedTest
+    @ValueSource(strings = "100, 10, 1")
     void sut_generates_answer_for_each_game(String source) {
+        int[] answers = Stream.of(source.split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answers));
+
+        for (int answer: answers) {
+            sut.processInput("1");
+            sut.flushOutput();
+            sut.processInput(String.valueOf(answer));
+        }
+
+        String actual = sut.flushOutput();
+        assertThat(actual).startsWith("Correct! ");
     }
 }
 
