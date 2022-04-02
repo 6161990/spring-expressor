@@ -136,11 +136,22 @@ public class AppModel_specs {
         sut.processInput("50");
 
         String actual = sut.flushOutput();
+
         assertThat(actual).endsWith("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE +
                 "3: Exit" + NEW_LINE + "Enter selection: ");
     }
 
+    @DisplayName("싱글 플레이어 모드가 끝나고 돌아간 select mode 에서 exit 를 선택했을 때 sut 는 잘 종료된다")
+    @Test
     void sut_returns_to_mode_selection_if_single_player_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("1");
+        sut.processInput("50");
+        sut.processInput("3");
+
+        boolean actual = sut.isCompleted();
+
+        assertThat(actual).isTrue();
     }
 
     void sut_generates_answer_for_each_game(String source) {
