@@ -22,6 +22,7 @@ public class AppModel {
 
     public boolean isCompleted() {
         isSinglePlayerMode = false;
+        output = SELECT_MODE_MESSAGE;
         return completed;
     }
 

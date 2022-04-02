@@ -127,7 +127,17 @@ public class AppModel_specs {
         assertThat(actual).contains("1 guess." + NEW_LINE);
     }
 
+    @DisplayName("싱글 플레이어 모드가 끝나면 다시 select mode 가 보여진다")
+    @Test
     void sut_prints_select_mode_message_if_single_player_game_finished(){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("1");
+        sut.flushOutput();
+        sut.isCompleted();
+
+        String actual = sut.flushOutput();
+        assertThat(actual).contains("1: Single player game" + NEW_LINE + "2: Multiplayer game" + NEW_LINE +
+                "3: Exit" + NEW_LINE + "Enter selection: ");
     }
 
     void sut_returns_to_mode_selection_if_single_player_game_finished() {
