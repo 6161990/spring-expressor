@@ -3,6 +3,9 @@ package numberGuessing.console;
 import numberGuessing.PositiveIntegerGeneratorStub;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -52,16 +55,35 @@ public class AppModel_specs {
         sut.processInput("1");
         String actual = sut.flushOutput();
 
-        assertThat(actual).isEqualTo("Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
+        assertThat(actual).startsWith("Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
                                  + NEW_LINE + "Enter your guess: ");
     }
 
     @DisplayName("싱글 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다")
+    @ParameterizedTest
+    @CsvSource({"50, 30", "80, 2", "77, 7"})
     void sut_correctly_prints_too_low_message_in_single_player_game(int answer, int guess) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("1");
+        sut.flushOutput();
+
+        sut.processInput(String.valueOf(guess));
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("Your guess is too low." + NEW_LINE + "Enter your guess: ");
     }
 
     @DisplayName("싱글 플레이어 게임에서 입력한 정답이 answer 보다 클 경우 해당 메세지가 출력된다")
+    @ParameterizedTest
+    @CsvSource({"40, 50", "10, 99", "3, 77"})
     void sut_correctly_prints_too_high_message_in_single_player_game(int answer, int guess) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("1");
+        sut.processInput(Integer.toString(guess));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("Your guess is too high." + NEW_LINE + "Enter your guess: ");
     }
 
     @DisplayName("싱글 플레이어 게임에서 입력한 정답이 answer 일 때, 해당 메세지가 출력된다")
