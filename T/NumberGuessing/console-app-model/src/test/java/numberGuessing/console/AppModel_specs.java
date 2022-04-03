@@ -22,19 +22,38 @@ public class AppModel_specs {
     }
 
     @DisplayName("sut 의 첫 flushOutput 은 게임모드선택 옵션 메세지다.")
+    @Test
     void sut_correctly_prints_select_mode_message() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
 
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("1: Single player game" + NEW_LINE +
+                          "2: Multiplayer game" + NEW_LINE + "3: Exit" + NEW_LINE + "Enter selection: ");
     }
 
 
     @DisplayName("sut 진행중 3을 입력값으로 넣으면 sut 는 종료된다")
+    @Test
     void sut_correctly_exist() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
 
+        sut.processInput("3");
+        boolean actual = sut.isCompleted();
+
+        assertThat(actual).isTrue();
     }
 
     @DisplayName("sut 에 싱글게임모드선택 후 게임 시작 메세지가 출력된다")
+    @Test
     void sut_correctly_prints_single_player_game_start_message() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
 
+        sut.processInput("1");
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
+                                 + NEW_LINE + "Enter your guess: ");
     }
 
     @DisplayName("싱글 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다")
