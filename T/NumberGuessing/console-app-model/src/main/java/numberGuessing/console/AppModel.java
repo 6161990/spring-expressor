@@ -12,16 +12,17 @@ public class AppModel {
                 + NEW_LINE + "Enter your guess: ";
     private boolean isCompleted;
     private String output;
-    private int answer;
-    private boolean isSinglePlayerGameMode;
-    private int tries;
+    private Processor processor;
+
+    interface Processor {
+        Processor run(String input);
+    }
 
     public AppModel(PositiveIntegerGenerator randomGenerator) {
         this.randomGenerator = randomGenerator;
-        this.isCompleted = false;
+        isCompleted = false;
         output = SELECT_MODE_MESSAGE;
-        tries = 0;
-        answer = 0;
+        processor = this::selectionGameMode;
     }
 
     public boolean isCompleted() {
@@ -33,32 +34,32 @@ public class AppModel {
     }
 
     public void processInput(String input) {
-        if(isSinglePlayerGameMode) {
-            singlePlayerMode(input);
-        } else {
-            selectionGameMode(input);
-        }
+        processor = processor.run(input);
     }
 
-    private void selectionGameMode(String input) {
+    private Processor selectionGameMode(String input) {
         if (input == "1") {
-            isSinglePlayerGameMode = true;
-            answer = randomGenerator.generateLessThanEqualsToHundred();
+            int answer = randomGenerator.generateLessThanEqualsToHundred();
             output = SINGLE_PLAYER_START_MESSAGE;
+            return getSinglePlayGameProcessor(1, answer);
         } else {
             isCompleted = true;
+            return null;
         }
     }
 
-    private void singlePlayerMode(String input) {
-        tries++;
-        if (Integer.parseInt(input) < answer) {
-            output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
-        } else if (Integer.parseInt(input) > answer) {
-            output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
-        } else if(Integer.parseInt(input) == answer) {
-            output = "Correct! + " + tries + (tries == 1 ? " guess." : " guesses." ) + NEW_LINE + SELECT_MODE_MESSAGE;
-            isSinglePlayerGameMode = false;
-        }
+    private Processor getSinglePlayGameProcessor(int tries, int answer) {
+        return input -> {
+            if (Integer.parseInt(input) < answer) {
+                output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
+                return getSinglePlayGameProcessor(tries+1, answer);
+            } else if (Integer.parseInt(input) > answer) {
+                output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
+                return getSinglePlayGameProcessor(tries+1, answer);
+            } else {
+                output = "Correct! + " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + SELECT_MODE_MESSAGE;
+                return this::selectionGameMode;
+            }
+        };
     }
 }
