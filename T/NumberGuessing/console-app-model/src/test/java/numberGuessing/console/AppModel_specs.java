@@ -1,6 +1,8 @@
 package numberGuessing.console;
 
+import numberGuessing.PositiveIntegerGeneratorStub;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,8 +12,13 @@ public class AppModel_specs {
     private static final String NEW_LINE = System.lineSeparator();
 
     @DisplayName("sut 가 처음 초기화되면 isCompleted 가 false 다.")
+    @Test
     void sut_is_incompleted_when_it_is_initialized(){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
 
+        boolean actual = sut.isCompleted();
+
+        assertThat(actual).isFalse();
     }
 
     @DisplayName("sut 의 첫 flushOutput 은 게임모드선택 옵션 메세지다.")
