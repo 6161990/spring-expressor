@@ -29,11 +29,17 @@ public class AppModel {
 
     public void processInput(String input) {
         if(isSinglePlayerGameMode) {
-          singlePlayerMode(input);
-        } else if(input == "1") {
+            singlePlayerMode(input);
+        } else {
+            selectionGameMode(input);
+        }
+    }
+
+    private void selectionGameMode(String input) {
+        if (input == "1") {
             isSinglePlayerGameMode = true;
-            this.output = SINGLE_PLAYER_START_MESSAGE;
-        } else if(input == "3"){
+            output = SINGLE_PLAYER_START_MESSAGE;
+        } else {
             isCompleted = true;
         }
     }
@@ -43,7 +49,8 @@ public class AppModel {
             output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
         } else if (Integer.parseInt(input) > answer) {
             output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
+        } else if(Integer.parseInt(input) == answer) {
+            output = "Correct! " + NEW_LINE;
         }
-
     }
 }

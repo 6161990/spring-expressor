@@ -87,8 +87,18 @@ public class AppModel_specs {
     }
 
     @DisplayName("싱글 플레이어 게임에서 입력한 정답이 answer 일 때, 해당 메세지가 출력된다")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 10, 100})
     void sut_correctly_prints_correct_message_in_single_player_game(int answer) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("1");
+        sut.flushOutput();
 
+        int guess = answer;
+        sut.processInput(String.valueOf(guess));
+        String actual = sut.flushOutput();
+
+        assertThat(actual).startsWith("Correct! " + NEW_LINE);
     }
 
     @DisplayName("싱글 플레이어 게임에서 정답을 맞췄을 때, 총 실패횟수를 알려주는 메세지가 출력된다")
