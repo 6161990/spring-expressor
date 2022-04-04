@@ -2,6 +2,10 @@ package numberGuessing.console;
 
 import numberGuessing.PositiveIntegerGenerator;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class AppModel {
 
     public static final String NEW_LINE = System.lineSeparator();
@@ -14,6 +18,7 @@ public class AppModel {
     private String output;
     private boolean isCompleted;
     private Processor processor;
+    private List<String> players;
 
     interface Processor {
         Processor run(String input);
@@ -45,11 +50,20 @@ public class AppModel {
             return getProcessSingleModeGame(1, answer);
         }else if(input == "2"){
             output = MULTI_GAME_START_MESSAGE;
-            return null;
+            int answer = randomGenerator.generateLessThanEqualsToHundred();
+            return getProcessMultiModeGame(1, answer);
         } else {
             isCompleted = true;
             return null;
         }
+    }
+
+    private Processor getProcessMultiModeGame(int tries, int answer) {
+        return input -> {
+            output = "I'm thinking of a number between 1 and 100." + NEW_LINE;
+            players = Arrays.stream(input.split(",")).map(String::trim).collect(Collectors.toList());
+            return getProcessMultiModeGame(tries+1, answer);
+        };
     }
 
     private Processor getProcessSingleModeGame(int tries, int answer) {
