@@ -5,7 +5,7 @@ public class PositiveIntegerGeneratorStub implements PositiveIntegerGenerator{
     private int[] numbers;
     private int index;
 
-    public PositiveIntegerGeneratorStub(int[] numbers) {
+    public PositiveIntegerGeneratorStub(int... numbers) {
         this.numbers = numbers;
         index = 0;
     }
