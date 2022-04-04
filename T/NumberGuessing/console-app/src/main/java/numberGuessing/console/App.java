@@ -14,7 +14,7 @@ public class App {
     }
 
     private static void runLoop(AppModel appModel, Scanner scanner) {
-        while(appModel.isCompleted() == false) {
+        while(appModel.isCompleted() == false){
             System.out.println(appModel.flushOutput());
             appModel.processInput(scanner.nextLine());
         }

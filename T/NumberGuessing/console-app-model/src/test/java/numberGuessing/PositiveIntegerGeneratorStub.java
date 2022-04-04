@@ -1,6 +1,6 @@
 package numberGuessing;
 
-public class PositiveIntegerGeneratorStub implements PositiveIntegerGenerator {
+public class PositiveIntegerGeneratorStub implements PositiveIntegerGenerator{
 
     private int[] numbers;
     private int index;
@@ -10,11 +10,10 @@ public class PositiveIntegerGeneratorStub implements PositiveIntegerGenerator {
         index = 0;
     }
 
-
     @Override
     public int generateLessThanEqualsToHundred() {
         int number = numbers[index];
-        index = (index + 1) % numbers.length;
+        index = (index+1) % numbers.length;
         return number;
     }
 }
