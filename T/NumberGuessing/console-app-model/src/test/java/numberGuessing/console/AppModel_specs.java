@@ -175,6 +175,17 @@ public class AppModel_specs {
         String actual = sut.flushOutput();
         assertThat(actual).startsWith("Correct! ");
     }
+
+    @DisplayName("sut 에 다중 플레이어 모드 선택 후 게임 시작 메세지가 출력된다")
+    @Test
+    void sut_correctly_prints_multiplayer_game_setup_message(){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+
+        String actual = sut.flushOutput();
+        assertThat(actual).isEqualTo("Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ");
+    }
+
 }
 
 /**
@@ -207,4 +218,7 @@ public class AppModel_specs {
  * [Step18. Refactoring 3 - tries 필드를 없앤다]
  * [Step19. Refactoring 4 - answer 필드를 없앤다]
  * [Step20. Refactoring 5 - 해당 Refactoring 진행 후, 최종적으로 필요없어진 부분을 제거한다]
+
+ -------------- 다중 플레이어 모드 ----------------
+ * [Step21. sut 에 다중 플레이어 모드 선택 후 게임 시작 메세지가 출력된다]
  * */
