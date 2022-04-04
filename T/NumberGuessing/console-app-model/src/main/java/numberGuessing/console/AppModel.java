@@ -50,8 +50,10 @@ public class AppModel {
             return getProcessSingleModeGame(1, answer);
         }else if(input == "2"){
             output = MULTI_GAME_START_MESSAGE;
-            int answer = randomGenerator.generateLessThanEqualsToHundred();
-            return getProcessMultiModeGame(1, answer);
+            return input2 -> {
+                output = "I'm thinking of a number between 1 and 100." + NEW_LINE;
+                return null;
+            };
         } else {
             isCompleted = true;
             return null;
