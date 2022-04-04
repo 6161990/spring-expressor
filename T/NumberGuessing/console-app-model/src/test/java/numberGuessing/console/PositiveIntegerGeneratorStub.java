@@ -1,6 +1,8 @@
-package numberGuessing;
+package numberGuessing.console;
 
-public class PositiveIntegerGeneratorStub implements PositiveIntegerGenerator{
+import numberGuessing.PositiveIntegerGenerator;
+
+public class PositiveIntegerGeneratorStub implements PositiveIntegerGenerator {
 
     private int[] numbers;
     private int index;
@@ -13,7 +15,7 @@ public class PositiveIntegerGeneratorStub implements PositiveIntegerGenerator{
     @Override
     public int generateLessThanEqualsToHundred() {
         int number = numbers[index];
-        index = (index+1) % numbers.length;
+        index = (index + 1) % numbers.length;
         return number;
     }
 }

@@ -1,6 +1,5 @@
 package numberGuessing.console;
 
-import numberGuessing.PositiveIntegerGeneratorStub;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,8 +13,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AppModel_specs {
 
     public static final String NEW_LINE = System.lineSeparator();
-    public static final String GAME_SELECT_MESSAGE = "1: Single player game" + NEW_LINE +
-          "2: Multiplayer game" + NEW_LINE + "3: Exit" + NEW_LINE + "Enter selection: ";
+    public static final String GAME_MODE_SELECT_MESSAGE = "1: Single player game" + NEW_LINE +
+           "2: Multiplayer game" + NEW_LINE + "3: Exit" + NEW_LINE + "Enter selection: ";
+    public static final String SINGLE_GAME_START_MESSAGE = "Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
+                            + NEW_LINE + "Enter your guess: ";
 
     @DisplayName("sut 가 처음 초기화되면 isCompleted 가 false 다.")
     @Test
@@ -34,7 +35,7 @@ public class AppModel_specs {
 
         String actual = sut.flushOutput();
 
-        assertThat(actual).isEqualTo(GAME_SELECT_MESSAGE);
+        assertThat(actual).isEqualTo(GAME_MODE_SELECT_MESSAGE);
     }
 
 
@@ -44,6 +45,7 @@ public class AppModel_specs {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
 
         sut.processInput("3");
+
         boolean actual = sut.isCompleted();
 
         assertThat(actual).isTrue();
@@ -57,17 +59,15 @@ public class AppModel_specs {
 
         String actual = sut.flushOutput();
 
-        assertThat(actual).isEqualTo("Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
-                              + NEW_LINE + "Enter your guess: ");
+        assertThat(actual).isEqualTo(SINGLE_GAME_START_MESSAGE);
     }
 
     @DisplayName("싱글 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다")
     @ParameterizedTest
-    @CsvSource({"50, 3", "99, 7", "77, 7"})
+    @CsvSource({"8, 5", "99, 9", "77,7"})
     void sut_correctly_prints_too_low_message_in_single_player_game(int answer, int guess) {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
         sut.processInput("1");
-        sut.flushOutput();
 
         sut.processInput(String.valueOf(guess));
         String actual = sut.flushOutput();
@@ -77,30 +77,28 @@ public class AppModel_specs {
 
     @DisplayName("싱글 플레이어 게임에서 입력한 정답이 answer 보다 클 경우 해당 메세지가 출력된다")
     @ParameterizedTest
-    @CsvSource({"30, 40", "7, 77", "10, 99"})
+    @CsvSource({"1,9", "7, 77", "30, 88"})
     void sut_correctly_prints_too_high_message_in_single_player_game(int answer, int guess) {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
         sut.processInput("1");
-        sut.flushOutput();
 
         sut.processInput(String.valueOf(guess));
-
         String actual = sut.flushOutput();
+
         assertThat(actual).isEqualTo("Your guess is too high." + NEW_LINE + "Enter your guess: ");
     }
 
     @DisplayName("싱글 플레이어 게임에서 입력한 정답이 answer 일 때, 해당 메세지가 출력된다")
     @ParameterizedTest
-    @ValueSource(ints = {1, 3, 10 ,100})
+    @ValueSource(ints = {100, 10, 1})
     void sut_correctly_prints_correct_message_in_single_player_game(int answer) {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
         sut.processInput("1");
-        sut.flushOutput();
 
         int guess = answer;
         sut.processInput(String.valueOf(guess));
-
         String actual = sut.flushOutput();
+
         assertThat(actual).startsWith("Correct! ");
     }
 
@@ -113,12 +111,12 @@ public class AppModel_specs {
 
         for (int i = 0; i < fails; i++) {
             sut.processInput("7");
+            sut.flushOutput();
         }
 
-        sut.flushOutput();
         sut.processInput("50");
-
         String actual = sut.flushOutput();
+
         assertThat(actual).contains((fails + 1) + " guesses." + NEW_LINE);
     }
 
@@ -131,6 +129,7 @@ public class AppModel_specs {
         sut.processInput("50");
 
         String actual = sut.flushOutput();
+
         assertThat(actual).contains("1 guess." + NEW_LINE);
     }
 
@@ -141,9 +140,9 @@ public class AppModel_specs {
         sut.processInput("1");
         sut.flushOutput();
         sut.processInput("50");
-
         String actual = sut.flushOutput();
-        assertThat(actual).endsWith(GAME_SELECT_MESSAGE);
+
+        assertThat(actual).endsWith(GAME_MODE_SELECT_MESSAGE);
     }
 
     @DisplayName("싱글 플레이어 모드가 끝나고 돌아간 select mode 에서 exit 를 선택했을 때 sut 는 잘 종료된다")
@@ -152,6 +151,8 @@ public class AppModel_specs {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
         sut.processInput("1");
         sut.processInput("50");
+        sut.flushOutput();
+
         sut.processInput("3");
 
         boolean actual = sut.isCompleted();
@@ -160,7 +161,7 @@ public class AppModel_specs {
 
     @DisplayName("싱글 플레이어 모드는 반복하여 게임을 실행해도 잘 돌아간다")
     @ParameterizedTest
-    @ValueSource(strings = "1, 30, 50, 77")
+    @ValueSource(strings = {"1, 10, 100"})
     void sut_generates_answer_for_each_game(String source) {
         int[] answers = Stream.of(source.split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
         var sut = new AppModel(new PositiveIntegerGeneratorStub(answers));
