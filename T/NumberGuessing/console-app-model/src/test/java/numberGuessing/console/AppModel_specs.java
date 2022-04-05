@@ -176,6 +176,8 @@ public class AppModel_specs {
         assertThat(actual).startsWith("Correct! ");
     }
 
+    // MULTI PLAYER GAME START!!!
+
     @DisplayName("sut 에 다중 플레이어 모드 선택 후 게임 시작 메세지가 출력된다")
     @Test
     void sut_correctly_prints_multiplayer_game_setup_message(){
@@ -196,6 +198,21 @@ public class AppModel_specs {
 
         String actual = sut.flushOutput();
         assertThat(actual).startsWith("I'm thinking of a number between 1 and 100." + NEW_LINE);
+    }
+
+
+    @DisplayName("다중 플레이어 모드에서 첫번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다.")
+    @ParameterizedTest
+    @CsvSource({"lisa, rose, jenny", "jenny, lisa, rose", "rose, jenny, lisa"})
+    void sut_correctly_prompts_first_player_name(String player1, String player2, String player3){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.flushOutput();
+        sut.processInput(String.join(", ", player1, player2, player3));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("Enter " + player1 + "'s guess:");
     }
 
 }
@@ -233,5 +250,9 @@ public class AppModel_specs {
 
  -------------- 다중 플레이어 모드 ----------------
  * [Step21. sut 에 다중 플레이어 모드 선택 후 게임 시작 메세지가 출력된다]
+ *          "Multiplayer game" + NEW_LINE + "Enter player names separated with commas: "
  * [Step22. 다중 플레이어 모드 선택 시, 추측값 범위 메세지가 출력된다]
+ *          "I'm thinking of a number between 1 and 100." + NEW_LINE
+ * [Step23. 다중 플레이어 모드에서 첫번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다]
+ *          "Enter " + player1 + "'s guess:"
  * */
