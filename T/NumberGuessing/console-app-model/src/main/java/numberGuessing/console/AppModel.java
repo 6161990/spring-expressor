@@ -64,7 +64,10 @@ public class AppModel {
             output = "I'm thinking of a number between 1 and 100." + NEW_LINE + "Enter " + players.get(0) + "'s guess:";
             return input2 -> {
                 output = "Enter " + players.get(1) + "'s guess:";
-                return getProcessMultiModeGame(answer);
+                return input3 -> {
+                    output = "Enter " + players.get(2) + "'s guess:";
+                    return null;
+                };
             };
         };
     }
