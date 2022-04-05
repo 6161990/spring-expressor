@@ -215,6 +215,21 @@ public class AppModel_specs {
         assertThat(actual).endsWith("Enter " + player1 + "'s guess:");
     }
 
+    @DisplayName("다중 플레이어 모드에서 두번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다.")
+    @ParameterizedTest
+    @CsvSource({"lisa, rose, jenny", "jenny, lisa, rose", "rose, jenny, lisa"})
+    void sut_correctly_prompts_second_player_name(String player1, String player2, String player3){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput(String.join(", ", player1, player2, player3));
+        sut.flushOutput();
+        sut.processInput("10");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("Enter " + player2 + "'s guess:");
+    }
+
 }
 
 /**
@@ -254,5 +269,7 @@ public class AppModel_specs {
  * [Step22. 다중 플레이어 모드 선택 시, 추측값 범위 메세지가 출력된다]
  *          "I'm thinking of a number between 1 and 100." + NEW_LINE
  * [Step23. 다중 플레이어 모드에서 첫번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다]
+ *          "Enter " + player1 + "'s guess:"
+ * [Step24. 다중 플레이어 모드에서 두번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다]
  *          "Enter " + player1 + "'s guess:"
  * */
