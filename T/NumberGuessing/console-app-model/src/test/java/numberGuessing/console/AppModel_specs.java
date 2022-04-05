@@ -55,6 +55,7 @@ public class AppModel_specs {
     @Test
     void sut_correctly_prints_single_player_game_start_message() {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.flushOutput();
         sut.processInput("1");
 
         String actual = sut.flushOutput();
@@ -68,6 +69,7 @@ public class AppModel_specs {
     void sut_correctly_prints_too_low_message_in_single_player_game(int answer, int guess) {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
         sut.processInput("1");
+        sut.flushOutput();
 
         sut.processInput(String.valueOf(guess));
         String actual = sut.flushOutput();
@@ -81,7 +83,7 @@ public class AppModel_specs {
     void sut_correctly_prints_too_high_message_in_single_player_game(int answer, int guess) {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
         sut.processInput("1");
-
+        sut.flushOutput();
         sut.processInput(String.valueOf(guess));
         String actual = sut.flushOutput();
 
@@ -94,6 +96,7 @@ public class AppModel_specs {
     void sut_correctly_prints_correct_message_in_single_player_game(int answer) {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
         sut.processInput("1");
+        sut.flushOutput();
 
         int guess = answer;
         sut.processInput(String.valueOf(guess));
@@ -182,6 +185,7 @@ public class AppModel_specs {
     @Test
     void sut_correctly_prints_multiplayer_game_setup_message(){
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.flushOutput();
         sut.processInput("2");
 
         String actual = sut.flushOutput();
@@ -290,4 +294,5 @@ public class AppModel_specs {
  *          "Enter " + player2 + "'s guess:"
  * [Step25. 다중 플레이어 모드에서 세번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다]
  *           "Enter " + player3 + "'s guess:"
+ * [Step26. Refactoring - 테스트 코드에서 적정시기에 FlushOutput 되도록한다]
  * */
