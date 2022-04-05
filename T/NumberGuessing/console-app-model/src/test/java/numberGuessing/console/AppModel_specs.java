@@ -230,6 +230,22 @@ public class AppModel_specs {
         assertThat(actual).endsWith("Enter " + player2 + "'s guess:");
     }
 
+    @DisplayName("다중 플레이어 모드에서 세번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다")
+    @ParameterizedTest
+    @CsvSource({"lisa, rose, jenny", "jenny, lisa, rose", "rose, jenny, lisa"})
+    void sut_correctly_prompts_third_player_name(String player1, String player2, String player3){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput(String.join(", ", player1, player2, player3));
+        sut.processInput("10");
+        sut.flushOutput();
+        sut.processInput("39");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("Enter " + player3 + "'s guess:");
+    }
+
 }
 
 /**
@@ -271,5 +287,7 @@ public class AppModel_specs {
  * [Step23. 다중 플레이어 모드에서 첫번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다]
  *          "Enter " + player1 + "'s guess:"
  * [Step24. 다중 플레이어 모드에서 두번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다]
- *          "Enter " + player1 + "'s guess:"
+ *          "Enter " + player2 + "'s guess:"
+ * [Step25. 다중 플레이어 모드에서 세번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다]
+ *           "Enter " + player3 + "'s guess:"
  * */
