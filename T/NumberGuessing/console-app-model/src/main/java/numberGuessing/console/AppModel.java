@@ -50,10 +50,8 @@ public class AppModel {
             return getProcessSingleModeGame(1, answer);
         }else if(input == "2"){
             output = MULTI_GAME_START_MESSAGE;
-            return input2 -> {
-                output = "I'm thinking of a number between 1 and 100." + NEW_LINE;
-                return null;
-            };
+            int answer = randomGenerator.generateLessThanEqualsToHundred();
+            return getProcessMultiModeGame(1, answer);
         } else {
             isCompleted = true;
             return null;
@@ -62,8 +60,9 @@ public class AppModel {
 
     private Processor getProcessMultiModeGame(int tries, int answer) {
         return input -> {
-            output = "I'm thinking of a number between 1 and 100." + NEW_LINE;
             players = Arrays.stream(input.split(",")).map(String::trim).collect(Collectors.toList());
+            String player1 = players.get(0);
+            output = "I'm thinking of a number between 1 and 100." + NEW_LINE + "Enter " + player1 + "'s guess:";
             return getProcessMultiModeGame(tries+1, answer);
         };
     }
