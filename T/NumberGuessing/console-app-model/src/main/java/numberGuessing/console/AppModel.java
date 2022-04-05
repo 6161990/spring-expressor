@@ -18,7 +18,6 @@ public class AppModel {
     private String output;
     private boolean isCompleted;
     private Processor processor;
-    private List<String> players;
 
     interface Processor {
         Processor run(String input);
@@ -60,9 +59,8 @@ public class AppModel {
 
     private Processor getProcessMultiModeGame(int tries, int answer) {
         return input -> {
-            players = Arrays.stream(input.split(",")).map(String::trim).collect(Collectors.toList());
-            String player1 = players.get(0);
-            output = "I'm thinking of a number between 1 and 100." + NEW_LINE + "Enter " + player1 + "'s guess:";
+            String[] players = input.split(",");
+            output = "I'm thinking of a number between 1 and 100." + NEW_LINE + "Enter " + players[0] + "'s guess:";
             return getProcessMultiModeGame(tries+1, answer);
         };
     }
