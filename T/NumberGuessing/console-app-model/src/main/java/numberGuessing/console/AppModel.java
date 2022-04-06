@@ -68,7 +68,7 @@ public class AppModel {
     }
 
     private Processor getProcessMultiModeGame(List<String> players, int tries) {
-        outputBuffer.append("Enter " + players.get(tries - 1) + "'s guess:");
+        outputBuffer.append("Enter " + players.get((tries - 1) % players.size()) + "'s guess:");
         return input -> getProcessMultiModeGame(players, tries + 1);
     }
 
