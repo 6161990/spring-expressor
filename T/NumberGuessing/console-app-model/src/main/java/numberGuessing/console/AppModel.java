@@ -52,26 +52,24 @@ public class AppModel {
         }else if(input == "2"){
             outputBuffer.append(MULTI_GAME_START_MESSAGE);
             int answer = randomGenerator.generateLessThanEqualsToHundred();
-            return getProcessMultiModeGame(answer);
+            return startMultiModeGame();
         } else {
             isCompleted = true;
             return null;
         }
     }
 
-    private Processor getProcessMultiModeGame(int answer) {
+    private Processor startMultiModeGame() {
         return input -> {
             List<String> players = Arrays.stream(input.split(",")).map(String::trim).collect(Collectors.toList());
             outputBuffer.append("I'm thinking of a number between 1 and 100." + NEW_LINE);
-            outputBuffer.append("Enter " + players.get(0) + "'s guess:");
-            return input2 -> {
-                outputBuffer.append("Enter " + players.get(1) + "'s guess:");
-                return input3 -> {
-                    outputBuffer.append("Enter " + players.get(2) + "'s guess:");
-                    return null;
-                };
-            };
+            return getProcessMultiModeGame(players, 1);
         };
+    }
+
+    private Processor getProcessMultiModeGame(List<String> players, int tries) {
+        outputBuffer.append("Enter " + players.get(tries - 1) + "'s guess:");
+        return input -> getProcessMultiModeGame(players, tries + 1);
     }
 
     private Processor getProcessSingleModeGame(int tries, int answer) {

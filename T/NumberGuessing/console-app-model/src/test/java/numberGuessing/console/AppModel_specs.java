@@ -295,4 +295,5 @@ public class AppModel_specs {
  * [Step25. 다중 플레이어 모드에서 세번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다]
  *           "Enter " + player3 + "'s guess:"
  * [Step26. Refactoring - 테스트 코드에서 적정시기에 FlushOutput 되도록한다]
+ * [Step27. Refactoring - MultiPlayerProcessor 를 개선한다]
  * */
