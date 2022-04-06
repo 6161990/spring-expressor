@@ -250,6 +250,23 @@ public class AppModel_specs {
         assertThat(actual).endsWith("Enter " + player3 + "'s guess:");
     }
 
+    @DisplayName("다중 플레이어 모드에서 모든 순서가 다 돌면 다시 첫번째 플레이어에게 넘어간다")
+    @ParameterizedTest
+    @CsvSource({"lisa, rose, jenny", "jenny, lisa, rose", "rose, jenny, lisa"})
+    void sut_correctly_rounds_players(String player1, String player2, String player3){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput(String.join(", ", player1, player2, player3));
+        sut.processInput("0");
+        sut.processInput("0");
+        sut.flushOutput();
+        sut.processInput("0");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("Enter " + player1 + "'s guess:");
+    }
+
 }
 
 /**
@@ -296,4 +313,5 @@ public class AppModel_specs {
  *           "Enter " + player3 + "'s guess:"
  * [Step26. Refactoring - 테스트 코드에서 적정시기에 FlushOutput 되도록한다]
  * [Step27. Refactoring - MultiPlayerProcessor 를 개선한다]
+ * [Step28. 다중 플레이어 모드에서 모든 순서가 다 돌면 다시 첫번째 플레이어에게 넘어간다]
  * */
