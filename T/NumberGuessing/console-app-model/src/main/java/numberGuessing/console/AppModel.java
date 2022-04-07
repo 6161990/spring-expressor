@@ -67,7 +67,8 @@ public class AppModel {
     }
 
     private Processor getProcessMultiModeGame(List<String> players, int tries) {
-        outputBuffer.append("Enter " + players.get((tries - 1) % players.size()) + "'s guess:");
+        String player = players.get((tries - 1) % players.size());
+        outputBuffer.append("Enter " + player + "'s guess:");
         return input -> {
             int answer = randomGenerator.generateLessThanEqualsToHundred();
             if(Integer.parseInt(input) < answer) {
