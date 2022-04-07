@@ -66,7 +66,7 @@ public class AppModel {
     private Processor startMultiModeGame() {
         return input -> {
             List<String> players = Arrays.stream(input.split(",")).map(String::trim).collect(Collectors.toList());
-            print("I'm thinking of a number between 1 and 100.");
+            println("I'm thinking of a number between 1 and 100.");
             return getProcessMultiModeGame(players, 1);
         };
     }
