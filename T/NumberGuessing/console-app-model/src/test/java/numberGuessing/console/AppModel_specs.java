@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AppModel_specs {
 
@@ -349,6 +350,21 @@ public class AppModel_specs {
         assertThat(actual).endsWith("1: Single player game" + NEW_LINE +
                           "2: Multiplayer game" + NEW_LINE + "3: Exit" + NEW_LINE + "Enter selection: ");
     }
+
+    @DisplayName("Step35. 멀티 플레이어 모드가 끝나고 셀렉트 모드에서 3을 입력하면 게임이 종료된다")
+    @Test
+    void sut_returns_to_mode_selection_if_multiplayer_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput("Jenny, Rose, Lisa");
+        sut.processInput("0");
+        sut.processInput("50");
+
+        sut.processInput("3");
+        boolean actual = sut.isCompleted();
+
+        assertTrue(actual);
+    }
 }
 
 /**
@@ -406,4 +422,5 @@ public class AppModel_specs {
  *  *     Message = winner + " wins!!!!!!!!!!" + NEW_LINE
  * [Step33. Refactoring]
  * [Step34. 멀티 플레이어 모드가 끝나면 셀렉트 모드 메세지가 출력된다]
+ * [Step35. 멀티 플레이어 모드가 끝나고 셀렉트 모드에서 3을 입력하면 게임이 종료된다]
  * */
