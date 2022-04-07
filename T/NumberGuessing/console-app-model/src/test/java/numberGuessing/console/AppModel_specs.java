@@ -335,7 +335,21 @@ public class AppModel_specs {
         assertThat(actual).contains(winner + " wins!!!!!!!!!!" + NEW_LINE);
     }
 
+    @DisplayName("멀티 플레이어 모드가 끝나면 셀렉트 모드 메세지가 출력된다")
+    @Test
+    void sut_prints_select_mode_message_if_multiplayer_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput("Jin, Me, Min");
+        sut.flushOutput();
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("1: Single player game" + NEW_LINE +
+                          "2: Multiplayer game" + NEW_LINE + "3: Exit" + NEW_LINE + "Enter selection: ");
     }
+}
 
 /**
  * [Step1. sut 가 처음 초기화되면 isCompleted 가 false 다.(Test)]
@@ -389,5 +403,7 @@ public class AppModel_specs {
  * [Step31. 다중 플레이어 게임에서 입력한 정답을 맞힌 경우 해당 메세지가 출력된다]
  *  *     Message = "Correct! "
  * [Step32. 멀티 플레이어 게임이 종료되었을 때 승자가 메세지에 출력된다]
- *  *     Message = winner +c+ NEW_LINE
+ *  *     Message = winner + " wins!!!!!!!!!!" + NEW_LINE
+ * [Step33. Refactoring]
+ * [Step34. 멀티 플레이어 모드가 끝나면 셀렉트 모드 메세지가 출력된다]
  * */
