@@ -201,7 +201,7 @@ public class AppModel_specs {
         sut.processInput("IU,KIM");
 
         String actual = sut.flushOutput();
-        assertThat(actual).startsWith("I'm thinking of a number between 1 and 100." + NEW_LINE);
+        assertThat(actual).startsWith("I'm thinking of a number between 1 and 100.");
     }
 
 
@@ -267,6 +267,23 @@ public class AppModel_specs {
         assertThat(actual).endsWith("Enter " + player1 + "'s guess:");
     }
 
+    @ParameterizedTest
+    @CsvSource({"50, 40, 1, Jenny", "30, 29, 2, Rose"})
+    void sut_correctly_prints_too_low_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("2");
+        sut.processInput("Jenny, Rose, Me");
+        for (int i = 0; i < fails -1 ; i++) {
+            sut.processInput(String.valueOf(guess)); // Jenny 에서는 건너뜀. 제니가 1번 실패했으므로 for 문 돌지않음.(0 < 1-1)
+        }
+        sut.flushOutput(); // "I'm thinking of a number between 1 and 100." + NEW_LINE
+        sut.processInput(String.valueOf(guess)); //Jenny 의 추측값
+
+        String actual = sut.flushOutput(); // "Enter Rose's guess:
+
+        assertThat(actual).startsWith(lastPlayer + " guess is too low." + NEW_LINE);
+    }
+
 }
 
 /**
@@ -314,4 +331,6 @@ public class AppModel_specs {
  * [Step26. Refactoring - 테스트 코드에서 적정시기에 FlushOutput 되도록한다]
  * [Step27. Refactoring - MultiPlayerProcessor 를 개선한다]
  * [Step28. 다중 플레이어 모드에서 모든 순서가 다 돌면 다시 첫번째 플레이어에게 넘어간다]
+ * [Step29. 다중 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다]
+ *  *     TooLowMessage = "Your guess is too low." + NEW_LINE
  * */
