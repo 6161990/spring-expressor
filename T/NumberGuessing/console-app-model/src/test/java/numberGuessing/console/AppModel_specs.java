@@ -202,7 +202,7 @@ public class AppModel_specs {
         sut.processInput("IU,KIM");
 
         String actual = sut.flushOutput();
-        assertThat(actual).startsWith("I'm thinking of a number between 1 and 100.");
+        assertThat(actual).startsWith("I'm thinking of a number between 1 and 100." + NEW_LINE);
     }
 
 
@@ -425,4 +425,5 @@ public class AppModel_specs {
  * [Step35. 멀티 플레이어 모드가 끝나고 셀렉트 모드에서 3을 입력하면 게임이 종료된다]
  * [Step36. Refactoring - Print 와 Println 메소드 추출]
  * [Step37. Refactoring - 과한 상수화 변경]
+ * [Step38. ATDD(인수테스트) 변경 필요부분 수정]
  * */
