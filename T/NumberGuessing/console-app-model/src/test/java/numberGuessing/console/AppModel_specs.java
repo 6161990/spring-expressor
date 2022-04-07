@@ -424,4 +424,5 @@ public class AppModel_specs {
  * [Step34. 멀티 플레이어 모드가 끝나면 셀렉트 모드 메세지가 출력된다]
  * [Step35. 멀티 플레이어 모드가 끝나고 셀렉트 모드에서 3을 입력하면 게임이 종료된다]
  * [Step36. Refactoring - Print 와 Println 메소드 추출]
+ * [Step37. Refactoring - 과한 상수화 변경]
  * */

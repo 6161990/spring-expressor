@@ -11,9 +11,6 @@ public class AppModel {
     public static final String NEW_LINE = System.lineSeparator();
     public static final String GAME_MODE_SELECT_MESSAGE = "1: Single player game" + NEW_LINE +
             "2: Multiplayer game" + NEW_LINE + "3: Exit" + NEW_LINE + "Enter selection: ";
-    public static final String SINGLE_GAME_START_MESSAGE = "Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
-            + NEW_LINE + "Enter your guess: ";
-    public static final String MULTI_GAME_START_MESSAGE = "Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ";
     private PositiveIntegerGenerator randomGenerator;
     private final StringBuffer outputBuffer;
     private boolean isCompleted;
@@ -50,11 +47,14 @@ public class AppModel {
 
     private Processor processSelectGameMode(String input) {
         if(input == "1"){
-            print(SINGLE_GAME_START_MESSAGE);
+            println("Single player game");
+            println("I'm thinking of a number between 1 and 100.");
+            print("Enter your guess: ");
             int answer = randomGenerator.generateLessThanEqualsToHundred();
             return getProcessSingleModeGame(1, answer);
         }else if(input == "2"){
-            print(MULTI_GAME_START_MESSAGE);
+            println("Multiplayer game");
+            print("Enter player names separated with commas: ");
             return startMultiModeGame();
         } else {
             isCompleted = true;
