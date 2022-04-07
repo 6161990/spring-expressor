@@ -267,6 +267,7 @@ public class AppModel_specs {
         assertThat(actual).endsWith("Enter " + player1 + "'s guess:");
     }
 
+    @DisplayName("다중 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다")
     @ParameterizedTest
     @CsvSource({"50, 40, 1, Jenny", "30, 29, 2, Rose"})
     void sut_correctly_prints_too_low_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {
@@ -284,6 +285,7 @@ public class AppModel_specs {
         assertThat(actual).startsWith(lastPlayer + " guess is too low." + NEW_LINE);
     }
 
+    @DisplayName("다중 플레이어 게임에서 입력한 정답이 answer 보다 클 경우 해당 메세지가 출력된다")
     @ParameterizedTest
     @CsvSource({"7, 77, 1, Jenny", "23, 88, 2, Rose"})
     void sut_correctly_prints_too_high_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {
@@ -299,7 +301,21 @@ public class AppModel_specs {
         String actual = sut.flushOutput();
 
         assertThat(actual).startsWith(lastPlayer + " guess is too high." + NEW_LINE);
+    }
 
+    @DisplayName("다중 플레이어 게임에서 입력한 정답을 맞힌 경우 해당 메세지가 출력된다")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 30, 77})
+    void sut_correctly_prints_message_in_multiplayer_game(int answer){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("2");
+        sut.processInput("Jenny, Rose, Lisa");
+        sut.flushOutput();
+        sut.processInput(String.valueOf(answer));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).startsWith("Correct! ");
     }
 
 
@@ -351,7 +367,9 @@ public class AppModel_specs {
  * [Step27. Refactoring - MultiPlayerProcessor 를 개선한다]
  * [Step28. 다중 플레이어 모드에서 모든 순서가 다 돌면 다시 첫번째 플레이어에게 넘어간다]
  * [Step29. 다중 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다]
- *  *     TooLowMessage = player + " guess is too low." + NEW_LINE
+ *  *     Message = player + " guess is too low." + NEW_LINE
  * [Step30. 다중 플레이어 게임에서 입력한 정답이 answer 보다 클 경우 해당 메세지가 출력된다]
- *  *     TooLowMessage = player + " guess is too high." + NEW_LINE
+ *  *     Message = player + " guess is too high." + NEW_LINE
+ * [Step31. 다중 플레이어 게임에서 입력한 정답을 맞힌 경우 해당 메세지가 출력된다]
+ *  *     Message = "Correct! "
  * */
