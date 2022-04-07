@@ -78,6 +78,8 @@ public class AppModel {
             } else {
                 outputBuffer.append("Correct! ");
                 outputBuffer.append(player + " wins!!!!!!!!!!" + NEW_LINE);
+                outputBuffer.append(GAME_MODE_SELECT_MESSAGE);
+                return this::processSelectGameMode;
             }
             return getProcessMultiModeGame(players, tries + 1);
         };
