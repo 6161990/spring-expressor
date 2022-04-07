@@ -318,6 +318,22 @@ public class AppModel_specs {
         assertThat(actual).startsWith("Correct! ");
     }
 
+    @DisplayName("멀티 플레이어 게임이 종료되었을 때 승자가 메세지에 출력된다")
+    @ParameterizedTest
+    @CsvSource({"0, Jenny", "1, Lisa", "2, Rose", "99, Jenny"})
+    void sut_correctly_prints_winner_if_multiplayer_game_finished(int fails, String winner) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput("Jenny, Lisa, Rose");
+        for (int i = 0; i < fails; i++) {
+            sut.processInput("0");
+        }
+        sut.flushOutput();
+        sut.processInput("50");
+        String actual = sut.flushOutput();
+
+        assertThat(actual).contains(winner + " wins!!!!!!!!!!" + NEW_LINE);
+    }
 
     }
 
@@ -372,4 +388,6 @@ public class AppModel_specs {
  *  *     Message = player + " guess is too high." + NEW_LINE
  * [Step31. 다중 플레이어 게임에서 입력한 정답을 맞힌 경우 해당 메세지가 출력된다]
  *  *     Message = "Correct! "
+ * [Step32. 멀티 플레이어 게임이 종료되었을 때 승자가 메세지에 출력된다]
+ *  *     Message = winner +c+ NEW_LINE
  * */
