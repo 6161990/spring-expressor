@@ -2,11 +2,6 @@ package numberGuessing.console;
 
 import numberGuessing.PositiveIntegerGenerator;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 public class AppModel {
 
     public static final String NEW_LINE = System.lineSeparator();
@@ -51,21 +46,24 @@ public class AppModel {
             return getProcessSingleModeGame(1, answer);
         }else if(input == "2"){
             output = MULTI_GAME_START_MESSAGE;
-            return input2 -> {
-                String[] players = input2.split(",");
-                output = "I'm thinking of a number between 1 and 100." + NEW_LINE + "Enter " + players[0] + "'s guess:";
-                return input3 -> {
-                    output = "Enter " + players[1] + "'s guess:";
-                    return input4 -> {
-                        output = "Enter " + players[2] + "'s guess:";
-                        return null;
-                    };
-                };
-            };
+            return startMultiGameMode();
         } else{
             isCompleted = true;
             return null;
         }
+    }
+
+    private Processor startMultiGameMode() {
+        return input -> {
+            String[] players = input.split(",");
+            output = "I'm thinking of a number between 1 and 100." + NEW_LINE;
+            return getProcessMultiModeGame(players, 1);
+        };
+    }
+
+    private Processor getProcessMultiModeGame(String[] players, int tries) {
+        output = "Enter " + players[tries-1] + "'s guess:";
+        return input -> getProcessMultiModeGame(players, tries  + 1);
     }
 
     private Processor getProcessSingleModeGame(int tries, int answer) {
