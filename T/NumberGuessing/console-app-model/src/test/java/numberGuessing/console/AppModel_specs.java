@@ -454,4 +454,5 @@ public class AppModel_specs {
  * [Step37. Refactoring - 과한 상수화 변경]
  * [Step38. ATDD(인수테스트) 변경 필요부분 수정]
  * [Step39. Should I test private]
+ * [Step40. Refactoring - printLines() & getProcessMultiModeGame() ]
  * */
