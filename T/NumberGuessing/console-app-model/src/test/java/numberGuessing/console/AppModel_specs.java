@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.powermock.reflect.Whitebox;
 
 import java.util.stream.Stream;
 
@@ -365,6 +366,32 @@ public class AppModel_specs {
 
         assertTrue(actual);
     }
+
+    @DisplayName("private 메소드(print()) 테스트")
+    @Test
+    void print_correctly_appends_string_to_output_buffer() throws Exception {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut);
+        outputBuffer.setLength(0);
+
+        Whitebox.invokeMethod(sut, "print", "foo");
+
+        String actual = outputBuffer.toString();
+        assertThat(actual).isEqualTo("foo");
+    }
+
+    @DisplayName("private 메소드(println()) 테스트")
+    @Test
+    void println_correctly_appends_string_and_line_separator_to_output_buffer() throws Exception {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut); // private 필드 가져오기
+
+        outputBuffer.setLength(0);
+        Whitebox.invokeMethod(sut, "println", "foo"); //private 메소드 실행시키
+
+        String actual = outputBuffer.toString();
+        assertThat(actual).isEqualTo("foo"+ NEW_LINE);
+    }
 }
 
 /**
@@ -426,4 +453,5 @@ public class AppModel_specs {
  * [Step36. Refactoring - Print 와 Println 메소드 추출]
  * [Step37. Refactoring - 과한 상수화 변경]
  * [Step38. ATDD(인수테스트) 변경 필요부분 수정]
+ * [Step39. Should I test private]
  * */

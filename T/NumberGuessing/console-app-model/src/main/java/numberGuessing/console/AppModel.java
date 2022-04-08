@@ -45,6 +45,10 @@ public class AppModel {
         outputBuffer.append(message);
     }
 
+    private void println(String message) {
+        outputBuffer.append(message + NEW_LINE);
+    }
+
     private Processor processSelectGameMode(String input) {
         if(input == "1"){
             println("Single player game");
@@ -81,8 +85,7 @@ public class AppModel {
             } else if(Integer.parseInt(input) > answer) {
                 println(player + " guess is too high.");
             } else {
-                print("Correct! ");
-                println(player + " wins!!!!!!!!!!");
+                println("Correct! "+ player + " wins!!!!!!!!!!");
                 print(GAME_MODE_SELECT_MESSAGE);
                 return this::processSelectGameMode;
             }
@@ -108,7 +111,4 @@ public class AppModel {
         };
     }
 
-    private void println(String message) {
-        outputBuffer.append(message + NEW_LINE);
-    }
 }
