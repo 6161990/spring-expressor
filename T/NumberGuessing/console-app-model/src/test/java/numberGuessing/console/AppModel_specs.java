@@ -17,6 +17,7 @@ public class AppModel_specs {
            "2: Multiplayer game" + NEW_LINE + "3: Exit" + NEW_LINE + "Enter selection: ";
     public static final String SINGLE_GAME_START_MESSAGE = "Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
                             + NEW_LINE + "Enter your guess: ";
+    public static final String MULTI_GAME_START_MESSAGE = "Multiplayer game" + NEW_LINE + "Enter player names separated with commas:";
 
     @DisplayName("sut 가 처음 초기화되면 isCompleted 가 false 다.")
     @Test
@@ -180,11 +181,27 @@ public class AppModel_specs {
 
     @DisplayName("sut 에 다중 플레이어 모드 선택 후 게임 시작 메세지가 출력된다")
     @Test
-    void sut_correctly_prints_multiplayer_game_setup_message(){}
+    void sut_correctly_prints_multiplayer_game_setup_message(){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo(MULTI_GAME_START_MESSAGE);
+    }
 
     @DisplayName("다중 플레이어 모드 선택 시, 추측값 범위 메세지가 출력된다.")
     @Test
-    void sut_correctly_prints_multiplayer_game_start_message(){}
+    void sut_correctly_prints_multiplayer_game_start_message(){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.flushOutput();
+        sut.processInput("Jenny, Rose");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("I'm thinking of a number between 1 and 100." + NEW_LINE);
+    }
 
     @DisplayName("다중 플레이어 모드에서 첫번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다.")
     void sut_correctly_prompts_first_player_name(String player1, String player2, String player3){}

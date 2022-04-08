@@ -9,6 +9,8 @@ public class AppModel {
             "2: Multiplayer game" + NEW_LINE + "3: Exit" + NEW_LINE + "Enter selection: ";
     public static final String SINGLE_GAME_START_MESSAGE = "Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
             + NEW_LINE + "Enter your guess: ";
+    public static final String MULTI_GAME_START_MESSAGE = "Multiplayer game" + NEW_LINE + "Enter player names separated with commas:";
+
     private PositiveIntegerGenerator randomGenerator;
     private String output;
     private boolean isCompleted;
@@ -42,7 +44,13 @@ public class AppModel {
             output = SINGLE_GAME_START_MESSAGE;
             int answer = randomGenerator.generateLessThanEqualsToHundred();
             return getProcessSingleModeGame(1, answer);
-        }else {
+        }else if(input == "2"){
+            output = MULTI_GAME_START_MESSAGE;
+            return input2 -> {
+                output = "I'm thinking of a number between 1 and 100." + NEW_LINE;
+                return null;
+            };
+        } else{
             isCompleted = true;
             return null;
         }
