@@ -175,6 +175,61 @@ public class AppModel_specs {
         String actual = sut.flushOutput();
         assertThat(actual).startsWith("Correct! ");
     }
+
+    // -- START MULTI PLAY ROUND2 --
+
+    @DisplayName("sut 에 다중 플레이어 모드 선택 후 게임 시작 메세지가 출력된다")
+    @Test
+    void sut_correctly_prints_multiplayer_game_setup_message(){}
+
+    @DisplayName("다중 플레이어 모드 선택 시, 추측값 범위 메세지가 출력된다.")
+    @Test
+    void sut_correctly_prints_multiplayer_game_start_message(){}
+
+    @DisplayName("다중 플레이어 모드에서 첫번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다.")
+    void sut_correctly_prompts_first_player_name(String player1, String player2, String player3){}
+
+    @DisplayName("다중 플레이어 모드에서 두번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다.")
+    void sut_correctly_prompts_second_player_name(String player1, String player2, String player3){}
+
+    @DisplayName("다중 플레이어 모드에서 세번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다")
+    void sut_correctly_prompts_third_player_name(String player1, String player2, String player3){}
+
+    @DisplayName("다중 플레이어 모드에서 모든 순서가 다 돌면 다시 첫번째 플레이어에게 넘어간다")
+    void sut_correctly_rounds_players(String player1, String player2, String player3){}
+
+    @DisplayName("다중 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다")
+    void sut_correctly_prints_too_low_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {}
+
+    @DisplayName("다중 플레이어 게임에서 입력한 정답이 answer 보다 클 경우 해당 메세지가 출력된다")
+    void sut_correctly_prints_too_high_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {}
+
+    @DisplayName("다중 플레이어 게임에서 입력한 정답을 맞힌 경우 해당 메세지가 출력된다")
+    void sut_correctly_prints_message_in_multiplayer_game(int answer){}
+
+    @DisplayName("멀티 플레이어 게임이 종료되었을 때 승자가 메세지에 출력된다")
+    void sut_correctly_prints_winner_if_multiplayer_game_finished(int fails, String winner) {}
+
+    @DisplayName("멀티 플레이어 모드가 끝나면 셀렉트 모드 메세지가 출력된다")
+    @Test
+    void sut_prints_select_mode_message_if_multiplayer_game_finished() {}
+
+    @DisplayName("멀티 플레이어 모드가 끝나고 셀렉트 모드에서 3을 입력하면 게임이 종료된다")
+    @Test
+    void sut_returns_to_mode_selection_if_multiplayer_game_finished() {}
+
+    @DisplayName("private 메소드(print()) 테스트")
+    @Test
+    void print_correctly_appends_string_to_output_buffer() {}
+
+    @DisplayName("private 메소드(println()) 테스트")
+    @Test
+    void println_correctly_appends_string_and_line_separator_to_output_buffer() {}
+
+    @DisplayName("private 메소드(printLines()) 테스트")
+    @Test
+    void printLines_correctly_appends_lines() {}
+
 }
 
 /**
@@ -207,4 +262,36 @@ public class AppModel_specs {
  * [Step18. Refactoring 3 - tries 필드를 없앤다]
  * [Step19. Refactoring 4 - answer 필드를 없앤다]
  * [Step20. Refactoring 5 - 해당 Refactoring 진행 후, 최종적으로 필요없어진 부분을 제거한다]
+ * ------------------- START MULTI PLAY ROUND2 ---------------------
+ * [Step21. sut 에 다중 플레이어 모드 선택 후 게임 시작 메세지가 출력된다]
+ *          "Multiplayer game" + NEW_LINE + "Enter player names separated with commas: "
+ * [Step22. 다중 플레이어 모드 선택 시, 추측값 범위 메세지가 출력된다]
+ *          "I'm thinking of a number between 1 and 100." + NEW_LINE
+ * [Step23. 다중 플레이어 모드에서 첫번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다]
+ *          "Enter " + player1 + "'s guess:"
+ * [Step24. 다중 플레이어 모드에서 두번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다]
+ *          "Enter " + player2 + "'s guess:"
+ * [Step25. 다중 플레이어 모드에서 세번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다]
+ *           "Enter " + player3 + "'s guess:"
+ * [Step26. Refactoring - 테스트 코드에서 적정시기에 FlushOutput 되도록한다]
+ * [Step27. Refactoring - MultiPlayerProcessor 를 개선한다]
+ * [Step28. 다중 플레이어 모드에서 모든 순서가 다 돌면 다시 첫번째 플레이어에게 넘어간다]
+ * [Step29. 다중 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다]
+ *  *     Message = player + " guess is too low." + NEW_LINE
+ * [Step30. 다중 플레이어 게임에서 입력한 정답이 answer 보다 클 경우 해당 메세지가 출력된다]
+ *  *     Message = player + " guess is too high." + NEW_LINE
+ * [Step31. 다중 플레이어 게임에서 입력한 정답을 맞힌 경우 해당 메세지가 출력된다]
+ *  *     Message = "Correct! "
+ * [Step32. 멀티 플레이어 게임이 종료되었을 때 승자가 메세지에 출력된다]
+ *  *     Message = winner + " wins!!!!!!!!!!" + NEW_LINE
+ * [Step33. Refactoring]
+ * [Step34. 멀티 플레이어 모드가 끝나면 셀렉트 모드 메세지가 출력된다]
+ * [Step35. 멀티 플레이어 모드가 끝나고 셀렉트 모드에서 3을 입력하면 게임이 종료된다]
+ * [Step36. Refactoring - Print 와 Println 메소드 추출]
+ * [Step37. Refactoring - 과한 상수화 변경]
+ * [Step38. ATDD(인수테스트) 변경 필요부분 수정]
+ * [Step39. Should I test private(Print, Println)]
+ * [Step40. Refactoring - printLines() & getProcessMultiModeGame() ]
+ * [Step41. Should I test private(PrintLines)]
+ * [Step42. Refactoring - TextOutput 클래스 생성을 통한 책임과 역할 분리 그리고 Private Test의 문제점]
  * */
