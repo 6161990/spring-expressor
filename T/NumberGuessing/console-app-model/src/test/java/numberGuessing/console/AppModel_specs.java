@@ -392,6 +392,19 @@ public class AppModel_specs {
         String actual = outputBuffer.toString();
         assertThat(actual).isEqualTo("foo"+ NEW_LINE);
     }
+
+    @DisplayName("private 메소드(printLines()) 테스트")
+    @Test
+    void printLines_correctly_appends_lines() throws Exception {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut);
+
+        outputBuffer.setLength(0);
+        Whitebox.invokeMethod(sut, "printLines", "Foo", "Bar", "Baz");
+
+        String actual = outputBuffer.toString();
+        assertThat(actual).isEqualTo("Foo" + NEW_LINE + "Bar" + NEW_LINE + "Baz");
+    }
 }
 
 /**
@@ -453,6 +466,7 @@ public class AppModel_specs {
  * [Step36. Refactoring - Print 와 Println 메소드 추출]
  * [Step37. Refactoring - 과한 상수화 변경]
  * [Step38. ATDD(인수테스트) 변경 필요부분 수정]
- * [Step39. Should I test private]
+ * [Step39. Should I test private(Print, Println)]
  * [Step40. Refactoring - printLines() & getProcessMultiModeGame() ]
+ * [Step41. Should I test private(PrintLines)]
  * */
