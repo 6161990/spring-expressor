@@ -2,6 +2,10 @@ package numberGuessing.console;
 
 import numberGuessing.PositiveIntegerGenerator;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class AppModel {
 
     public static final String NEW_LINE = System.lineSeparator();
@@ -41,6 +45,10 @@ public class AppModel {
        processor = processor.run(input);
     }
 
+    private void printLines(String... lines) {
+        textOutput.printLines(lines);
+    }
+
     private Processor processSelectGameMode(String input) {
         if(input == "1"){
             outputBuffer.append(SINGLE_GAME_START_MESSAGE);
@@ -78,8 +86,10 @@ public class AppModel {
                 return getProcessSingleModeGame(tries+1, answer);
             } else {
                 outputBuffer.append("Correct! " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + GAME_MODE_SELECT_MESSAGE);
+
                 return this::processSelectGameMode;
             }
         };
     }
+
 }

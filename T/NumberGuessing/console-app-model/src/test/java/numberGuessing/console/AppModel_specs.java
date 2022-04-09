@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.powermock.reflect.Whitebox;
 
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AppModel_specs {
 
@@ -183,6 +185,7 @@ public class AppModel_specs {
 
     // -- START MULTI PLAY ROUND2 --
 
+
     @DisplayName("sut 에 다중 플레이어 모드 선택 후 게임 시작 메세지가 출력된다")
     @Test
     void sut_correctly_prints_multiplayer_game_setup_message(){
@@ -236,7 +239,6 @@ public class AppModel_specs {
         String actual = sut.flushOutput();
 
         assertThat(actual).endsWith("Enter " + player2 + "'s guess:");
-
     }
 
     @DisplayName("다중 플레이어 모드에서 세번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다")
@@ -291,6 +293,7 @@ public class AppModel_specs {
     @Test
     void printLines_correctly_appends_lines() {}
 
+    
 }
 
 /**
@@ -323,7 +326,9 @@ public class AppModel_specs {
  * [Step18. Refactoring 3 - tries 필드를 없앤다]
  * [Step19. Refactoring 4 - answer 필드를 없앤다]
  * [Step20. Refactoring 5 - 해당 Refactoring 진행 후, 최종적으로 필요없어진 부분을 제거한다]
+
  * ------------------- START MULTI PLAY ROUND2 ---------------------
+
  * [Step21. sut 에 다중 플레이어 모드 선택 후 게임 시작 메세지가 출력된다]
  *          "Multiplayer game" + NEW_LINE + "Enter player names separated with commas: "
  * [Step22. 다중 플레이어 모드 선택 시, 추측값 범위 메세지가 출력된다]
