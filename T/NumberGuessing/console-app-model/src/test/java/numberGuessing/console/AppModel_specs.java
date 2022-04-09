@@ -331,15 +331,53 @@ public class AppModel_specs {
     }
 
     @DisplayName("멀티 플레이어 게임이 종료되었을 때 승자가 메세지에 출력된다")
-    void sut_correctly_prints_winner_if_multiplayer_game_finished(int fails, String winner) {}
+    @ParameterizedTest
+    @CsvSource({"0, Jenny", "1, Lisa", "2, Yoonji", "99, Jenny"})
+    void sut_correctly_prints_winner_if_multiplayer_game_finished(int fails, String winner) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput("Jenny, Lisa, Yoonji");
+
+        for (int i = 0; i < fails; i++) {
+            sut.processInput("0");
+        }
+
+        sut.flushOutput();
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).contains(winner + " wins!!!!!!!!!!" + NEW_LINE);
+    }
 
     @DisplayName("멀티 플레이어 모드가 끝나면 셀렉트 모드 메세지가 출력된다")
     @Test
-    void sut_prints_select_mode_message_if_multiplayer_game_finished() {}
+    void sut_prints_select_mode_message_if_multiplayer_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput("Jenny, Lisa, Rose");
+        sut.flushOutput();
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).contains(GAME_MODE_SELECT_MESSAGE);
+    }
 
     @DisplayName("멀티 플레이어 모드가 끝나고 셀렉트 모드에서 3을 입력하면 게임이 종료된다")
     @Test
-    void sut_returns_to_mode_selection_if_multiplayer_game_finished() {}
+    void sut_returns_to_mode_selection_if_multiplayer_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput("Jenny, Rose");
+        sut.processInput("50");
+        sut.flushOutput();
+        sut.processInput("3");
+
+        boolean actual = sut.isCompleted();
+
+        assertThat(actual).isTrue();
+    }
 
     @DisplayName("private 메소드(print()) 테스트")
     @Test

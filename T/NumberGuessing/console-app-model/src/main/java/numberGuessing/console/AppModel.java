@@ -71,12 +71,15 @@ public class AppModel {
         outputBuffer.append("Enter " + players.get((tries - 1) % players.size()) + "'s guess:");
         return input -> {
             int answer = randomGenerator.generateLessThanEqualsToHundred();
+            String player = players.get((tries - 1) % players.size());
             if(Integer.parseInt(input) < answer){
-                outputBuffer.append(players.get((tries - 1) % players.size()) + " guess is too low." + NEW_LINE);
+                outputBuffer.append(player + " guess is too low." + NEW_LINE);
             }else if(Integer.parseInt(input) > answer){
-                outputBuffer.append(players.get((tries - 1) % players.size()) + " guess is too high." + NEW_LINE);
+                outputBuffer.append(player + " guess is too high." + NEW_LINE);
             } else {
-                outputBuffer.append("Correct! ");
+                outputBuffer.append("Correct! "+ player + " wins!!!!!!!!!!" + NEW_LINE);
+                outputBuffer.append(GAME_MODE_SELECT_MESSAGE);
+                return this::processSelectGameMode;
             }
             return getProcessMultiModeGame(players, tries + 1);
         };
