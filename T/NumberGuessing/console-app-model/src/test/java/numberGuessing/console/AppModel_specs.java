@@ -257,12 +257,47 @@ public class AppModel_specs {
     }
 
     @DisplayName("다중 플레이어 모드에서 모든 순서가 다 돌면 다시 첫번째 플레이어에게 넘어간다")
-    void sut_correctly_rounds_players(String player1, String player2, String player3){}
+    @ParameterizedTest
+    @CsvSource({"Jenny, Rose, Lisa", "Lisa, Jenny, Rose", "Rose, Lisa, Jenny"})
+    void sut_correctly_rounds_players(String player1, String player2, String player3){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.flushOutput();
+        sut.processInput(String.join(",", player1, player2, player3));
+
+        sut.processInput("0");
+        sut.processInput("0");
+        sut.flushOutput();
+        sut.processInput("0");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("Enter " + player1 + "'s guess:");
+    }
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다")
-    void sut_correctly_prints_too_low_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {}
+    @ParameterizedTest
+    @CsvSource({"50, 40, 1, Jenny", "30, 29, 2, Rose"})
+    void sut_correctly_prints_too_low_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("2");
+        sut.flushOutput();
+        sut.processInput("Jenny,Rose");
+
+        for (int i = 0; i < fails - 1; i++) {
+            sut.processInput(String.valueOf(guess));
+        }
+        sut.flushOutput();
+
+        sut.processInput(String.valueOf(guess));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).startsWith(lastPlayer + " guess is too low." + NEW_LINE);
+    }
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답이 answer 보다 클 경우 해당 메세지가 출력된다")
+    @ParameterizedTest
     void sut_correctly_prints_too_high_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {}
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답을 맞힌 경우 해당 메세지가 출력된다")
