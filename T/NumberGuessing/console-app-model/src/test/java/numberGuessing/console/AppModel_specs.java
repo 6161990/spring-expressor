@@ -19,6 +19,7 @@ public class AppModel_specs {
            "2: Multiplayer game" + NEW_LINE + "3: Exit" + NEW_LINE + "Enter selection: ";
     public static final String SINGLE_GAME_START_MESSAGE = "Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
                             + NEW_LINE + "Enter your guess: ";
+    public static final String MULTI_GAME_START_MESSAGE = "Multiplayer game" + NEW_LINE + "Enter player names separated with commas:";
 
     @DisplayName("sut 가 처음 초기화되면 isCompleted 가 false 다.")
     @Test
@@ -86,6 +87,7 @@ public class AppModel_specs {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
         sut.processInput("1");
         sut.flushOutput();
+
         sut.processInput(String.valueOf(guess));
         String actual = sut.flushOutput();
 
@@ -181,7 +183,8 @@ public class AppModel_specs {
         assertThat(actual).startsWith("Correct! ");
     }
 
-    // MULTI PLAYER GAME START!!!
+    // -- START MULTI PLAY ROUND2 --
+
 
     @DisplayName("sut 에 다중 플레이어 모드 선택 후 게임 시작 메세지가 출력된다")
     @Test
@@ -191,30 +194,32 @@ public class AppModel_specs {
         sut.processInput("2");
 
         String actual = sut.flushOutput();
-        assertThat(actual).isEqualTo("Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ");
+
+        assertThat(actual).isEqualTo(MULTI_GAME_START_MESSAGE);
     }
 
     @DisplayName("다중 플레이어 모드 선택 시, 추측값 범위 메세지가 출력된다.")
     @Test
     void sut_correctly_prints_multiplayer_game_start_message(){
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.flushOutput();
         sut.processInput("2");
         sut.flushOutput();
-        sut.processInput("IU,KIM");
+        sut.processInput("Jenny, Rose");
 
         String actual = sut.flushOutput();
+
         assertThat(actual).startsWith("I'm thinking of a number between 1 and 100." + NEW_LINE);
     }
 
-
     @DisplayName("다중 플레이어 모드에서 첫번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다.")
     @ParameterizedTest
-    @CsvSource({"lisa, rose, jenny", "jenny, lisa, rose", "rose, jenny, lisa"})
+    @CsvSource({"Jenny, Rose, Lisa","Rose, Lisa, Jenny", "Lisa, Jenny, Rose"})
     void sut_correctly_prompts_first_player_name(String player1, String player2, String player3){
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
         sut.processInput("2");
         sut.flushOutput();
-        sut.processInput(String.join(", ", player1, player2, player3));
+        sut.processInput(String.join(",", player1, player2, player3));
 
         String actual = sut.flushOutput();
 
@@ -223,13 +228,13 @@ public class AppModel_specs {
 
     @DisplayName("다중 플레이어 모드에서 두번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다.")
     @ParameterizedTest
-    @CsvSource({"lisa, rose, jenny", "jenny, lisa, rose", "rose, jenny, lisa"})
+    @CsvSource({"Jenny, Rose, Lisa","Rose, Lisa, Jenny", "Lisa, Jenny, Rose"})
     void sut_correctly_prompts_second_player_name(String player1, String player2, String player3){
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
         sut.processInput("2");
-        sut.processInput(String.join(", ", player1, player2, player3));
         sut.flushOutput();
-        sut.processInput("10");
+        sut.processInput(String.join(",", player1, player2, player3));
+        sut.processInput("0");
 
         String actual = sut.flushOutput();
 
@@ -238,14 +243,15 @@ public class AppModel_specs {
 
     @DisplayName("다중 플레이어 모드에서 세번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다")
     @ParameterizedTest
-    @CsvSource({"lisa, rose, jenny", "jenny, lisa, rose", "rose, jenny, lisa"})
+    @CsvSource({"Jenny, Rose, Lisa","Rose, Lisa, Jenny", "Lisa, Jenny, Rose"})
     void sut_correctly_prompts_third_player_name(String player1, String player2, String player3){
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
         sut.processInput("2");
-        sut.processInput(String.join(", ", player1, player2, player3));
-        sut.processInput("10");
         sut.flushOutput();
-        sut.processInput("39");
+        sut.processInput(String.join(",", player1, player2, player3));
+        sut.processInput("0");
+        sut.flushOutput();
+        sut.processInput("0");
 
         String actual = sut.flushOutput();
 
@@ -253,119 +259,41 @@ public class AppModel_specs {
     }
 
     @DisplayName("다중 플레이어 모드에서 모든 순서가 다 돌면 다시 첫번째 플레이어에게 넘어간다")
-    @ParameterizedTest
-    @CsvSource({"lisa, rose, jenny", "jenny, lisa, rose", "rose, jenny, lisa"})
-    void sut_correctly_rounds_players(String player1, String player2, String player3){
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.processInput("2");
-        sut.processInput(String.join(", ", player1, player2, player3));
-        sut.processInput("0");
-        sut.processInput("0");
-        sut.flushOutput();
-        sut.processInput("0");
-
-        String actual = sut.flushOutput();
-
-        assertThat(actual).endsWith("Enter " + player1 + "'s guess:");
-    }
+    void sut_correctly_rounds_players(String player1, String player2, String player3){}
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다")
-    @ParameterizedTest
-    @CsvSource({"50, 40, 1, Jenny", "30, 29, 2, Rose"})
-    void sut_correctly_prints_too_low_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
-        sut.processInput("2");
-        sut.processInput("Jenny, Rose, Me");
-        for (int i = 0; i < fails -1 ; i++) {
-            sut.processInput(String.valueOf(guess)); // Jenny 에서는 건너뜀. 제니가 1번 실패했으므로 for 문 돌지않음.(0 < 1-1)
-        }
-        sut.flushOutput(); // "I'm thinking of a number between 1 and 100." + NEW_LINE
-        sut.processInput(String.valueOf(guess)); //Jenny 의 추측값
-
-        String actual = sut.flushOutput(); // "Enter Rose's guess:
-
-        assertThat(actual).startsWith(lastPlayer + " guess is too low." + NEW_LINE);
-    }
+    void sut_correctly_prints_too_low_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {}
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답이 answer 보다 클 경우 해당 메세지가 출력된다")
-    @ParameterizedTest
-    @CsvSource({"7, 77, 1, Jenny", "23, 88, 2, Rose"})
-    void sut_correctly_prints_too_high_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
-        sut.processInput("2");
-        sut.processInput("Jenny, Rose, Me");
-        for (int i = 0; i < fails - 1; i++) {
-            sut.processInput(String.valueOf(guess));
-        }
-        sut.flushOutput();
-        sut.processInput(String.valueOf(guess));
-
-        String actual = sut.flushOutput();
-
-        assertThat(actual).startsWith(lastPlayer + " guess is too high." + NEW_LINE);
-    }
+    void sut_correctly_prints_too_high_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {}
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답을 맞힌 경우 해당 메세지가 출력된다")
-    @ParameterizedTest
-    @ValueSource(ints = {1, 30, 77})
-    void sut_correctly_prints_message_in_multiplayer_game(int answer){
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
-        sut.processInput("2");
-        sut.processInput("Jenny, Rose, Lisa");
-        sut.flushOutput();
-        sut.processInput(String.valueOf(answer));
-
-        String actual = sut.flushOutput();
-
-        assertThat(actual).startsWith("Correct! ");
-    }
+    void sut_correctly_prints_message_in_multiplayer_game(int answer){}
 
     @DisplayName("멀티 플레이어 게임이 종료되었을 때 승자가 메세지에 출력된다")
-    @ParameterizedTest
-    @CsvSource({"0, Jenny", "1, Lisa", "2, Rose", "99, Jenny"})
-    void sut_correctly_prints_winner_if_multiplayer_game_finished(int fails, String winner) {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.processInput("2");
-        sut.processInput("Jenny, Lisa, Rose");
-        for (int i = 0; i < fails; i++) {
-            sut.processInput("0");
-        }
-        sut.flushOutput();
-        sut.processInput("50");
-        String actual = sut.flushOutput();
-
-        assertThat(actual).contains(winner + " wins!!!!!!!!!!" + NEW_LINE);
-    }
+    void sut_correctly_prints_winner_if_multiplayer_game_finished(int fails, String winner) {}
 
     @DisplayName("멀티 플레이어 모드가 끝나면 셀렉트 모드 메세지가 출력된다")
     @Test
-    void sut_prints_select_mode_message_if_multiplayer_game_finished() {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.processInput("2");
-        sut.processInput("Jin, Me, Min");
-        sut.flushOutput();
-        sut.processInput("50");
+    void sut_prints_select_mode_message_if_multiplayer_game_finished() {}
 
-        String actual = sut.flushOutput();
-
-        assertThat(actual).endsWith("1: Single player game" + NEW_LINE +
-                          "2: Multiplayer game" + NEW_LINE + "3: Exit" + NEW_LINE + "Enter selection: ");
-    }
-
-    @DisplayName("Step35. 멀티 플레이어 모드가 끝나고 셀렉트 모드에서 3을 입력하면 게임이 종료된다")
+    @DisplayName("멀티 플레이어 모드가 끝나고 셀렉트 모드에서 3을 입력하면 게임이 종료된다")
     @Test
-    void sut_returns_to_mode_selection_if_multiplayer_game_finished() {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.processInput("2");
-        sut.processInput("Jenny, Rose, Lisa");
-        sut.processInput("0");
-        sut.processInput("50");
+    void sut_returns_to_mode_selection_if_multiplayer_game_finished() {}
 
-        sut.processInput("3");
-        boolean actual = sut.isCompleted();
+    @DisplayName("private 메소드(print()) 테스트")
+    @Test
+    void print_correctly_appends_string_to_output_buffer() {}
 
-        assertTrue(actual);
-    }
+    @DisplayName("private 메소드(println()) 테스트")
+    @Test
+    void println_correctly_appends_string_and_line_separator_to_output_buffer() {}
+
+    @DisplayName("private 메소드(printLines()) 테스트")
+    @Test
+    void printLines_correctly_appends_lines() {}
+
+    
 }
 
 /**
@@ -399,7 +327,8 @@ public class AppModel_specs {
  * [Step19. Refactoring 4 - answer 필드를 없앤다]
  * [Step20. Refactoring 5 - 해당 Refactoring 진행 후, 최종적으로 필요없어진 부분을 제거한다]
 
- -------------- 다중 플레이어 모드 ----------------
+ * ------------------- START MULTI PLAY ROUND2 ---------------------
+
  * [Step21. sut 에 다중 플레이어 모드 선택 후 게임 시작 메세지가 출력된다]
  *          "Multiplayer game" + NEW_LINE + "Enter player names separated with commas: "
  * [Step22. 다중 플레이어 모드 선택 시, 추측값 범위 메세지가 출력된다]
