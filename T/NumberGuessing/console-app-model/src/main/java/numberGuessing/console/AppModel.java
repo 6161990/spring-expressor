@@ -62,39 +62,50 @@ public class AppModel {
     private Processor startMultiGameMode() {
         return input -> {
             List<String> players = Arrays.stream(input.split(",")).map(String::trim).collect(Collectors.toList());
-            outputBuffer.append("I'm thinking of a number between 1 and 100." + NEW_LINE);
+            println("I'm thinking of a number between 1 and 100.");
             return getProcessMultiModeGame(players, 1);
         };
     }
 
     private Processor getProcessMultiModeGame(List<String> players, int tries) {
         String player = players.get((tries - 1) % players.size());
-        outputBuffer.append("Enter " + player + "'s guess:");
+        print("Enter " + player + "'s guess:");
         return input -> {
             int answer = randomGenerator.generateLessThanEqualsToHundred();
             if(Integer.parseInt(input) < answer){
-                outputBuffer.append(player + " guess is too low." + NEW_LINE);
+                println(player + " guess is too low.");
             }else if(Integer.parseInt(input) > answer){
-                outputBuffer.append(player + " guess is too high." + NEW_LINE);
+                println(player + " guess is too high.");
             } else {
-                outputBuffer.append("Correct! "+ player + " wins!!!!!!!!!!" + NEW_LINE);
-                outputBuffer.append(GAME_MODE_SELECT_MESSAGE);
+                println("Correct! "+ player + " wins!!!!!!!!!!");
+                print(GAME_MODE_SELECT_MESSAGE);
                 return this::processSelectGameMode;
             }
             return getProcessMultiModeGame(players, tries + 1);
         };
     }
 
+    private void println(String message) {
+        outputBuffer.append(message + System.lineSeparator());
+    }
+
+    private void print(String message) {
+        outputBuffer.append(message);
+    }
+
     private Processor getProcessSingleModeGame(int tries, int answer) {
         return input -> {
             if (Integer.parseInt(input) < answer) {
-                outputBuffer.append("Your guess is too low." + NEW_LINE + "Enter your guess: ");
+                println("Your guess is too low.");
+                print("Enter your guess: ");
                 return getProcessSingleModeGame(tries+1, answer);
             } else if (Integer.parseInt(input) > answer) {
-                outputBuffer.append("Your guess is too high." + NEW_LINE + "Enter your guess: ");
+                println("Your guess is too high.");
+                print("Enter your guess: ");
                 return getProcessSingleModeGame(tries+1, answer);
             } else {
-                outputBuffer.append("Correct! " + tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + GAME_MODE_SELECT_MESSAGE);
+                println("Correct! " + tries + (tries == 1 ? " guess." : " guesses."));
+                print(GAME_MODE_SELECT_MESSAGE);
                 return this::processSelectGameMode;
             }
         };
