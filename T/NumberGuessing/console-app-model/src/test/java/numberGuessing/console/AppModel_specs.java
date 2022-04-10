@@ -198,17 +198,50 @@ public class AppModel_specs {
         sut.processInput("Jenny, Rose");
 
         String actual = sut.flushOutput();
-        assertThat(actual).contains("I'm thinking of a number between 1 and 100." + NEW_LINE);
+        assertThat(actual).startsWith("I'm thinking of a number between 1 and 100." + NEW_LINE);
     }
 
     @DisplayName("다중 플레이어 모드에서 첫번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다.")
-    void sut_correctly_prompts_first_player_name(String player1, String player2, String player3){}
+    @ParameterizedTest
+    @CsvSource({"Jenny, Rose, Lisa", "Lisa, Rose, Jenny", "Rose, Lisa, Jenny"})
+    void sut_correctly_prompts_first_player_name(String player1, String player2, String player3){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.flushOutput();
+        sut.processInput(String.join(", ", player1, player2, player3));
+
+        String actual = sut.flushOutput();
+        assertThat(actual).endsWith("Enter " + player1 + "'s guess:");
+    }
 
     @DisplayName("다중 플레이어 모드에서 두번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다.")
-    void sut_correctly_prompts_second_player_name(String player1, String player2, String player3){}
+    @ParameterizedTest
+    @CsvSource({"Jenny, Rose, Lisa", "Lisa, Rose, Jenny", "Rose, Lisa, Jenny"})
+    void sut_correctly_prompts_second_player_name(String player1, String player2, String player3){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput(String.join(",", player1, player2, player3));
+        sut.flushOutput();
+        sut.processInput("0");
+
+        String actual = sut.flushOutput();
+        assertThat(actual).endsWith("Enter " + player2 + "'s guess:");
+    }
 
     @DisplayName("다중 플레이어 모드에서 세번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다")
-    void sut_correctly_prompts_third_player_name(String player1, String player2, String player3){}
+    @ParameterizedTest
+    @CsvSource({"Jenny, Rose, Lisa", "Lisa, Rose, Jenny", "Rose, Lisa, Jenny"})
+    void sut_correctly_prompts_third_player_name(String player1, String player2, String player3){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput(String.join(",", player1, player2, player3));
+        sut.processInput("0");
+        sut.flushOutput();
+        sut.processInput("0");
+
+        String actual = sut.flushOutput();
+        assertThat(actual).endsWith("Enter " + player3 + "'s guess:");
+    }
 
     @DisplayName("다중 플레이어 모드에서 모든 순서가 다 돌면 다시 첫번째 플레이어에게 넘어간다")
     void sut_correctly_rounds_players(String player1, String player2, String player3){}

@@ -44,14 +44,27 @@ public class AppModel {
             return getProcessSingleModeGame(1, answer);
         }else if(input == "2"){
             output = "Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ";
-            return input1 -> {
-                output = "I'm thinking of a number between 1 and 100." + NEW_LINE;
-                return null;
-            };
+            return startMultiModeGame();
         }else {
             isCompleted = true;
             return null;
         }
+    }
+
+    private Processor startMultiModeGame() {
+        return input -> {
+            output = "I'm thinking of a number between 1 and 100." + NEW_LINE;
+            String[] player = input.split(",");
+            output += "Enter " + player[0] + "'s guess:";
+            return getProcessMultiModeGame(player, 1);
+        };
+    }
+
+    private Processor getProcessMultiModeGame(String[] player, int tries) {
+        return input -> {
+            output = "Enter " + player[tries] + "'s guess:";
+            return getProcessMultiModeGame(player, tries + 1 );
+        };
     }
 
     private Processor getProcessSingleModeGame(int tries, int answer) {
