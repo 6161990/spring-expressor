@@ -59,16 +59,13 @@ public class AppModel {
         return input -> {
             String[] player = input.split(",");
             outputBuffer.append("I'm thinking of a number between 1 and 100." + NEW_LINE);
-            outputBuffer.append("Enter " + player[0] + "'s guess:");
             return getProcessMultiModeGame(player, 1);
         };
     }
 
     private Processor getProcessMultiModeGame(String[] player, int tries) {
-        return input -> {
-            outputBuffer.append("Enter " + player[tries] + "'s guess:");
-            return getProcessMultiModeGame(player, tries + 1 );
-        };
+        outputBuffer.append("Enter " + player[tries - 1] + "'s guess:");
+        return input -> getProcessMultiModeGame(player, tries + 1 );
     }
 
     private Processor getProcessSingleModeGame(int tries, int answer) {
