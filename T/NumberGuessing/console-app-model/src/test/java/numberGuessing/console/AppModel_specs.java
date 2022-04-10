@@ -383,11 +383,30 @@ public class AppModel_specs {
 
     @DisplayName("private 메소드(print()) 테스트")
     @Test
-    void print_correctly_appends_string_to_output_buffer() {}
+    void print_correctly_appends_string_to_output_buffer() throws Exception {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut);
+        outputBuffer.setLength(0);
+
+        Whitebox.invokeMethod(sut, "print", "foo");
+
+        String actual = outputBuffer.toString();
+
+        assertThat(actual).isEqualTo("foo");
+    }
 
     @DisplayName("private 메소드(println()) 테스트")
     @Test
-    void println_correctly_appends_string_and_line_separator_to_output_buffer() {}
+    void println_correctly_appends_string_and_line_separator_to_output_buffer() throws Exception {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut);
+
+        outputBuffer.setLength(0);
+        Whitebox.invokeMethod(sut, "println", "foo");
+
+        String actual = outputBuffer.toString();
+        assertThat(actual).isEqualTo("foo" + NEW_LINE);
+    }
 
     @DisplayName("private 메소드(printLines()) 테스트")
     @Test
