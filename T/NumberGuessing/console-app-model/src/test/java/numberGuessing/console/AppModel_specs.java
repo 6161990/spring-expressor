@@ -10,7 +10,6 @@ import org.powermock.reflect.Whitebox;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AppModel_specs {
 
@@ -380,19 +379,6 @@ public class AppModel_specs {
 
         assertThat(actual).isTrue();
     }
-
-    @DisplayName("private 메소드(print()) 테스트")
-    @Test
-    void print_correctly_appends_string_to_output_buffer() {}
-
-    @DisplayName("private 메소드(println()) 테스트")
-    @Test
-    void println_correctly_appends_string_and_line_separator_to_output_buffer() {}
-
-    @DisplayName("private 메소드(printLines()) 테스트")
-    @Test
-    void printLines_correctly_appends_lines() {}
-
     
 }
 
