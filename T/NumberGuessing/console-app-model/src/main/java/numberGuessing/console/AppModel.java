@@ -13,7 +13,7 @@ public class AppModel {
             "2: Multiplayer game" + NEW_LINE + "3: Exit" + NEW_LINE + "Enter selection: ";
 
     private PositiveIntegerGenerator randomGenerator;
-    private final StringBuffer outputBuffer;
+    private final TextOutput textOutput;
     private boolean isCompleted;
     private Processor processor;
 
@@ -22,7 +22,7 @@ public class AppModel {
     }
 
     public AppModel(PositiveIntegerGenerator randomGenerator) {
-        outputBuffer = new StringBuffer(GAME_MODE_SELECT_MESSAGE);
+        textOutput = new TextOutput(GAME_MODE_SELECT_MESSAGE);
         isCompleted = false;
         this.randomGenerator = randomGenerator;
         processor = this::processSelectGameMode;
@@ -33,9 +33,7 @@ public class AppModel {
     }
 
     public String flushOutput() {
-        String output = outputBuffer.toString();
-        outputBuffer.setLength(0);
-        return output;
+        return textOutput.flushOutput();
     }
 
     public void processInput(String input) {
@@ -82,15 +80,7 @@ public class AppModel {
     }
 
     private void printLines(String... lines) {
-        outputBuffer.append(String.join(System.lineSeparator(), lines));
-    }
-
-    private void println(String message) {
-        outputBuffer.append(message + System.lineSeparator());
-    }
-
-    private void print(String message) {
-        outputBuffer.append(message);
+        textOutput.printLines(lines);
     }
 
     private Processor getProcessSingleModeGame(int tries, int answer) {
