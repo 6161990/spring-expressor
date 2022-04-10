@@ -10,7 +10,6 @@ import org.powermock.reflect.Whitebox;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AppModel_specs {
 
@@ -410,8 +409,16 @@ public class AppModel_specs {
 
     @DisplayName("private 메소드(printLines()) 테스트")
     @Test
-    void printLines_correctly_appends_lines() {}
+    void printLines_correctly_appends_lines() throws Exception {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut);
 
+        outputBuffer.setLength(0);
+        Whitebox.invokeMethod(sut, "printLines", "Foo", "Bar", "Baz");
+
+        String actual = outputBuffer.toString();
+        assertThat(actual).isEqualTo("Foo" + NEW_LINE + "Bar" + NEW_LINE + "Baz");
+    }
     
 }
 
