@@ -44,14 +44,11 @@ public class AppModel {
 
     private Processor processSelectGameMode(String input) {
         if(input == "1"){
-            println("Single player game" );
-            println("I'm thinking of a number between 1 and 100.");
-            print("Enter your guess: ");
+            printLines("Single player game", "I'm thinking of a number between 1 and 100.", "Enter your guess: ");
             int answer = randomGenerator.generateLessThanEqualsToHundred();
             return getProcessSingleModeGame(1, answer);
         }else if(input == "2"){
-            println("Multiplayer game");
-            print("Enter player names separated with commas:");
+            printLines("Multiplayer game", "Enter player names separated with commas:");
             return startMultiGameMode();
         } else{
             isCompleted = true;
@@ -62,27 +59,30 @@ public class AppModel {
     private Processor startMultiGameMode() {
         return input -> {
             List<String> players = Arrays.stream(input.split(",")).map(String::trim).collect(Collectors.toList());
-            println("I'm thinking of a number between 1 and 100.");
-            return getProcessMultiModeGame(players, 1);
+            printLines("I'm thinking of a number between 1 and 100.", "Enter " + players.get(0) + "'s guess:");
+            int answer = randomGenerator.generateLessThanEqualsToHundred();
+            return getProcessMultiModeGame(players, answer ,1);
         };
     }
 
-    private Processor getProcessMultiModeGame(List<String> players, int tries) {
-        String player = players.get((tries - 1) % players.size());
-        print("Enter " + player + "'s guess:");
+    private Processor getProcessMultiModeGame(List<String> players, int answer, int tries) {
+        String currentPlayer = players.get((tries - 1) % players.size());
+        String nextPlayer = players.get(tries % players.size());
         return input -> {
-            int answer = randomGenerator.generateLessThanEqualsToHundred();
             if(Integer.parseInt(input) < answer){
-                println(player + " guess is too low.");
+                printLines(currentPlayer + " guess is too low.", "Enter " + nextPlayer + "'s guess:");
             }else if(Integer.parseInt(input) > answer){
-                println(player + " guess is too high.");
+                printLines(currentPlayer + " guess is too high.", "Enter " + nextPlayer + "'s guess:");
             } else {
-                println("Correct! "+ player + " wins!!!!!!!!!!");
-                print(GAME_MODE_SELECT_MESSAGE);
+                printLines("Correct! "+ currentPlayer + " wins!!!!!!!!!!", GAME_MODE_SELECT_MESSAGE);
                 return this::processSelectGameMode;
             }
-            return getProcessMultiModeGame(players, tries + 1);
+            return getProcessMultiModeGame(players, answer, tries + 1);
         };
+    }
+
+    private void printLines(String... lines) {
+        outputBuffer.append(String.join(System.lineSeparator(), lines));
     }
 
     private void println(String message) {
@@ -96,16 +96,13 @@ public class AppModel {
     private Processor getProcessSingleModeGame(int tries, int answer) {
         return input -> {
             if (Integer.parseInt(input) < answer) {
-                println("Your guess is too low.");
-                print("Enter your guess: ");
+                printLines("Your guess is too low.", "Enter your guess: ");
                 return getProcessSingleModeGame(tries+1, answer);
             } else if (Integer.parseInt(input) > answer) {
-                println("Your guess is too high.");
-                print("Enter your guess: ");
+                printLines("Your guess is too high.", "Enter your guess: ");
                 return getProcessSingleModeGame(tries+1, answer);
             } else {
-                println("Correct! " + tries + (tries == 1 ? " guess." : " guesses."));
-                print(GAME_MODE_SELECT_MESSAGE);
+                printLines("Correct! " + tries + (tries == 1 ? " guess." : " guesses."), GAME_MODE_SELECT_MESSAGE);
                 return this::processSelectGameMode;
             }
         };
