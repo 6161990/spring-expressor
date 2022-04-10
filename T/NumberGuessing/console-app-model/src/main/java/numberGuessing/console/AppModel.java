@@ -38,10 +38,16 @@ public class AppModel {
     }
 
     private Processor processSelectGameMode(String input) {
-        if(input == "1"){
+        if(input == "1") {
             output = SINGLE_GAME_START_MESSAGE;
             int answer = randomGenerator.generateLessThanEqualsToHundred();
             return getProcessSingleModeGame(1, answer);
+        }else if(input == "2"){
+            output = "Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ";
+            return input1 -> {
+                output = "I'm thinking of a number between 1 and 100." + NEW_LINE;
+                return null;
+            };
         }else {
             isCompleted = true;
             return null;

@@ -180,11 +180,26 @@ public class AppModel_specs {
 
     @DisplayName("sut 에 다중 플레이어 모드 선택 후 게임 시작 메세지가 출력된다")
     @Test
-    void sut_correctly_prints_multiplayer_game_setup_message(){}
+    void sut_correctly_prints_multiplayer_game_setup_message(){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
 
-    @DisplayName("다중 플레이어 모드 선택 시, 추측값 범위 메세지가 출력된다.")
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ");
+    }
+
+    @DisplayName("다중 플레이어 모드 선택 시, 사용자를 입력하면 추측값 범위 메세지가 출력된다.")
     @Test
-    void sut_correctly_prints_multiplayer_game_start_message(){}
+    void sut_correctly_prints_multiplayer_game_start_message(){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.flushOutput();
+        sut.processInput("Jenny, Rose");
+
+        String actual = sut.flushOutput();
+        assertThat(actual).contains("I'm thinking of a number between 1 and 100." + NEW_LINE);
+    }
 
     @DisplayName("다중 플레이어 모드에서 첫번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다.")
     void sut_correctly_prompts_first_player_name(String player1, String player2, String player3){}
