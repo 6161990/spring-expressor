@@ -2,6 +2,10 @@ package numberGuessing.console;
 
 import numberGuessing.PositiveIntegerGenerator;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class AppModel {
 
     public static final String NEW_LINE = System.lineSeparator();
@@ -11,7 +15,7 @@ public class AppModel {
             + NEW_LINE + "Enter your guess: ";
     private StringBuffer outputBuffer;
     private PositiveIntegerGenerator randomGenerator;
-    private String output;
+    private final TextOutput textOutput;
     private boolean isCompleted;
     private Processor processor;
 
