@@ -74,7 +74,8 @@ public class AppModel {
                 outputBuffer.append(player + " guess is too high." + NEW_LINE);
             }else {
                 outputBuffer.append("Correct! " + player + " wins!!!!!!!!!!" + NEW_LINE);
-                return null;
+                outputBuffer.append(GAME_MODE_SELECT_MESSAGE);
+                return this::processSelectGameMode;
             }
             return getProcessMultiModeGame(players, tries + 1);
         };

@@ -338,11 +338,32 @@ public class AppModel_specs {
 
     @DisplayName("멀티 플레이어 모드가 끝나면 셀렉트 모드 메세지가 출력된다")
     @Test
-    void sut_prints_select_mode_message_if_multiplayer_game_finished() {}
+    void sut_prints_select_mode_message_if_multiplayer_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput("Jenny, Lisa, Rose");
+        sut.flushOutput();
+
+        sut.processInput("50");
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith(GAME_MODE_SELECT_MESSAGE);
+    }
 
     @DisplayName("멀티 플레이어 모드가 끝나고 셀렉트 모드에서 3을 입력하면 게임이 종료된다")
     @Test
-    void sut_returns_to_mode_selection_if_multiplayer_game_finished() {}
+    void sut_returns_to_mode_selection_if_multiplayer_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput("Jenny, Lisa, Rose");
+
+        sut.processInput("50");
+        sut.flushOutput();
+        sut.processInput("3");
+        boolean actual = sut.isCompleted();
+
+        assertThat(actual).isTrue();
+    }
 
     @DisplayName("private 메소드(print()) 테스트")
     @Test
