@@ -184,7 +184,6 @@ public class AppModel_specs {
 
     // -- START MULTI PLAY ROUND2 --
 
-
     @DisplayName("sut 에 다중 플레이어 모드 선택 후 게임 시작 메세지가 출력된다")
     @Test
     void sut_correctly_prints_multiplayer_game_setup_message(){
@@ -230,7 +229,7 @@ public class AppModel_specs {
     void sut_correctly_prompts_second_player_name(String player1, String player2, String player3){
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
         sut.processInput("2");
-        sut.processInput(String.join(",", player1, player2, player3));
+        sut.processInput(String.join(", ", player1, player2, player3));
         sut.flushOutput();
         sut.processInput("0");
 
@@ -244,8 +243,7 @@ public class AppModel_specs {
     void sut_correctly_prompts_third_player_name(String player1, String player2, String player3){
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
         sut.processInput("2");
-
-        sut.processInput(String.join(",", player1, player2, player3));
+        sut.processInput(String.join(", ", player1, player2, player3));
         sut.processInput("0");
         sut.flushOutput();
         sut.processInput("0");
@@ -262,7 +260,7 @@ public class AppModel_specs {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
         sut.processInput("2");
         sut.flushOutput();
-        sut.processInput(String.join(",", player1, player2, player3));
+        sut.processInput(String.join(", ", player1, player2, player3));
 
         sut.processInput("0");
         sut.processInput("0");
@@ -281,7 +279,7 @@ public class AppModel_specs {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
         sut.processInput("2");
         sut.flushOutput();
-        sut.processInput("Jenny,Rose");
+        sut.processInput("Jenny, Rose");
 
         for (int i = 0; i < fails - 1; i++) {
             sut.processInput(String.valueOf(guess));
@@ -377,7 +375,7 @@ public class AppModel_specs {
 
         assertThat(actual).isTrue();
     }
-    
+
 }
 
 /**
