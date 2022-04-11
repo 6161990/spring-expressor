@@ -1,5 +1,6 @@
 package numberGuessing.console;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,7 +19,6 @@ public class AppModel_specs {
            "2: Multiplayer game" + NEW_LINE + "3: Exit" + NEW_LINE + "Enter selection: ";
     public static final String SINGLE_GAME_START_MESSAGE = "Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
                             + NEW_LINE + "Enter your guess: ";
-    public static final String MULTI_GAME_START_MESSAGE = "Multiplayer game" + NEW_LINE + "Enter player names separated with commas:";
 
     @DisplayName("sut 가 처음 초기화되면 isCompleted 가 false 다.")
     @Test
@@ -220,7 +220,7 @@ public class AppModel_specs {
 
         String actual = sut.flushOutput();
 
-        assertThat(actual).endsWith("Enter " + player1 + "'s guess:");
+        assertThat(actual).endsWith("Enter " + player1 + "'s guess: ");
     }
 
     @DisplayName("다중 플레이어 모드에서 두번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다.")
@@ -374,6 +374,50 @@ public class AppModel_specs {
         boolean actual = sut.isCompleted();
 
         assertThat(actual).isTrue();
+    }
+
+    @Disabled
+    @DisplayName("Should I test private(Print)")
+    @Test
+    void print_correctly_appends_string_to_output_buffer() throws Exception {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut);
+
+        outputBuffer.setLength(0);
+        Whitebox.invokeMethod(sut, "print", "foo");
+
+        String actual = outputBuffer.toString();
+
+        assertThat(actual).isEqualTo("foo");
+    }
+
+    @Disabled
+    @DisplayName("Should I test private(Println)")
+    @Test
+    void print_correctly_appends_string_and_line_separator_to_output_buffer() throws Exception {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut);
+
+        outputBuffer.setLength(0);
+        Whitebox.invokeMethod(sut, "println", "goo");
+
+        String actual = outputBuffer.toString();
+
+        assertThat(actual).isEqualTo("goo"+ NEW_LINE);
+    }
+
+    @Disabled
+    @DisplayName("Should I test private(PrintLines)")
+    @Test
+    void printLines_correctly_appends_lines() throws Exception {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut);
+
+        outputBuffer.setLength(0);
+        Whitebox.invokeMethod(sut, "printLines", "Foo", "Bar", "Baz");
+
+        String actual = outputBuffer.toString();
+        assertThat(actual).isEqualTo("Foo" + NEW_LINE + "Bar" + NEW_LINE + "Baz");
     }
 
 }
