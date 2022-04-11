@@ -70,6 +70,11 @@ public class AppModel {
             int answer = randomGenerator.generateLessThanEqualsToHundred();
             if (Integer.parseInt(input) < answer) {
                 outputBuffer.append(player + " guess is too low." + NEW_LINE);
+            }else if(Integer.parseInt(input) > answer) {
+                outputBuffer.append(player + " guess is too high." + NEW_LINE);
+            }else {
+                outputBuffer.append("Correct! " + player + " wins!!!!!!!!!!" + NEW_LINE);
+                return null;
             }
             return getProcessMultiModeGame(players, tries + 1);
         };

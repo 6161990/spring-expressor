@@ -284,13 +284,57 @@ public class AppModel_specs {
     }
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답이 answer 보다 클 경우 해당 메세지가 출력된다")
-    void sut_correctly_prints_too_high_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {}
+    @ParameterizedTest
+    @CsvSource({"7, 77, 1, Jenny", "8, 88, 2, Lisa"})
+    void sut_correctly_prints_too_high_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("2");
+        sut.processInput("Jenny, Lisa");
+
+        for (int i = 0; i < fails - 1; i++) {
+            sut.processInput(String.valueOf(guess));
+        }
+        sut.flushOutput();
+
+        sut.processInput(String.valueOf(guess));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).startsWith(lastPlayer + " guess is too high." + NEW_LINE);
+    }
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답을 맞힌 경우 해당 메세지가 출력된다")
-    void sut_correctly_prints_message_in_multiplayer_game(int answer){}
+    @ParameterizedTest
+    @ValueSource(ints = {1, 30, 50, 99})
+    void sut_correctly_prints_message_in_multiplayer_game(int answer){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("2");
+        sut.processInput("Jenny, Rose");
+        sut.flushOutput();
+
+        sut.processInput(String.valueOf(answer));
+        String actual = sut.flushOutput();
+
+        assertThat(actual).startsWith("Correct! ");
+    }
 
     @DisplayName("멀티 플레이어 게임이 종료되었을 때 승자가 메세지에 출력된다")
-    void sut_correctly_prints_winner_if_multiplayer_game_finished(int fails, String winner) {}
+    @ParameterizedTest
+    @CsvSource({"0, Jenny", "1, Lisa", "2, Rose", "99, Jenny"})
+    void sut_correctly_prints_winner_if_multiplayer_game_finished(int fails, String winner) {
+       var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+       sut.processInput("2");
+       sut.processInput("Jenny, Lisa, Rose");
+
+        for (int i = 0; i < fails; i++) {
+            sut.processInput("0");
+            sut.flushOutput();
+        }
+        sut.processInput("50");
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith(winner + " wins!!!!!!!!!!" + NEW_LINE);
+    }
 
     @DisplayName("멀티 플레이어 모드가 끝나면 셀렉트 모드 메세지가 출력된다")
     @Test
