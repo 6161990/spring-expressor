@@ -333,7 +333,7 @@ public class AppModel_specs {
         sut.processInput("50");
         String actual = sut.flushOutput();
 
-        assertThat(actual).endsWith(winner + " wins!!!!!!!!!!" + NEW_LINE);
+        assertThat(actual).contains(winner + " wins!!!!!!!!!!" + NEW_LINE);
     }
 
     @DisplayName("멀티 플레이어 모드가 끝나면 셀렉트 모드 메세지가 출력된다")
