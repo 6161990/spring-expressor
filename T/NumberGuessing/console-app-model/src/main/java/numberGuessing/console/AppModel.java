@@ -43,19 +43,20 @@ public class AppModel {
 
     private Processor processSelectGameMode(String input) {
         if(input == "1") {
-            println("Single player game");
-            println("I'm thinking of a number between 1 and 100.");
-            print("Enter your guess: ");
+            printLines("Single player game", "I'm thinking of a number between 1 and 100.", "Enter your guess: ");
             int answer = randomGenerator.generateLessThanEqualsToHundred();
             return getProcessSingleModeGame(1, answer);
         }else if(input == "2"){
-            println("Multiplayer game");
-            print("Enter player names separated with commas: ");
+            printLines("Multiplayer game", "Enter player names separated with commas: ");
             return startMultiModeGame();
         }else {
             isCompleted = true;
             return null;
         }
+    }
+
+    private void printLines(String... lines) {
+        outputBuffer.append(String.join(System.lineSeparator(), lines));
     }
 
     private void println(String message) {
@@ -69,24 +70,23 @@ public class AppModel {
 
     private Processor startMultiModeGame() {
         return input -> {
-            String[] player = input.split(", ");
-            println("I'm thinking of a number between 1 and 100.");
-            return getProcessMultiModeGame(player, 1);
+            String[] players = input.split(", ");
+            printLines("I'm thinking of a number between 1 and 100.",  "Enter " + players[0] + "'s guess: ");
+            return getProcessMultiModeGame(players, 1);
         };
     }
 
     private Processor getProcessMultiModeGame(String[] players, int tries) {
-        String player = players[(tries - 1) % players.length];
-        print("Enter " + player + "'s guess:");
+        String currentPlayer = players[(tries - 1) % players.length];
+        String nextPlayer = players[tries % players.length];
         return input -> {
             int answer = randomGenerator.generateLessThanEqualsToHundred();
             if (Integer.parseInt(input) < answer) {
-                println(player + " guess is too low.");
+                printLines(currentPlayer + " guess is too low.", "Enter " + nextPlayer + "'s guess:");
             }else if(Integer.parseInt(input) > answer) {
-                println(player + " guess is too high.");
+                printLines(currentPlayer + " guess is too high.", "Enter " + nextPlayer + "'s guess:");
             }else {
-                println("Correct! " + player + " wins!!!!!!!!!!");
-                print(GAME_MODE_SELECT_MESSAGE);
+                printLines("Correct! " + currentPlayer + " wins!!!!!!!!!!", GAME_MODE_SELECT_MESSAGE);
                 return this::processSelectGameMode;
             }
             return getProcessMultiModeGame(players, tries + 1);
@@ -96,16 +96,13 @@ public class AppModel {
     private Processor getProcessSingleModeGame(int tries, int answer) {
         return input -> {
             if (Integer.parseInt(input) < answer) {
-                println("Your guess is too low.");
-                print("Enter your guess: ");
+                printLines("Your guess is too low.", "Enter your guess: ");
                 return getProcessSingleModeGame(tries+1, answer);
             } else if (Integer.parseInt(input) > answer) {
-                println("Your guess is too high.");
-                print("Enter your guess: ");
+                printLines("Your guess is too high.", "Enter your guess: ");
                 return getProcessSingleModeGame(tries+1, answer);
             } else {
-                println("Correct! " + tries + (tries == 1 ? " guess." : " guesses."));
-                print(GAME_MODE_SELECT_MESSAGE);
+                printLines("Correct! " + tries + (tries == 1 ? " guess." : " guesses."), GAME_MODE_SELECT_MESSAGE);
                 return this::processSelectGameMode;
             }
         };
