@@ -57,15 +57,22 @@ public class AppModel {
 
     private Processor startMultiModeGame() {
         return input -> {
-            String[] player = input.split(",");
+            String[] player = input.split(", ");
             outputBuffer.append("I'm thinking of a number between 1 and 100." + NEW_LINE);
             return getProcessMultiModeGame(player, 1);
         };
     }
 
-    private Processor getProcessMultiModeGame(String[] player, int tries) {
-        outputBuffer.append("Enter " + player[(tries - 1) % player.length] + "'s guess:");
-        return input -> getProcessMultiModeGame(player, tries + 1);
+    private Processor getProcessMultiModeGame(String[] players, int tries) {
+        String player = players[(tries - 1) % players.length];
+        outputBuffer.append("Enter " + player + "'s guess:");
+        return input -> {
+            int answer = randomGenerator.generateLessThanEqualsToHundred();
+            if (Integer.parseInt(input) < answer) {
+                outputBuffer.append(player + " guess is too low." + NEW_LINE);
+            }
+            return getProcessMultiModeGame(players, tries + 1);
+        };
     }
 
     private Processor getProcessSingleModeGame(int tries, int answer) {

@@ -224,7 +224,7 @@ public class AppModel_specs {
     void sut_correctly_prompts_second_player_name(String player1, String player2, String player3){
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
         sut.processInput("2");
-        sut.processInput(String.join(",", player1, player2, player3));
+        sut.processInput(String.join(", ", player1, player2, player3));
         sut.flushOutput();
         sut.processInput("0");
 
@@ -238,7 +238,7 @@ public class AppModel_specs {
     void sut_correctly_prompts_third_player_name(String player1, String player2, String player3){
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
         sut.processInput("2");
-        sut.processInput(String.join(",", player1, player2, player3));
+        sut.processInput(String.join(", ", player1, player2, player3));
         sut.processInput("0");
         sut.flushOutput();
         sut.processInput("0");
@@ -254,7 +254,7 @@ public class AppModel_specs {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
         sut.processInput("2");
         sut.flushOutput();
-        sut.processInput(String.join(",", player1, player2, player3));
+        sut.processInput(String.join(", ", player1, player2, player3));
         sut.processInput("0");
         sut.processInput("0");
         sut.flushOutput();
@@ -265,7 +265,23 @@ public class AppModel_specs {
     }
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다")
-    void sut_correctly_prints_too_low_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {}
+    @ParameterizedTest
+    @CsvSource({"50, 49, 1, Jenny", "77, 7, 2, Lisa"})
+    void sut_correctly_prints_too_low_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("2");
+        sut.processInput("Jenny, Lisa");
+
+        for (int i = 0; i < fails - 1 ; i++) {
+            sut.processInput(String.valueOf(guess));
+        }
+        sut.flushOutput();
+
+        sut.processInput(String.valueOf(guess));
+
+        String actual = sut.flushOutput();
+        assertThat(actual).startsWith(lastPlayer + " guess is too low." + NEW_LINE);
+    }
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답이 answer 보다 클 경우 해당 메세지가 출력된다")
     void sut_correctly_prints_too_high_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {}
