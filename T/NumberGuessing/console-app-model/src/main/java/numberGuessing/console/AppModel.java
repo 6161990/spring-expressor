@@ -2,6 +2,10 @@ package numberGuessing.console;
 
 import numberGuessing.PositiveIntegerGenerator;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class AppModel {
 
     public static final String NEW_LINE = System.lineSeparator();
@@ -9,7 +13,6 @@ public class AppModel {
             "2: Multiplayer game" + NEW_LINE + "3: Exit" + NEW_LINE + "Enter selection: ";
     private StringBuffer outputBuffer;
     private PositiveIntegerGenerator randomGenerator;
-    private String output;
     private boolean isCompleted;
     private Processor processor;
 
@@ -19,7 +22,6 @@ public class AppModel {
 
     public AppModel(PositiveIntegerGenerator randomGenerator) {
         outputBuffer = new StringBuffer(GAME_MODE_SELECT_MESSAGE);
-        output = GAME_MODE_SELECT_MESSAGE;
         isCompleted = false;
         this.randomGenerator = randomGenerator;
         processor = this::processSelectGameMode;
