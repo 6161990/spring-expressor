@@ -1,5 +1,6 @@
 package numberGuessing.console;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -375,6 +376,7 @@ public class AppModel_specs {
         assertThat(actual).isTrue();
     }
 
+    @Disabled
     @DisplayName("Should I test private(Print)")
     @Test
     void print_correctly_appends_string_to_output_buffer() throws Exception {
@@ -389,6 +391,7 @@ public class AppModel_specs {
         assertThat(actual).isEqualTo("foo");
     }
 
+    @Disabled
     @DisplayName("Should I test private(Println)")
     @Test
     void print_correctly_appends_string_and_line_separator_to_output_buffer() throws Exception {
@@ -403,7 +406,8 @@ public class AppModel_specs {
         assertThat(actual).isEqualTo("goo"+ NEW_LINE);
     }
 
-    @DisplayName("Should I test private(Println)")
+    @Disabled
+    @DisplayName("Should I test private(PrintLines)")
     @Test
     void printLines_correctly_appends_lines() throws Exception {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
