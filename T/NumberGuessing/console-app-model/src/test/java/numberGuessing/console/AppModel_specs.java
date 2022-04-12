@@ -23,163 +23,62 @@ public class AppModel_specs {
     @DisplayName("sut 가 처음 초기화되면 isCompleted 가 false 다.")
     @Test
     void sut_is_incompleted_when_it_is_initialized() {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
 
-        boolean actual = sut.isCompleted();
-
-        assertThat(actual).isFalse();
     }
 
     @DisplayName("sut 의 첫 flushOutput 은 게임모드선택 옵션 메세지다.")
     @Test
     void sut_correctly_prints_select_mode_message() {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
 
-        String actual = sut.flushOutput();
-
-        assertThat(actual).isEqualTo(GAME_MODE_SELECT_MESSAGE);
     }
 
 
     @DisplayName("sut 진행중 3을 입력값으로 넣으면 sut 는 종료된다")
     @Test
     void sut_correctly_exist() {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
 
-        sut.processInput("3");
-
-        boolean actual = sut.isCompleted();
-
-        assertThat(actual).isTrue();
     }
 
     @DisplayName("sut 에 싱글게임모드선택 후 게임 시작 메세지가 출력된다")
     @Test
     void sut_correctly_prints_single_player_game_start_message() {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.flushOutput();
-        sut.processInput("1");
 
-        String actual = sut.flushOutput();
-
-        assertThat(actual).isEqualTo(SINGLE_GAME_START_MESSAGE);
     }
 
     @DisplayName("싱글 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다")
-    @ParameterizedTest
-    @CsvSource({"8, 5", "99, 9", "77,7"})
     void sut_correctly_prints_too_low_message_in_single_player_game(int answer, int guess) {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
-        sut.processInput("1");
-        sut.flushOutput();
 
-        sut.processInput(String.valueOf(guess));
-        String actual = sut.flushOutput();
-
-        assertThat(actual).isEqualTo("Your guess is too low." + NEW_LINE + "Enter your guess: ");
     }
 
     @DisplayName("싱글 플레이어 게임에서 입력한 정답이 answer 보다 클 경우 해당 메세지가 출력된다")
-    @ParameterizedTest
-    @CsvSource({"1,9", "7, 77", "30, 88"})
     void sut_correctly_prints_too_high_message_in_single_player_game(int answer, int guess) {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
-        sut.processInput("1");
-        sut.flushOutput();
-
-        sut.processInput(String.valueOf(guess));
-        String actual = sut.flushOutput();
-
-        assertThat(actual).isEqualTo("Your guess is too high." + NEW_LINE + "Enter your guess: ");
     }
 
     @DisplayName("싱글 플레이어 게임에서 입력한 정답이 answer 일 때, 해당 메세지가 출력된다")
-    @ParameterizedTest
-    @ValueSource(ints = {100, 10, 1})
     void sut_correctly_prints_correct_message_in_single_player_game(int answer) {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
-        sut.processInput("1");
-        sut.flushOutput();
-
-        int guess = answer;
-        sut.processInput(String.valueOf(guess));
-        String actual = sut.flushOutput();
-
-        assertThat(actual).startsWith("Correct! ");
     }
 
     @DisplayName("싱글 플레이어 게임에서 정답을 맞췄을 때, 총 실패횟수를 알려주는 메세지가 출력된다")
-    @ParameterizedTest
-    @ValueSource(ints = {1, 10, 100})
     void sut_correctly_prints_guess_count_if_single_player_game_finished(int fails) {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.processInput("1");
-
-        for (int i = 0; i < fails; i++) {
-            sut.processInput("7");
-            sut.flushOutput();
-        }
-
-        sut.processInput("50");
-        String actual = sut.flushOutput();
-
-        assertThat(actual).contains((fails + 1) + " guesses." + NEW_LINE);
     }
 
     @DisplayName("싱글 플레이어 게임에서 정답을 한번에 맞췄을 때, 'guesses' 가 아니라 'guess' 로 출력된다")
     @Test
     void sut_correctly_prints_one_guess_if_single_player_game_finished() {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.processInput("1");
-        sut.flushOutput();
-        sut.processInput("50");
-
-        String actual = sut.flushOutput();
-
-        assertThat(actual).contains("1 guess." + NEW_LINE);
     }
 
     @DisplayName("싱글 플레이어 모드가 끝나면 다시 select mode 가 보여진다")
     @Test
     void sut_prints_select_mode_message_if_single_player_game_finished() {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.processInput("1");
-        sut.flushOutput();
-        sut.processInput("50");
-        String actual = sut.flushOutput();
-
-        assertThat(actual).endsWith(GAME_MODE_SELECT_MESSAGE);
     }
 
     @DisplayName("싱글 플레이어 모드가 끝나고 돌아간 select mode 에서 exit 를 선택했을 때 sut 는 잘 종료된다")
     @Test
     void sut_returns_to_mode_selection_if_single_player_game_finished() {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.processInput("1");
-        sut.processInput("50");
-        sut.flushOutput();
-
-        sut.processInput("3");
-
-        boolean actual = sut.isCompleted();
-        assertThat(actual).isTrue();
     }
 
     @DisplayName("싱글 플레이어 모드는 반복하여 게임을 실행해도 잘 돌아간다")
-    @ParameterizedTest
-    @ValueSource(strings = {"1, 10, 100"})
     void sut_generates_answer_for_each_game(String source) {
-        int[] answers = Stream.of(source.split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(answers));
-
-        for (int answer: answers) {
-            sut.processInput("1");
-            sut.flushOutput();
-            sut.processInput(String.valueOf(answer));
-        }
-
-        String actual = sut.flushOutput();
-        assertThat(actual).startsWith("Correct! ");
     }
 
     // -- START MULTI PLAY ROUND2 --
@@ -187,237 +86,68 @@ public class AppModel_specs {
     @DisplayName("sut 에 다중 플레이어 모드 선택 후 게임 시작 메세지가 출력된다")
     @Test
     void sut_correctly_prints_multiplayer_game_setup_message(){
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.flushOutput();
-        sut.processInput("2");
-        String actual = sut.flushOutput();
-
-        assertThat(actual).isEqualTo("Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ");
     }
 
     @DisplayName("다중 플레이어 모드 선택 시, 사용자를 입력하면 추측값 범위 메세지가 출력된다.")
     @Test
     void sut_correctly_prints_multiplayer_game_start_message(){
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.flushOutput();
-        sut.processInput("2");
-        sut.flushOutput();
-        sut.processInput("Jenny, Rose");
-
-        String actual = sut.flushOutput();
-
-        assertThat(actual).startsWith("I'm thinking of a number between 1 and 100." + NEW_LINE);
     }
 
     @DisplayName("다중 플레이어 모드에서 첫번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다.")
-    @ParameterizedTest
-    @CsvSource({"Jenny, Rose, Lisa", "Lisa, Rose, Jenny", "Rose, Lisa, Jenny"})
     void sut_correctly_prompts_first_player_name(String player1, String player2, String player3){
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.processInput("2");
-        sut.flushOutput();
-        sut.processInput(String.join(", ", player1, player2, player3));
-
-        String actual = sut.flushOutput();
-
-        assertThat(actual).endsWith("Enter " + player1 + "'s guess: ");
     }
 
     @DisplayName("다중 플레이어 모드에서 두번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다.")
-    @ParameterizedTest
-    @CsvSource({"Jenny, Rose, Lisa", "Lisa, Rose, Jenny", "Rose, Lisa, Jenny"})
     void sut_correctly_prompts_second_player_name(String player1, String player2, String player3){
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.processInput("2");
-        sut.processInput(String.join(", ", player1, player2, player3));
-        sut.flushOutput();
-        sut.processInput("0");
-
-        String actual = sut.flushOutput();
-        assertThat(actual).endsWith("Enter " + player2 + "'s guess:");
     }
 
     @DisplayName("다중 플레이어 모드에서 세번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다")
-    @ParameterizedTest
-    @CsvSource({"Jenny, Rose, Lisa", "Lisa, Rose, Jenny", "Rose, Lisa, Jenny"})
     void sut_correctly_prompts_third_player_name(String player1, String player2, String player3){
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.processInput("2");
-        sut.processInput(String.join(", ", player1, player2, player3));
-        sut.processInput("0");
-        sut.flushOutput();
-        sut.processInput("0");
-
-        String actual = sut.flushOutput();
-
-        assertThat(actual).endsWith("Enter " + player3 + "'s guess:");
     }
 
     @DisplayName("다중 플레이어 모드에서 모든 순서가 다 돌면 다시 첫번째 플레이어에게 넘어간다")
-    @ParameterizedTest
-    @CsvSource({"Jenny, Rose, Lisa", "Lisa, Jenny, Rose", "Rose, Lisa, Jenny"})
     void sut_correctly_rounds_players(String player1, String player2, String player3){
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.processInput("2");
-        sut.flushOutput();
-        sut.processInput(String.join(", ", player1, player2, player3));
-
-        sut.processInput("0");
-        sut.processInput("0");
-        sut.flushOutput();
-        sut.processInput("0");
-
-        String actual = sut.flushOutput();
-
-        assertThat(actual).endsWith("Enter " + player1 + "'s guess:");
     }
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다")
-    @ParameterizedTest
-    @CsvSource({"50, 40, 1, Jenny", "30, 29, 2, Rose"})
     void sut_correctly_prints_too_low_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
-        sut.processInput("2");
-        sut.flushOutput();
-        sut.processInput("Jenny, Rose");
-
-        for (int i = 0; i < fails - 1; i++) {
-            sut.processInput(String.valueOf(guess));
-        }
-        sut.flushOutput();
-
-        sut.processInput(String.valueOf(guess));
-
-        String actual = sut.flushOutput();
-
-        assertThat(actual).startsWith(lastPlayer + " guess is too low." + NEW_LINE);
     }
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답이 answer 보다 클 경우 해당 메세지가 출력된다")
-    @ParameterizedTest
-    @CsvSource({"50, 77, 1, Jenny", "30, 99, 2, Rose"})
     void sut_correctly_prints_too_high_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
-        sut.processInput("2");
-        sut.flushOutput();
-        sut.processInput("Jenny, Rose");
-        for (int i = 0; i < fails - 1; i++) {
-            sut.processInput(String.valueOf(guess));
-        }
-        sut.flushOutput();
-        sut.processInput(String.valueOf(guess));
-
-        String actual = sut.flushOutput();
-
-        assertThat(actual).startsWith(lastPlayer + " guess is too high." + NEW_LINE);
     }
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답을 맞힌 경우 해당 메세지가 출력된다")
-    @ParameterizedTest
-    @ValueSource(ints = {1, 30, 40, 99})
     void sut_correctly_prints_message_in_multiplayer_game(int answer){
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
-        sut.processInput("2");
-        sut.processInput("Jenny, Rose, Lisa");
-        sut.flushOutput();
-        sut.processInput(String.valueOf(answer));
-
-        String actual = sut.flushOutput();
-
-        assertThat(actual).startsWith("Correct! ");
     }
 
     @DisplayName("멀티 플레이어 게임이 종료되었을 때 승자가 메세지에 출력된다")
-    @ParameterizedTest
-    @CsvSource({"0, Jenny", "1, Lisa", "2, Yoonji", "99, Jenny"})
     void sut_correctly_prints_winner_if_multiplayer_game_finished(int fails, String winner) {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.processInput("2");
-        sut.processInput("Jenny, Lisa, Yoonji");
-
-        for (int i = 0; i < fails; i++) {
-            sut.processInput("0");
-        }
-
-        sut.flushOutput();
-        sut.processInput("50");
-
-        String actual = sut.flushOutput();
-
-        assertThat(actual).contains(winner + " wins!!!!!!!!!!" + NEW_LINE);
     }
 
     @DisplayName("멀티 플레이어 모드가 끝나면 셀렉트 모드 메세지가 출력된다")
     @Test
     void sut_prints_select_mode_message_if_multiplayer_game_finished() {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.processInput("2");
-        sut.processInput("Jenny, Lisa, Rose");
-        sut.flushOutput();
-        sut.processInput("50");
-
-        String actual = sut.flushOutput();
-
-        assertThat(actual).contains(GAME_MODE_SELECT_MESSAGE);
     }
 
     @DisplayName("멀티 플레이어 모드가 끝나고 셀렉트 모드에서 3을 입력하면 게임이 종료된다")
     @Test
     void sut_returns_to_mode_selection_if_multiplayer_game_finished() {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.processInput("2");
-        sut.processInput("Jenny, Rose");
-        sut.processInput("50");
-        sut.flushOutput();
-        sut.processInput("3");
-
-        boolean actual = sut.isCompleted();
-
-        assertThat(actual).isTrue();
     }
 
-    @Disabled
     @DisplayName("Should I test private(Print)")
     @Test
     void print_correctly_appends_string_to_output_buffer() throws Exception {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut);
-
-        outputBuffer.setLength(0);
-        Whitebox.invokeMethod(sut, "print", "foo");
-
-        String actual = outputBuffer.toString();
-
-        assertThat(actual).isEqualTo("foo");
     }
 
-    @Disabled
     @DisplayName("Should I test private(Println)")
     @Test
     void print_correctly_appends_string_and_line_separator_to_output_buffer() throws Exception {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut);
-
-        outputBuffer.setLength(0);
-        Whitebox.invokeMethod(sut, "println", "goo");
-
-        String actual = outputBuffer.toString();
-
-        assertThat(actual).isEqualTo("goo"+ NEW_LINE);
     }
 
-    @Disabled
     @DisplayName("Should I test private(PrintLines)")
     @Test
     void printLines_correctly_appends_lines() throws Exception {
-        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut);
-
-        outputBuffer.setLength(0);
-        Whitebox.invokeMethod(sut, "printLines", "Foo", "Bar", "Baz");
-
-        String actual = outputBuffer.toString();
-        assertThat(actual).isEqualTo("Foo" + NEW_LINE + "Bar" + NEW_LINE + "Baz");
     }
 
 }
