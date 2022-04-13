@@ -18,6 +18,7 @@ import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -65,10 +66,26 @@ public class ItemWriterConfiguration {
     }
 
     private ItemWriter<Person> jdbcBatchItemWriter() {
-        JdbcBatchItemWriter<Person> itemWriter = new JdbcBatchItemWriterBuilder<Person>()
-                .dataSource(dataSource)
-                .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>()) // person 클래스를 파라미터로 자동으로 셍성할 수 있는 객체
+/*        return new ItemWriter<Person>() {
+            @Override
+            public void write(List<? extends Person> items) throws Exception {
+*//*                NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+                namedParameterJdbcTemplate.batchUpdate("insert into person(name,age,address) values(:name, :age, :address)",
+                        SqlParameterSourceUtils.createBatch(items));*//*
+                new JdbcBatchItemWriterBuilder<Person>()
+                        .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
+                        .namedParametersJdbcTemplate(new NamedParameterJdbcTemplate(dataSource))
+                        .sql("INSERT INTO CUSTOMER (first_name, middle_initial, last_name,address, city, state, zip, email) "
+                                + "VALUES(:firstName, :middleInitial, :lastName, :address, :city, :state, :zip, :email)")
+                        .beanMapped()
+                        .build();
+            }
+        };*/
+         JdbcBatchItemWriter<Person> itemWriter = new JdbcBatchItemWriterBuilder<Person>()
+                .namedParametersJdbcTemplate(new NamedParameterJdbcTemplate(dataSource))
                 .sql("insert into person(name,age,address) values(:name, :age, :address)")
+                .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>()) // person 클래스를 파라미터로 자동으로 셍성할 수 있는 객체
+                .beanMapped()
                 .build();
 
         itemWriter.afterPropertiesSet();
