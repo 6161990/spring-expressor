@@ -38,7 +38,7 @@ public class ItemWriterConfiguration2 {
 
     @Bean
     public Job itemWriterJob() throws Exception {
-        return this.jobBuilderFactory.get("itemWriterJob")
+        return this.jobBuilderFactory.get("itemWriterJob1")
                 .incrementer(new RunIdIncrementer())
                 .start(this.step1())
                 .listener(jobExecutionListener())
