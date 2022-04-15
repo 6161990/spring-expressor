@@ -11,12 +11,17 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
+import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.FlatFileItemWriter;
+import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.builder.FlatFileItemWriterBuilder;
+import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor;
 import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
+import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
@@ -57,7 +62,7 @@ public class ItemWriterConfiguration {
     }
 
     @Bean
-    public Step jdbcBatchItemWriterStep() {
+    public Step jdbcBatchItemWriterStep() throws Exception {
         return stepBuilderFactory.get("jdbcBatchItemWriterStep")
                 .<Person, Person>chunk(10)
                 .reader(itemReader())
@@ -66,21 +71,6 @@ public class ItemWriterConfiguration {
     }
 
     private ItemWriter<Person> jdbcBatchItemWriter() {
-/*        return new ItemWriter<Person>() {
-            @Override
-            public void write(List<? extends Person> items) throws Exception {
-*//*                NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-                namedParameterJdbcTemplate.batchUpdate("insert into person(name,age,address) values(:name, :age, :address)",
-                        SqlParameterSourceUtils.createBatch(items));*//*
-                new JdbcBatchItemWriterBuilder<Person>()
-                        .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                        .namedParametersJdbcTemplate(new NamedParameterJdbcTemplate(dataSource))
-                        .sql("INSERT INTO CUSTOMER (first_name, middle_initial, last_name,address, city, state, zip, email) "
-                                + "VALUES(:firstName, :middleInitial, :lastName, :address, :city, :state, :zip, :email)")
-                        .beanMapped()
-                        .build();
-            }
-        };*/
          JdbcBatchItemWriter<Person> itemWriter = new JdbcBatchItemWriterBuilder<Person>()
                 .namedParametersJdbcTemplate(new NamedParameterJdbcTemplate(dataSource))
                 .sql("insert into person(name,age,address) values(:name, :age, :address)")
@@ -112,6 +102,37 @@ public class ItemWriterConfiguration {
         itemWriter.afterPropertiesSet();
 
         return itemWriter;
+    }
+
+    private FlatFileItemReader<Person> csvFileItemReader() throws Exception {
+        //item을 한 줄씩 읽을 수 있는 설정 : LineMapper 객체
+        DefaultLineMapper<Person> lineMapper = new DefaultLineMapper<>();
+        //csv 파일을 person 객체로 mapping하기 위해서 person 필드명을 설정하는 Tokenizer객체가 필요
+        DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
+        tokenizer.setNames("id", "name", "age", "address"); //person의 필드명 설정
+        lineMapper.setLineTokenizer(tokenizer);
+
+        lineMapper.setFieldSetMapper(fieldSet -> {
+            //csv 파일에서 읽어온 값들을 person 객체로 매핑해주는 것.
+            int id = fieldSet.readInt("id");
+            String name = fieldSet.readString("name");
+            String age = fieldSet.readString("age");
+            String address = fieldSet.readString("address");
+
+            return new Person(id, name, age, address);
+        });
+
+        FlatFileItemReader<Person> itemReader = new FlatFileItemReaderBuilder<Person>()
+                .name("csvFileItemReader")
+                .encoding("UTF-8")
+                .resource(new ClassPathResource("test.csv"))
+                .linesToSkip(1)
+                .lineMapper(lineMapper)
+                .build();
+
+        itemReader.afterPropertiesSet(); //itemReader에서 필요한 필수 설정값이 정상정으로 설정되었는지 검사.
+
+        return itemReader;
     }
 
     private ItemReader<Person> itemReader() {
