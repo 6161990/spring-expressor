@@ -1,4 +1,4 @@
-package yoon.spring.batch.part3;
+package yoon.spring.batch.part3.testExecutaionContextTwiceReader;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -24,6 +24,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import yoon.spring.batch.part3.CustomItemReader;
+import yoon.spring.batch.part3.Person;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -31,13 +33,13 @@ import java.util.List;
 
 @Slf4j
 @Configuration
-public class ItemWriterConfiguration {
+public class ItemWriterConfiguration3 {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
     private final DataSource dataSource;
 
-    public ItemWriterConfiguration(JobBuilderFactory jobBuilderFactory, StepBuilderFactory stepBuilderFactory, DataSource dataSource) {
+    public ItemWriterConfiguration3(JobBuilderFactory jobBuilderFactory, StepBuilderFactory stepBuilderFactory, DataSource dataSource) {
         this.jobBuilderFactory = jobBuilderFactory;
         this.stepBuilderFactory = stepBuilderFactory;
         this.dataSource = dataSource;
@@ -45,7 +47,7 @@ public class ItemWriterConfiguration {
 
     @Bean
     public Job itemWriterJob() throws Exception {
-        return this.jobBuilderFactory.get("itemWriterJob")
+        return this.jobBuilderFactory.get("itemWriterJobTwiceReader")
                 .incrementer(new RunIdIncrementer())
                 .start(this.csvItemWriterStep())
                 .next(this.jdbcBatchItemWriterStep())
@@ -57,7 +59,7 @@ public class ItemWriterConfiguration {
         return this.stepBuilderFactory.get("csvItemWriterStep")
                 .<Person, Person>chunk(10)
                 .reader(itemReader())
-                .writer(this.csvFileItemWriter())
+                .writer(this.csvFileItemWriter2())
                 .build();
     }
 
@@ -66,6 +68,7 @@ public class ItemWriterConfiguration {
         return stepBuilderFactory.get("jdbcBatchItemWriterStep")
                 .<Person, Person>chunk(10)
                 .reader(itemReader())
+                .reader(this.csvFileItemReader())
                 .writer(jdbcBatchItemWriter())
                 .build();
     }
@@ -83,7 +86,7 @@ public class ItemWriterConfiguration {
         return itemWriter;
     }
 
-    private ItemWriter<Person> csvFileItemWriter() throws Exception {
+    private ItemWriter<Person> csvFileItemWriter2() throws Exception {
         BeanWrapperFieldExtractor<Person> fieldExtractor = new BeanWrapperFieldExtractor<>(); //csv파일에 있는 데이터를 추출하기 위한 객체
         fieldExtractor.setNames(new String[] {"id", "name", "age", "address"});//person객체 기준으로 필드 생성
         DelimitedLineAggregator<Person> lineAggregator = new DelimitedLineAggregator<>();//각 필드 이름을 하나의 라인에 작성하기 위해 구분값 설정
@@ -138,6 +141,7 @@ public class ItemWriterConfiguration {
     private ItemReader<Person> itemReader() {
         return new CustomItemReader<>(getItems());
     }
+
 
     private List<Person> getItems() {
         List<Person> items = new ArrayList<>();
