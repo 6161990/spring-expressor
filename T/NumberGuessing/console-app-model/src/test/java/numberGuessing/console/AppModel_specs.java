@@ -23,26 +23,45 @@ public class AppModel_specs {
     @DisplayName("sut 가 처음 초기화되면 isCompleted 가 false 다.")
     @Test
     void sut_is_incompleted_when_it_is_initialized() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
 
+        boolean actual = sut.isCompleted();
+
+        assertThat(actual).isFalse();
     }
 
     @DisplayName("sut 의 첫 flushOutput 은 게임모드선택 옵션 메세지다.")
     @Test
     void sut_correctly_prints_select_mode_message() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
 
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo(GAME_MODE_SELECT_MESSAGE);
     }
 
 
     @DisplayName("sut 진행중 3을 입력값으로 넣으면 sut 는 종료된다")
     @Test
     void sut_correctly_exist() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
 
+        sut.processInput("3");
+
+        boolean actual = sut.isCompleted();
+
+        assertThat(actual).isTrue();
     }
 
     @DisplayName("sut 에 싱글게임모드선택 후 게임 시작 메세지가 출력된다")
     @Test
     void sut_correctly_prints_single_player_game_start_message() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("1");
 
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo(SINGLE_GAME_START_MESSAGE);
     }
 
     @DisplayName("싱글 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다")
