@@ -44,11 +44,13 @@ public class AppModel {
     private Processor selectMode(String input) {
         if(input == "1") {
             int answer = randomGenerator.generateLessThanOrEqualToHundred();
-            outputBuffer.append("Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
-                    + NEW_LINE + "Enter your guess: ");
+            println("Single player game");
+            println("I'm thinking of a number between 1 and 100.");
+            print("Enter your guess: ");
             return singleGameProcess(answer, 1);
         } else if(input == "2") {
-            outputBuffer.append("Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ");
+            println("Multiplayer game");
+            print("Enter player names separated with commas: ");
             return multiGameStartProcessor();
         } else {
             isCompleted = true;
@@ -56,26 +58,33 @@ public class AppModel {
         }
     }
 
+    private void print(String message) {
+        outputBuffer.append(message);
+    }
+
+    private void println(String message) {
+        outputBuffer.append(message + NEW_LINE);
+    }
+
     private Processor multiGameStartProcessor() {
         return input -> {
             List<String> players = Arrays.stream(input.split(", ")).map(String::trim).collect(Collectors.toList());
-            outputBuffer.append("I'm thinking of a number between 1 and 100." + NEW_LINE);
+            println("I'm thinking of a number between 1 and 100.");
             return multiGameProcess(players, 1);
         };
     }
 
     private Processor multiGameProcess(List<String> players, int tries) {
-        outputBuffer.append("Enter " + players.get((tries-1) % players.size())+ "'s guess:");
+        print("Enter " + players.get((tries-1) % players.size())+ "'s guess:");
         return input -> {
             int answer = randomGenerator.generateLessThanOrEqualToHundred();
             if(Integer.parseInt(input) < answer) {
-                outputBuffer.append(players.get((tries-1) % players.size())+ " guess is too low." +NEW_LINE);
+                println(players.get((tries-1) % players.size())+ " guess is too low.");
             } else if(Integer.parseInt(input) > answer) {
-                outputBuffer.append(players.get((tries-1) % players.size())+ " guess is too high." +NEW_LINE);
+                println(players.get((tries-1) % players.size())+ " guess is too high.");
             } else {
-                outputBuffer.append("Correct! ");
-                outputBuffer.append((players.get((tries-1) % players.size()) + " wins!!!!!!!!!!" + NEW_LINE));
-                outputBuffer.append(GAME_MODE_SELECT_MESSAGE);
+                println("Correct! "+ (players.get((tries-1) % players.size()) + " wins!!!!!!!!!!"));
+                print(GAME_MODE_SELECT_MESSAGE);
                 return this::selectMode;
             }
            return multiGameProcess(players, tries+1);
@@ -85,14 +94,16 @@ public class AppModel {
     private Processor singleGameProcess(int answer, int tries) {
         return input -> {
             if (Integer.parseInt(input) < answer) {
-                outputBuffer.append("Your guess is too low." + NEW_LINE + "Enter your guess: ");
+                println("Your guess is too low.");
+                print("Enter your guess: ");
                 return singleGameProcess(answer, tries + 1);
             } else if (Integer.parseInt(input) > answer) {
-                outputBuffer.append("Your guess is too high." + NEW_LINE + "Enter your guess: ");
+                println("Your guess is too high.");
+                print("Enter your guess: ");
                 return singleGameProcess(answer, tries + 1);
             } else {
-                outputBuffer.append("Correct! ");
-                outputBuffer.append(tries + (tries == 1 ? " guess." : " guesses.") + NEW_LINE + GAME_MODE_SELECT_MESSAGE);
+                println("Correct! " + tries + (tries == 1 ? " guess." : " guesses."));
+                print(GAME_MODE_SELECT_MESSAGE);
                 return this::selectMode;
             }
         };
