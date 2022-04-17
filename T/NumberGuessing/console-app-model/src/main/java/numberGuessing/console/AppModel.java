@@ -29,7 +29,7 @@ public class AppModel {
     }
 
     public void processInput(String input) {
-        if(isSingleGameProcess){
+        if(isSingleGameProcess) {
             singleGameProcess(input);
         } else {
             selectMode(input);
@@ -55,6 +55,7 @@ public class AppModel {
         } else {
             output = "Correct! ";
             output += tries + (tries == 1? " guess." : " guesses.") + NEW_LINE + GAME_MODE_SELECT_MESSAGE;
+            isSingleGameProcess = false;
         }
     }
 }

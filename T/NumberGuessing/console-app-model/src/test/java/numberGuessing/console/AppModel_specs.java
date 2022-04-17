@@ -155,10 +155,31 @@ public class AppModel_specs {
     @DisplayName("싱글 플레이어 모드가 끝나고 돌아간 select mode 에서 exit 를 선택했을 때 sut 는 잘 종료된다")
     @Test
     void sut_returns_to_mode_selection_if_single_player_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("1");
+        sut.processInput("50");
+        sut.processInput("3");
+
+        boolean actual = sut.isCompleted();
+
+        assertThat(actual).isTrue();
     }
 
     @DisplayName("싱글 플레이어 모드는 반복하여 게임을 실행해도 잘 돌아간다")
+    @ParameterizedTest
+    @ValueSource(strings = {"1, 10, 100"})
     void sut_generates_answer_for_each_game(String source) {
+        int[] answers = Stream.of(source.split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answers));
+
+        for (int answer: answers) {
+            sut.processInput("1");
+            sut.flushOutput();
+            sut.processInput(String.valueOf(answer));
+        }
+
+        String actual = sut.flushOutput();
+        assertThat(actual).startsWith("Correct! ");
     }
 
     // -- START MULTI PLAY ROUND2 --
