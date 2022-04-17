@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="Mockists vs. Classicists">
-      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/starkIndustries/StarkIndustriesProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProduct.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,6 +209,7 @@
       <workItem from="1646302710065" duration="182000" />
       <workItem from="1646369591723" duration="1332000" />
       <workItem from="1646392121770" duration="2935000" />
+      <workItem from="1650235346271" duration="826000" />
     </task>
     <task id="LOCAL-00001" summary="모든 상품을 가져오는 Test">
       <created>1646009902930</created>
