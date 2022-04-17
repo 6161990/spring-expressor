@@ -381,21 +381,39 @@ public class AppModel_specs {
         assertThat(actual).isTrue();
     }
 
-    @DisplayName("Should I test private(Print)")
+    @DisplayName("private 메소드(print()) 테스트")
     @Test
     void print_correctly_appends_string_to_output_buffer() throws Exception {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut);
+        outputBuffer.setLength(0);
+        Whitebox.invokeMethod(sut, "print", "foo");
+        String actual = outputBuffer.toString();
+        assertThat(actual).isEqualTo("foo");
     }
-
-    @DisplayName("Should I test private(Println)")
+    @DisplayName("private 메소드(println()) 테스트")
     @Test
-    void print_correctly_appends_string_and_line_separator_to_output_buffer() throws Exception {
+    void println_correctly_appends_string_and_line_separator_to_output_buffer() throws Exception {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut); // private 필드 가져오기
+        outputBuffer.setLength(0);
+        Whitebox.invokeMethod(sut, "println", "foo"); //private 메소드 실행시키
+        String actual = outputBuffer.toString();
+        assertThat(actual).isEqualTo("foo"+ NEW_LINE);
     }
 
-    @DisplayName("Should I test private(PrintLines)")
+    @DisplayName("private 메소드(printLines()) 테스트")
     @Test
     void printLines_correctly_appends_lines() throws Exception {
-    }
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut);
 
+        outputBuffer.setLength(0);
+        Whitebox.invokeMethod(sut, "printLines", "Foo", "Bar", "Baz");
+
+        String actual = outputBuffer.toString();
+        assertThat(actual).isEqualTo("Foo" + NEW_LINE + "Bar" + NEW_LINE + "Baz");
+    }
 }
 
 /**
