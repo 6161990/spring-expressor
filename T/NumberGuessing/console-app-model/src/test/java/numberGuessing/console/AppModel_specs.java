@@ -57,6 +57,7 @@ public class AppModel_specs {
     @Test
     void sut_correctly_prints_single_player_game_start_message() {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.flushOutput();
         sut.processInput("1");
 
         String actual = sut.flushOutput();
@@ -141,11 +142,10 @@ public class AppModel_specs {
     @Test
     void sut_prints_select_mode_message_if_single_player_game_finished() {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
-        sut.processInput("1");
         sut.flushOutput();
+        sut.processInput("1");
 
         sut.processInput("50");
-        sut.flushOutput();
 
         String actual = sut.flushOutput();
 
@@ -187,27 +187,90 @@ public class AppModel_specs {
     @DisplayName("sut 에 다중 플레이어 모드 선택 후 게임 시작 메세지가 출력된다")
     @Test
     void sut_correctly_prints_multiplayer_game_setup_message(){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.flushOutput();
+        sut.processInput("2");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ");
     }
 
     @DisplayName("다중 플레이어 모드 선택 시, 사용자를 입력하면 추측값 범위 메세지가 출력된다.")
     @Test
-    void sut_correctly_prints_multiplayer_game_start_message(){
+    void sut_correctly_prints_multiplayer_game_start_message() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub (50));
+        sut.processInput("2");
+        sut.flushOutput();
+
+        sut.processInput("Jenny, Rose, Lisa");
+        String actual = sut.flushOutput();
+
+        assertThat(actual).contains("I'm thinking of a number between 1 and 100." + NEW_LINE);
     }
 
     @DisplayName("다중 플레이어 모드에서 첫번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다.")
+    @ParameterizedTest
+    @CsvSource({"Jenny, Rose, Lisa", "Rose, Lisa, Jenny", "Lisa, Jenny, Rose"})
     void sut_correctly_prompts_first_player_name(String player1, String player2, String player3){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.flushOutput();
+
+        sut.processInput(String.join(", ", player1, player2, player3));
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("Enter " + player1 + "'s guess:");
     }
 
     @DisplayName("다중 플레이어 모드에서 두번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다.")
+    @ParameterizedTest
+    @CsvSource({"Jenny, Rose, Lisa", "Rose, Lisa, Jenny", "Lisa, Jenny, Rose"})
     void sut_correctly_prompts_second_player_name(String player1, String player2, String player3){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.flushOutput();
+
+        sut.processInput(String.join(", ", player1, player2, player3));
+        sut.processInput("0");
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("Enter " + player2 + "'s guess:");
     }
 
     @DisplayName("다중 플레이어 모드에서 세번째 플레이어 순서에서 해당 플레이어 이름이 담긴 메세지가 출력된다")
+    @ParameterizedTest
+    @CsvSource({"Jenny, Rose, Lisa", "Rose, Lisa, Jenny", "Lisa, Jenny, Rose"})
     void sut_correctly_prompts_third_player_name(String player1, String player2, String player3){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.flushOutput();
+
+        sut.processInput(String.join(", ", player1, player2, player3));
+        sut.processInput("0");
+        sut.processInput("0");
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("Enter " + player3 + "'s guess:");
     }
 
     @DisplayName("다중 플레이어 모드에서 모든 순서가 다 돌면 다시 첫번째 플레이어에게 넘어간다")
+    @ParameterizedTest
+    @CsvSource({"Jenny, Rose, Lisa", "Rose, Lisa, Jenny", "Lisa, Jenny, Rose"})
     void sut_correctly_rounds_players(String player1, String player2, String player3){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+
+        sut.processInput(String.join(", ", player1, player2, player3));
+        sut.processInput("0");
+        sut.processInput("0");
+        sut.flushOutput();
+        sut.processInput("0");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith("Enter " + player1 + "'s guess:");
+
     }
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다")
