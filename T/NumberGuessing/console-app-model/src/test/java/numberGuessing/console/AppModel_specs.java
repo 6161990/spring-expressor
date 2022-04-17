@@ -383,6 +383,7 @@ public class AppModel_specs {
 
     @DisplayName("private 메소드(print()) 테스트")
     @Test
+    @Disabled
     void print_correctly_appends_string_to_output_buffer() throws Exception {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
         var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut);
@@ -391,8 +392,10 @@ public class AppModel_specs {
         String actual = outputBuffer.toString();
         assertThat(actual).isEqualTo("foo");
     }
+
     @DisplayName("private 메소드(println()) 테스트")
     @Test
+    @Disabled
     void println_correctly_appends_string_and_line_separator_to_output_buffer() throws Exception {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
         var outputBuffer = (StringBuffer) Whitebox.getField(AppModel.class, "outputBuffer").get(sut); // private 필드 가져오기
@@ -403,6 +406,7 @@ public class AppModel_specs {
     }
 
     @DisplayName("private 메소드(printLines()) 테스트")
+    @Disabled
     @Test
     void printLines_correctly_appends_lines() throws Exception {
         var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
