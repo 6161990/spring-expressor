@@ -48,7 +48,6 @@ public class AppModel {
                     + NEW_LINE + "Enter your guess: ");
             return singleGameProcess(answer, 1);
         } else if(input == "2") {
-            int answer = randomGenerator.generateLessThanOrEqualToHundred();
             outputBuffer.append("Multiplayer game" + NEW_LINE + "Enter player names separated with commas: ");
             return multiGameStartProcessor();
         } else {
@@ -67,7 +66,20 @@ public class AppModel {
 
     private Processor multiGameProcess(List<String> players, int tries) {
         outputBuffer.append("Enter " + players.get((tries-1) % players.size())+ "'s guess:");
-        return input -> multiGameProcess(players, tries+1);
+        return input -> {
+            int answer = randomGenerator.generateLessThanOrEqualToHundred();
+            if(Integer.parseInt(input) < answer) {
+                outputBuffer.append(players.get((tries-1) % players.size())+ " guess is too low." +NEW_LINE);
+            } else if(Integer.parseInt(input) > answer) {
+                outputBuffer.append(players.get((tries-1) % players.size())+ " guess is too high." +NEW_LINE);
+            } else {
+                outputBuffer.append("Correct! ");
+                outputBuffer.append((players.get((tries-1) % players.size()) + " wins!!!!!!!!!!" + NEW_LINE));
+                outputBuffer.append(GAME_MODE_SELECT_MESSAGE);
+                return this::selectMode;
+            }
+           return multiGameProcess(players, tries+1);
+        };
     }
 
     private Processor singleGameProcess(int answer, int tries) {

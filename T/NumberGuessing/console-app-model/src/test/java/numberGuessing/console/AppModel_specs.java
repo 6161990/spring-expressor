@@ -274,29 +274,111 @@ public class AppModel_specs {
     }
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다")
+    @ParameterizedTest
+    @CsvSource({"50, 49, 1, Jenny", "77, 7, 2, Rose"})
     void sut_correctly_prints_too_low_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("2");
+        sut.processInput("Jenny, Rose, Me");
+
+        for (int i = 0; i < fails-1; i++) {
+            sut.processInput(String.valueOf(guess));
+        }
+
+        sut.flushOutput();
+        sut.processInput(String.valueOf(guess));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).startsWith(lastPlayer + " guess is too low." + NEW_LINE);
     }
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답이 answer 보다 클 경우 해당 메세지가 출력된다")
+    @ParameterizedTest
+    @CsvSource({"50, 59, 1, Jenny", "77, 79, 2, Rose"})
     void sut_correctly_prints_too_high_message_multiplayer_game(int answer, int guess, int fails, String lastPlayer) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("2");
+        sut.processInput("Jenny, Rose, Me");
+
+        for (int i = 0; i < fails-1; i++) {
+            sut.processInput(String.valueOf(guess));
+        }
+
+        sut.flushOutput();
+        sut.processInput(String.valueOf(guess));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).startsWith(lastPlayer + " guess is too high." + NEW_LINE);
     }
 
     @DisplayName("다중 플레이어 게임에서 입력한 정답을 맞힌 경우 해당 메세지가 출력된다")
+    @ParameterizedTest
+    @ValueSource(ints = {1,4,50,77})
     void sut_correctly_prints_message_in_multiplayer_game(int answer){
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("2");
+        sut.processInput("Jenny, Rose, Me");
+
+        sut.flushOutput();
+        sut.processInput(String.valueOf(answer));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).startsWith("Correct! ");
     }
 
     @DisplayName("멀티 플레이어 게임이 종료되었을 때 승자가 메세지에 출력된다")
+    @ParameterizedTest
+    @CsvSource({"0, Jenny", "1, Rose"})
     void sut_correctly_prints_winner_if_multiplayer_game_finished(int fails, String winner) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput("Jenny, Rose, Me");
+
+        for (int i = 0; i < fails; i++) {
+            sut.processInput("0");
+        }
+
+        sut.flushOutput();
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+        assertThat(actual).contains(winner + " wins!!!!!!!!!!" + NEW_LINE);
     }
 
     @DisplayName("멀티 플레이어 모드가 끝나면 셀렉트 모드 메세지가 출력된다")
     @Test
     void sut_prints_select_mode_message_if_multiplayer_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput("Jenny, Rose, Me");
+        sut.flushOutput();
+
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith(GAME_MODE_SELECT_MESSAGE);
     }
 
     @DisplayName("멀티 플레이어 모드가 끝나고 셀렉트 모드에서 3을 입력하면 게임이 종료된다")
     @Test
     void sut_returns_to_mode_selection_if_multiplayer_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("2");
+        sut.processInput("Jenny, Rose, Me");
+        sut.flushOutput();
+
+        sut.processInput("50");
+        sut.flushOutput();
+
+        sut.processInput("3");
+
+        boolean actual = sut.isCompleted();
+
+        assertThat(actual).isTrue();
     }
 
     @DisplayName("Should I test private(Print)")
