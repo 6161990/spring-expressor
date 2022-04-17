@@ -11,6 +11,7 @@ public class AppModel {
     private String output;
     private int answer;
     private boolean isSingleGameProcess;
+    private int tries = 0;
 
     public AppModel(PositiveIntegerGenerator generator) {
         isCompleted = false;
@@ -30,8 +31,12 @@ public class AppModel {
     public void processInput(String input) {
         if(isSingleGameProcess){
             singleGameProcess(input);
+        } else {
+            selectMode(input);
         }
+    }
 
+    private void selectMode(String input) {
         if(input == "1") {
             output = "Single player game" + NEW_LINE + "I'm thinking of a number between 1 and 100."
                     + NEW_LINE + "Enter your guess: ";
@@ -42,12 +47,14 @@ public class AppModel {
     }
 
     private void singleGameProcess(String input) {
+        tries++;
         if(Integer.parseInt(input) < answer) {
             output = "Your guess is too low." + NEW_LINE + "Enter your guess: ";
         } else if(Integer.parseInt(input) > answer) {
             output = "Your guess is too high." + NEW_LINE + "Enter your guess: ";
         } else {
             output = "Correct! ";
+            output += tries + (tries == 1? " guess." : " guesses.") + NEW_LINE + GAME_MODE_SELECT_MESSAGE;
         }
     }
 }

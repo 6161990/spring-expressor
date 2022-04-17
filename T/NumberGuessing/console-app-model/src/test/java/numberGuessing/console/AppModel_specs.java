@@ -103,21 +103,53 @@ public class AppModel_specs {
 
         String actual = sut.flushOutput();
 
-        assertThat(actual).isEqualTo("Correct! ");
+        assertThat(actual).startsWith("Correct! ");
     }
 
     @DisplayName("싱글 플레이어 게임에서 정답을 맞췄을 때, 총 실패횟수를 알려주는 메세지가 출력된다")
+    @ParameterizedTest
+    @ValueSource(ints = {19, 30, 77, 99})
     void sut_correctly_prints_guess_count_if_single_player_game_finished(int fails) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("1");
+
+        for (int i = 0; i < fails - 1; i++) {
+            sut.processInput("0");
+            sut.flushOutput();
+        }
+
+        sut.processInput("50");
+        String actual = sut.flushOutput();
+
+        assertThat(actual).contains(fails + " guesses." + NEW_LINE);
     }
 
     @DisplayName("싱글 플레이어 게임에서 정답을 한번에 맞췄을 때, 'guesses' 가 아니라 'guess' 로 출력된다")
     @Test
     void sut_correctly_prints_one_guess_if_single_player_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("1");
+        sut.flushOutput();
+        sut.processInput("50");
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).contains("1 guess." + NEW_LINE);
     }
 
     @DisplayName("싱글 플레이어 모드가 끝나면 다시 select mode 가 보여진다")
     @Test
     void sut_prints_select_mode_message_if_single_player_game_finished() {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(50));
+        sut.processInput("1");
+        sut.flushOutput();
+
+        sut.processInput("50");
+        sut.flushOutput();
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).endsWith(GAME_MODE_SELECT_MESSAGE);
     }
 
     @DisplayName("싱글 플레이어 모드가 끝나고 돌아간 select mode 에서 exit 를 선택했을 때 sut 는 잘 종료된다")
