@@ -65,16 +65,45 @@ public class AppModel_specs {
     }
 
     @DisplayName("싱글 플레이어 게임에서 입력한 정답이 answer 보다 작을 경우 해당 메세지가 출력된다")
+    @ParameterizedTest
+    @CsvSource({"50, 40", "30, 29", "89, 9"})
     void sut_correctly_prints_too_low_message_in_single_player_game(int answer, int guess) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("1");
+        sut.flushOutput();
+        sut.processInput(String.valueOf(guess));
 
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("Your guess is too low." + NEW_LINE + "Enter your guess: ");
     }
 
     @DisplayName("싱글 플레이어 게임에서 입력한 정답이 answer 보다 클 경우 해당 메세지가 출력된다")
+    @ParameterizedTest
+    @CsvSource({"44, 50", "77, 88","9, 99"})
     void sut_correctly_prints_too_high_message_in_single_player_game(int answer, int guess) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("1");
+        sut.flushOutput();
+        sut.processInput(String.valueOf(guess));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("Your guess is too high." + NEW_LINE + "Enter your guess: ");
     }
 
     @DisplayName("싱글 플레이어 게임에서 입력한 정답이 answer 일 때, 해당 메세지가 출력된다")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 10, 77, 99})
     void sut_correctly_prints_correct_message_in_single_player_game(int answer) {
+        var sut = new AppModel(new PositiveIntegerGeneratorStub(answer));
+        sut.processInput("1");
+        sut.flushOutput();
+        sut.processInput(String.valueOf(answer));
+
+        String actual = sut.flushOutput();
+
+        assertThat(actual).isEqualTo("Correct! ");
     }
 
     @DisplayName("싱글 플레이어 게임에서 정답을 맞췄을 때, 총 실패횟수를 알려주는 메세지가 출력된다")
