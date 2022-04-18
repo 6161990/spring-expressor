@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="Mockists vs. Classicists">
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/Pricing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/ProductImporter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/starkIndustries/StarkIndustriesProductImporter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/starkIndustries/StarkIndustriesProductSource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/starkIndustries/StarkIndustriesProductTranslator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/starkIndustries/StarkIndustriesProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/starkIndustries/StarkIndustriesProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/ListPriceFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/ListPriceFilter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +207,7 @@
       <workItem from="1646369591723" duration="1332000" />
       <workItem from="1646392121770" duration="2935000" />
       <workItem from="1650235346271" duration="826000" />
-      <workItem from="1650285790460" duration="3413000" />
+      <workItem from="1650285790460" duration="4209000" />
     </task>
     <task id="LOCAL-00001" summary="모든 상품을 가져오는 Test">
       <created>1646009902930</created>
