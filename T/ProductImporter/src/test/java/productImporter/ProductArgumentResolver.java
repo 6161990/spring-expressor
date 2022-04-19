@@ -1,6 +1,7 @@
 package productImporter;
 
 import productImporter.DomainArgumentResolver;
+import productImporter.suppliers.starkIndustries.StarkIndustriesProduct;
 
 import java.math.BigDecimal;
 import java.util.Optional;
