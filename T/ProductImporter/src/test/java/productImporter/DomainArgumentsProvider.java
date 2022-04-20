@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+/** DomainArgumentResolver 로 테스트 arguments 를 만든다 */
 public class DomainArgumentsProvider implements ArgumentsProvider, AnnotationConsumer<DomainArgumentsSource> {
 
     @Override

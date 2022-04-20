@@ -3,6 +3,8 @@ package productImporter.suppliers.wayneenterprises;
 import productImporter.Product;
 import productImporter.ProductImporter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -18,6 +20,9 @@ public final class WayneEnterprisesProductImporter implements ProductImporter {
 
     @Override
     public Iterable<Product> fetchProducts() {
+        /*var products = new ArrayList<WayneEnterprisesProduct>();
+        dataSource.fetchProducts().forEach(products::add);
+        return Arrays.asList(new Product[products.size()]);*/
         return StreamSupport.stream(dataSource.fetchProducts().spliterator(), false)
                 .map(translator::translate).collect(Collectors.toList());
     }
