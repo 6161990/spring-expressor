@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="Mockists vs. Classicists">
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProductArgumentResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProductSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProductSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/DomainArgumentResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/DomainArgumentResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/DomainArgumentsProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/DomainArgumentsProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/DomainArgumentsSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/DomainArgumentsSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProduct.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="Mockists vs. Classicists" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -217,7 +208,7 @@
       <workItem from="1650285790460" duration="5143000" />
       <workItem from="1650403324106" duration="2816000" />
       <workItem from="1650457642847" duration="2086000" />
-      <workItem from="1650494213640" duration="326000" />
+      <workItem from="1650494213640" duration="899000" />
     </task>
     <task id="LOCAL-00001" summary="모든 상품을 가져오는 Test">
       <created>1646009902930</created>
