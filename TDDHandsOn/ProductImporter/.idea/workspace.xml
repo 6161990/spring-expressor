@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="Mockists vs. Classicists">
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/DomainArgumentsProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/DomainArgumentsSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/ProductArgumentResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/ProductArgumentResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/starkIndustries/StarkIndustriesProduct.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="Mockists vs. Classicists" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -214,7 +206,9 @@
       <workItem from="1646392121770" duration="2935000" />
       <workItem from="1650235346271" duration="826000" />
       <workItem from="1650285790460" duration="5143000" />
-      <workItem from="1650403324106" duration="2316000" />
+      <workItem from="1650403324106" duration="2816000" />
+      <workItem from="1650457642847" duration="2086000" />
+      <workItem from="1650494213640" duration="899000" />
     </task>
     <task id="LOCAL-00001" summary="모든 상품을 가져오는 Test">
       <created>1646009902930</created>
@@ -528,11 +522,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/productimporter/Product.java</url>
           <line>20</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/productimporter/DomainArgumentsProvider.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.ANNOTATION_TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@ArgumentsSource(DomainArgumentsProvider.class)
+@ArgumentsSource(DomainArgumentsProvider.class) /** 데이터를 해결해주는 provider*/
 public @interface DomainArgumentsSource {
 }
