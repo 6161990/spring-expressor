@@ -16,5 +16,19 @@ public class StarkIndustriesProduct {
         this.discountAmount = discountAmount;
     }
 
+    public String getCode() {
+        return code;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getListPrice() {
+        return listPrice;
+    }
+
+    public int getDiscountAmount() {
+        return discountAmount;
+    }
 }

@@ -1,8 +1,5 @@
 package productImporter.suppliers.wayneenterprises;
 
-import lombok.Getter;
-
-@Getter
 public final class WayneEnterprisesProduct {
     private final String id;
     private final String title;
@@ -16,4 +13,19 @@ public final class WayneEnterprisesProduct {
         this.sellingPrice = sellingPrice;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getListPrice() {
+        return listPrice;
+    }
+
+    public int getSellingPrice() {
+        return sellingPrice;
+    }
 }
