@@ -15,7 +15,7 @@ final class WayneEnterprisesProductTranslator {
     private Pricing getPricing(WayneEnterprisesProduct x) {
         int listPrice = x.getListPrice();
         int sellingPrice = x.getSellingPrice();
-        var discount = new BigDecimal(listPrice = sellingPrice);
+        var discount = new BigDecimal(listPrice - sellingPrice);
         return new Pricing(new BigDecimal(listPrice), discount);
     }
 

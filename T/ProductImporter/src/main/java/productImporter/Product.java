@@ -1,8 +1,5 @@
 package productImporter;
 
-import lombok.Getter;
-
-@Getter
 public class Product {
     private final String supplierName;
     private final String productCode;

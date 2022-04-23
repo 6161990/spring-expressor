@@ -1,7 +1,6 @@
 package productImporter.suppliers.wayneenterprises;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import productImporter.DomainArgumentsSource;
 import productImporter.Product;
@@ -53,7 +52,7 @@ public class WayneEnterprisesProductImporter_specs {
         assertThat(actual.getProductCode()).isEqualTo(source.getId());
         assertThat(actual.getProductName()).isEqualTo(source.getTitle());
         assertThat(actual.getPricing().getListPrice()).isEqualByComparingTo(String.valueOf(source.getListPrice()));
-        assertThat(actual.getPricing().getDiscount()).isEqualByComparingTo(String.valueOf(source.getListPrice()- source.getSellingPrice()));
+        assertThat(actual.getPricing().getDiscount()).isEqualByComparingTo(String.valueOf(source.getListPrice() - source.getSellingPrice()));
     }
 
 }
