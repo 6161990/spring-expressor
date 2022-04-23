@@ -4,6 +4,7 @@ import productImporter.ProductImporter;
 import productImporter.Product;
 
 import java.util.ArrayList;
+import java.util.stream.StreamSupport;
 
 public class StarkIndustriesProductImporter implements ProductImporter {
 
