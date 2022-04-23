@@ -24,6 +24,6 @@ public final class WayneEnterprisesProductImporter implements ProductImporter {
         dataSource.fetchProducts().forEach(products::add);
         return Arrays.asList(new Product[products.size()]);*/
         return StreamSupport.stream(dataSource.fetchProducts().spliterator(), false)
-                .map(translator::translate).collect(Collectors.toList());
+                .map(x -> new Product("WAYNE", null, null, null)).collect(Collectors.toList());
     }
 }
