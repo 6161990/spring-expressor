@@ -40,13 +40,13 @@ public class WayneEnterprisesProductImporter_specs {
     }
 
     @DisplayName("WayneEnterprises 사의 properties들을 잘 투영한다.")
-    @Test
+    @ParameterizedTest
     @DomainArgumentsSource
     void sut_correctly_projects_source_properties(WayneEnterprisesProduct source){
         var stub = new WayneEnterprisesProductSourceStub(source);
         var sut = new WayneEnterprisesProductImporter(stub);
 
-        List<Product> products = new ArrayList<Product>();
+        List<Product> products = new ArrayList<>();
         sut.fetchProducts().forEach(products::add);
         Product actual = products.get(0);
 
