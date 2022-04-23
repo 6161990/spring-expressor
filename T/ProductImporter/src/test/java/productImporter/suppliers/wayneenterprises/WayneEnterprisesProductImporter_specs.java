@@ -22,11 +22,24 @@ public class WayneEnterprisesProductImporter_specs {
         assertThat(actual).hasSize(source.length);
     }
 
+    @DisplayName("WayneEnterprises사의 Supplier의 이름을 Importer에서 WAYNE 이라고 설정한다")
+    @ParameterizedTest
+    @DomainArgumentsSource
+    void sut_correctly_sets_supplier_name(WayneEnterprisesProduct[] source) {
+        var stub = new WayneEnterprisesProductSourceStub(source);
+        var sut = new WayneEnterprisesProductImporter(stub);
 
+        Iterable<Product> actual = sut.fetchProducts();
+
+        assertThat(actual).allMatch(x-> x.getSupplierName().equals("WAYNE"));
+
+    }
 
 }
 
 /**
  * [Step1. WayneEnterprises 사가 가지고 있는 상품 목록만큼 우리 커머스 서비스가 규정하고 있는 상품 포맷을 통과한 개수가 나와야한다.
  *      WayneEnterprisesProductSourceStub 을 만들어야한다.
+ *
+ * [Step2. WayneEnterprises사의 Supplier의 이름을 Importer 에서 WAYNE 이라고 설정한다]
  * */
