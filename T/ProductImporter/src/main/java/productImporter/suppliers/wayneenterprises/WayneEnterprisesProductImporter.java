@@ -26,6 +26,10 @@ public final class WayneEnterprisesProductImporter implements ProductImporter {
         dataSource.fetchProducts().forEach(products::add);
         return Arrays.asList(new Product[products.size()]);*/
         return StreamSupport.stream(dataSource.fetchProducts().spliterator(), false)
-                .map(x -> new Product("WAYNE", x.getId(), x.getTitle(), new Pricing(new BigDecimal(x.getListPrice()), new BigDecimal(x.getListPrice() - x.getSellingPrice())))).collect(Collectors.toList());
+                .map(x -> translate(x)).collect(Collectors.toList());
+    }
+
+    private Product translate(WayneEnterprisesProduct x) {
+        return new Product("WAYNE", x.getId(), x.getTitle(), new Pricing(new BigDecimal(x.getListPrice()), new BigDecimal(x.getListPrice() - x.getSellingPrice())));
     }
 }
