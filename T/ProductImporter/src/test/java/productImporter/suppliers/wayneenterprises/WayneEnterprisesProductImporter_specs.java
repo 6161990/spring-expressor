@@ -5,6 +5,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import productImporter.DomainArgumentsSource;
 import productImporter.Product;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WayneEnterprisesProductImporter_specs {
@@ -35,6 +38,23 @@ public class WayneEnterprisesProductImporter_specs {
 
     }
 
+    @DisplayName("WayneEnterprises 사의 properties들을 잘 투영한다.")
+    @ParameterizedTest
+    @DomainArgumentsSource
+    void sut_correctly_projects_source_properties(WayneEnterprisesProduct source){
+        var stub = new WayneEnterprisesProductSourceStub(source);
+        var sut = new WayneEnterprisesProductImporter(stub);
+
+        List<Product> products = new ArrayList<>();
+        sut.fetchProducts().forEach(products::add);
+        Product actual = products.get(0);
+
+        assertThat(actual.getProductCode()).isEqualTo(source.getId());
+        assertThat(actual.getProductName()).isEqualTo(source.getTitle());
+        assertThat(actual.getPricing().getListPrice()).isEqualByComparingTo(String.valueOf(source.getListPrice()));
+        assertThat(actual.getPricing().getDiscount()).isEqualByComparingTo(String.valueOf(source.getListPrice() - source.getSellingPrice()));
+    }
+
 }
 
 /**
@@ -42,4 +62,5 @@ public class WayneEnterprisesProductImporter_specs {
  *      WayneEnterprisesProductSourceStub 을 만들어야한다.
  *
  * [Step2. WayneEnterprises사의 Supplier의 이름을 Importer 에서 WAYNE 이라고 설정한다]
+ * [Step3. WayneEnterprises 사의 properties들을 잘 투영한다.]
  * */
