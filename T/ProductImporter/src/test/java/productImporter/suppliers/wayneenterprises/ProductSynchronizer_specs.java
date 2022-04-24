@@ -18,11 +18,11 @@ public class ProductSynchronizer_specs {
         var importer = new WayneEnterprisesProductImporter(stub);
         var validator = new ListPriceFilter(BigDecimal.ZERO); // 특정 값 이상만 유효한 것으로 판단하는 필터(0이상의 값의 상품을 통과시킴)
         var spy = new ProductInventorySpy();
-        var sut = new ProductSynchronizer(importer, validator, spy); 
+        var sut = new ProductSynchronizer(importer, validator, spy);
 
         sut.run();
 
         Iterable<Product> expected = importer.fetchProducts();
-        assertThat(spy.getLog()).usingRecursiveFieldByFieldElementComparator();
+        assertThat(spy.getLog()).usingRecursiveFieldByFieldElementComparator().containsAll(expected); // importer 가 반환하는 모든 상품들이 inventory에 그대로 출력되는지 확인 
     }
 }
