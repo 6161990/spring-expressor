@@ -1,8 +1,12 @@
-package productImporter.suppliers.wayneenterprises;
+package productImporter;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import productImporter.*;
+import productImporter.suppliers.wayneenterprises.ProductInventorySpy;
+import productImporter.suppliers.wayneenterprises.WayneEnterprisesProduct;
+import productImporter.suppliers.wayneenterprises.WayneEnterprisesProductImporter;
+import productImporter.suppliers.wayneenterprises.WayneEnterprisesProductSourceStub;
 
 import java.math.BigDecimal;
 
@@ -23,6 +27,10 @@ public class ProductSynchronizer_specs {
         sut.run();
 
         Iterable<Product> expected = importer.fetchProducts();
-        assertThat(spy.getLog()).usingRecursiveFieldByFieldElementComparator().containsAll(expected); // importer 가 반환하는 모든 상품들이 inventory에 그대로 출력되는지 확인 
+        assertThat(spy.getLog()).usingRecursiveFieldByFieldElementComparator().containsAll(expected); // importer 가 반환하는 모든 상품들이 inventory에 그대로 출력되는지 확인
     }
+
+    /**
+     * [Step4. ProductSynchronizer 가 ProductInventory 에 상품을 잘 저장한다.]
+     * */
 }
