@@ -30,7 +30,29 @@ public class ProductSynchronizer_specs {
         assertThat(spy.getLog()).usingRecursiveFieldByFieldElementComparator().containsAll(expected); // importer 가 반환하는 모든 상품들이 inventory에 그대로 출력되는지 확인
     }
 
+    @DisplayName("올바르지 않은 상품은 저장하지 않는다.")
+    @ParameterizedTest
+    @DomainArgumentsSource
+    void sut_does_not_save_invalid_product(WayneEnterprisesProduct product){
+        // Arrange
+        var lowerBound = new BigDecimal(product.getListPrice() + 10000); // 더 비싼 가격으로 하한가 설정
+        var validator = new ListPriceFilter(lowerBound);
+
+        var stub = new WayneEnterprisesProductSourceStub(product);
+        var importer = new WayneEnterprisesProductImporter(stub);
+        var spy = new ProductInventorySpy();
+        var sut = new ProductSynchronizer(importer, validator, spy);
+
+        // Act
+        sut.run();
+
+        // Assert
+        assertThat(spy.getLog()).isEmpty();
+    }
+
+
     /**
      * [Step4. ProductSynchronizer 가 ProductInventory 에 상품을 잘 저장한다.]
+     * [Step5. 올바르지 않은 상품은 저장하지 않는다.]
      * */
 }
