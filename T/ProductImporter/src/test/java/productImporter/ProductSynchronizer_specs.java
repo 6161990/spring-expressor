@@ -1,6 +1,7 @@
 package productImporter;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import productImporter.*;
 import productImporter.suppliers.wayneenterprises.ProductInventorySpy;
@@ -9,8 +10,10 @@ import productImporter.suppliers.wayneenterprises.WayneEnterprisesProductImporte
 import productImporter.suppliers.wayneenterprises.WayneEnterprisesProductSourceStub;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
 public class ProductSynchronizer_specs {
 
@@ -50,9 +53,34 @@ public class ProductSynchronizer_specs {
         assertThat(spy.getLog()).isEmpty();
     }
 
+    @DisplayName("Spy 를 사용하던 ProductSynchronizer 를 Mock 을 사용해 TestCase 작성")
+    @Test
+    void sut_really_does_not_save_invalid_product() {
+        // Arrange
+        var pricing = new Pricing(BigDecimal.TEN, BigDecimal.ONE);
+        var product = new Product("supplierName", "productCode", "productName", pricing);
+
+        ProductImporter importer = mock(ProductImporter.class);
+        when(importer.fetchProducts()).thenReturn(Arrays.asList(product));
+
+        ProductValidator validator = mock(ProductValidator.class);
+        when(validator.isValid(product)).thenReturn(false);
+
+        ProductInventory inventory = mock(ProductInventory.class);
+
+        var sut = new ProductSynchronizer(importer, validator, inventory);
+
+        // Act
+        sut.run();
+
+        // Assert
+        verify(inventory, never()).upsertProduct(product);
+    }
+
 
     /**
      * [Step4. ProductSynchronizer 가 ProductInventory 에 상품을 잘 저장한다.]
      * [Step5. 올바르지 않은 상품은 저장하지 않는다.]
+     * [Step6. Spy 를 사용하던 ProductSynchronizer 를 Mock 을 사용해 TestCase 작성]
      * */
 }

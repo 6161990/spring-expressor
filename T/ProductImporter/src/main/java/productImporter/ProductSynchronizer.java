@@ -14,7 +14,6 @@ public class ProductSynchronizer {
         this.inventory = inventory;
     }
 
-    //TODO: Stream 으로 구현 변경하기
     public void run() {
         StreamSupport.stream(importer.fetchProducts().spliterator(), false).filter(validator::isValid).forEach(inventory::upsertProduct);
        /*
