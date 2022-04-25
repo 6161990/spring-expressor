@@ -1,5 +1,7 @@
 package productImporter;
 
+import java.util.stream.StreamSupport;
+
 public class ProductSynchronizer {
 
     private final ProductImporter importer;
@@ -12,12 +14,13 @@ public class ProductSynchronizer {
         this.inventory = inventory;
     }
 
-    //TODO: Stream 으로 구현 변경하기
     public void run() {
+        StreamSupport.stream(importer.fetchProducts().spliterator(), false).filter(validator::isValid).forEach(inventory::upsertProduct);
+       /*
        for(Product product : importer.fetchProducts()){
-           if(validator.isValid(product)){
-               inventory.upsertProduct(product);
+           if(validator.isValid(product)){ // Step5. 올바르지 않은 상품은 저장하지 않는다.
+               inventory.upsertProduct(product); // Step4. ProductSynchronizer 가 ProductInventory 에 상품을 잘 저장한다.
            }
-       }
+       }*/
     }
 }
