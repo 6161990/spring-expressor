@@ -3,7 +3,6 @@ package productImporter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import productImporter.*;
 import productImporter.suppliers.wayneenterprises.ProductInventorySpy;
 import productImporter.suppliers.wayneenterprises.WayneEnterprisesProduct;
 import productImporter.suppliers.wayneenterprises.WayneEnterprisesProductImporter;
