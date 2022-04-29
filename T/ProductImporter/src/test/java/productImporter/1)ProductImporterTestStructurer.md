@@ -1,11 +1,12 @@
+
 ### ProductImporterTest 구조
 
 ---
 [SomethingProductImporter_specs]     
 * [Step1. WayneEnterprises 사가 가지고 있는 상품 목록만큼 우리 커머스 서비스가 규정하고 있는 상품 포맷을 통과한 개수가 나와야한다.    
   ***WayneEnterprisesProductSourceStub 을 만들어야한다.***
-* [Step2. WayneEnterprises사의 Supplier의 이름을 Importer 에서 WAYNE 이라고 설정한다]
-* [Step3. WayneEnterprises 사의 properties들을 잘 투영한다.]
+* [Step2. WayneEnterprises 사의 Supplier 의 이름을 Importer 에서 WAYNE 이라고 설정한다]
+* [Step3. WayneEnterprises 사의 properties 들을 잘 투영한다.]
 * [Step7. StarkIndustries 사가 넘겨준 상품 수 만큼 커머스 서비스에 등록된다]
 * [Step8. StarkIndustries 사가 넘겨준 상품을 우리 커머스에 맞게 잘 변환한다]
 
