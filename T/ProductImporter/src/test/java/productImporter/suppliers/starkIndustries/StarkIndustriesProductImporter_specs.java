@@ -3,7 +3,6 @@ package productImporter.suppliers.starkIndustries;
 import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import productImporter.DomainArgumentsSource;
 import productImporter.Product;
 
 import java.util.Arrays;
@@ -19,7 +18,6 @@ public class StarkIndustriesProductImporter_specs {
 
     @DisplayName("StarkIndustries 사가 넘겨준 상품 수 만큼 커머스 서비스에 등록된다")
     @ParameterizedTest
-    @DomainArgumentsSource
     void sut_projects_all_product(StarkIndustriesProduct[] sourceProducts){
         // Arrange
         var productSource = mock(StarkIndustriesProductSource.class);
@@ -36,7 +34,6 @@ public class StarkIndustriesProductImporter_specs {
 
     @DisplayName("StarkIndustries 사가 넘겨준 상품을 우리 커머스에 맞게 잘 변환한다")
     @ParameterizedTest
-    @DomainArgumentsSource
     void sut_correctly_translates_source_products(StarkIndustriesProduct[] sourceProducts, Product[] products) {
         // Arrange
         var productSource = mock(StarkIndustriesProductSource.class);

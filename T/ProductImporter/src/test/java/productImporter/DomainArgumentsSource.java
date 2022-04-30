@@ -1,5 +1,6 @@
 package productImporter;
 
+import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import java.lang.annotation.ElementType;
@@ -9,6 +10,6 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.ANNOTATION_TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@ArgumentsSource(DomainArgumentsProvider.class) /** 데이터를 해결해주는 provider*/
+@ArgumentsSource(DomainArgumentsProvider.class)
 public @interface DomainArgumentsSource {
 }

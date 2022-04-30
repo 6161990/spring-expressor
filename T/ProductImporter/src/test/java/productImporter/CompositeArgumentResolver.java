@@ -2,20 +2,20 @@ package productImporter;
 
 import java.util.Optional;
 
-public class CompositeArgumentResolver implements DomainArgumentResolver {
+public class CompositeArgumentResolver implements DomainArgumentsResolver {
 
-    private final DomainArgumentResolver[] resolvers;
+    private final DomainArgumentsResolver[] resolvers;
 
-    public CompositeArgumentResolver(DomainArgumentResolver... resolvers) {
+    public CompositeArgumentResolver(DomainArgumentsResolver... resolvers){
         this.resolvers = resolvers;
     }
 
     @Override
-    public Optional<Object> tryResolve(Class<?> parameterType) {
-        for(DomainArgumentResolver resolver : resolvers){
-            Optional<Object> argument = resolver.tryResolve(parameterType);
-            if(argument.isPresent()) {
-                return argument;
+    public Optional<Object> tryResolve(Class<?>[] parameterTypes) {
+        for (DomainArgumentsResolver resolver : resolvers) {
+            Optional<Object> arguments = resolver.tryResolve(parameterTypes);
+            if(arguments.isPresent()) {
+                return arguments;
             }
         }
         return Optional.empty();

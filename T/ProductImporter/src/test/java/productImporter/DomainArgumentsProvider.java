@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-/** DomainArgumentResolver 로 테스트 arguments 를 만든다 */
 public class DomainArgumentsProvider implements ArgumentsProvider, AnnotationConsumer<DomainArgumentsSource> {
 
     @Override
@@ -24,11 +23,13 @@ public class DomainArgumentsProvider implements ArgumentsProvider, AnnotationCon
         Class<?>[] parameterTypes = method.getParameterTypes();
 
         Object[] arguments = new Object[parameterTypes.length];
-        DomainArgumentResolver argumentResolver = DomainArgumentResolver.instance;
+        DomainArgumentsResolver argumentsResolver = DomainArgumentsResolver.instance;
         for (int i = 0; i < arguments.length; i++) {
-            Optional<Object> argument = argumentResolver.tryResolve(parameterTypes[i]);
+            Optional<Object> argument = argumentsResolver.tryResolve(parameterTypes);
             arguments[i] = argument.orElse(null);
         }
+
         return Arrays.stream(new Arguments[] {Arguments.of(arguments)});
     }
+
 }
