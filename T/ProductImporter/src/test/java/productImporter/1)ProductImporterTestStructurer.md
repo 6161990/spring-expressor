@@ -71,3 +71,11 @@
 [@DomainArgumentsSource]
 * @ArgumentsSource(DomainArgumentsProvider.class)
 
+[For Test ArgumentsSource]
+DomainArgumentsSource
+DomainArgumentsProvider
+DomainArgumentResolver
+CompositeArgumentResolver
+ProductArgumentResolver
+StarkIndustriesProductArgumentResolver
+WayneEnterprisesProductArgumentResolver

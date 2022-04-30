@@ -18,7 +18,6 @@ public class ProductSynchronizer_specs {
 
     @DisplayName("ProductSynchronizer 가 ProductInventory에 상품을 잘 저장한")
     @ParameterizedTest
-    @DomainArgumentsSource
     void sut_correctly_saves_products(WayneEnterprisesProduct[] products){
         var stub = new WayneEnterprisesProductSourceStub(products);
         var importer = new WayneEnterprisesProductImporter(stub);
@@ -34,7 +33,6 @@ public class ProductSynchronizer_specs {
 
     @DisplayName("올바르지 않은 상품은 저장하지 않는다.")
     @ParameterizedTest
-    @DomainArgumentsSource
     void sut_does_not_save_invalid_product(WayneEnterprisesProduct product){
         // Arrange
         var lowerBound = new BigDecimal(product.getListPrice() + 10000); // 더 비싼 가격으로 하한가 설정
