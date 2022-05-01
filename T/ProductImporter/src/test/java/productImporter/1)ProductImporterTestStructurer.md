@@ -71,6 +71,9 @@
 [@DomainArgumentsSource]
 * @ArgumentsSource(DomainArgumentsProvider.class)
 
+
+---
+
 [For Test ArgumentsSource]
 Step1. DomainArgumentsSource
 Step2. DomainArgumentsProvider
@@ -82,7 +85,7 @@ Step7. WayneEnterprisesProductArgumentResolver
 
 [For ProductSynchronizer]
 Step8-1. ListPriceFilter_specs
-Step8-2. ListPriceFilter_specs
+Step8-2. ListPriceFilter
 Step9-1. ProductSynchronizer_specs
 * [Step9-1-1. ProductSynchronizer 가 ProductInventory 에 상품을 잘 저장한다.]
 * [Step9-1-2. 올바르지 않은 상품은 저장하지 않는다.]
