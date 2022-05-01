@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="Mockists vs. Classicists">
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/1)ProductImporterTestStructurer.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/1)ProductImporterTestStructurer.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="Mockists vs. Classicists" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -213,7 +210,7 @@
       <workItem from="1650457642847" duration="2086000" />
       <workItem from="1650494213640" duration="899000" />
       <workItem from="1651283384091" duration="1632000" />
-      <workItem from="1651370565017" duration="3487000" />
+      <workItem from="1651370565017" duration="3580000" />
     </task>
     <task id="LOCAL-00001" summary="모든 상품을 가져오는 Test">
       <created>1646009902930</created>
