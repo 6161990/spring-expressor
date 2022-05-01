@@ -57,8 +57,4 @@ public class StarkIndustriesProductImporter_specs {
     }
 
 
-    /**
-    * [Step7. StarkIndustries 사가 넘겨준 상품 수 만큼 커머스 서비스에 등록된다]
-    * [Step8. StarkIndustries 사가 넘겨준 상품을 우리 커머스에 맞게 잘 변환한다]
-    */
 }
