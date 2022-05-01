@@ -79,3 +79,12 @@ Step4. CompositeArgumentResolver
 Step5. ProductArgumentResolver
 Step6. StarkIndustriesProductArgumentResolver
 Step7. WayneEnterprisesProductArgumentResolver
+
+[For ProductSynchronizer]
+Step8-1. ListPriceFilter_specs
+Step8-2. ListPriceFilter_specs
+Step9-1. ProductSynchronizer_specs
+* [Step9-1-1. ProductSynchronizer 가 ProductInventory 에 상품을 잘 저장한다.]
+* [Step9-1-2. 올바르지 않은 상품은 저장하지 않는다.]
+* [Step9-1-3. Spy 를 사용하던 ProductSynchronizer 를 Mock 을 사용해 TestCase 작성]
+Step9-2. ProductSynchronizer
