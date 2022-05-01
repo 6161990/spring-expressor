@@ -88,3 +88,18 @@ Step9-1. ProductSynchronizer_specs
 * [Step9-1-2. 올바르지 않은 상품은 저장하지 않는다.]
 * [Step9-1-3. Spy 를 사용하던 ProductSynchronizer 를 Mock 을 사용해 TestCase 작성]
 Step9-2. ProductSynchronizer
+Step10. ProductImporter
+Step11. ProductValidator
+Step12-1. ProductInventory
+Step12-2. ProductInventorySpy
+
+[For ProductImporter]
+Step13-1. ProductImporter
+Step13-2. ProductImporter_specs
+Step14-1. ProductSource
+Step14-2. WayneEnterprisesProductSourceStub
+Step15. ProductTranslator
+
+[Product]
+Step16. Product
+Step17. Pricing
