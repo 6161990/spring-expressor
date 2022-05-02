@@ -5,7 +5,7 @@ import productImporter.Product;
 
 import java.util.ArrayList;
 
-public class StarkIndustriesProductImporter implements ProductImporter { // Step7, Step8
+public class StarkIndustriesProductImporter implements ProductImporter{
 
     private final StarkIndustriesProductSource productSource;
     private final StarkIndustriesProductTranslator translator;
@@ -18,8 +18,8 @@ public class StarkIndustriesProductImporter implements ProductImporter { // Step
     @Override
     public Iterable<Product> fetchProducts() {
         var products = new ArrayList<Product>();
-        for(StarkIndustriesProduct s : productSource.getAllProducts()){
-            products.add(translator.translate(s));
+        for(StarkIndustriesProduct product: productSource.getAllProducts()){
+            products.add(translator.translate(product));
         }
         return products;
     }

@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 public class StarkIndustriesProductTranslator {
 
-    public Product translate(StarkIndustriesProduct source) {
+    public Product translate(StarkIndustriesProduct source){
         String supplierName = "STARK";
         String productCode = source.getCode();
         String productName = source.getName();
@@ -20,4 +20,5 @@ public class StarkIndustriesProductTranslator {
         var discount = new BigDecimal(source.getDiscountAmount());
         return new Pricing(listPrice, discount);
     }
+
 }

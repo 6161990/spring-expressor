@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 final class WayneEnterprisesProductTranslator {
 
-    public Product translate(WayneEnterprisesProduct x) {
+    public Product translate(WayneEnterprisesProduct x){
         Pricing pricing = getPricing(x);
         return new Product("WAYNE", x.getId(), x.getTitle(), pricing);
     }
@@ -18,5 +18,6 @@ final class WayneEnterprisesProductTranslator {
         var discount = new BigDecimal(listPrice - sellingPrice);
         return new Pricing(new BigDecimal(listPrice), discount);
     }
+
 
 }
