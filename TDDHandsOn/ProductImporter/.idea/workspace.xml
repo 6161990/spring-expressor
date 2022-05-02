@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="Mockists vs. Classicists" />
+    <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="Mockists vs. Classicists">
+      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/ProductSynchronizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/ProductSynchronizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProductSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProductSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/ProductSynchronizer_specs.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/ProductSynchronizer_specs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProductImporter_specs.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProductImporter_specs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProductSourceStub.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProductSourceStub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -212,6 +219,7 @@
       <workItem from="1651283384091" duration="1632000" />
       <workItem from="1651370565017" duration="3580000" />
       <workItem from="1651445381793" duration="531000" />
+      <workItem from="1651528804429" duration="852000" />
     </task>
     <task id="LOCAL-00001" summary="모든 상품을 가져오는 Test">
       <created>1646009902930</created>

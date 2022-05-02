@@ -104,14 +104,13 @@ Step13. ProductTranslator
 [For ProductSynchronizer]
 Step14. ListPriceFilter_specs
 Step15. ListPriceFilter
-Step16. ProductImporter
-Step17. ProductValidator
-Step18. ProductInventory
-Step19. ProductSynchronizer_specs
-* [Step19-1. ProductSynchronizer 가 ProductInventory 에 상품을 잘 저장한다.]
-* [Step19-2. 올바르지 않은 상품은 저장하지 않는다.]
-* [Step19-3. Spy 를 사용하던 ProductSynchronizer 를 Mock 을 사용해 TestCase 작성]
-Step20. ProductSynchronizer
-Step21. ProductInventorySpy
+Step16. ProductValidator
+Step17. ProductInventory
+Step18. ProductSynchronizer_specs
+* [Step18-1. ProductSynchronizer 가 ProductInventory 에 상품을 잘 저장한다.]
+* [Step18-2. 올바르지 않은 상품은 저장하지 않는다.]
+* [Step18-3. Spy 를 사용하던 ProductSynchronizer 를 Mock 을 사용해 TestCase 작성]
+Step21. ProductSynchronizer
+Step20. ProductInventorySpy
 
 
