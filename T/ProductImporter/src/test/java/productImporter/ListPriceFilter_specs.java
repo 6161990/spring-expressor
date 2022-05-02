@@ -25,5 +25,5 @@ public class ListPriceFilter_specs {
         boolean actual = sut.isValid(product);
 
         assertThat(actual).isEqualTo(expected);
-;    }
+    }
 }
