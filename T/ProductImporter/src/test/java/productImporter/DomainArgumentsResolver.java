@@ -9,7 +9,7 @@ import java.util.Random;
 
 public interface DomainArgumentsResolver {
 
-    Optional<Object> tryResolve(Class<?>[] parameterTypes);
+    Optional<Object> tryResolve(Class<?> parameterTypes);
 
     static Random random = new Random();
 

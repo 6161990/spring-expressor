@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class StarkIndustriesProductArgumentResolver implements DomainArgumentsResolver {
     @Override
-    public Optional<Object> tryResolve(Class<?>[] parameterTypes) {
+    public Optional<Object> tryResolve(Class<?> parameterTypes) {
         if(parameterTypes.equals(StarkIndustriesProduct.class)) {
             return Optional.of(generate());
         } else if(parameterTypes.equals(StarkIndustriesProduct[].class)) {

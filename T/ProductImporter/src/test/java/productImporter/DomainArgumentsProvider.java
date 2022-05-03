@@ -25,7 +25,7 @@ public class DomainArgumentsProvider implements ArgumentsProvider, AnnotationCon
         Object[] arguments = new Object[parameterTypes.length];
         DomainArgumentsResolver argumentsResolver = DomainArgumentsResolver.instance;
         for (int i = 0; i < arguments.length; i++) {
-            Optional<Object> argument = argumentsResolver.tryResolve(parameterTypes);
+            Optional<Object> argument = argumentsResolver.tryResolve(parameterTypes[i]);
             arguments[i] = argument.orElse(null);
         }
 

@@ -11,7 +11,7 @@ public final class WayneEnterprisesProductImporter implements ProductImporter{
     private final WayneEnterprisesProductSource dataSource;
     private final WayneEnterprisesProductTranslator translator;
 
-    public WayneEnterprisesProductImporter(WayneEnterprisesProductSource dataSource, WayneEnterprisesProductTranslator translator) {
+    public WayneEnterprisesProductImporter(WayneEnterprisesProductSource dataSource) {
         this.dataSource = dataSource;
         this.translator = new WayneEnterprisesProductTranslator();
     }

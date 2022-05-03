@@ -11,7 +11,7 @@ public class CompositeArgumentResolver implements DomainArgumentsResolver {
     }
 
     @Override
-    public Optional<Object> tryResolve(Class<?>[] parameterTypes) {
+    public Optional<Object> tryResolve(Class<?> parameterTypes) {
         for (DomainArgumentsResolver resolver : resolvers) {
             Optional<Object> arguments = resolver.tryResolve(parameterTypes);
             if(arguments.isPresent()) {
