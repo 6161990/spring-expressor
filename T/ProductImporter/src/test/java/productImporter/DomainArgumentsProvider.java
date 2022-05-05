@@ -13,23 +13,22 @@ import java.util.stream.Stream;
 public class DomainArgumentsProvider implements ArgumentsProvider, AnnotationConsumer<DomainArgumentsSource> {
 
     @Override
-    public void accept(DomainArgumentsSource domainArgumentsSource) {
-
-    }
-
-    @Override
     public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception {
         Method method = context.getRequiredTestMethod();
         Class<?>[] parameterTypes = method.getParameterTypes();
 
         Object[] arguments = new Object[parameterTypes.length];
-        DomainArgumentsResolver argumentsResolver = DomainArgumentsResolver.instance;
+        DomainArgumentResolver argumentResolver = DomainArgumentResolver.instance;
         for (int i = 0; i < arguments.length; i++) {
-            Optional<Object> argument = argumentsResolver.tryResolve(parameterTypes);
+            Optional<Object> argument = argumentResolver.tryResolve(parameterTypes[i]);
             arguments[i] = argument.orElse(null);
         }
 
         return Arrays.stream(new Arguments[] {Arguments.of(arguments)});
     }
 
+    @Override
+    public void accept(DomainArgumentsSource domainArgumentsSource) {
+
+    }
 }
