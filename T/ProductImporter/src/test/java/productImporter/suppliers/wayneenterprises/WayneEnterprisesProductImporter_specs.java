@@ -25,17 +25,33 @@ public class WayneEnterprisesProductImporter_specs {
         assertThat(actual).hasSize(source.length);
     }
 
-    @DisplayName("WayneEnterprises사의 Supplier의 이름을 Importer에서 WAYNE 이라고 설정한다")
+    @DisplayName("WayneEnterprises 사의 Supplier 의 이름을 Importer 에서 WAYNE 이라고 설정한다")
     @ParameterizedTest
+    @DomainArgumentsSource
     void sut_correctly_sets_supplier_name(WayneEnterprisesProduct[] source) {
+        var stub = new WayneEnterprisesProductSourceStub(source);
+        var sut = new WayneEnterprisesProductImporter(stub);
 
+        Iterable<Product> actual = sut.fetchProducts();
 
+        assertThat(actual).allMatch(x-> x.getSupplierName().equals("WAYNE"));
     }
 
-    @DisplayName("WayneEnterprises 사의 properties들을 잘 투영한다.")
+    @DisplayName("WayneEnterprises 사의 properties 들을 잘 투영한다.")
     @ParameterizedTest
+    @DomainArgumentsSource
     void sut_correctly_projects_source_properties(WayneEnterprisesProduct source){
+        var stub = new WayneEnterprisesProductSourceStub(source);
+        var sut = new WayneEnterprisesProductImporter(stub);
 
+        List<Product> products = new ArrayList<>();
+        sut.fetchProducts().forEach(products::add);
+        Product actual = products.get(0);
+
+        assertThat(actual.getProductCode()).isEqualTo(source.getId());
+        assertThat(actual.getProductName()).isEqualTo(source.getTitle());
+        assertThat(actual.getPricing().getListPrice()).isEqualByComparingTo(Integer.toString(source.getListPrice()));
+        assertThat(actual.getPricing().getDiscount()).isEqualByComparingTo(Integer.toString(source.getListPrice() - source.getSellingPrice()));
     }
 
 }
