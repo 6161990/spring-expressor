@@ -75,9 +75,9 @@
 ---
 
 [For Test ArgumentsSource]   
-Step1. DomainArgumentsSource ✅  
-Step2. DomainArgumentsProvider ✅ 
-Step3. DomainArgumentResolver ✅   
+Step1. DomainArgumentsSource 
+Step2. DomainArgumentsProvider 
+Step3. DomainArgumentResolver  
 Step4. CompositeArgumentResolver ✅   
 Step5. ProductArgumentResolver ✅    
 Step6. StarkIndustriesProductArgumentResolver  ✅   
