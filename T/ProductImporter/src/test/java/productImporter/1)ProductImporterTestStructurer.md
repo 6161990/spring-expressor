@@ -89,7 +89,7 @@ Step9. Pricing ✅
 
 [For ProductImporter]   
 Step10. ProductImporter ✅   
-Step11. ProductImporter_specs   
+Step11. ProductImporter_specs ✅
 Step12. ProductSource ✅  
 Step13. ProductTranslator ✅
 * [Step13-2-1. WayneEnterprises 사가 가지고 있는 상품 목록만큼 우리 커머스 서비스가 규정하고 있는 상품 포맷을 통과한 개수가 나와야한다.] ✅
@@ -107,10 +107,10 @@ Step15. ListPriceFilter ✅
 Step16. ProductValidator ✅
 Step17. ProductInventory ✅   
 Step18. ProductSynchronizer_specs ✅   
-* [Step18-1. ProductSynchronizer 가 ProductInventory 에 상품을 잘 저장한다.]
+* [Step18-1. ProductSynchronizer 가 ProductInventory 에 상품을 잘 저장한다.] ✅
   Step18-1-2. ProductInventorySpy ✅
-* [Step18-2. 올바르지 않은 상품은 저장하지 않는다.]
-* [Step18-3. Spy 를 사용하던 ProductSynchronizer 를 Mock 을 사용해 TestCase 작성]   
+* [Step18-2. 올바르지 않은 상품은 저장하지 않는다.] ✅
+* [Step18-3. Spy 를 사용하던 ProductSynchronizer 를 Mock 을 사용해 TestCase 작성] ✅
 Step19. ProductSynchronizer ✅ 
 
 

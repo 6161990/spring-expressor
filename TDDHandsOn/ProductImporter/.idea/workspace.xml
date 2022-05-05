@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="Mockists vs. Classicists">
       <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/1)ProductImporterTestStructurer.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/1)ProductImporterTestStructurer.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/ProductInventorySpy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/ProductInventorySpy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/ProductSynchronizer_specs.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/ProductSynchronizer_specs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -219,7 +217,8 @@
       <workItem from="1651445381793" duration="531000" />
       <workItem from="1651528804429" duration="2531000" />
       <workItem from="1651618454992" duration="1465000" />
-      <workItem from="1651708640381" duration="3700000" />
+      <workItem from="1651708640381" duration="3701000" />
+      <workItem from="1651740401776" duration="1199000" />
     </task>
     <task id="LOCAL-00001" summary="모든 상품을 가져오는 Test">
       <created>1646009902930</created>
