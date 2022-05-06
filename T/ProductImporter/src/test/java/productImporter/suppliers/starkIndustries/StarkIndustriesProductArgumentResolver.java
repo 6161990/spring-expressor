@@ -1,6 +1,6 @@
 package productImporter.suppliers.starkIndustries;
 
-public class StarkIndustriesProductArgumentResolver   {
+public class StarkIndustriesProductArgumentResolver {
 
 
 
