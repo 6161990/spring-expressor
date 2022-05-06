@@ -1,4 +1,4 @@
-package com.specification.termination;
+package com.specification.membership;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -12,12 +12,12 @@ public class ServiceXXXFactor {
     private final LocalDateTime joinedAt;
     private final LocalDateTime impossibleXXXAt;
     private final MembershipPeriod membershipPeriod;
-    private final boolean isAlwaysXXX;
+    private final boolean isExistAlwaysXXX;
 
-    public ServiceXXXFactor(LocalDateTime joinedAt, LocalDateTime impossibleXXXAt, MembershipPeriod membershipPeriod, boolean isAlwaysXXX) {
+    public ServiceXXXFactor(LocalDateTime joinedAt, LocalDateTime impossibleXXXAt, MembershipPeriod membershipPeriod, boolean isExistAlwaysXXX) {
         this.joinedAt = joinedAt;
         this.impossibleXXXAt = impossibleXXXAt;
         this.membershipPeriod = membershipPeriod;
-        this.isAlwaysXXX = isAlwaysXXX;
+        this.isExistAlwaysXXX = isExistAlwaysXXX;
     }
 }

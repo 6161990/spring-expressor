@@ -1,4 +1,4 @@
-package com.specification.termination;
+package com.specification.membership;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

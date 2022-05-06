@@ -1,11 +1,11 @@
-package com.specification.termination.condition;
+package com.specification.membership.condition;
 
 
-import com.specification.termination.ServiceXXXFactor;
+import com.specification.membership.ServiceXXXFactor;
 
 import static java.time.LocalDate.now;
 
-public class PeriodCondition implements Condition {
+public class PeriodCondition implements Condition<ServiceXXXFactor> {
 
     @Override
     public Boolean isSatisfy(ServiceXXXFactor factor) {
