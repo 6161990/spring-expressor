@@ -1,4 +1,4 @@
-package com.specification.utils.specs;
+package com.specification.matchSpecs.specs;
 
 public class OrCondition implements Condition{
 

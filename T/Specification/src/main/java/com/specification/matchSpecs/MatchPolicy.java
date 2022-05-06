@@ -1,4 +1,4 @@
-package com.specification;
+package com.specification.matchSpecs;
 
 public class MatchPolicy {
 

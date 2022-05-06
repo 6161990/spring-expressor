@@ -1,4 +1,4 @@
-package com.specification.utils.specs;
+package com.specification.matchSpecs.specs;
 
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.BDDAssertions;

@@ -1,13 +1,12 @@
-package com.specification.utils.specs;
+package com.specification.matchSpecs.specs;
 
 import java.util.Map;
 
-public class LessThanEqualsCondition implements Condition {
-
+public class GreaterThanEqualsCondition implements Condition {
     private final String expectedKey;
     private final int value;
 
-    public LessThanEqualsCondition(String expectedKey, int value) {
+    public GreaterThanEqualsCondition(String expectedKey, int value) {
         this.expectedKey = expectedKey;
         this.value = value;
     }
@@ -16,9 +15,8 @@ public class LessThanEqualsCondition implements Condition {
     public boolean isSatisfy(Object o) {
         if(o instanceof Map) {
             Map<String, Integer> map = (Map<String, Integer>) o;
-            return map.get("age") < value;
+            return map.get("height") >= value;
         }
         return false;
     }
-
 }

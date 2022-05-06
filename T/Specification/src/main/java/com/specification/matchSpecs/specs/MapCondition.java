@@ -1,4 +1,4 @@
-package com.specification.utils.specs;
+package com.specification.matchSpecs.specs;
 
 import java.util.Map;
 
