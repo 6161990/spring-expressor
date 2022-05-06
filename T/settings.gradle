@@ -3,4 +3,5 @@ include 'console-app'
 include 'console-app-model2'
 include 'ProductImporter'
 include 'Testing'
+include 'Specification'
 
