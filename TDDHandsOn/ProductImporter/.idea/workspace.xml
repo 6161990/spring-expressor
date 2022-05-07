@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="Mockists vs. Classicists">
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/ProductImporter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/starkIndustries/StarkIndustriesProductImporter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/starkIndustries/StarkIndustriesProductSource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/starkIndustries/StarkIndustriesProductTranslator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/Pricing.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/Pricing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/starkIndustries/StarkIndustriesProductImporter_specs.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/starkIndustries/StarkIndustriesProductImporter_specs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProductImporter_specs.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProductImporter_specs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProductSourceStub.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProductSourceStub.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -225,7 +222,7 @@
       <workItem from="1651708640381" duration="3701000" />
       <workItem from="1651740401776" duration="1199000" />
       <workItem from="1651790871969" duration="873000" />
-      <workItem from="1651880149984" duration="3236000" />
+      <workItem from="1651880149984" duration="5594000" />
     </task>
     <task id="LOCAL-00001" summary="모든 상품을 가져오는 Test">
       <created>1646009902930</created>
@@ -544,6 +541,11 @@
           <url>file://$PROJECT_DIR$/src/test/java/productimporter/suppliers/starkIndustries/StarkIndustriesProductArgumentResolver.java</url>
           <line>26</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/productimporter/suppliers/starkIndustries/StarkIndustriesProductImporter_specs.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
