@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="Mockists vs. Classicists">
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/Pricing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/ProductArgumentResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/ProductArgumentResolver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/starkIndustries/StarkIndustriesProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/CompositeArgumentResolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/1)ProductImporterTestStructurer.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/1)ProductImporterTestStructurer.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/DomainArgumentResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/DomainArgumentResolver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/starkIndustries/StarkIndustriesProductArgumentResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/starkIndustries/StarkIndustriesProductArgumentResolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProductArgumentResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/suppliers/wayneenterprises/WayneEnterprisesProductArgumentResolver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -223,7 +226,7 @@
       <workItem from="1651708640381" duration="3701000" />
       <workItem from="1651740401776" duration="1199000" />
       <workItem from="1651790871969" duration="873000" />
-      <workItem from="1651880149984" duration="783000" />
+      <workItem from="1651880149984" duration="2240000" />
     </task>
     <task id="LOCAL-00001" summary="모든 상품을 가져오는 Test">
       <created>1646009902930</created>
@@ -529,5 +532,21 @@
     <MESSAGE value="로직 수정 for test success" />
     <MESSAGE value="Mockists vs. Classicists" />
     <option name="LAST_COMMIT_MESSAGE" value="Mockists vs. Classicists" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/productimporter/CompositeArgumentResolver.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/productimporter/suppliers/starkIndustries/StarkIndustriesProductArgumentResolver.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

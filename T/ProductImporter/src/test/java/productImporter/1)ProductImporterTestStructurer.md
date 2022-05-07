@@ -78,14 +78,14 @@
 Step1. DomainArgumentsSource 
 Step2. DomainArgumentsProvider 
 Step3. DomainArgumentResolver  
-Step4. CompositeArgumentResolver ✅   
-Step5. ProductArgumentResolver ✅    
-Step6. StarkIndustriesProductArgumentResolver  ✅   
-Step7. WayneEnterprisesProductArgumentResolver ✅ 
+Step4. CompositeArgumentResolver    
+Step5. ProductArgumentResolver     
+Step6. StarkIndustriesProductArgumentResolver     
+Step7. WayneEnterprisesProductArgumentResolver  
 
 [Product]   
-Step8. Product ✅
-Step9. Pricing ✅
+Step8. Product 
+Step9. Pricing 
 
 [For ProductImporter]   
 Step10. ProductImporter ✅   
