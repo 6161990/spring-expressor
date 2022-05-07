@@ -88,10 +88,10 @@ Step8. Product
 Step9. Pricing 
 
 [For ProductImporter]   
-Step10. ProductImporter ✅   
+Step10. ProductImporter 
 Step11. ProductImporter_specs ✅
-Step12. ProductSource ✅  
-Step13. ProductTranslator ✅
+Step12. ProductSource   
+Step13. ProductTranslator 
 * [Step13-2-1. WayneEnterprises 사가 가지고 있는 상품 목록만큼 우리 커머스 서비스가 규정하고 있는 상품 포맷을 통과한 개수가 나와야한다.] ✅
   * Step13-2-2. WayneEnterprisesProductSourceStub 을 만들어야한다. ✅
 * [Step13-3. WayneEnterprises 사의 Supplier 의 이름을 Importer 에서 WAYNE 이라고 설정한다] ✅

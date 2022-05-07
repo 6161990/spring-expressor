@@ -1,7 +1,6 @@
 package productImporter;
 
 public final class Product {
-
     private final String supplierName;
     private final String productCode;
     private final String productName;
