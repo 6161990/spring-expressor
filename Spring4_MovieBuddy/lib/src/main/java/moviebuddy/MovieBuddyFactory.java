@@ -3,11 +3,13 @@ package moviebuddy;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 import org.springframework.oxm.Unmarshaller;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
@@ -38,13 +40,20 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 	@Configuration
 	static class DataSourceModuleConfig {
 		
+		private final Environment environment;
+		
+		@Autowired
+		public DataSourceModuleConfig(Environment environment) {
+			this.environment = environment;
+		}
+		
 		@Profile(MovieBuddyProfile.CSV_MODE)
 		@Bean // 빈을 등록하면서 메타데이터 위치를 넘겨주도록 
 		public CsvMovieReader csvMovieReader() throws FileNotFoundException, URISyntaxException {
 			CsvMovieReader movieReader = new CsvMovieReader();
 			
 			// 애플리케이션 외부 설정파일이나 시스템 환경변수 등에서 설정정보를 작성해둔 후에 애플리케이션이 실행될 때 설정 정보를 읽어 메타데이터 위치를 설정
-			movieReader.setMetadata(System.getProperty("movie.metadata"));
+			movieReader.setMetadata(environment.getProperty("movie.metadata"));
 			
 			return movieReader;
 		}
@@ -53,7 +62,7 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 		@Bean 
 		public XmlMovieReader xmlMovieReader(Unmarshaller unmarshaller) {
 			XmlMovieReader xmlMovieReader = new XmlMovieReader(unmarshaller);
-			xmlMovieReader.setMetadata(System.getProperty("movie.metadata"));
+			xmlMovieReader.setMetadata(environment.getProperty("movie.metadata"));
 			
 			return xmlMovieReader;
 		}
