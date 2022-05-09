@@ -29,9 +29,19 @@ public abstract class AbstractFileSystemMovieReader {
 		this.metadata = Objects.requireNonNull(metadata, "matadata is required value");
 	}
 
+	public URL getMetadataUrl() { // 자바 URL 은 한계가 있다. 서블릿 컨텍스트 경로나 클라우드 스토리지 서비스에 있는 자원은 접근할 수 없다.-> 스프링의 도움을 받아야한다. 
+		String location = getMetadata();
+		if(location.startsWith("file:")) {
+			// file URL 처리 
+		} else if(location.startsWith("http:")) {
+			// http URL 처리 
+		}
+		return ClassLoader.getSystemResource(location);
+	}
+	
 	@PostConstruct
 	public void afterPropertiesSet() throws Exception { // 빈이 초기화될 때 올바른 값인지 검증하게됨. 
-		URL metadataUrl = ClassLoader.getSystemResource(getMetadata());
+		URL metadataUrl = getMetadataUrl(); // ClassLoader.getSystemResource() 클래스 패스 상의 자원만 처리할 수 있었다.
 		if(Objects.isNull(metadataUrl)) {
 			throw new FileNotFoundException(metadata);
 		}
