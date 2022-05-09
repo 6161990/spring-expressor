@@ -1,20 +1,10 @@
 package moviebuddy;
 
-import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Profile;
-import org.springframework.core.env.Environment;
-import org.springframework.oxm.Unmarshaller;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-
-import moviebuddy.data.CsvMovieReader;
-import moviebuddy.data.XmlMovieReader;
 
 @Configuration // 빈 구성정보 - Configuration 메타데이터로 사용함을 선언
 @ComponentScan
@@ -39,7 +29,7 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 	
 	@Configuration
 	static class DataSourceModuleConfig {
-		
+/**		
 		private final Environment environment;
 		
 		@Autowired
@@ -68,9 +58,9 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 		}
 		
 			
-	}
+	
 
-	/**
+	
 	   메소드 호출 방식과 파라미터 호출 방식 
 	 * @Bean
 		//@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) // 빈요청을 받을 때마다 새로운 객체를 생 
@@ -88,4 +78,5 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 		 * 스스로 내부에 MovieReader빈이 있는지 확인한다.
 	 * 
 	 */
+	}
 }
