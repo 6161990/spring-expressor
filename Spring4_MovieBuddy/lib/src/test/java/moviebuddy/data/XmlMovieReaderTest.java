@@ -1,4 +1,4 @@
-package moviebuddy.data;
+  package moviebuddy.data;
 
 import java.util.List;
 
@@ -6,15 +6,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import moviebuddy.MovieBuddyFactory;
 import moviebuddy.MovieBuddyProfile;
-import moviebuddy.data.XmlMovieReader;
 import moviebuddy.domain.Movie;
 
 @SpringJUnitConfig(MovieBuddyFactory.class) // 위 둘을 한꺼번에 해결해주는 마법사 
 @ActiveProfiles(MovieBuddyProfile.XML_MODE)
+@TestPropertySource(properties = "movie.metadata=movie_metadata.xml")
 public class XmlMovieReaderTest {
 	
 	@Autowired

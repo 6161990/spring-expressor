@@ -4,10 +4,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 @Configuration // 빈 구성정보 - Configuration 메타데이터로 사용함을 선언
 @ComponentScan
+@PropertySource("/application.properties")
 @Import({MovieBuddyFactory.DataSourceModuleConfig.class, MovieBuddyFactory.DomainModuleConfig.class}) // 다른 클래에서 빈 구성정보를 가져오기위함.
 //  @ImportResource("xml file location")
 public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할 
@@ -56,7 +58,6 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 			
 			return xmlMovieReader;
 		}
-		
 			
 	
 
