@@ -1,18 +1,10 @@
 package moviebuddy;
 
-import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Profile;
-import org.springframework.oxm.Unmarshaller;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-
-import moviebuddy.data.CsvMovieReader;
-import moviebuddy.data.XmlMovieReader;
 
 @Configuration // 빈 구성정보 - Configuration 메타데이터로 사용함을 선언
 @ComponentScan
@@ -37,6 +29,13 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 	
 	@Configuration
 	static class DataSourceModuleConfig {
+/**		
+		private final Environment environment;
+		
+		@Autowired
+		public DataSourceModuleConfig(Environment environment) {
+			this.environment = environment;
+		}
 		
 		@Profile(MovieBuddyProfile.CSV_MODE)
 		@Bean // 빈을 등록하면서 메타데이터 위치를 넘겨주도록 
@@ -44,7 +43,7 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 			CsvMovieReader movieReader = new CsvMovieReader();
 			
 			// 애플리케이션 외부 설정파일이나 시스템 환경변수 등에서 설정정보를 작성해둔 후에 애플리케이션이 실행될 때 설정 정보를 읽어 메타데이터 위치를 설정
-			movieReader.setMetadata(System.getProperty("movie.metadata"));
+			//movieReader.setMetadata(environment.getProperty("movie.metadata"));
 			
 			return movieReader;
 		}
@@ -53,15 +52,15 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 		@Bean 
 		public XmlMovieReader xmlMovieReader(Unmarshaller unmarshaller) {
 			XmlMovieReader xmlMovieReader = new XmlMovieReader(unmarshaller);
-			xmlMovieReader.setMetadata(System.getProperty("movie.metadata"));
+			//xmlMovieReader.setMetadata(environment.getProperty("movie.metadata"));
 			
 			return xmlMovieReader;
 		}
 		
 			
-	}
+	
 
-	/**
+	
 	   메소드 호출 방식과 파라미터 호출 방식 
 	 * @Bean
 		//@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) // 빈요청을 받을 때마다 새로운 객체를 생 
@@ -79,4 +78,5 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 		 * 스스로 내부에 MovieReader빈이 있는지 확인한다.
 	 * 
 	 */
+	}
 }
