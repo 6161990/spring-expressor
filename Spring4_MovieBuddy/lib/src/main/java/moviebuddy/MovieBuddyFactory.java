@@ -53,7 +53,7 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 			CsvMovieReader movieReader = new CsvMovieReader();
 			
 			// 애플리케이션 외부 설정파일이나 시스템 환경변수 등에서 설정정보를 작성해둔 후에 애플리케이션이 실행될 때 설정 정보를 읽어 메타데이터 위치를 설정
-			movieReader.setMetadata(environment.getProperty("movie.metadata"));
+			//movieReader.setMetadata(environment.getProperty("movie.metadata"));
 			
 			return movieReader;
 		}
@@ -62,7 +62,7 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 		@Bean 
 		public XmlMovieReader xmlMovieReader(Unmarshaller unmarshaller) {
 			XmlMovieReader xmlMovieReader = new XmlMovieReader(unmarshaller);
-			xmlMovieReader.setMetadata(environment.getProperty("movie.metadata"));
+			//xmlMovieReader.setMetadata(environment.getProperty("movie.metadata"));
 			
 			return xmlMovieReader;
 		}
