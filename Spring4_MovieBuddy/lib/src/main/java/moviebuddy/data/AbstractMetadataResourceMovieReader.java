@@ -16,7 +16,7 @@ import org.springframework.core.io.ResourceLoader;
 
 import moviebuddy.ApplicationException;
 
-public abstract class AbstractFileSystemMovieReader implements ResourceLoaderAware{
+public abstract class AbstractMetadataResourceMovieReader implements ResourceLoaderAware{
 
 	private Logger log = LoggerFactory.getLogger(getClass());
 	private String metadata;

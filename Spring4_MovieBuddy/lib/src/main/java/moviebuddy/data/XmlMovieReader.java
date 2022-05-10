@@ -22,7 +22,7 @@ import moviebuddy.domain.MovieReader;
 
 @Repository("xmlMovieReader")
 @Profile(MovieBuddyProfile.XML_MODE)
-public class XmlMovieReader extends AbstractFileSystemMovieReader implements MovieReader {
+public class XmlMovieReader extends AbstractMetadataResourceMovieReader implements MovieReader {
 	
 	//외부로부터 unmarshaller 객체를 의존성 주입 받는다.
 	private final Unmarshaller unmarshaller;
@@ -36,8 +36,8 @@ public class XmlMovieReader extends AbstractFileSystemMovieReader implements Mov
 	public List<Movie> loadMovies() {
 		try {
 			// Jaxb 를 직접적으로 사용하기 않게 되었기 때문에 삭제 
-
-	        final InputStream content = ClassLoader.getSystemResourceAsStream("movie_metadata.xml");
+			/**final InputStream content = ClassLoader.getSystemResourceAsStream("movie_metadata.xml");*/
+			final InputStream content = getMetadataResource().getInputStream();
 	        final Source source = new StreamSource(content);
 	        final MovieMetadata metadata = (MovieMetadata) unmarshaller.unmarshal(source);
 
