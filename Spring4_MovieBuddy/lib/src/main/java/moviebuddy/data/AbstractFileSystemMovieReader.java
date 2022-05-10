@@ -2,8 +2,6 @@ package moviebuddy.data;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
@@ -12,14 +10,18 @@ import javax.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ResourceLoaderAware;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 
 import moviebuddy.ApplicationException;
 
-public abstract class AbstractFileSystemMovieReader {
+public abstract class AbstractFileSystemMovieReader implements ResourceLoaderAware{
 
 	private Logger log = LoggerFactory.getLogger(getClass());
 	private String metadata;
-
+	private ResourceLoader resourceLoader;
+	
 	public String getMetadata() {
 		return metadata;
 	}
@@ -39,9 +41,32 @@ public abstract class AbstractFileSystemMovieReader {
 		return ClassLoader.getSystemResource(location);
 	}
 	
+	@Override
+	public void setResourceLoader(ResourceLoader resourceLoader) {
+		this.resourceLoader = resourceLoader;
+		
+	}
+	
+	public Resource getMetadataResource() {
+		return resourceLoader.getResource(getMetadata());
+	}
+	
 	@PostConstruct
 	public void afterPropertiesSet() throws Exception { // 빈이 초기화될 때 올바른 값인지 검증하게됨. 
-		URL metadataUrl = getMetadataUrl(); // ClassLoader.getSystemResource() 클래스 패스 상의 자원만 처리할 수 있었다.
+		
+		Resource resource = getMetadataResource();
+		if(resource.exists() == false) {
+			throw new FileNotFoundException(metadata);
+		}
+		
+		if(resource.isReadable() == false) {
+			throw new ApplicationException(String.format("cannot read to metadata. [%s]", metadata));
+		}
+		
+		log.info(resource + "is ready.");
+		
+		/**		
+  		URL metadataUrl = getMetadataUrl(); // ClassLoader.getSystemResource() 클래스 패스 상의 자원만 처리할 수 있었다.
 		if(Objects.isNull(metadataUrl)) {
 			throw new FileNotFoundException(metadata);
 		}
@@ -49,8 +74,9 @@ public abstract class AbstractFileSystemMovieReader {
 		// 읽어들일 수 있는 파일인지 검증
 		if(Files.isReadable(Path.of(metadataUrl.toURI())) == false) {
 			throw new ApplicationException(String.format("cannot read to metadata. [%s]", metadata));
-		}
+		} */
 	}
+
 
 	@PreDestroy
 	public void destroy() throws Exception { //CsvMovieReader가 정상적으로 소멸되었음을 로그로 남겨보기 
