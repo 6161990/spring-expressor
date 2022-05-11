@@ -1,12 +1,11 @@
 package moviebuddy.data;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -19,12 +18,11 @@ import moviebuddy.ApplicationException;
 import moviebuddy.MovieBuddyProfile;
 import moviebuddy.domain.Movie;
 import moviebuddy.domain.MovieReader;
-import moviebuddy.util.FileSystemUtils;
 
 //@Component 얘를 사용해도 됨! 
 @Repository("csvMovieReader") // -> 데이터 접근 기술이 사용되는 빈을 정의 할 때 사용. 같은 타입으로 등록된 Bean이 2개일 때, 파라미터 이름을 지정해준다.
 @Profile(MovieBuddyProfile.CSV_MODE)
-public class CsvMovieReader extends AbstractFileSystemMovieReader implements MovieReader {
+public class CsvMovieReader extends AbstractMetadataResourceMovieReader implements MovieReader {
 	
 	/**
 	 * 영화 메타데이터를 읽어 저장된 영화 목록을 불러온다.
@@ -39,8 +37,9 @@ public class CsvMovieReader extends AbstractFileSystemMovieReader implements Mov
 	@Override
 	public List<Movie> loadMovies() {
 		try {
-			final URI resourceUri = ClassLoader.getSystemResource(getMetadata()).toURI(); // getSystemResource -> 메타데이터의 경로 찾기 
-			final Path data = Path.of(FileSystemUtils.checkFileSystem(resourceUri)); // 자바의 NIO API인 Path와 Files라는 API를 통해서 메타데이터 내용 읽어들이
+			/**final URI resourceUri = ClassLoader.getSystemResource(getMetadata()).toURI(); // getSystemResource -> 메타데이터의 경로 찾기
+			final Path data = Path.of(FileSystemUtils.checkFileSystem(resourceUri)); // 자바의 NIO API인 Path와 Files라는 API를 통해서 메타데이터 내용 읽어들이*/
+			final InputStream content = getMetadataResource().getInputStream();
 			final Function<String, Movie> mapCsv = csv -> {
 				try {
 					// split with comma
@@ -62,12 +61,14 @@ public class CsvMovieReader extends AbstractFileSystemMovieReader implements Mov
 				}
 			};
 
-			return Files.readAllLines(data, StandardCharsets.UTF_8)
-						.stream()
+			/**return Files.readAllLines(data, StandardCharsets.UTF_8)
+						.stream()*/
+			return new BufferedReader(new InputStreamReader(content, StandardCharsets.UTF_8))
+						.lines()
 						.skip(1)
 						.map(mapCsv)
 						.collect(Collectors.toList());
-		} catch(IOException|URISyntaxException error) {
+		} catch(IOException error) {
 			throw new ApplicationException("failed to load movies data.", error);
 		}
 	}
