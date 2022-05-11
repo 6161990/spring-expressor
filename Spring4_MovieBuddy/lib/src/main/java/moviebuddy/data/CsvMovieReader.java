@@ -8,11 +8,14 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
+
+import com.github.benmanes.caffeine.cache.Cache;
 
 import moviebuddy.ApplicationException;
 import moviebuddy.MovieBuddyProfile;
@@ -34,8 +37,21 @@ public class CsvMovieReader extends AbstractMetadataResourceMovieReader implemen
 	 * -> 외부에서 메타데이터 위치를 결정하면된다.  
 	 * @return 불러온 영화 목록
 	 */
+	
+	private final Cache<String, List<Movie>> cache;
+	
+	public CsvMovieReader(Cache<String, List<Movie>> cache) {
+		this.cache = Objects.requireNonNull(cache);
+	}
+	
 	@Override
 	public List<Movie> loadMovies() {
+			
+		List<Movie> movies = cache.getIfPresent("csv.movies");
+		if(Objects.nonNull(movies) && movies.size() > 0) {
+			return movies;
+		}
+			
 		try {
 			/**final URI resourceUri = ClassLoader.getSystemResource(getMetadata()).toURI(); // getSystemResource -> 메타데이터의 경로 찾기
 			final Path data = Path.of(FileSystemUtils.checkFileSystem(resourceUri)); // 자바의 NIO API인 Path와 Files라는 API를 통해서 메타데이터 내용 읽어들이*/
@@ -63,7 +79,7 @@ public class CsvMovieReader extends AbstractMetadataResourceMovieReader implemen
 
 			/**return Files.readAllLines(data, StandardCharsets.UTF_8)
 						.stream()*/
-			return new BufferedReader(new InputStreamReader(content, StandardCharsets.UTF_8))
+			movies = new BufferedReader(new InputStreamReader(content, StandardCharsets.UTF_8))
 						.lines()
 						.skip(1)
 						.map(mapCsv)
@@ -71,6 +87,9 @@ public class CsvMovieReader extends AbstractMetadataResourceMovieReader implemen
 		} catch(IOException error) {
 			throw new ApplicationException("failed to load movies data.", error);
 		}
+		
+		cache.put("csv.movies", movies);
+		return movies;
 	}
 
 }
