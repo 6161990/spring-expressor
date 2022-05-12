@@ -1,8 +1,7 @@
 package moviebuddy;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.caffeine.CaffeineCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,11 +9,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
-import com.github.benmanes.caffeine.cache.Cache;
-import com.github.benmanes.caffeine.cache.Caffeine;
-
 import moviebuddy.data.CsvMovieReader;
-import moviebuddy.domain.Movie;
 
 @Configuration // 빈 구성정보 - Configuration 메타데이터로 사용함을 선언
 @ComponentScan
@@ -43,10 +38,8 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 		
 		@Bean  
 		public CsvMovieReader csvMovieReader() {
-			Cache<String, List<Movie>> cache = Caffeine.newBuilder()
-					.expireAfterWrite(3, TimeUnit.MILLISECONDS)
-					.build();
-			return new CsvMovieReader(cache);
+			CacheManager cacheManager = new CaffeineCacheManager();
+			return new CsvMovieReader(cacheManager);
 		}
 		
 /**		

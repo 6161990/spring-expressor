@@ -12,10 +12,10 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
-
-import com.github.benmanes.caffeine.cache.Cache;
 
 import moviebuddy.ApplicationException;
 import moviebuddy.MovieBuddyProfile;
@@ -38,16 +38,18 @@ public class CsvMovieReader extends AbstractMetadataResourceMovieReader implemen
 	 * @return 불러온 영화 목록
 	 */
 	
-	private final Cache<String, List<Movie>> cache;
+	private final CacheManager cacheManager;
 	
-	public CsvMovieReader(Cache<String, List<Movie>> cache) {
-		this.cache = Objects.requireNonNull(cache);
+	public CsvMovieReader(CacheManager cacheManager) {
+		this.cacheManager = Objects.requireNonNull(cacheManager);
 	}
 	
 	@Override
 	public List<Movie> loadMovies() {
-			
-		List<Movie> movies = cache.getIfPresent("csv.movies");
+		// 캐시에 저장된 데이터가 있다면, 즉시 반환한다. 
+		Cache cache = cacheManager.getCache(getClass().getName());
+		List<Movie> movies = cache.get("csv.movies", List.class);
+		//List<Movie> movies = cache.getIfPresent("csv.movies");
 		if(Objects.nonNull(movies) && movies.size() > 0) {
 			return movies;
 		}
