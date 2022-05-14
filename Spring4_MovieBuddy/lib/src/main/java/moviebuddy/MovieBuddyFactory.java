@@ -2,8 +2,10 @@ package moviebuddy;
 
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.caffeine.CaffeineCacheManager;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +16,7 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 
-import moviebuddy.data.CachingMovieReader;
+import moviebuddy.cache.CachingAdvice;
 import moviebuddy.domain.MovieReader;
 
 @Configuration // 빈 구성정보 - Configuration 메타데이터로 사용함을 선언
@@ -51,8 +53,14 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 		
 		@Primary
 		@Bean  
-		public MovieReader cachingMovieReader(CacheManager cacheManager, MovieReader target) {
-			return new CachingMovieReader(cacheManager, target);
+		public ProxyFactoryBean cachingMovieReaderFactory(ApplicationContext applicationContext) {
+			MovieReader target = applicationContext.getBean(MovieReader.class);
+			CacheManager cacheManager = applicationContext.getBean(CacheManager.class);
+			
+			ProxyFactoryBean proxyFactoryBean = new ProxyFactoryBean();
+			proxyFactoryBean.setTarget(target);
+			proxyFactoryBean.addAdvice(new CachingAdvice(cacheManager));
+			return proxyFactoryBean;
 		}
 		
 /**		
