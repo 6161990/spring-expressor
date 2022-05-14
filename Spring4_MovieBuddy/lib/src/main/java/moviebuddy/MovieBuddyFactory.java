@@ -8,10 +8,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
+
+import moviebuddy.data.CachingMovieReader;
+import moviebuddy.domain.MovieReader;
 
 @Configuration // 빈 구성정보 - Configuration 메타데이터로 사용함을 선언
 @ComponentScan
@@ -45,12 +49,11 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 	@Configuration
 	static class DataSourceModuleConfig {
 		
-		/**
+		@Primary
 		@Bean  
-		public CsvMovieReader csvMovieReader() {
-			CacheManager cacheManager = new CaffeineCacheManager();
-			return new CsvMovieReader(cacheManager);
-		}*/
+		public MovieReader cachingMovieReader(CacheManager cacheManager, MovieReader target) {
+			return new CachingMovieReader(cacheManager, target);
+		}
 		
 /**		
 		private final Environment environment;
