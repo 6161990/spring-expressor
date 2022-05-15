@@ -1,8 +1,6 @@
 package moviebuddy;
 
-/**
- * @author springrunner.kr@gmail.com
- */
+
 @SuppressWarnings("serial")
 public class ApplicationException extends RuntimeException {
 

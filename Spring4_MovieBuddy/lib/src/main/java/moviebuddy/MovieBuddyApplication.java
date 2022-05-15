@@ -19,9 +19,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import moviebuddy.domain.Movie;
 import moviebuddy.domain.MovieFinder;
 
-/**
- * @author springrunner.kr@gmail.com
- */
 public class MovieBuddyApplication {
 
 	public static void main(String[] args) throws Exception {
