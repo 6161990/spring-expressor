@@ -2,22 +2,22 @@ package moviebuddy;
 
 import java.util.concurrent.TimeUnit;
 
-import org.springframework.aop.framework.ProxyFactoryBean;
+import org.aopalliance.aop.Advice;
+import org.springframework.aop.Advisor;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.caffeine.CaffeineCacheManager;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 
 import moviebuddy.cache.CachingAdvice;
-import moviebuddy.domain.MovieReader;
 
 @Configuration // 빈 구성정보 - Configuration 메타데이터로 사용함을 선언
 @ComponentScan
@@ -43,6 +43,19 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 		return cacheManager;
 	}
 	
+	@Bean
+	public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+		return new DefaultAdvisorAutoProxyCreator();
+	}
+	
+	@Bean
+	public Advisor cachingAdvisor(CacheManager cacheManager) {
+		Advice advice = new CachingAdvice(cacheManager);
+		
+		// Advisor = PointCut(대상 선정 알고리즘) + Advice(부가기능)
+		return new DefaultPointcutAdvisor(advice);
+	}
+	
 	@Configuration
 	static class DomainModuleConfig {
 		
@@ -50,7 +63,7 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 	
 	@Configuration
 	static class DataSourceModuleConfig {
-		
+/**			
 		@Primary
 		@Bean  
 		public ProxyFactoryBean cachingMovieReaderFactory(ApplicationContext applicationContext) {
@@ -63,7 +76,7 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 			return proxyFactoryBean;
 		}
 		
-/**		
+	
 		private final Environment environment;
 		
 		@Autowired
