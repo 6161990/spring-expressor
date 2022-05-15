@@ -2,11 +2,13 @@ package moviebuddy;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.cache.annotation.CacheResult;
+
 import org.aopalliance.aop.Advice;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
-import org.springframework.aop.support.NameMatchMethodPointcut;
+import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.caffeine.CaffeineCacheManager;
 import org.springframework.context.annotation.Bean;
@@ -51,8 +53,10 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 	
 	@Bean
 	public Advisor cachingAdvisor(CacheManager cacheManager) {
-		NameMatchMethodPointcut pointCut = new NameMatchMethodPointcut();
-		pointCut.setMappedName("load*");
+		//NameMatchMethodPointcut pointCut = new NameMatchMethodPointcut();
+		//pointCut.setMappedName("load*");
+		AnnotationMatchingPointcut pointcut = new AnnotationMatchingPointcut(null, CacheResult.class);
+		
 		
 		Advice advice = new CachingAdvice(cacheManager);
 		
