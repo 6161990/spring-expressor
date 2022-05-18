@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3979c6d-ef91-4112-8538-24adf327107b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/gradle.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +36,11 @@
     </system>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="v23" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JpbToolWindowState">
@@ -48,9 +54,6 @@
         <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
-  </component>
-  <component name="PackageJsonUpdateNotifier">
-    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectId" id="29JeHE5ykCwQPFCeJ26FoAmQXWM" />
   <component name="ProjectViewState">
@@ -97,7 +100,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1652835530903</updated>
-      <workItem from="1652835533342" duration="592000" />
+      <workItem from="1652835533342" duration="874000" />
+      <workItem from="1652837381462" duration="10000" />
     </task>
     <servers />
   </component>
@@ -120,7 +124,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="v23" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
