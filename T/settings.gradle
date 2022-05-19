@@ -4,4 +4,5 @@ include 'console-app-model2'
 include 'ProductImporter'
 include 'Testing'
 include 'Specification'
+include 'Vaadin'
 

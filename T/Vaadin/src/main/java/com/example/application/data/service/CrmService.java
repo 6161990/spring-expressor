@@ -1,15 +1,15 @@
-package com.example.demo.service;
+package com.example.application.data.service;
 
-import com.example.demo.dto.User;
+import com.example.application.data.views.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class AdminService {
+public class CrmService {
     public final FakeSearchAdapter searchAdapter;
 
-    public AdminService(FakeSearchAdapter searchAdapter) {
+    public CrmService(FakeSearchAdapter searchAdapter) {
         this.searchAdapter = searchAdapter;
     }
 

@@ -1,9 +1,8 @@
-package com.example.demo.membership;
+package com.example.application.ui.user;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.Value;
 
-@Value
 public class MembershipCard extends VerticalLayout {
 
     public MembershipCard() {

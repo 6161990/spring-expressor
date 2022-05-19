@@ -1,6 +1,7 @@
-package com.example.demo;
+package com.example.application.ui;
 
-import com.example.demo.user.UserView;
+import com.example.application.ui.home.HomeView;
+import com.example.application.ui.user.UserView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -91,7 +92,7 @@ public class RootLayout extends AppLayout {
 
     private MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[]{ //
-                new MenuItemInfo("home", "la la-globe", MainView.class),
+                new MenuItemInfo("home", "la la-globe", HomeView.class),
                 new MenuItemInfo("user", "la la-user", UserView.class),
         };
     }
