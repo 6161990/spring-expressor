@@ -8,10 +8,11 @@ import java.util.List;
 @Data
 @Builder
 public class User {
-    private String id;
-    private String name;
+    private String userId;
+    private String userName;
+    private String email;
     private String phoneNumber;
-    private String joinedAt;
+    private String signedAt;
     private String isInactive;
     private String isBlock;
     private String deletedAt;
