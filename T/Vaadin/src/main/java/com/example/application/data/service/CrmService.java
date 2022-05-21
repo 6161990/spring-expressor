@@ -21,4 +21,19 @@ public class CrmService {
         }
     }
 
+    public List<User> findByUserName(String userName) {
+        if (userName == null || userName.isEmpty()) {
+            return searchAdapter.findAll();
+        } else {
+            return searchAdapter.searchUserByUserName(userName);
+        }
+    }
+
+    public List<User> findByUserPhoneNumber(String phoneNumber) {
+        if (phoneNumber == null || phoneNumber.isEmpty()) {
+            return searchAdapter.findAll();
+        } else {
+            return searchAdapter.searchUserByPhoneNumber(phoneNumber);
+        }
+    }
 }

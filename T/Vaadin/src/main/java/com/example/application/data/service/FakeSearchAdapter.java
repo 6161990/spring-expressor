@@ -2,7 +2,6 @@ package com.example.application.data.service;
 
 import com.example.application.data.views.*;
 import com.google.common.collect.Lists;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -33,9 +32,11 @@ public class FakeSearchAdapter implements SearchAdapter {
         tickets.add(ticket3);
         tickets.add(ticket4);
 
-        User user1 = User.builder().id("f9c11039").name("최지욱").phoneNumber("01022222222").joinedAt("2022-02-02T02:03:02").isInactive("false").isBlock("false").deletedAt(null).tickets(tickets).memberships(memberships).build();
+        User user1 = User.builder().userId("f9c11039s").userName("최지욱").email("dssgdse@gamil.com").phoneNumber("01022222222").signedAt("2022-02-02T02:03:02").isInactive("false").isBlock("false").deletedAt(null).tickets(tickets).memberships(memberships).build();
+        User user2 = User.builder().userId("m10zcv2g").userName("손석구").email("woqmo1133e@gamil.com").phoneNumber("01022222222").signedAt("2022-02-02T02:03:02").isInactive("false").isBlock("false").deletedAt(null).tickets(tickets).memberships(memberships).build();
 
         users.add(user1);
+        users.add(user2);
 
     }
 
@@ -65,7 +66,7 @@ public class FakeSearchAdapter implements SearchAdapter {
 
     @Override
     public List<User> searchUserByUserId(String userId) {
-        return users.stream().filter(u -> u.getId() == userId).collect(Collectors.toList());
+        return users.stream().filter(u -> u.getUserId() == userId).collect(Collectors.toList());
     }
 
     @Override
@@ -75,6 +76,6 @@ public class FakeSearchAdapter implements SearchAdapter {
 
     @Override
     public List<User> searchUserByUserName(String userName) {
-        return users.stream().filter(u -> u.getName() == userName).collect(Collectors.toList());
+        return users.stream().filter(u -> u.getUserName() == userName).collect(Collectors.toList());
     }
 }
