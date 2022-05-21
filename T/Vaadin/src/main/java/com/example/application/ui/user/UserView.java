@@ -19,6 +19,8 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+import java.util.List;
+
 import static com.vaadin.flow.component.button.ButtonVariant.LUMO_TERTIARY;
 
 @PageTitle("Users")
@@ -61,15 +63,15 @@ public class UserView extends VerticalLayout {
         filterText.setPlaceholder("filter by...");
         filterText.setClearButtonVisible(true);
         filterText.setValueChangeMode(ValueChangeMode.LAZY);
-
+        filterText.addValueChangeListener(e-> updateList());
 
         searchButton.addClickListener(click -> {
-            String value = filterText.getValue();
             if(select.getValue().equals("userId")) {
-                System.out.println(value);
-                grid.setItems(service.findByUserId(value)); // TODO filterText.getValue() 로 가능하도록
+                grid.setItems(service.findByUserId(filterText.getValue().trim()));
             } else if(select.getValue().equals("userName")) {
                 grid.setItems(service.findByUserName(filterText.getValue().trim()));
+            } else if(select.getValue().equals("phoneNumber")) {
+                grid.setItems(service.findByUserPhoneNumber(filterText.getValue().trim()));
             }
         });
 
@@ -94,6 +96,11 @@ public class UserView extends VerticalLayout {
             grid.setItems(service.findByUserId(null));
         }
         return userList;
+    }
+
+    private void updateList() {
+        grid.setItems(service.findByUserId(filterText.getValue().trim()));
+//        userList.setItems();
     }
 
 }

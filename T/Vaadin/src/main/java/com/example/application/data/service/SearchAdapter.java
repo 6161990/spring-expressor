@@ -1,6 +1,5 @@
 package com.example.application.data.service;
 
-import com.example.application.data.views.Membership;
 import com.example.application.data.views.User;
 
 import java.util.List;

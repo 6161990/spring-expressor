@@ -66,16 +66,16 @@ public class FakeSearchAdapter implements SearchAdapter {
 
     @Override
     public List<User> searchUserByUserId(String userId) {
-        return users.stream().filter(u -> u.getUserId() == userId).collect(Collectors.toList());
+        return users.stream().filter(u -> u.getUserId().equals(userId)).collect(Collectors.toList());
     }
 
     @Override
     public List<User> searchUserByPhoneNumber(String phoneNumber) {
-        return users.stream().filter(u -> u.getPhoneNumber() == phoneNumber).collect(Collectors.toList());
+        return users.stream().filter(u -> u.getPhoneNumber().equals(phoneNumber)).collect(Collectors.toList());
     }
 
     @Override
     public List<User> searchUserByUserName(String userName) {
-        return users.stream().filter(u -> u.getUserName() == userName).collect(Collectors.toList());
+        return users.stream().filter(u -> u.getUserName().equals(userName)).collect(Collectors.toList());
     }
 }
