@@ -7,6 +7,8 @@ import com.example.application.data.views.User;
 import com.example.application.ui.RootLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -16,6 +18,8 @@ import com.vaadin.flow.component.virtuallist.VirtualList;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+
+import static com.vaadin.flow.component.button.ButtonVariant.LUMO_TERTIARY;
 
 @PageTitle("Users")
 @Route(value = "user", layout = RootLayout.class)
@@ -31,16 +35,12 @@ public class UserView extends VerticalLayout {
     Grid<User> grid = new Grid<>(User.class);
     UserCard userCard = new UserCard();
     VirtualList<User> userList = new VirtualList<>();
-    VirtualList<Membership> membershipList = new VirtualList<>();
-
-
 
     public UserView() {
         addClassNames("users-view");
         setSizeFull();
         configureGrid();
         configureUserList();
-        configureMembershipList();
 
         add(getSearchBar(), grid, getContent());
     }
@@ -48,8 +48,7 @@ public class UserView extends VerticalLayout {
     private void configureGrid() {
         grid.addClassNames("contact-grid");
         grid.setSizeFull();
-//        grid.setHeight("auto");
-        grid.setColumns("id", "name", "phoneNumber", "joinedAt");
+        grid.setColumns("userId", "userName", "email", "phoneNumber" ,"signedAt");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
     }
 
@@ -59,18 +58,18 @@ public class UserView extends VerticalLayout {
         select.setItems("userId", "userName", "phoneNumber");
         select.setValue("userId");
 
-
         filterText.setPlaceholder("filter by...");
         filterText.setClearButtonVisible(true);
         filterText.setValueChangeMode(ValueChangeMode.LAZY);
-        filterText.addValueChangeListener(e -> updateList());
+
 
         searchButton.addClickListener(click -> {
-            if(select.getValue().equals("userName")) {
-                System.out.println(filterText.getValue());
-            } else if(select.getValue().equals("userId")) {
-                grid.setItems(service.findByUserId(filterText.getValue().trim()));
-//                userList.setItems(service.findByUserId(filterText.getValue().trim().toString()));
+            String value = filterText.getValue();
+            if(select.getValue().equals("userId")) {
+                System.out.println(value);
+                grid.setItems(service.findByUserId(value)); // TODO filterText.getValue() 로 가능하도록
+            } else if(select.getValue().equals("userName")) {
+                grid.setItems(service.findByUserName(filterText.getValue().trim()));
             }
         });
 
@@ -82,26 +81,19 @@ public class UserView extends VerticalLayout {
 
 
     private Component getContent() {
-        HorizontalLayout content = new HorizontalLayout(userCard, userList, membershipList);
+        HorizontalLayout content = new HorizontalLayout(userCard, userList);
         content.setFlexGrow(1, userCard);
         content.setFlexGrow(2, userList);
-        content.setFlexGrow(2, membershipList);
         content.addClassNames("contents");
         content.setSizeFull();
         return content;
     }
 
-    private VirtualList<User> configureUserList () {
-        userList.setItems();
+    private VirtualList<User> configureUserList () { // TODO 아무것도 없을 때 전체 유저 리스트
+        if(filterText.getValue() != null){
+            grid.setItems(service.findByUserId(null));
+        }
         return userList;
     }
 
-    private void configureMembershipList () {
-        membershipList.setItems();
-    }
-
-    private void updateList() {
-        grid.setItems(service.findByUserId(filterText.getValue()));
-//        userList.setItems();
-    }
 }
