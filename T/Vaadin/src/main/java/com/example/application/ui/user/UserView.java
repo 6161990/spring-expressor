@@ -15,11 +15,14 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.virtuallist.VirtualList;
+import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.vaadin.flow.component.button.ButtonVariant.LUMO_TERTIARY;
 
@@ -33,10 +36,10 @@ public class UserView extends VerticalLayout {
 
     TextField filterText = new TextField();
     Button searchButton = new Button("search");
+    private Binder<User> binder = new Binder<>();
+    UserForm userForm = new UserForm();
 
     Grid<User> grid = new Grid<>(User.class);
-    UserCard userCard = new UserCard();
-    VirtualList<User> userList = new VirtualList<>();
 
     public UserView() {
         addClassNames("users-view");
@@ -52,6 +55,20 @@ public class UserView extends VerticalLayout {
         grid.setSizeFull();
         grid.setColumns("userId", "userName", "email", "phoneNumber" ,"signedAt");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
+
+        grid.addSelectionListener(selectionEvent -> {
+            Optional<User> optionalUser = grid.getSelectedItems().stream().findAny();
+
+            if (optionalUser.isPresent()) {
+                System.out.println("!!!!!!!!!!!!!!!!!!!!"+optionalUser.stream().findFirst().get());
+                userForm.setUser(optionalUser.stream().findFirst().get());
+                System.out.println("@@@@@@@@@@@@@@@@@@"+userForm.deletedAt.getValue());
+                System.out.println("@@@@@@@@@@@@@@@@@1111@"+userForm.userName.getValue());
+
+                binder.readBean(optionalUser.stream().findFirst().get());
+
+            }
+        });
     }
 
     private Component getSearchBar() {
@@ -83,9 +100,8 @@ public class UserView extends VerticalLayout {
 
 
     private Component getContent() {
-        HorizontalLayout content = new HorizontalLayout(userCard, userList);
-        content.setFlexGrow(1, userCard);
-        content.setFlexGrow(2, userList);
+        HorizontalLayout content = new HorizontalLayout(userForm);
+        content.setFlexGrow(1, userForm);
         content.addClassNames("contents");
         content.setSizeFull();
         return content;
