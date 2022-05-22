@@ -31,7 +31,7 @@ public class UserView extends VerticalLayout {
 
     Select<String> select = new Select<>();
 
-    TextField filterText = new TextField(); // f9c11039-50f8-4f7a-8759-574eb2ea1933
+    TextField filterText = new TextField();
     Button searchButton = new Button("search");
 
     Grid<User> grid = new Grid<>(User.class);
@@ -42,8 +42,8 @@ public class UserView extends VerticalLayout {
         addClassNames("users-view");
         setSizeFull();
         configureGrid();
-        configureUserList();
 
+        grid.setItems(service.findByUserId(filterText.getValue().trim()));
         add(getSearchBar(), grid, getContent());
     }
 
@@ -91,16 +91,10 @@ public class UserView extends VerticalLayout {
         return content;
     }
 
-    private VirtualList<User> configureUserList () { // TODO 아무것도 없을 때 전체 유저 리스트
-        if(filterText.getValue() != null){
-            grid.setItems(service.findByUserId(null));
-        }
-        return userList;
-    }
 
     private void updateList() {
-        grid.setItems(service.findByUserId(filterText.getValue().trim()));
-//        userList.setItems();
+        grid.setItems(service.findByUserId(filterText.getValue()));
     }
+
 
 }
