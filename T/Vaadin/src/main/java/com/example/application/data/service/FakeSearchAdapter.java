@@ -32,7 +32,7 @@ public class FakeSearchAdapter implements SearchAdapter {
         tickets.add(ticket3);
         tickets.add(ticket4);
 
-        User user1 = User.builder().userId("f9c11039s").userName("최지욱").email("dssgdse@gamil.com").phoneNumber("01022222222").signedAt("2022-02-02T02:03:02").isInactive("false").isBlock("false").deletedAt(null).tickets(tickets).memberships(memberships).build();
+        User user1 = User.builder().userId("f9c11039s").userName("김씨").email("dssgdse@gamil.com").phoneNumber("01095902568").signedAt("2022-02-02T02:03:02").isInactive("false").isBlock("false").deletedAt(null).tickets(tickets).memberships(memberships).build();
         User user2 = User.builder().userId("m10zcv2g").userName("손석구").email("woqmo1133e@gamil.com").phoneNumber("01022222222").signedAt("2022-02-02T02:03:02").isInactive("false").isBlock("false").deletedAt(null).tickets(tickets).memberships(memberships).build();
 
         users.add(user1);
