@@ -62,11 +62,7 @@ public class UserView extends VerticalLayout {
             if (optionalUser.isPresent()) {
                 System.out.println("!!!!!!!!!!!!!!!!!!!!"+optionalUser.stream().findFirst().get());
                 userForm.setUser(optionalUser.stream().findFirst().get());
-                System.out.println("@@@@@@@@@@@@@@@@@@"+userForm.deletedAt.getValue());
                 System.out.println("@@@@@@@@@@@@@@@@@1111@"+userForm.userName.getValue());
-
-                binder.readBean(optionalUser.stream().findFirst().get());
-
             }
         });
     }
