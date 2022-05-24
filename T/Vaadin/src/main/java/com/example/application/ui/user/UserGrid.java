@@ -20,10 +20,7 @@ public class UserGrid extends Div {
             Optional<User> optionalUser = grid.getSelectedItems().stream().findAny();
 
             if (optionalUser.isPresent()) {
-                System.out.println("!!!!!!!!!!!!!!!!!!!!"+optionalUser.stream().findFirst().get());
-                setForm(selectionEvent.getFirstSelectedItem().get());
-                userForm.setUser(optionalUser.stream().findFirst().get());
-                System.out.println("@@@@@@@@@@@@@@@@@1111@"+userForm.userName.getValue());
+                userForm.setForm(optionalUser.stream().findFirst().get());
             }
         });
 
@@ -34,21 +31,4 @@ public class UserGrid extends Div {
         grid.setItems(users);
     }
 
-    private void setForm(User user) {
-        if(user == null){
-            closeUserForm();
-        } else {
-            userForm.setUser(user);
-            userForm.setVisible(true);
-        }
-    }
-
-    private void closeUserForm() {
-        userForm.setUser(null);
-        userForm.setVisible(false);
-    }
-
-    public Grid<User> getUserGrid() {
-        return grid;
-    }
 }

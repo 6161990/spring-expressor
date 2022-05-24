@@ -33,11 +33,19 @@ public class UserForm extends FormLayout {
         add(createButtonsLayout());
     }
 
-    public void setUser(User user) {
+    public void setForm(User user) {
+        setBindUser(user);
+        setVisible(true);
+    }
+
+    private void setBindUser(User user) {
         binder.setBean(user);
+        binder.bindInstanceFields(this);
     }
 
     private VerticalLayout createButtonsLayout() {
         return new VerticalLayout(userId, userName, phoneNumber, signedAt,isInactive, isBlock, deletedAt);
     }
+
+
 }
