@@ -8,7 +8,7 @@ import lombok.Data;
 public class Service {
 
     private String id;
-    private String name;
+    private String serviceName;
     private String period;
     private String badge;
 

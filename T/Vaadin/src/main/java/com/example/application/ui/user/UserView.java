@@ -2,21 +2,17 @@ package com.example.application.ui.user;
 
 import com.example.application.data.service.CrmService;
 import com.example.application.data.service.FakeSearchAdapter;
-import com.example.application.data.views.User;
 import com.example.application.ui.RootLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
-import com.vaadin.flow.component.template.Id;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-
-import java.util.Optional;
 
 @PageTitle("Users")
 @Route(value = "user", layout = RootLayout.class)
