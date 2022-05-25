@@ -2,11 +2,8 @@ package com.example.application.ui.wallet;
 
 
 import com.example.application.data.views.Ticket;
-import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.JsModule;
+import com.example.application.ui.BadgeIcon;
 import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.littemplate.LitTemplate;
-import com.vaadin.flow.component.template.Id;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 
@@ -28,6 +25,7 @@ public class TicketCard  {
 
     private Span membership;
 
+    private BadgeIcon state;
 
     private Binder<Ticket> binder;
 
