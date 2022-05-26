@@ -1,8 +1,6 @@
 package com.example.application.ui.user;
 
 import com.example.application.data.views.User;
-import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -25,7 +23,7 @@ public class UserForm extends FormLayout {
         binder.forField(userId).asRequired().bind(User::getUserId, User::setUserId);
         binder.forField(userName).bind(User::getUserName, User::setUserName);
         binder.forField(email).bind(User::getEmail, User::setEmail);
-        binder.forField(phoneNumber).bind(User::getPhoneNumber, User::setPhoneNumber);
+        binder.forField(phoneNumber).bind(User::getPhoneNumver, User::setPhoneNumver);
         binder.forField(signedAt).bind(User::getSignedAt, User::setSignedAt);
         binder.forField(isInactive).bind(User::getIsInactive, User::setIsInactive);
         binder.forField(isBlock).bind(User::getIsBlock, User::setIsBlock);
