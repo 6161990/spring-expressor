@@ -2,6 +2,7 @@ package com.example.application.ui.user;
 
 import com.example.application.data.service.CrmService;
 import com.example.application.data.service.FakeSearchAdapter;
+import com.example.application.data.views.User;
 import com.example.application.ui.RootLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;

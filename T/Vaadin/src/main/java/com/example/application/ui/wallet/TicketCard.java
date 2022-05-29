@@ -27,6 +27,8 @@ public class TicketCard  {
 
     private BadgeIcon state;
 
+    private TextField period;
+
     private Binder<Ticket> binder;
 
     //    private CollaborationBinder<Ticket> collaborationBinder;
