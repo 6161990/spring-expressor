@@ -13,6 +13,10 @@ public class CrmService {
         this.searchAdapter = searchAdapter;
     }
 
+    public List<User> findAll() {
+        return searchAdapter.findAll();
+    }
+
     public List<User> findByUserId(String userId) {
         if (userId == null || userId.isEmpty()) {
             return searchAdapter.findAll();
