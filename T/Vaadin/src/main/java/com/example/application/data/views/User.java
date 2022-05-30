@@ -12,7 +12,7 @@ public class User {
     private String userId;
     private String userName;
     private String email;
-    private String phoneNumver;
+    private String phone;
     private String isInactive;
     private String isBlock;
     private String signedAt;

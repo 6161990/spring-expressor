@@ -11,7 +11,7 @@ public class UserForm extends FormLayout {
     TextField userId = new TextField("userId");
     TextField userName = new TextField("userName");
     TextField email = new TextField("email");
-    TextField phoneNumber = new TextField("phoneNumber");
+    TextField phone = new TextField("phone");
     TextField signedAt = new TextField("signedAt");
     TextField isInactive = new TextField("isInactive");
     TextField isBlock = new TextField("isBlock");
@@ -23,7 +23,7 @@ public class UserForm extends FormLayout {
         binder.forField(userId).asRequired().bind(User::getUserId, User::setUserId);
         binder.forField(userName).bind(User::getUserName, User::setUserName);
         binder.forField(email).bind(User::getEmail, User::setEmail);
-        binder.forField(phoneNumber).bind(User::getPhoneNumver, User::setPhoneNumver);
+        binder.forField(phone).bind(User::getPhone, User::setPhone);
         binder.forField(signedAt).bind(User::getSignedAt, User::setSignedAt);
         binder.forField(isInactive).bind(User::getIsInactive, User::setIsInactive);
         binder.forField(isBlock).bind(User::getIsBlock, User::setIsBlock);
@@ -42,7 +42,7 @@ public class UserForm extends FormLayout {
     }
 
     private VerticalLayout createButtonsLayout() {
-        return new VerticalLayout(userId, userName, phoneNumber, signedAt,isInactive, isBlock, deletedAt);
+        return new VerticalLayout(userId, userName, email, phone, signedAt,isInactive, isBlock, deletedAt);
     }
 
 

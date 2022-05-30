@@ -15,8 +15,11 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+import javax.annotation.security.RolesAllowed;
+
 @PageTitle("Users")
 @Route(value = "user", layout = RootLayout.class)
+@RolesAllowed("ADMIN")
 public class UserView extends VerticalLayout {
     FakeSearchAdapter adapter = new FakeSearchAdapter();
     CrmService service = new CrmService(adapter);
@@ -25,7 +28,6 @@ public class UserView extends VerticalLayout {
     TextField filterText = new TextField();
     Button searchButton = new Button("search");
 
-    private Binder<User> binder = new Binder<>();
     private UserForm userForm = new UserForm();
     private UserGrid userGrid = new UserGrid();
 
@@ -46,7 +48,7 @@ public class UserView extends VerticalLayout {
     private Component getSearchBar() {
         addClassName("list-header");
         select.setLabel("search by");
-        select.setItems("userId", "userName", "phoneNumber");
+        select.setItems("userId", "userName", "phone");
         select.setValue("userId");
 
         filterText.setPlaceholder("filter by...");
@@ -59,7 +61,7 @@ public class UserView extends VerticalLayout {
                 userGrid.setItems(service.findByUserId(filterText.getValue().trim()));
             } else if(select.getValue().equals("userName")) {
                 userGrid.setItems(service.findByUserName(filterText.getValue().trim()));
-            } else if(select.getValue().equals("phoneNumber")) {
+            } else if(select.getValue().equals("phone")) {
                 userGrid.setItems(service.findByUserPhoneNumber(filterText.getValue().trim()));
             }
         });

@@ -13,7 +13,7 @@ public class UserGrid extends Div {
     UserForm userForm = new UserForm();
 
     public UserGrid() {
-        grid.setColumns("userId", "userName", "email", "phoneNumber", "signedAt");
+        grid.setColumns("userId", "userName", "email", "phone");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.addSelectionListener(selectionEvent -> {
