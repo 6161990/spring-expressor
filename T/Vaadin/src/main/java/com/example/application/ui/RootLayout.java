@@ -5,12 +5,18 @@ import com.example.application.ui.user.UserView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.*;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.RouterLink;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class RootLayout extends AppLayout {
+
+    private SecurityService securityService;
+
     public static class MenuItemInfo extends ListItem {
 
         private final Class<? extends Component> view;
@@ -50,9 +56,23 @@ public class RootLayout extends AppLayout {
 
     private H1 viewTitle;
 
-    public RootLayout() {
+    public RootLayout(@Autowired SecurityService securityService) {
+        this.securityService = securityService;
+
+        H1 logo = new H1("Vaadin CRM");
+        logo.addClassName("logo");
+        HorizontalLayout header;
+        if (securityService.getAuthenticatedUser() != null) {
+            Button logout = new Button("Logout", click ->
+                    securityService.logout());
+            header = new HorizontalLayout(logo, logout);
+        } else {
+            header = new HorizontalLayout(logo);
+        }
+
+
         setPrimarySection(Section.DRAWER);
-        addToNavbar(true, createHeaderContent());
+        addToNavbar(header);
         addToDrawer(createDrawerContent());
     }
 
@@ -111,4 +131,6 @@ public class RootLayout extends AppLayout {
 
         return header;
     }
+
+
 }
