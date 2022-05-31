@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Security 0" />
+        <option name="gradleHome" value="/usr/local/Cellar/gradle/7.2/libexec" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Security 0" />
+            <option value="$PROJECT_DIR$/Security 0/comp/common-utils" />
+            <option value="$PROJECT_DIR$/Security 0/server/basic-test" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Security 1" />
+        <option name="gradleHome" value="/usr/local/Cellar/gradle/7.2/libexec" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Security 1" />
+            <option value="$PROJECT_DIR$/Security 1/server/basic-test" />
+            <option value="$PROJECT_DIR$/Security 1/server/login-basic" />
+            <option value="$PROJECT_DIR$/Security 1/server/login-custom-filter" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Security 2" />
+        <option name="gradleHome" value="/usr/local/Cellar/gradle/7.2/libexec" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Security 2" />
+            <option value="$PROJECT_DIR$/Security 2/server/basic-test" />
+            <option value="$PROJECT_DIR$/Security 2/server/login-basic" />
+            <option value="$PROJECT_DIR$/Security 2/server/login-custom-filter" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Security 3" />
+        <option name="gradleHome" value="/usr/local/Cellar/gradle/7.2/libexec" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Security 3" />
+            <option value="$PROJECT_DIR$/Security 3/server/basic-authentication-test" />
+            <option value="$PROJECT_DIR$/Security 3/server/basic-test" />
+            <option value="$PROJECT_DIR$/Security 3/server/login-basic" />
+            <option value="$PROJECT_DIR$/Security 3/server/login-custom-filter" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Security 4" />
+        <option name="gradleHome" value="/usr/local/Cellar/gradle/7.2/libexec" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Security 4" />
+            <option value="$PROJECT_DIR$/Security 4/comp/paper" />
+            <option value="$PROJECT_DIR$/Security 4/comp/paper-user" />
+            <option value="$PROJECT_DIR$/Security 4/comp/user-admin" />
+            <option value="$PROJECT_DIR$/Security 4/server/authority-acl" />
+            <option value="$PROJECT_DIR$/Security 4/server/authority-test" />
+            <option value="$PROJECT_DIR$/Security 4/server/basic-authentication-test" />
+            <option value="$PROJECT_DIR$/Security 4/server/basic-test" />
+            <option value="$PROJECT_DIR$/Security 4/server/login-basic" />
+            <option value="$PROJECT_DIR$/Security 4/server/login-multi-chain" />
+            <option value="$PROJECT_DIR$/Security 4/server/login-rememberme" />
+            <option value="$PROJECT_DIR$/Security 4/server/login-session-management" />
+            <option value="$PROJECT_DIR$/Security 4/server/login-userdetails" />
+            <option value="$PROJECT_DIR$/Security 4/server/paper-app" />
+            <option value="$PROJECT_DIR$/Security 4/test/web-util" />
+            <option value="$PROJECT_DIR$/Security 4/web/site-manager" />
+            <option value="$PROJECT_DIR$/Security 4/web/site-student" />
+            <option value="$PROJECT_DIR$/Security 4/web/site-teacher" />
+            <option value="$PROJECT_DIR$/Security 4/web/student-teacher" />
+            <option value="$PROJECT_DIR$/Security 4/web/user-admin" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
