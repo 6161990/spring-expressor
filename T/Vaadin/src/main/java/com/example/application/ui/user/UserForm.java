@@ -20,7 +20,6 @@ public class UserForm extends FormLayout {
 
     public UserForm() {
         addClassName("contact-form");
-
         binder = new Binder<>(User.class);
         add(createButtonsLayout());
     }
@@ -33,14 +32,6 @@ public class UserForm extends FormLayout {
 
     private void setBindUser(User user) {
         binder.setBean(user);
-        binder.forField(userId).asRequired().bind(User::getUserId, User::setUserId);
-        binder.forField(userName).bind(User::getUserName, User::setUserName);
-        binder.forField(email).bind(User::getEmail, User::setEmail);
-        binder.forField(phoneNumber).bind(User::getPhoneNumber, User::setPhoneNumber);
-        binder.forField(signedAt).bind(User::getSignedAt, User::setSignedAt);
-        binder.forField(isInactive).bind(User::getIsInactive, User::setIsInactive);
-        binder.forField(isBlock).bind(User::getIsBlock, User::setIsBlock);
-        binder.forField(deletedAt).bind(User::getDeletedAt, User::setDeletedAt);
         binder.bindInstanceFields(this);
     }
 

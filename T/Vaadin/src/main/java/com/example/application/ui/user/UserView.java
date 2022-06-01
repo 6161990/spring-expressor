@@ -31,7 +31,7 @@ public class UserView extends VerticalLayout {
     Button searchButton = new Button("search");
 
     private UserForm userForm = new UserForm();
-    private UserGrid userGrid = new UserGrid();
+    private UserGrid userGrid = new UserGrid(userForm);
 
     public UserView() {
         addClassNames("users-view");
@@ -99,6 +99,10 @@ public class UserView extends VerticalLayout {
 
     private void updateList() {
         userGrid.setItems(service.findByUserId(filterText.getValue()));
+    }
+
+    public UserForm getUserForm(){
+        return userForm;
     }
 
 

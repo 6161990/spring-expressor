@@ -11,12 +11,17 @@ public class UserGrid extends Div {
 
     Grid<User> grid = new Grid<>(User.class);
 
-
-    public UserGrid() {
-        grid.setColumns("userId", "userName", "email", "phone");
+    public UserGrid(UserForm userForm) {
+        grid.setColumns("userId", "userName", "email", "phoneNumber", "signedAt");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
+        grid.addSelectionListener(selectionEvent -> {
+            Optional<User> optionalUser = grid.getSelectedItems().stream().findAny();
 
+            if (optionalUser.isPresent()) {
+                userForm.setForm(optionalUser.stream().findFirst().get());
+            }
+        });
 
         add(grid);
     }
