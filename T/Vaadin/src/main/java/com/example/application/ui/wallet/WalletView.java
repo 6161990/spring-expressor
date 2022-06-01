@@ -10,16 +10,7 @@ public class WalletView  {
 
     private TicketCard ticketCard;
 
-    public WalletView() {
-        configureClickEvent();
-    }
-
-    private void configureClickEvent() {
-
-    }
-
     public TicketCard getTicketCard() {
         return ticketCard;
     }
-
 }

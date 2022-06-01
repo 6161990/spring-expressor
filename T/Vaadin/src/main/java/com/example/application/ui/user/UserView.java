@@ -16,6 +16,8 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+import javax.annotation.security.RolesAllowed;
+
 import java.util.Optional;
 
 @PageTitle("Users")
@@ -28,7 +30,6 @@ public class UserView extends VerticalLayout {
     TextField filterText = new TextField();
     Button searchButton = new Button("search");
 
-    private Binder<User> binder = new Binder<>();
     private UserForm userForm = new UserForm();
     private UserGrid userGrid = new UserGrid();
 
