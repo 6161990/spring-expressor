@@ -36,8 +36,8 @@ public class FakeSearchAdapter implements SearchAdapter {
         tickets.add(ticket3);
         tickets.add(ticket4);
 
-        User user1 = User.builder().userId("f9c11039-50f8-4f7a-8759-574eb2ea1933").userName("최지욱").email("goen2312@gmail.com").phone("01022222222").signedAt("2022-05-02T02:03:02").isInactive("false").isBlock("false").deletedAt(null).wallet(wallet).memberships(memberships).build();
-        User user2 = User.builder().userId("574eb223-2034-df32").userName("손석구").email("goen2312@gmail.com").phone("01054019292").signedAt("2022-02-02T02:03:02").isInactive("false").isBlock("false").deletedAt(null).wallet(wallet).memberships(memberships).build();
+        User user1 = User.builder().userId("f9c11039-50f8-4f7a-8759-574eb2ea1933").userName("최지욱").email("goen2312@gmail.com").phoneNumber("01022222222").signedAt("2022-05-02T02:03:02").isInactive("false").isBlock("false").deletedAt(null).wallet(wallet).memberships(memberships).build();
+        User user2 = User.builder().userId("574eb223-2034-df32").userName("손석구").email("goen2312@gmail.com").phoneNumber("01054019292").signedAt("2022-02-02T02:03:02").isInactive("false").isBlock("false").deletedAt(null).wallet(wallet).memberships(memberships).build();
 
         users.add(user1);
         users.add(user2);
@@ -75,7 +75,7 @@ public class FakeSearchAdapter implements SearchAdapter {
 
     @Override
     public List<User> searchUserByPhoneNumber(String phoneNumber) {
-        return users.stream().filter(u -> u.getPhone().equals(phoneNumber)).collect(Collectors.toList());
+        return users.stream().filter(u -> u.getPhoneNumber().equals(phoneNumber)).collect(Collectors.toList());
     }
 
     @Override
