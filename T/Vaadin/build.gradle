@@ -17,7 +17,7 @@ defaultTasks("clean", "build")
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = "1.9"
+sourceCompatibility = "10"
 
 repositories {
 	mavenCentral()
@@ -59,4 +59,4 @@ test {
 vaadin {
 	pnpmEnable = true
 }
-targetCompatibility = JavaVersion.VERSION_1_9
+targetCompatibility = JavaVersion.VERSION_1_10
