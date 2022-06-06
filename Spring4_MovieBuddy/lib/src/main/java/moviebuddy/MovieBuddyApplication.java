@@ -15,10 +15,15 @@ import java.util.stream.Stream;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 
 import moviebuddy.domain.Movie;
 import moviebuddy.domain.MovieFinder;
 
+@Configuration
+@PropertySource("/messages.properties")
 public class MovieBuddyApplication {
 
 	public static void main(String[] args) throws Exception {
@@ -35,7 +40,8 @@ public class MovieBuddyApplication {
 	
 	void run(String[] args) throws Exception {
 		final ApplicationContext applicationContext = 
-				new AnnotationConfigApplicationContext(MovieBuddyFactory.class);
+				new AnnotationConfigApplicationContext(MovieBuddyFactory.class , MovieBuddyApplication.class);
+		final Environment environment = applicationContext.getEnvironment();
 		final MovieFinder movieFinder = applicationContext.getBean(MovieFinder.class);
 		
 		final AtomicBoolean running = new AtomicBoolean(true);
@@ -91,7 +97,7 @@ public class MovieBuddyApplication {
 		/* 사용자가 입력한 값을 해석 후 연결된 명령을 실행한다. */
 		
 		output.println();
-		output.println("application is ready.");
+		output.println(environment.getProperty("application.ready"));
 
 		// quit(애플리케이션 종료) 명령어가 입력되기 전까지 무한히 반복하기(infinite loop)
 		while(running.get()) {
