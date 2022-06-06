@@ -10,7 +10,15 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CachingConfigurer;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.caffeine.CaffeineCacheManager;
+import org.springframework.cache.interceptor.CacheErrorHandler;
+import org.springframework.cache.interceptor.CacheResolver;
+import org.springframework.cache.interceptor.KeyGenerator;
+import org.springframework.cache.interceptor.SimpleCacheErrorHandler;
+import org.springframework.cache.interceptor.SimpleCacheResolver;
+import org.springframework.cache.interceptor.SimpleKeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +35,8 @@ import moviebuddy.cache.CachingAdvice;
 @PropertySource("/application.properties")
 @Import({MovieBuddyFactory.DataSourceModuleConfig.class, MovieBuddyFactory.DomainModuleConfig.class}) // 다른 클래에서 빈 구성정보를 가져오기위함.
 //  @ImportResource("xml file location")
-public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할 
+@EnableCaching
+public class MovieBuddyFactory implements CachingConfigurer { //객체를 생성하고 구성하는 역할 
 	
 	@Bean // 스프링 OXM 모듈 구현체 : Jaxb2Marshaller
 	public Jaxb2Marshaller jaxb2Marshaller() {
@@ -132,5 +141,25 @@ public class MovieBuddyFactory { //객체를 생성하고 구성하는 역할
 		 * 스스로 내부에 MovieReader빈이 있는지 확인한다.
 	 * 
 	 */
+	}
+
+	@Override
+	public CacheManager cacheManager() {
+		return caffeineCacheManager();
+	}
+
+	@Override
+	public CacheResolver cacheResolver() {
+		return new SimpleCacheResolver(caffeineCacheManager());
+	}
+
+	@Override
+	public KeyGenerator keyGenerator() {
+		return new SimpleKeyGenerator();
+	}
+
+	@Override
+	public CacheErrorHandler errorHandler() {
+		return new SimpleCacheErrorHandler();
 	}
 }
