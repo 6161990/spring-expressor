@@ -15,14 +15,13 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class CsvMovieFinder extends MovieFinder {
+public class CsvMovieReader implements MovieReader{
 
     /**
      * 영화 메타데이터를 읽어 저장된 영화 목록을 불러온다.
      *
      * @return 불러온 영화 목록
      */
-    @Override
     public List<Movie> loadMovies() {
         try {
             final URI resourceUri = ClassLoader.getSystemResource("movie_metadata.csv").toURI();
@@ -57,5 +56,4 @@ public class CsvMovieFinder extends MovieFinder {
             throw new ApplicationException("failed to load movies data.", error);
         }
     }
-
 }
