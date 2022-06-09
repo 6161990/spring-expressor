@@ -19,19 +19,24 @@ public class TestingLocalDateTime {
         SimpleDateFormat sdf = new SimpleDateFormat(slkf);
 
         LocalDateTime firstMeetingAt = LocalDateTime.parse(text, DateTimeFormatter.ofPattern(slkf));
-        LocalDateTime parse1111 = LocalDateTime.parse("2019-12-25T10:15:00");
+        LocalDateTime parse1111 = LocalDateTime.parse("2019-12-25T10:15:20");
         LocalDateTime parse2222 = LocalDateTime.parse("2019-12-25 12:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
+        String stringCreatedAt = "2022-01-01T03:00:00";
+        LocalDateTime createdAt = LocalDateTime.parse(stringCreatedAt, formatter);
+
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+createdAt);
         System.out.println("!!!!!!!!!!!!!!!!!!!!!"+firstMeetingAt);
         System.out.println(parse1111);
         System.out.println(parse2222);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd\'T\'HH:mm:ssz");
-        String currentTime = "2017-10-19T22:00";
-        LocalDateTime datetime = LocalDateTime.parse(currentTime, formatter);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd\'T\'HH:mm:ssz");
+        String currentTime = "2017-10-19T22:00:00";
+        LocalDateTime datetime = LocalDateTime.parse(currentTime, dateTimeFormatter);
         System.out.println(datetime);
         //2017-10-19T22:00
-        String formattedDate = datetime.format(formatter);
+        String formattedDate = datetime.format(dateTimeFormatter);
         //2017-10-19 22:00:00
 
         System.out.println(formattedDate);

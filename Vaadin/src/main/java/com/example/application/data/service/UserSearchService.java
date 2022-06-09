@@ -24,7 +24,6 @@ public class UserSearchService {
     @Autowired
     public RestTemplate restTemplate;
 
-    @Value("${gateway.api.url}")
     private String gatewayApiUrl;
 
     public User getUserById(String userId) {

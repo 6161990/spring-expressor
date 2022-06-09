@@ -25,10 +25,10 @@ public class UserSearchForm {
     private UserGrid userGrid;
 
     @Autowired
-    private CrmService crmService;
+    private CrmService apiService;
 
     @Autowired
-    private UserSearchService apiService;
+   // private UserSearchService apiService;
 
     public UserSearchForm() {
         configureCombobox();
@@ -38,7 +38,7 @@ public class UserSearchForm {
     private void configureCombobox() {
         combobox.setAllowCustomValue(true);
         combobox.setPlaceholder("select filter");
-        combobox.setItems("id", "name", "phone");
+        combobox.setItems("id", "name", "phoneNumber");
         combobox.setValue("id");
     }
 
@@ -53,11 +53,11 @@ public class UserSearchForm {
     private void searchUser() {
         String searchValue = searchField.getValue().trim();
         if (combobox.getValue().equals("id")) {
-            userGrid.setItems(List.of(apiService.getUserById(searchValue)));
+            userGrid.setItems(apiService.findByUserId(searchValue));
         } else if (combobox.getValue().equals("name")) {
-            userGrid.setItems(apiService.getUserByName(searchValue));
-        } else if (combobox.getValue().equals("phone")) {
-            userGrid.setItems(apiService.getUserByPhoneNumber(searchValue));
+            userGrid.setItems(apiService.findByUserName(searchValue));
+        } else if (combobox.getValue().equals("phoneNumber")) {
+            userGrid.setItems(apiService.findByUserPhoneNumber(searchValue));
         }
     }
 
