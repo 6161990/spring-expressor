@@ -1,13 +1,18 @@
 package moviebuddy.domain;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.util.List;
 
 class JaxbMovieReaderTest {
 
-    public static void main(String[] args) {
+    @Test
+    void NotEmpty_LoadedMovies(){
         JaxbMovieReader movieReader = new JaxbMovieReader();
 
         List<Movie> movies = movieReader.loadMovies();
-        MovieFinderTest.assertEquals(1375, movies.size());
+        Assertions.assertEquals(1375, movies.size());
     }
+
 }
