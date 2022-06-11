@@ -8,13 +8,6 @@ import java.util.Collections;
 
 import moviebuddy.ApplicationException;
 
-/**
- * 파일시스템을 다루기 위한 유틸리티 클래스이다.
- * 무비버디 애플리케이션 동작을 보조하기 위해 작성된 유틸리티로 워크숍 또는 강좌에서 별도로 다루지 않스니다.  
- * 따라서 워크숍 참가자 또는 강좌 수강생들 보지 않으셔도 됩니다.   
- * 
- * @author springrunner.kr@gmail.com
- */
 public class FileSystemUtils {
 
 	/*
