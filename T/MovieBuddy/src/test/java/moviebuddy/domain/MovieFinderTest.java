@@ -7,7 +7,7 @@ import java.util.List;
 
 public class MovieFinderTest {
 	final MovieBuddyFactory movieBuddyFactory = new MovieBuddyFactory();
-	final MovieFinder movieFinder = movieBuddyFactory.movieFinder(); // 의존 관계 주입 - 메소드 콜 방식
+	final MovieFinder movieFinder = MovieBuddyFactory.DomainModuleConfig.movieFinder(); // 의존 관계 주입 - 메소드 콜 방식
 	// final MovieFinder movieFinder = movieBuddyFactory.movieFinder(movieBuddyFactory.movieReader());  의존 관계 주입 - 메소드 파라미터 방식
 
 	@Test
