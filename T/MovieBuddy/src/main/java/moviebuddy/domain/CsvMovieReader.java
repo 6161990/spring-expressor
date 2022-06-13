@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-@Repository // 빈을 정의하는데 사용되는 애노테이션으로 역할을 더 구체적으로 명시,부여하는데 효과가있음
+@Repository("movieReader") //  MovieReader 타입의 빈이 두 개라, 특정 클래스에 "movieReader" 이름 지정 - 방법1
 public class CsvMovieReader implements MovieReader{
 
     /**

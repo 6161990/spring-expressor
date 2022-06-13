@@ -1,6 +1,7 @@
 package moviebuddy.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class MovieFinder {
     private final MovieReader movieReader;
 
     @Autowired // 생성자가 하나라면 생략 가능
-    public MovieFinder(MovieReader movieReader) {
+    public MovieFinder(@Qualifier("csvMovieReader") MovieReader movieReader) { // MovieReader 타입의 빈이 두 개라, 특정 클래스 이름 지정
         this.movieReader = Objects.requireNonNull(movieReader);
     }
 
