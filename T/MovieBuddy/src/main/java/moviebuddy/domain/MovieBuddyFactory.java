@@ -1,6 +1,5 @@
 package moviebuddy.domain;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -17,10 +16,6 @@ public class MovieBuddyFactory {
 
     @Configuration
     static class DomainModuleConfig {
-        @Bean // 의존 관계 주입 - 메소드 콜 방식
-        public MovieFinder movieFinder(MovieReader movieReader) {
-            return new MovieFinder(movieReader);
-        }
 
     }
 
