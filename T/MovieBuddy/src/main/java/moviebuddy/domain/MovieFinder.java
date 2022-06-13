@@ -13,8 +13,8 @@ public class MovieFinder {
 
     private final MovieReader movieReader;
 
-    @Autowired // 생성자가 하나라면 생략 가능
-    public MovieFinder(@Qualifier("csvMovieReader") MovieReader movieReader) { // MovieReader 타입의 빈이 두 개라, 특정 클래스 이름 지정
+    @Autowired
+    public MovieFinder(@Qualifier("csvMovieReader") MovieReader movieReader) {
         this.movieReader = Objects.requireNonNull(movieReader);
     }
 

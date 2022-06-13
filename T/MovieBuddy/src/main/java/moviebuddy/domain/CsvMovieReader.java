@@ -2,7 +2,6 @@ package moviebuddy.domain;
 
 import moviebuddy.ApplicationException;
 import moviebuddy.util.FileSystemUtils;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
@@ -17,7 +16,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-@Repository("movieReader") //  MovieReader 타입의 빈이 두 개라, 특정 클래스에 "movieReader" 이름 지정 - 방법1
+@Repository("movieReader")
 public class CsvMovieReader implements MovieReader{
 
     /**
