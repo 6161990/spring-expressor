@@ -2,11 +2,14 @@ package moviebuddy.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.List;
 
 public class MovieFinderTest {
-	final MovieFinder movieFinder = MovieBuddyFactory.DomainModuleConfig.movieFinder(); // 의존 관계 주입 - 메소드 콜 방식
+	final ApplicationContext applicationContext = new AnnotationConfigApplicationContext(MovieBuddyFactory.class);
+	final MovieFinder movieFinder = applicationContext.getBean(MovieFinder.class);
 
 	@Test
 	void NotEmpty_directedBy(){

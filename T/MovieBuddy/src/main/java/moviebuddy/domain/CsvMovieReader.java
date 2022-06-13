@@ -2,6 +2,8 @@ package moviebuddy.domain;
 
 import moviebuddy.ApplicationException;
 import moviebuddy.util.FileSystemUtils;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.net.URI;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@Repository // 빈을 정의하는데 사용되는 애노테이션으로 역할을 더 구체적으로 명시,부여하는데 효과가있음
 public class CsvMovieReader implements MovieReader{
 
     /**
