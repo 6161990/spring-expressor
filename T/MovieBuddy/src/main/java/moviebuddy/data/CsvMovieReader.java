@@ -4,6 +4,7 @@ import moviebuddy.ApplicationException;
 import moviebuddy.domain.Movie;
 import moviebuddy.domain.MovieReader;
 import moviebuddy.util.FileSystemUtils;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
@@ -18,6 +19,9 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static moviebuddy.MovieBuddyProfile.CSV_MODE;
+
+@Profile(CSV_MODE)
 @Repository
 public class CsvMovieReader implements MovieReader {
 

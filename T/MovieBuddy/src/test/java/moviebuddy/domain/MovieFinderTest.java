@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.ApplicationContext;
 import org.junit.jupiter.api.extension.ExtendWith; // JUnit이 테스트 실행 전략을 확장할 때 사용
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension; // 스프링에서 제공하는 JUnit 지원 클래스로, JUnit이 테스트를 실행하는 과정에서 테스트가 필요로 하는 스프링 컨테이너를 구성하고 관리해줌
 import org.springframework.test.context.ContextConfiguration; //SpringExtension이 스프링 테스트 컨테이너를 구성할 때, 빈 구성 정보를 불러들여 스프링 컨테이너를 만듦(하위의 ApplicationContext가 없어도된다! ->
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
@@ -13,9 +14,12 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.util.List;
 
+import static moviebuddy.MovieBuddyProfile.CSV_MODE;
+
 /*
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MovieBuddyFactory.class)*/
+@ActiveProfiles(CSV_MODE)
 @SpringJUnitConfig(MovieBuddyFactory.class) // 메타애노테이션 : 내부적으로 ExtendWith + ContextConfiguration 이있음.
 public class MovieFinderTest {
 
