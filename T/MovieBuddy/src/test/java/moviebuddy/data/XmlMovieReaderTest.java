@@ -1,6 +1,5 @@
 package moviebuddy.data;
 
-import moviebuddy.data.JaxbMovieReader;
 import moviebuddy.domain.Movie;
 import moviebuddy.domain.MovieBuddyFactory;
 import org.junit.jupiter.api.Assertions;
@@ -15,10 +14,10 @@ import static moviebuddy.MovieBuddyProfile.XML_MODE;
 
 @ActiveProfiles(XML_MODE)
 @SpringJUnitConfig(MovieBuddyFactory.class)
-class JaxbMovieReaderTest {
+class XmlMovieReaderTest {
 
     @Autowired
-    JaxbMovieReader movieReader;
+    XmlMovieReader movieReader;
 
     @Test
     void NotEmpty_LoadedMovies(){
