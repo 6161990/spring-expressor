@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+
 @Configuration
 @ComponentScan(basePackages = {"moviebuddy"})
 public class MovieBuddyFactory {
@@ -22,7 +25,7 @@ public class MovieBuddyFactory {
 
     @Profile(MovieBuddyProfile.CSV_MODE)
     @Bean
-    public CsvMovieReader csvMovieReader(){
+    public CsvMovieReader csvMovieReader() throws FileNotFoundException, URISyntaxException {
         CsvMovieReader movieReader = new CsvMovieReader();
         movieReader.setMetadata("movie_metadata.csv");
 

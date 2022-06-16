@@ -7,6 +7,7 @@ import moviebuddy.util.FileSystemUtils;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -16,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -31,7 +33,15 @@ public class CsvMovieReader implements MovieReader {
         return metadata;
     }
 
-    public void setMetadata(String metadata) {
+    public void setMetadata(String metadata) throws FileNotFoundException, URISyntaxException {
+        URL metadataUrl = ClassLoader.getSystemResource(metadata);
+        if(Objects.isNull(metadataUrl)){
+            throw new FileNotFoundException(metadata);
+        }
+
+        if(Files.isReadable(Path.of(metadataUrl.toURI())) == false){
+            throw new ApplicationException(String.format("cannot read to metadata. [%s]", metadata));
+        }
         this.metadata = metadata;
     }
 
