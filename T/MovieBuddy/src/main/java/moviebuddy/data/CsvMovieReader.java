@@ -25,6 +25,16 @@ import static moviebuddy.MovieBuddyProfile.CSV_MODE;
 @Repository
 public class CsvMovieReader implements MovieReader {
 
+    private String metadata;
+
+    public String getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(String metadata) {
+        this.metadata = metadata;
+    }
+
     /**
      * 영화 메타데이터를 읽어 저장된 영화 목록을 불러온다.
      *
