@@ -4,6 +4,10 @@ import moviebuddy.ApplicationException;
 import moviebuddy.domain.Movie;
 import moviebuddy.domain.MovieReader;
 import moviebuddy.util.FileSystemUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
@@ -25,7 +29,9 @@ import static moviebuddy.MovieBuddyProfile.CSV_MODE;
 
 @Profile(CSV_MODE)
 @Repository
-public class CsvMovieReader implements MovieReader {
+public class CsvMovieReader implements MovieReader, InitializingBean, DisposableBean {
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     private String metadata;
 
@@ -33,15 +39,7 @@ public class CsvMovieReader implements MovieReader {
         return metadata;
     }
 
-    public void setMetadata(String metadata) throws FileNotFoundException, URISyntaxException {
-        URL metadataUrl = ClassLoader.getSystemResource(metadata);
-        if(Objects.isNull(metadataUrl)){
-            throw new FileNotFoundException(metadata);
-        }
-
-        if(Files.isReadable(Path.of(metadataUrl.toURI())) == false){
-            throw new ApplicationException(String.format("cannot read to metadata. [%s]", metadata));
-        }
+    public void setMetadata(String metadata) {
         this.metadata = metadata;
     }
 
@@ -83,5 +81,22 @@ public class CsvMovieReader implements MovieReader {
         } catch (IOException | URISyntaxException error) {
             throw new ApplicationException("failed to load movies data.", error);
         }
+    }
+
+    @Override // 빈이 초기화 될 때, 검증해줌
+    public void afterPropertiesSet() throws Exception {
+        URL metadataUrl = ClassLoader.getSystemResource(metadata);
+        if(Objects.isNull(metadataUrl)){
+            throw new FileNotFoundException(metadata);
+        }
+
+        if(Files.isReadable(Path.of(metadataUrl.toURI())) == false){
+            throw new ApplicationException(String.format("cannot read to metadata. [%s]", metadata));
+        }
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        log.info("Destroy Bean");
     }
 }
