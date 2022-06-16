@@ -6,8 +6,6 @@ import moviebuddy.domain.MovieReader;
 import moviebuddy.util.FileSystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
@@ -31,19 +29,7 @@ import static moviebuddy.MovieBuddyProfile.CSV_MODE;
 
 @Profile(CSV_MODE)
 @Repository
-public class CsvMovieReader implements MovieReader {
-
-    private final Logger log = LoggerFactory.getLogger(getClass());
-
-    private String metadata;
-
-    public String getMetadata() {
-        return metadata;
-    }
-
-    public void setMetadata(String metadata) {
-        this.metadata = metadata;
-    }
+public class CsvMovieReader extends AbstractFileSystemMovieReader implements MovieReader {
 
     /**
      * 영화 메타데이터를 읽어 저장된 영화 목록을 불러온다.
@@ -85,20 +71,4 @@ public class CsvMovieReader implements MovieReader {
         }
     }
 
-    @PostConstruct // 특정 규약과 환경에 종석되지 않도록 객체를 생성하기 위해서는 자바 표준 애노테이션을 쓰는 것이 (초기화,소멸 시) 좋다.
-    public void afterPropertiesSet() throws Exception {
-        URL metadataUrl = ClassLoader.getSystemResource(metadata);
-        if(Objects.isNull(metadataUrl)){
-            throw new FileNotFoundException(metadata);
-        }
-
-        if(Files.isReadable(Path.of(metadataUrl.toURI())) == false){
-            throw new ApplicationException(String.format("cannot read to metadata. [%s]", metadata));
-        }
-    }
-
-    @PreDestroy
-    public void destroy() throws Exception {
-        log.info("Destroy Bean");
-    }
 }

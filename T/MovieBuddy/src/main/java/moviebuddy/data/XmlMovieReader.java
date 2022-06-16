@@ -23,7 +23,7 @@ import static moviebuddy.MovieBuddyProfile.XML_MODE;
 
 @Profile(XML_MODE)
 @Repository
-public class XmlMovieReader implements MovieReader {
+public class XmlMovieReader extends AbstractFileSystemMovieReader implements MovieReader {
 
     private final Unmarshaller unmarshaller;
 
