@@ -11,6 +11,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
@@ -29,7 +31,7 @@ import static moviebuddy.MovieBuddyProfile.CSV_MODE;
 
 @Profile(CSV_MODE)
 @Repository
-public class CsvMovieReader implements MovieReader, InitializingBean, DisposableBean {
+public class CsvMovieReader implements MovieReader {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -83,7 +85,7 @@ public class CsvMovieReader implements MovieReader, InitializingBean, Disposable
         }
     }
 
-    @Override // 빈이 초기화 될 때, 검증해줌
+    @PostConstruct // 특정 규약과 환경에 종석되지 않도록 객체를 생성하기 위해서는 자바 표준 애노테이션을 쓰는 것이 (초기화,소멸 시) 좋다.
     public void afterPropertiesSet() throws Exception {
         URL metadataUrl = ClassLoader.getSystemResource(metadata);
         if(Objects.isNull(metadataUrl)){
@@ -95,7 +97,7 @@ public class CsvMovieReader implements MovieReader, InitializingBean, Disposable
         }
     }
 
-    @Override
+    @PreDestroy
     public void destroy() throws Exception {
         log.info("Destroy Bean");
     }
