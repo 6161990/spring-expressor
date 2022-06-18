@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 import static moviebuddy.MovieBuddyProfile.XML_MODE;
 
 @ActiveProfiles(XML_MODE)
+@TestPropertySource(properties = "movie.metadata=movie_metadata.xml")
 @SpringJUnitConfig(MovieBuddyFactory.class)
 class XmlMovieReaderTest {
 
