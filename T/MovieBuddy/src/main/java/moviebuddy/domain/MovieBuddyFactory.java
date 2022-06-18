@@ -22,33 +22,4 @@ public class MovieBuddyFactory {
 
         return marshaller;
     }
-
-    @Configuration
-    static class DataSourceModuleConfig {
-
-        private Environment environment;
-
-        public DataSourceModuleConfig(Environment environment) {
-            this.environment = environment;
-        }
-
-        @Profile(MovieBuddyProfile.CSV_MODE)
-        @Bean
-        public CsvMovieReader csvMovieReader() {
-            CsvMovieReader movieReader = new CsvMovieReader();
-            movieReader.setMetadata(environment.getProperty("movie.metadata"));
-
-            return movieReader;
-        }
-
-        @Profile(MovieBuddyProfile.XML_MODE)
-        @Bean
-        public XmlMovieReader xmlMovieReader(Unmarshaller unmarshaller){
-            XmlMovieReader movieReader = new XmlMovieReader(unmarshaller);
-            movieReader.setMetadata(environment.getProperty("movie.metadata"));
-
-            return movieReader;
-        }
-    }
-
 }
