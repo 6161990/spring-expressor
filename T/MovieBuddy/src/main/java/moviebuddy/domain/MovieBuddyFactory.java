@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 import org.springframework.oxm.Unmarshaller;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
@@ -25,11 +26,17 @@ public class MovieBuddyFactory {
     @Configuration
     static class DataSourceModuleConfig {
 
+        private Environment environment;
+
+        public DataSourceModuleConfig(Environment environment) {
+            this.environment = environment;
+        }
+
         @Profile(MovieBuddyProfile.CSV_MODE)
         @Bean
         public CsvMovieReader csvMovieReader() {
             CsvMovieReader movieReader = new CsvMovieReader();
-            movieReader.setMetadata(System.getProperty("movie.metadata"));
+            movieReader.setMetadata(environment.getProperty("movie.metadata"));
 
             return movieReader;
         }
@@ -38,7 +45,7 @@ public class MovieBuddyFactory {
         @Bean
         public XmlMovieReader xmlMovieReader(Unmarshaller unmarshaller){
             XmlMovieReader movieReader = new XmlMovieReader(unmarshaller);
-            movieReader.setMetadata(System.getProperty("movie.metadata"));
+            movieReader.setMetadata(environment.getProperty("movie.metadata"));
 
             return movieReader;
         }
