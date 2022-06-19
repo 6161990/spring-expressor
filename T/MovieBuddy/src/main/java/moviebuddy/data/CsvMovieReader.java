@@ -1,5 +1,6 @@
 package moviebuddy.data;
 
+import com.github.benmanes.caffeine.cache.Cache;
 import moviebuddy.ApplicationException;
 import moviebuddy.domain.Movie;
 import moviebuddy.domain.MovieReader;
@@ -14,6 +15,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -23,12 +25,23 @@ import static moviebuddy.MovieBuddyProfile.CSV_MODE;
 @Repository
 public class CsvMovieReader extends AbstractMetadataResourceMovieReader implements MovieReader {
 
+    private final Cache<String, List<Movie>> cache;
+
+    public CsvMovieReader(Cache<String, List<Movie>> cache) {
+        this.cache = Objects.requireNonNull(cache);
+    }
+
     /**
      * 영화 메타데이터를 읽어 저장된 영화 목록을 불러온다.
      *
      * @return 불러온 영화 목록
      */
     public List<Movie> loadMovies() {
+        List<Movie> movies = cache.getIfPresent("csv.movies");
+        if(Objects.nonNull(movies) && movies.size() > 0){
+            return movies;
+        }
+
         try {
             final InputStream content = getMetadataSource().getInputStream();
             final Function<String, Movie> mapCsv = csv -> {
@@ -52,7 +65,7 @@ public class CsvMovieReader extends AbstractMetadataResourceMovieReader implemen
                 }
             };
 
-            return new BufferedReader(new InputStreamReader(content, StandardCharsets.UTF_8))
+            new BufferedReader(new InputStreamReader(content, StandardCharsets.UTF_8))
                     .lines()
                     .skip(1)
                     .map(mapCsv)
@@ -60,6 +73,9 @@ public class CsvMovieReader extends AbstractMetadataResourceMovieReader implemen
         } catch (IOException error) {
             throw new ApplicationException("failed to load movies data.", error);
         }
+
+        cache.put("csv.movies", movies);
+        return movies;
     }
 
 }
