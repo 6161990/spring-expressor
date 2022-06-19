@@ -23,7 +23,7 @@ import static moviebuddy.MovieBuddyProfile.XML_MODE;
 
 @Profile(XML_MODE)
 @Repository
-public class XmlMovieReader extends AbstractFileSystemMovieReader implements MovieReader {
+public class XmlMovieReader extends AbstractMetadataResourceMovieReader implements MovieReader {
 
     private final Unmarshaller unmarshaller;
 
@@ -31,10 +31,11 @@ public class XmlMovieReader extends AbstractFileSystemMovieReader implements Mov
         this.unmarshaller = Objects.requireNonNull(unmarshaller);
     }
 
+
     @Override
     public List<Movie> loadMovies() {
         try {
-            final InputStream content = ClassLoader.getSystemResourceAsStream(getMetadata());
+            final InputStream content = getMetadataSource().getInputStream();
             final Source source = new StreamSource(content);
             final MovieMetadata metadata = (MovieMetadata) unmarshaller.unmarshal(source);
 
