@@ -1,8 +1,11 @@
 package moviebuddy.domain;
 
+import moviebuddy.data.CsvMovieReader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.ApplicationContext;
 import org.junit.jupiter.api.extension.ExtendWith; // JUnit이 테스트 실행 전략을 확장할 때 사용
@@ -15,6 +18,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import java.util.List;
 
 import static moviebuddy.MovieBuddyProfile.CSV_MODE;
+import static org.mockito.BDDMockito.given;
 
 /*
 @ExtendWith(SpringExtension.class)

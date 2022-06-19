@@ -1,9 +1,10 @@
 package moviebuddy.data;
 
-import com.github.benmanes.caffeine.cache.Cache;
 import moviebuddy.ApplicationException;
 import moviebuddy.domain.Movie;
 import moviebuddy.domain.MovieReader;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
@@ -25,10 +26,10 @@ import static moviebuddy.MovieBuddyProfile.CSV_MODE;
 @Repository
 public class CsvMovieReader extends AbstractMetadataResourceMovieReader implements MovieReader {
 
-    private final Cache<String, List<Movie>> cache;
+    private final CacheManager cacheManager;
 
-    public CsvMovieReader(Cache<String, List<Movie>> cache) {
-        this.cache = Objects.requireNonNull(cache);
+    public CsvMovieReader(CacheManager cacheManager) {
+        this.cacheManager = Objects.requireNonNull(cacheManager);
     }
 
     /**
@@ -37,7 +38,8 @@ public class CsvMovieReader extends AbstractMetadataResourceMovieReader implemen
      * @return 불러온 영화 목록
      */
     public List<Movie> loadMovies() {
-        List<Movie> movies = cache.getIfPresent("csv.movies");
+        Cache cache = cacheManager.getCache(getClass().getName());
+        List<Movie> movies = cache.get("csv.movies", List.class);
         if(Objects.nonNull(movies) && movies.size() > 0){
             return movies;
         }
@@ -65,7 +67,7 @@ public class CsvMovieReader extends AbstractMetadataResourceMovieReader implemen
                 }
             };
 
-            new BufferedReader(new InputStreamReader(content, StandardCharsets.UTF_8))
+            movies = new BufferedReader(new InputStreamReader(content, StandardCharsets.UTF_8))
                     .lines()
                     .skip(1)
                     .map(mapCsv)
