@@ -6,6 +6,7 @@ import org.aopalliance.aop.Advice;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
+import org.springframework.aop.support.NameMatchMethodPointcut;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.caffeine.CaffeineCacheManager;
 import org.springframework.context.annotation.*;
@@ -42,6 +43,9 @@ public class MovieBuddyFactory {
 
     @Bean
     public Advisor cachingAdvisor(CacheManager cacheManager) {
+        NameMatchMethodPointcut pointcut = new NameMatchMethodPointcut();
+        pointcut.setMappedName("load*");
+
         Advice advice = new CachingAdvice(cacheManager);
         return new DefaultPointcutAdvisor(advice);
     }
