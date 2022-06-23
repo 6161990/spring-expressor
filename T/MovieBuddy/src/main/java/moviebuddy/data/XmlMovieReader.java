@@ -34,7 +34,6 @@ public class XmlMovieReader extends AbstractMetadataResourceMovieReader implemen
 
 
     @Override
-    @CacheResult(cacheName = "movies")
     public List<Movie> loadMovies() {
         try {
             final InputStream content = getMetadataSource().getInputStream();

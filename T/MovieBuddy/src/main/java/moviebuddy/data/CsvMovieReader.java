@@ -32,7 +32,6 @@ public class CsvMovieReader extends AbstractMetadataResourceMovieReader implemen
      * @return 불러온 영화 목록
      */
     @Override
-    @CacheResult(cacheName = "movies")
     public List<Movie> loadMovies() {
         try {
             final InputStream content = getMetadataSource().getInputStream();
