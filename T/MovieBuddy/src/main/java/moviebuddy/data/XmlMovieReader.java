@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 import static moviebuddy.MovieBuddyProfile.XML_MODE;
 
 @Profile(XML_MODE)
-@Repository
+@Repository("xmlMovieReader")
 public class XmlMovieReader extends AbstractMetadataResourceMovieReader implements MovieReader {
 
     private final Unmarshaller unmarshaller;

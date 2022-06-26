@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 import static moviebuddy.MovieBuddyProfile.CSV_MODE;
 
 @Profile(CSV_MODE)
-@Repository
+@Repository("csvMovieReader")
 public class CsvMovieReader extends AbstractMetadataResourceMovieReader implements MovieReader {
     /**
      * 영화 메타데이터를 읽어 저장된 영화 목록을 불러온다.
