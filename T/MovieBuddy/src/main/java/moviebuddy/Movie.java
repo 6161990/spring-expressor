@@ -1,4 +1,4 @@
-package moviebuddy.domain;
+package moviebuddy;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author springrunner.kr@gmail.com
+ */
 public class Movie {
 
     public static final DateTimeFormatter DEFAULT_WATCHED_DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");

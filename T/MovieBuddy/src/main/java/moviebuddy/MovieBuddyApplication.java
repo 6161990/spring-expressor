@@ -1,39 +1,33 @@
 package moviebuddy;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import moviebuddy.domain.Movie;
-import moviebuddy.domain.MovieBuddyFactory;
-import moviebuddy.domain.MovieFinder;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.core.env.Environment;
+import moviebuddy.util.FileSystemUtils;
 
-@Configuration
-@PropertySource("/messages.properties")
+/**
+ * @author springrunner.kr@gmail.com
+ */
 public class MovieBuddyApplication {
-
-    @Bean
-    public MessageSource messageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("messages");
-        messageSource.setDefaultEncoding("utf-8");
-
-        return messageSource;
-    }
 
     public static void main(String[] args) throws Exception {
         new MovieBuddyApplication().run(args);
@@ -49,10 +43,6 @@ public class MovieBuddyApplication {
      */
 
     public void run(String[] args) throws Exception {
-        final ApplicationContext applicationContext = new AnnotationConfigApplicationContext(MovieBuddyFactory.class, MovieBuddyApplication.class);
-        final Environment environment = applicationContext.getEnvironment();
-        final MessageSource messageSource = applicationContext.getBean(MessageSource.class);
-        final MovieFinder movieFinder = applicationContext.getBean(MovieFinder.class);
         final AtomicBoolean running = new AtomicBoolean(true);
         final BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         final PrintWriter output = new PrintWriter(System.out, false);
@@ -63,7 +53,7 @@ public class MovieBuddyApplication {
         final Map<Command, Consumer<List<String>>> commandActions = new HashMap<>();
         // 애플리케이션 종료:: ❯ quit
         commandActions.put(Command.Quit, arguments -> {
-            output.println(messageSource.getMessage("application.commands.quit", new Objects[0], Locale.getDefault()));
+            output.println("quit application.");
             running.set(false);
         });
         // 감독으로 영화 검색:: ❯ directedBy Michael Bay
@@ -72,16 +62,15 @@ public class MovieBuddyApplication {
             if (director.isBlank()) {
                 throw new ApplicationException.InvalidCommandArgumentsException();
             }
-            List<Movie> moviesDirectedBy = movieFinder.directedBy(director);
+            List<Movie> moviesDirectedBy = directedBy(director);
             AtomicInteger counter = new AtomicInteger(1);
 
-            output.println(messageSource.getMessage("application.commands.directedBy", new Object[]{ director }, Locale.getDefault()));
+            output.println(String.format("find for movies by %s.", director));
             moviesDirectedBy.forEach(it -> {
-                String format = messageSource.getMessage("application.commands.directedBy.format", new Object[0], Locale.getDefault());
-                String data = String.format(format, counter.getAndIncrement(), it.getTitle(), it.getReleaseYear(), it.getDirector(), it.getWatchedDate().format(Movie.DEFAULT_WATCHED_DATE_FORMATTER));
+                String data = String.format("%d. title: %-50s\treleaseYear: %d\tdirector: %-25s\twatchedDate: %s", counter.getAndIncrement(), it.getTitle(), it.getReleaseYear(), it.getDirector(), it.getWatchedDate().format(Movie.DEFAULT_WATCHED_DATE_FORMATTER));
                 output.println(data);
             });
-            output.println(messageSource.getMessage("application.commands.directedBy.count", new Object[]{ String.valueOf(moviesDirectedBy.size()) }, Locale.getDefault()));
+            output.println(String.format("%d movies found.", moviesDirectedBy.size()));
         });
         // 개봉년도로 영화 검색:: ❯ releasedYearBy 2015
         commandActions.put(Command.releasedYearBy, arguments -> {
@@ -91,7 +80,7 @@ public class MovieBuddyApplication {
             } catch (IndexOutOfBoundsException | NumberFormatException error) {
                 throw new ApplicationException.InvalidCommandArgumentsException(error);
             }
-            List<Movie> moviesReleasedYearBy = movieFinder.releasedYearBy(releaseYear);
+            List<Movie> moviesReleasedYearBy = releasedYearBy(releaseYear);
             AtomicInteger counter = new AtomicInteger(1);
 
             output.println(String.format("find for movies from %s year.", releaseYear));
@@ -106,7 +95,7 @@ public class MovieBuddyApplication {
         /* 사용자가 입력한 값을 해석 후 연결된 명령을 실행한다. */
 
         output.println();
-        output.println(messageSource.getMessage("application.ready", new Objects[0], Locale.getDefault()));
+        output.println("application is ready.");
 
         // quit(애플리케이션 종료) 명령어가 입력되기 전까지 무한히 반복하기(infinite loop)
         while (running.get()) {
@@ -131,6 +120,70 @@ public class MovieBuddyApplication {
             } finally {
                 output.flush();
             }
+        }
+    }
+
+    /**
+     * 저장된 영화 목록에서 감독으로 영화를 검색한다.
+     * 
+     * @param directedBy 감독
+     * @return 검색된 영화 목록
+     */
+    public List<Movie> directedBy(String directedBy) {
+        return loadMovies().stream()
+                           .filter(it -> it.getDirector().toLowerCase().contains(directedBy.toLowerCase()))
+                           .collect(Collectors.toList());
+    }
+
+    /**
+     * 저장된 영화 목록에서 개봉년도로 영화를 검색한다.
+     * 
+     * @param releasedYearBy
+     * @return 검색된 영화 목록
+     */
+    public List<Movie> releasedYearBy(int releasedYearBy) {
+        return loadMovies().stream()
+                           .filter(it -> Objects.equals(it.getReleaseYear(), releasedYearBy))
+                           .collect(Collectors.toList());
+    }
+
+    /**
+     * 영화 메타데이터를 읽어 저장된 영화 목록을 불러온다.
+     * 
+     * @return 불러온 영화 목록
+     */
+    public List<Movie> loadMovies() {
+        try {
+            final URI resourceUri = ClassLoader.getSystemResource("movie_metadata.csv").toURI();
+            final Path data = Path.of(FileSystemUtils.checkFileSystem(resourceUri));
+            final Function<String, Movie> mapCsv = csv -> {
+                try {
+                    // split with comma
+                    String[] values = csv.split(",");
+
+                    String title = values[0];
+                    List<String> genres = Arrays.asList(values[1].split("\\|"));
+                    String language = values[2].trim();
+                    String country = values[3].trim();
+                    int releaseYear = Integer.valueOf(values[4].trim());
+                    String director = values[5].trim();
+                    List<String> actors = Arrays.asList(values[6].split("\\|"));
+                    URL imdbLink = new URL(values[7].trim());
+                    String watchedDate = values[8];
+
+                    return Movie.of(title, genres, language, country, releaseYear, director, actors, imdbLink, watchedDate);
+                } catch (IOException error) {
+                    throw new ApplicationException("mapping csv to object failed.", error);
+                }
+            };
+
+            return Files.readAllLines(data, StandardCharsets.UTF_8)
+                        .stream()
+                        .skip(1)
+                        .map(mapCsv)
+                        .collect(Collectors.toList());
+        } catch (IOException | URISyntaxException error) {
+            throw new ApplicationException("failed to load movies data.", error);
         }
     }
 
