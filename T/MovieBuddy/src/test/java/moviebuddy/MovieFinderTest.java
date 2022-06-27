@@ -5,7 +5,7 @@ import moviebuddy.domain.MovieFinder;
 
 import java.util.List;
 
-public class MovieBuddyApplicationTest {
+public class MovieFinderTest {
 
 	public static void main(String[] args) {
 		MovieFinder movieFinder = new MovieFinder();
