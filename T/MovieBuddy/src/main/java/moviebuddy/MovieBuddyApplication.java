@@ -24,9 +24,6 @@ import java.util.stream.Stream;
 
 import moviebuddy.util.FileSystemUtils;
 
-/**
- * @author springrunner.kr@gmail.com
- */
 public class MovieBuddyApplication {
 
     public static void main(String[] args) throws Exception {

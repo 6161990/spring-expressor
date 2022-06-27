@@ -2,9 +2,6 @@ package moviebuddy;
 
 import java.util.List;
 
-/**
- * @author springrunner.kr@gmail.com
- */
 public class MovieBuddyApplicationTest {
 
 	public static void main(String[] args) {
