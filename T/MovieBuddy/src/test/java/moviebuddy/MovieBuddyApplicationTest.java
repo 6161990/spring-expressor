@@ -1,16 +1,19 @@
 package moviebuddy;
 
+import moviebuddy.domain.Movie;
+import moviebuddy.domain.MovieFinder;
+
 import java.util.List;
 
 public class MovieBuddyApplicationTest {
 
 	public static void main(String[] args) {
-		MovieBuddyApplication application = new MovieBuddyApplication();
-		
-		List<Movie> result = application.directedBy("Michael Bay");
+		MovieFinder movieFinder = new MovieFinder();
+
+		List<Movie> result = movieFinder.directedBy("Michael Bay");
 		assertEquals(3, result.size());
 
-        result = application.releasedYearBy(2015);
+        result = movieFinder.releasedYearBy(2015);
         assertEquals(225, result.size());
 	}
 	
