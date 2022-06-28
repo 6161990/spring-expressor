@@ -1,4 +1,4 @@
-package moviebuddy;
+package moviebuddy.domain;
 
 import moviebuddy.domain.JaxbMovieReader;
 import moviebuddy.domain.Movie;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class JaxbMovieReaderTest {
+class JaxbMovieReaderTest {
 
     @Test
     void NotEmpty_LoadedMovies() {
