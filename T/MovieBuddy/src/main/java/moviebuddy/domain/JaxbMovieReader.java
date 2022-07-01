@@ -1,6 +1,7 @@
 package moviebuddy.domain;
 
 import moviebuddy.ApplicationException;
+import org.springframework.stereotype.Component;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -13,6 +14,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class JaxbMovieReader implements MovieReader{
     @Override
     public List<Movie> loadMovies() {
