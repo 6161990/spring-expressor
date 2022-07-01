@@ -7,11 +7,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.util.List;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = MovieBuddyFactory.class)
+@SpringJUnitConfig(classes = MovieBuddyFactory.class)
 class MovieFinderTest {
 
 	@Autowired
