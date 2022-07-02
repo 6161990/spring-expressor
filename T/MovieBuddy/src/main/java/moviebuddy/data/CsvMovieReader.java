@@ -1,6 +1,8 @@
-package moviebuddy.domain;
+package moviebuddy.data;
 
 import moviebuddy.ApplicationException;
+import moviebuddy.domain.Movie;
+import moviebuddy.domain.MovieReader;
 import moviebuddy.util.FileSystemUtils;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
@@ -18,7 +20,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Component
-public class CsvMovieReader implements MovieReader{
+public class CsvMovieReader implements MovieReader {
     /**
      * 영화 메타데이터를 읽어 저장된 영화 목록을 불러온다.
      *

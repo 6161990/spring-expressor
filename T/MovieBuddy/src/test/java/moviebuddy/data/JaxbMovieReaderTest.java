@@ -1,7 +1,6 @@
-package moviebuddy.domain;
+package moviebuddy.data;
 
 import moviebuddy.MovieBuddyFactory;
-import moviebuddy.domain.JaxbMovieReader;
 import moviebuddy.domain.Movie;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fb71ed7-508d-45fc-89f1-0cc0b1de3493" name="Changes" comment="Mockists vs. Classicists">
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/ListPriceFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/ProductInventory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/ProductSynchronizer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/main/java/productImporter/ProductValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/ListPriceFilter_specs.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/ListPriceFilter_specs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/ProductInventorySpy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/ProductInventorySpy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/ProductSynchronizer_specs.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../T/ProductImporter/src/test/java/productImporter/ProductSynchronizer_specs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NumberGuessing/.idea/NumberGuessing.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NumberGuessing/.idea/modules.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,6 +221,7 @@
       <workItem from="1651740401776" duration="1199000" />
       <workItem from="1651790871969" duration="873000" />
       <workItem from="1651880149984" duration="7334000" />
+      <workItem from="1656665932185" duration="484000" />
     </task>
     <task id="LOCAL-00001" summary="모든 상품을 가져오는 Test">
       <created>1646009902930</created>
@@ -546,12 +541,28 @@
           <line>26</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/productimporter/suppliers/starkIndustries/StarkIndustriesProductImporter_specs.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
+    <option name="sizePresets">
+      <list>
+        <SizePreset>
+          <option name="caption" value="Phone" />
+          <option name="height" value="568" />
+          <option name="width" value="320" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Tablet" />
+          <option name="height" value="1024" />
+          <option name="width" value="768" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Desktop" />
+          <option name="height" value="900" />
+          <option name="width" value="1440" />
+        </SizePreset>
+      </list>
+    </option>
   </component>
 </project>
