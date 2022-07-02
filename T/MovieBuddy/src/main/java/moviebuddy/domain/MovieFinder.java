@@ -20,7 +20,7 @@ public class MovieFinder {
     }*/
 
     @Autowired // 방법 2
-    public MovieFinder(@Qualifier("csvMovieReader") MovieReader movieReader) {
+    public MovieFinder(MovieReader movieReader) {
         this.movieReader = Objects.requireNonNull(movieReader);
     }
 
