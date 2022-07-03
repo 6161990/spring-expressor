@@ -10,10 +10,10 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import java.util.List;
 
 @SpringJUnitConfig(MovieBuddyFactory.class)
-class JaxbMovieReaderTest {
+class XmlMovieReaderTest {
 
     @Autowired
-    JaxbMovieReader sut;
+    XmlMovieReader sut;
 
     @Test
     void NotEmpty_LoadedMovies() {
