@@ -7,11 +7,11 @@ import moviebuddy.domain.MovieReader;
 import moviebuddy.util.FileSystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 
 @Profile(MovieBuddyProfile.CSV_MODE)
 @Repository
-public class CsvMovieReader implements MovieReader , InitializingBean, DisposableBean {
+public class CsvMovieReader implements MovieReader {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
     private String metadata;
@@ -81,7 +81,7 @@ public class CsvMovieReader implements MovieReader , InitializingBean, Disposabl
         }
     }
 
-    @Override
+    @PostConstruct
     public void afterPropertiesSet() throws Exception {
         URL metadataUrl = ClassLoader.getSystemResource(metadata);
         if(Objects.isNull(metadataUrl)){
@@ -94,7 +94,7 @@ public class CsvMovieReader implements MovieReader , InitializingBean, Disposabl
 
     }
 
-    @Override
+    @PreDestroy
     public void destroy() throws Exception {
         log.info("destroy Bean");
     }
