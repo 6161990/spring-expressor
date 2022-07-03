@@ -15,12 +15,15 @@ import org.springframework.beans.factory.annotation.Value;
 
 import moviebuddy.ApplicationException;
 import moviebuddy.domain.MovieReader;
+import org.springframework.context.ResourceLoaderAware;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 
-public abstract class AbstractFileSystemMovieReader implements MovieReader {
+public abstract class AbstractFileSystemMovieReader implements MovieReader, ResourceLoaderAware {
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
-	
 	private String metadata;
+	private ResourceLoader resourceLoader;
 
 	public String getMetadata() {
 		return metadata;
@@ -31,16 +34,27 @@ public abstract class AbstractFileSystemMovieReader implements MovieReader {
 		this.metadata = Objects.requireNonNull(metadata, "metadata is a required value.");
 	}
 
+	public Resource getMetadataResource() {
+		return resourceLoader.getResource(getMetadata());
+	}
+
+	@Override
+	public void setResourceLoader(ResourceLoader resourceLoader) {
+		this.resourceLoader = Objects.requireNonNull(resourceLoader, "resourceLoader is must not be null");
+	}
+
 	@PostConstruct
 	public void afterPropertiesSet() throws Exception {
-		URL metadataUrl = ClassLoader.getSystemResource(getMetadata());
-		if (Objects.isNull(metadataUrl)) {
-			throw new FileNotFoundException(metadata);
+		Resource resource = getMetadataResource();
+		if (resource.exists() == false) {
+			throw new FileNotFoundException(getMetadata());
 		}
-	
-		if (Files.isReadable(Path.of(metadataUrl.toURI())) == false) {
-			throw new ApplicationException(String.format("cannot read to metadata. [%s]", metadata));
+
+		if (resource.isReadable() == false) {
+			throw new ApplicationException(String.format("cannot read to metadata. [%s]", getMetadata()));
 		}
+
+		log.info(resource + " is ready.");
 	}
 
 	@PreDestroy
