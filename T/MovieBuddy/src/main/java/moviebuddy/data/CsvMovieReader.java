@@ -5,6 +5,7 @@ import moviebuddy.MovieBuddyProfile;
 import moviebuddy.domain.Movie;
 import moviebuddy.domain.MovieReader;
 import moviebuddy.util.FileSystemUtils;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
@@ -24,7 +25,7 @@ import java.util.stream.Collectors;
 
 @Profile(MovieBuddyProfile.CSV_MODE)
 @Repository
-public class CsvMovieReader implements MovieReader {
+public class CsvMovieReader implements MovieReader , InitializingBean {
 
     private String metadata;
 
@@ -33,15 +34,6 @@ public class CsvMovieReader implements MovieReader {
     }
 
     public void setMetadata(String metadata) throws FileNotFoundException, URISyntaxException {
-        URL metadataUrl = ClassLoader.getSystemResource(metadata);
-        if(Objects.isNull(metadataUrl)){
-            throw new FileNotFoundException(metadata);
-        }
-
-        if(Files.isReadable(Path.of(metadataUrl.toURI())) == false){
-            throw new ApplicationException(String.format("cannot read to metadata. [%s]", metadata));
-        }
-
         this.metadata = Objects.requireNonNull(metadata, "metadata is required value");
     }
 
@@ -83,5 +75,18 @@ public class CsvMovieReader implements MovieReader {
         } catch (IOException | URISyntaxException error) {
             throw new ApplicationException("failed to load movies data.", error);
         }
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        URL metadataUrl = ClassLoader.getSystemResource(metadata);
+        if(Objects.isNull(metadataUrl)){
+            throw new FileNotFoundException(metadata);
+        }
+
+        if(Files.isReadable(Path.of(metadataUrl.toURI())) == false){
+            throw new ApplicationException(String.format("cannot read to metadata. [%s]", metadata));
+        }
+
     }
 }
