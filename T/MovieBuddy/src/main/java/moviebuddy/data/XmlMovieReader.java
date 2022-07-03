@@ -13,8 +13,10 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
@@ -22,7 +24,7 @@ import java.util.stream.Collectors;
 
 @Profile(MovieBuddyProfile.XML_MODE)
 @Repository
-public class XmlMovieReader implements MovieReader {
+public class XmlMovieReader extends AbstractFileSystemMovieReader implements MovieReader {
 
     private final Unmarshaller unmarshaller;
 
