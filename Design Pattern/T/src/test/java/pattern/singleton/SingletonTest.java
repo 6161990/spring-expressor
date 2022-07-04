@@ -16,7 +16,7 @@ class SingletonTest {
    }
 
     @Test
-    void 자바의_Calendar_객체를_확인해본다() {
+    void 자바의_Calendar_객체도_싱글턴객체이다() {
        // 날짜에 대한 정보, 서울 동경(타임존)에 맞는 정보를 가져온다. 여러번 설정할 필요가 없기 때문에 싱글톤으로 구현되어 있다.
         Calendar calendar1 = Calendar.getInstance();
         Calendar calendar2 = Calendar.getInstance();
