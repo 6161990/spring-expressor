@@ -41,3 +41,7 @@ Spring3_security/Security 0/.gradle/checksums/md5-checksums.bin
 Spring3_security/Security 0/.gradle/checksums/sha1-checksums.bin
 .DS_Store
 .DS_Store
+*.class
+*.js
+*.xml
+*.idx
