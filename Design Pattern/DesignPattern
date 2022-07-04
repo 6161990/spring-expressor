@@ -1,0 +1,5 @@
+1. 클래스의 인스턴스를 생성하는 패턴
+* Singleton
+* Prototype
+* Abstract Factory
+* Builder

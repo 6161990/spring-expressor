@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group 'com.yoon'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.springframework:spring-test:5.3.3'
+
+    implementation 'org.springframework:spring-context:5.3.3'
+    implementation 'org.springframework:spring-context-support:5.3.3'
+
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+}
