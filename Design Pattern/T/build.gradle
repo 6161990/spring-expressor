@@ -15,6 +15,9 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     testImplementation 'org.springframework:spring-test:5.3.3'
 
+
+    testImplementation 'org.assertj:assertj-core:3.23.1'
+
     implementation 'org.springframework:spring-context:5.3.3'
     implementation 'org.springframework:spring-context-support:5.3.3'
 
