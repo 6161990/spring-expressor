@@ -6,17 +6,17 @@ import pattern.abstractFactory.domain.product.dao.ProductDao;
 public class ProductOracleDao implements ProductDao {
 
     @Override
-    public void insertProduct(Product product) {
-        System.out.println("insert into Oracle DB productId =" + product.getProductId());
+    public String insertProduct(Product product) {
+        return "insert into Oracle DB productId =" + product.getProductId();
     }
 
     @Override
-    public void updateProduct(Product product) {
-        System.out.println("update into Oracle DB productId =" + product.getProductId());
+    public String updateProduct(Product product) {
+        return "update into Oracle DB productId =" + product.getProductId();
     }
 
     @Override
-    public void deleteProduct(Product product) {
-        System.out.println("delete into Oracle DB productId =" + product.getProductId());
+    public String deleteProduct(Product product) {
+        return "delete into Oracle DB productId =" + product.getProductId();
     }
 }
