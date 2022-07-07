@@ -8,8 +8,21 @@ public class UserInfo {
     String password;
     String userName;
 
-    public static UserInfo getDefaultUserInfo(){
-        return new UserInfo("1", "1234", "rose");
+    public UserInfo(String userId, String password, String userName) {
+        this.userId = userId;
+        this.password = password;
+        this.userName = userName;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
 }

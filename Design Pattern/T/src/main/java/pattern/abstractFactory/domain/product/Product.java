@@ -4,12 +4,19 @@ import lombok.Value;
 
 @Value
 public class Product {
-    String ProductId;
-    String ProductName;
+    private String ProductId;
+    private String ProductName;
 
-    public static Product getDefaultProduct(){
-        return new Product("1", "product");
+    public Product(String productId, String productName) {
+        ProductId = productId;
+        ProductName = productName;
     }
 
+    public String getProductId() {
+        return ProductId;
+    }
 
+    public String getProductName() {
+        return ProductName;
+    }
 }
