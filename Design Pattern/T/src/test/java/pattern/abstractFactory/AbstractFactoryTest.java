@@ -1,12 +1,9 @@
 package pattern.abstractFactory;
 
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.annotation.Configurations;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import pattern.AbstractFactoryConfigurations;
@@ -14,7 +11,8 @@ import pattern.abstractFactory.domain.product.Product;
 import pattern.abstractFactory.domain.userInfo.UserInfo;
 import pattern.abstractFactory.factory.DaoFactory;
 
-@SpringBootTest(classes = AbstractFactoryConfigurations.class)
+// @SpringBootTest(classes = AbstractFactoryConfigurations.class) 아래와 같은 것
+@SpringJUnitConfig(classes = AbstractFactoryConfigurations.class)
 @ActiveProfiles("local")
 class AbstractFactoryTest {
 
@@ -30,8 +28,8 @@ class AbstractFactoryTest {
     }
 
     @Test
-    void name() throws Exception {
-        DaoFactory daoFactory = sut.determineConcreteDaoFactory();
+    void 클라이언트가_지정한_DaoFactory를_동적으로_사용합니다() throws Exception {
+        DaoFactory daoFactory = sut.determineConcreteDaoFactory_dynamic();
 
         String concreteDaoFactory = daoFactory.toString();
 
@@ -40,7 +38,7 @@ class AbstractFactoryTest {
 
     @Test
     void 클라이언트가_지정한_DaoFactory를_사용합니다() throws Exception {
-        DaoFactory daoFactory = sut.determineConcreteDaoFactory();
+        DaoFactory daoFactory = sut.determineConcreteDaoFactory_static();
 
         String productOutput = daoFactory.createProduct().insertProduct(examProduct);
         String userInfoOutput = daoFactory.createUserInfo().insertUserInfo(examUserInfo);

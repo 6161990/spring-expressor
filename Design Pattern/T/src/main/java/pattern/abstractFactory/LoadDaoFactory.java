@@ -23,7 +23,7 @@ public class LoadDaoFactory {
     @Autowired
     private ResourceLoader resourceLoader;
 
-    public DaoFactory determineConcreteDaoFactory() throws Exception {
+    public DaoFactory determineConcreteDaoFactory_dynamic() throws Exception {
         DaoFactory daoFactory;
 
         String activeProfiles = Arrays.stream(environment.getActiveProfiles())
@@ -32,6 +32,23 @@ public class LoadDaoFactory {
         if(activeProfiles.equals("local")){
             daoFactory = new MySqlDaoFactory();
         }else if(activeProfiles.equals("prod")){
+            daoFactory = new OracleDaoFactory();
+        }else {
+            throw new Exception("Do Not Exist DB Type");
+        }
+
+        return daoFactory;
+    }
+
+
+    public DaoFactory determineConcreteDaoFactory_static() throws Exception {
+        DaoFactory daoFactory;
+
+        Map<String, String> clientDBType = getClientDBType();
+
+        if(clientDBType.get("DBTYPE").equals("MYSQL")){
+            daoFactory = new MySqlDaoFactory();
+        }else if(clientDBType.get("DBTYPE").equals("ORACLE")){
             daoFactory = new OracleDaoFactory();
         }else {
             throw new Exception("Do Not Exist DB Type");
