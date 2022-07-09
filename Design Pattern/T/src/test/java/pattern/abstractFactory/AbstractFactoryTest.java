@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import pattern.AbstractFactoryConfigurations;
@@ -11,9 +12,9 @@ import pattern.abstractFactory.domain.product.Product;
 import pattern.abstractFactory.domain.userInfo.UserInfo;
 import pattern.abstractFactory.factory.DaoFactory;
 
-// @SpringBootTest(classes = AbstractFactoryConfigurations.class) 아래와 같은 것
+//@SpringBootTest(classes = AbstractFactoryConfigurations.class) 아래와 같은 것
 @SpringJUnitConfig(classes = AbstractFactoryConfigurations.class)
-@ActiveProfiles("local")
+@ActiveProfiles("mysql")
 class AbstractFactoryTest {
 
     @Autowired
@@ -25,6 +26,15 @@ class AbstractFactoryTest {
     void setUp(){
         examProduct = new Product("1", "product");
         examUserInfo = new UserInfo("1", "1234", "rose");
+    }
+
+    @Test
+    void 의존성주입_역할_책임분리를_통해_DaoFactory_결정합니다() throws Exception {
+        DaoFactory daoFactory = sut.determineConcreteDaoFactory();
+
+        String concreteDaoFactory = daoFactory.toString();
+
+        Assertions.assertEquals(concreteDaoFactory, "MySqlDaoFactory");
     }
 
     @Test

@@ -18,10 +18,17 @@ import java.util.stream.Collectors;
 public class LoadDaoFactory {
 
     @Autowired
+    private DaoFactory daoFactory;
+
+    @Autowired
     private Environment environment;
 
     @Autowired
     private ResourceLoader resourceLoader;
+
+    public DaoFactory determineConcreteDaoFactory() throws Exception {
+        return daoFactory;
+    }
 
     public DaoFactory determineConcreteDaoFactory_dynamic() throws Exception {
         DaoFactory daoFactory;
@@ -29,9 +36,9 @@ public class LoadDaoFactory {
         String activeProfiles = Arrays.stream(environment.getActiveProfiles())
                 .findFirst().orElse("NO ACTIVE PROFILES");
 
-        if(activeProfiles.equals("local")){
+        if(activeProfiles.equals("mysql")){
             daoFactory = new MySqlDaoFactory();
-        }else if(activeProfiles.equals("prod")){
+        }else if(activeProfiles.equals("oracle")){
             daoFactory = new OracleDaoFactory();
         }else {
             throw new Exception("Do Not Exist DB Type");
