@@ -6,10 +6,10 @@ import java.util.Set;
 
 public abstract class Pizza {
 
-    public enum Topping { 햄, 머시룸, 양파, 초리조, 바질};
+    public enum Topping { 햄, 머시룸, 양파, 초리조, 바질}
     final Set<Topping> toppings;
 
-    abstract static class Builder { // 피자가 생성되지 않아도 Builder를 불러서 피자를 생성할 수 있게. 생성자를 통해 생성하지 않겠다!
+    public abstract static class Builder { // 피자가 생성되지 않아도 Builder를 불러서 피자를 생성할 수 있게. 생성자를 통해 생성하지 않겠다!
         EnumSet<Topping> toppings = EnumSet.noneOf(Topping.class);
 
         public Builder addTopping(Topping topping) {
@@ -21,11 +21,11 @@ public abstract class Pizza {
             return self();
         }
 
-        abstract Pizza build();
+        public abstract Pizza build();
         protected abstract Builder self();
     }
 
-    Pizza (Builder builder) {
+    public Pizza (Builder builder) {
         toppings = builder.toppings.clone();
     }
 

@@ -6,7 +6,7 @@ public class ClassPizza extends Pizza {
 
     public static class Builder extends Pizza.Builder {
 
-        private boolean sauceInside=false;
+        private boolean sauceInside = false;
 
         @Override
         public Pizza.Builder sauceInside() {
@@ -15,7 +15,7 @@ public class ClassPizza extends Pizza {
         }
 
         @Override
-        Pizza build() {
+        public Pizza build() {
             return new ClassPizza(this);
         }
 
@@ -32,8 +32,7 @@ public class ClassPizza extends Pizza {
 
     @Override
     public String toString() {
-        return "ClassPizza :" +
-                "topping= " + toppings +
+        return "topping= " + toppings +
                 ", sauceInside= " + sauceInside ;
     }
 }
