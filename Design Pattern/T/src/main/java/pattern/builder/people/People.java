@@ -1,6 +1,5 @@
 package pattern.builder.people;
 
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class People {
     private int age;
     private List<String> address;
 
-    protected People(Integer id,String name, String sex, String race, boolean isAdult, int age, List<String> address) {
+    public People(Integer id, String name, String sex, String race, boolean isAdult, int age, List<String> address) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -29,6 +28,34 @@ public class People {
 
     public static PeopleBuilder builder() {
         return new PeopleBuilder();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public String getRace() {
+        return race;
+    }
+
+    public boolean isAdult() {
+        return isAdult;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public List<String> getAddress() {
+        return address;
     }
 
     @Override

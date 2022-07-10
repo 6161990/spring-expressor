@@ -1,6 +1,5 @@
 package pattern.builder.people;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PeopleBuilder {
@@ -10,7 +9,7 @@ public class PeopleBuilder {
     private String race;
     private boolean isAdult;
     private int age;
-    private List<String> address = new ArrayList<>();
+    private List<String> address;
 
     public People build() {
         return new People(id, name, sex, race, isAdult, age, address);
@@ -53,13 +52,8 @@ public class PeopleBuilder {
         return this;
     }
 
-    public PeopleBuilder withAddress(List<String> addressList){
-        this.address.addAll(addressList);
-        return this;
-    }
-
-    public PeopleBuilder withAddress(String address){
-        this.address.add(address);
+    public PeopleBuilder withAddress(String... address){
+        this.address.add(String.valueOf(address));
         return this;
     }
 
