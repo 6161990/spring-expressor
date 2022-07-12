@@ -1,4 +1,4 @@
-package pattern.adepter;
+package pattern.adapter;
 
 public class HairDryer implements Electronic110v {
     @Override

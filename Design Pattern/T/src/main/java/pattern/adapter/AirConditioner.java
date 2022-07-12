@@ -1,4 +1,4 @@
-package pattern.adepter;
+package pattern.adapter;
 
 public class AirConditioner implements Electronic220v {
     @Override
