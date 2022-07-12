@@ -2,6 +2,7 @@ package pattern.singleton;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pattern.singleton.forObjectOriented.ConnectionPool;
 
 import java.util.Calendar;
 

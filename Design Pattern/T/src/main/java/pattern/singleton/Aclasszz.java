@@ -1,5 +1,7 @@
 package pattern.singleton;
 
+import pattern.singleton.forObjectOriented.SocketClient;
+
 public class Aclasszz {
 
     private SocketClient socketClient;

@@ -1,6 +1,4 @@
-package pattern.singleton;
-
-import java.net.Socket;
+package pattern.singleton.forObjectOriented;
 
 public class SocketClient {
 

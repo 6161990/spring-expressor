@@ -1,4 +1,4 @@
-package pattern.singleton;
+package pattern.singleton.forObjectOriented;
 
 public class ConnectionPool {
 
