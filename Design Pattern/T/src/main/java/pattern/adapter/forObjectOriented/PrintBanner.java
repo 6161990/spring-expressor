@@ -1,19 +1,22 @@
 package pattern.adapter.forObjectOriented;
 
-/**상속 이용*/
-public class PrintBanner extends Banner implements Print {
+/**합성 이용*/
+/** Adapter : Target 인터페이스에 Adaptee 의 인터페이스를 맞춰주는 클래스 */
+public class PrintBanner implements Print {
+
+    private Banner banner;
 
     public PrintBanner(String str) {
-        super(str);
+        this.banner = new Banner(str);
     }
 
     @Override
-    public void printWeek() {
-        showWithParen();
+    public String printWeek() {
+        return banner.showWithParen();
     }
 
     @Override
-    public void printStrong() {
-        showWithAster();
+    public String printStrong() {
+        return banner.showWithAster();
     }
 }
