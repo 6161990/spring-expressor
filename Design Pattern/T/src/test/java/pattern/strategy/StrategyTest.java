@@ -1,6 +1,5 @@
 package pattern.strategy;
 
-import org.junit.jupiter.api.Test;
 import pattern.strategy.forObjectOriented.*;
 
 import java.io.IOException;
