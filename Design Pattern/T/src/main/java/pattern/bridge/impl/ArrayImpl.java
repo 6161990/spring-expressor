@@ -2,6 +2,7 @@ package pattern.bridge.impl;
 
 import java.util.ArrayList;
 
+// ConcreteImplementor : Implementor 에 선언된 기능을 실제로 구현한다. 여러 구현 방싯ㄱ의 클래스가 만들어 질 수 잇다.
 public class ArrayImpl<T> implements AbstractList<T> {
 
     ArrayList<T> array;
@@ -34,5 +35,10 @@ public class ArrayImpl<T> implements AbstractList<T> {
     @Override
     public int getElementSize() {
         return array.size();
+    }
+
+    @Override
+    public String toString() {
+        return array.toString();
     }
 }
