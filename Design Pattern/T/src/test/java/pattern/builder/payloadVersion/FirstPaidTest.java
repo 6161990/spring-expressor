@@ -11,14 +11,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class FirstPaidTest {
     @Test
     void FirstPaidBuilder_를_이용해_테스트합니다() {
-        FirstPaid firstPaid = FirstPaidBuilder.builder()
+        Paid paid = FirstPaidBuilder.builder()
                 .with(PaymentMethod.of("CARD", 4000))
                 .with(new MerchantItems("GOODS", 2000, 2000))
                 .with(new MerchantItems("SHIP", 2000, 2000))
                 .with(LocalDateTime.now())
                 .build();
 
-        Allocated[] allocate = firstPaid.allocate();
+        Allocated[] allocate = paid.allocate();
 
         assertThat(allocate).containsExactly(allocate[0], allocate[1]);
     }
@@ -48,8 +48,8 @@ public class FirstPaidTest {
             return this;
         }
 
-        public FirstPaid build() {
-            return new FirstPaid() {
+        public Paid build() {
+            return new Paid() {
                 @Override
                 public MerchantItems[] getMerchantItems() {
                     return merchantItems.toArray(new MerchantItems[0]);
