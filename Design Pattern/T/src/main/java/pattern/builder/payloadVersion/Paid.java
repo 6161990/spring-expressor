@@ -2,7 +2,7 @@ package pattern.builder.payloadVersion;
 
 import java.time.LocalDateTime;
 
-public interface FirstPaid {
+public interface Paid {
     MerchantItems[] getMerchantItems();
 
     PaymentMethod[] getPaymentMethods();
