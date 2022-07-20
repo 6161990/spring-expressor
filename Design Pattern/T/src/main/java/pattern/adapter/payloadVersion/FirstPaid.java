@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class FirstPaid implements Paid {
 
     private PaidPayloadVersion1 paidPayloadVersion1;
-    
+
     @Override
     public MerchantItems[] getMerchantItems() {
         return new MerchantItems[0];
