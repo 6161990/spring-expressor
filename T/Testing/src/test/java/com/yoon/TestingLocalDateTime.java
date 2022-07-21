@@ -1,3 +1,5 @@
+package com.yoon;
+
 import org.junit.jupiter.api.Test;
 
 import javax.xml.datatype.DatatypeConfigurationException;
