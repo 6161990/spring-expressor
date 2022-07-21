@@ -1,8 +1,8 @@
-package payment;
+package com.yoon.boundNotBoundTest.payment;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import payment.domain.*;
+import com.yoon.boundNotBoundTest.payment.domain.*;
 
 import java.util.List;
 

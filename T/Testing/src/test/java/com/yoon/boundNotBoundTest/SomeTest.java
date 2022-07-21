@@ -1,4 +1,4 @@
-package boundNotBoundTest;
+package com.yoon.boundNotBoundTest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,7 @@ public class SomeTest {
 
         assertThat(actual).isTrue();
 
-        /** SomeApplication -> boundNotBoundTest.SomeThing -> BlockMember(isSatisfy) -> boundNotBoundTest.Command
+        /** SomeApplication -> com.yoon.boundNotBoundTest.SomeThing -> BlockMember(isSatisfy) -> com.yoon.boundNotBoundTest.Command
          *  테스트 해야할 곳이 점점 밀려나가면서 제자리를 찾는다.
          **/
     }

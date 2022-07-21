@@ -1,4 +1,4 @@
-package payment.domain;
+package com.yoon.boundNotBoundTest.payment.domain;
 
 public class RecodeMaker {
 
