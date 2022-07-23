@@ -35,6 +35,7 @@ public class SomeTest {
     // 1. sut 에게 valid 를 물어본다.
     // 2. sut를 넘겨주는 command 객체가 언제나 valid 함을 설정한다.
 
+    @Test
     @DisplayName("command는 언제나 올바른 놈이다. value다. 그래서 command는 테스트할 필요가 없다")
     void 테스트를_위한_객체(){
         Command command = new Command(-1, Type.A);

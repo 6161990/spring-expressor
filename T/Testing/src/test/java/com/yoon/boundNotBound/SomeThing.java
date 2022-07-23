@@ -20,6 +20,6 @@ public class SomeThing {
     }
 
     public boolean someMethod(Command b) {
-        return false;
+        return true;
     }
 }
