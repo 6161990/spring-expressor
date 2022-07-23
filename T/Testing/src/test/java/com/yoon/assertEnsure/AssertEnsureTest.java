@@ -1,4 +1,4 @@
-package com.yoon;
+package com.yoon.assertEnsure;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

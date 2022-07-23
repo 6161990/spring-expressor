@@ -1,4 +1,4 @@
-package com.yoon.boundNotBoundTest;
+package com.yoon.boundNotBound;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ public class SomeTest {
     void 정의역_테스트(){
         boolean b = true;
 
-        SomeThing sut = new SomeThing(b);
+        SomeThing sut = new SomeThing();
 
         boolean actual = sut.someMethod(b);
 

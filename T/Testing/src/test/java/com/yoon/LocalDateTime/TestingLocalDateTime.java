@@ -1,4 +1,4 @@
-package com.yoon;
+package com.yoon.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -39,13 +39,11 @@ public class TestingLocalDateTime {
 
 
     @Test
-    void sss() throws DatatypeConfigurationException {
+    void sss()  {
         final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         final LocalDateTime localDateTime = LocalDateTime.parse("2018-07-06 00:00:00", dateTimeFormatter);
         final String lexicalDate = localDateTime.toString();
         System.out.println("Lexical Date : "+ lexicalDate+ localDateTime);
-        final XMLGregorianCalendar gregorianCalendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(lexicalDate);
-        System.out.println("Gregorian Calendar : "+ gregorianCalendar);
     }
 
 }

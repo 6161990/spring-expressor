@@ -1,6 +1,5 @@
-package com.yoon;
+package com.yoon.assertEnsure;
 
-import lombok.AllArgsConstructor;
 import org.valid4j.Assertive;
 
 import java.util.Arrays;
@@ -40,7 +39,7 @@ public class AssertEnsure {
     }
 
 
-    public  static class Method {
+    public static class Method {
         public long amount;
 
         public Method(long i) {

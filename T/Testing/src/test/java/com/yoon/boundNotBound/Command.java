@@ -1,4 +1,4 @@
-package com.yoon.boundNotBoundTest;
+package com.yoon.boundNotBound;
 
 public class Command {
 

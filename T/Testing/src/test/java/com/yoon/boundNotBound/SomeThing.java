@@ -1,4 +1,4 @@
-package com.yoon.boundNotBoundTest;
+package com.yoon.boundNotBound;
 
 public class SomeThing {
 
@@ -16,14 +16,10 @@ public class SomeThing {
     }
 
     public boolean someMethod(boolean b) {
-        if (!b) {
-            return true;
-        }
-        return false;
+        return b;
     }
 
     public boolean someMethod(Command b) {
-
         return false;
     }
 }
