@@ -46,3 +46,4 @@ Spring3_security/Security 0/.gradle/checksums/sha1-checksums.bin
 *.xml
 *.idx
 *.xml
+.DS_Store
