@@ -1,13 +1,13 @@
-package com.yoon.jdbcpoc;
+package com.yoon.springjdbc;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class JdbcPocApplicationTests {
+class SpringJdbcApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+	@Test
+	void contextLoads() {
+	}
 
 }
