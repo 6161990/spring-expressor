@@ -47,3 +47,9 @@ Spring3_security/Security 0/.gradle/checksums/sha1-checksums.bin
 *.idx
 *.xml
 .DS_Store
+JdbcPoc/.mvn/wrapper/maven-wrapper.jar
+JdbcPoc/.mvn/wrapper/maven-wrapper.properties
+JdbcPoc/mvnw.cmd
+JdbcPoc/mvnw
+JdbcPoc/.mvn/wrapper/maven-wrapper.jar
+.idea/workspace.xml
