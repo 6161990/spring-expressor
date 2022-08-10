@@ -28,8 +28,11 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.zonky.test:embedded-database-spring-test:2.1.0'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+project.sourceSets.test.resources.srcDirs = [ "${projectDir}/src/test/resources", "${rootDir}/schema" ]
