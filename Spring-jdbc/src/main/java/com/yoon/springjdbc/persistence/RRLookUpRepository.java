@@ -13,18 +13,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RRLookUpRepository {
 
-    private final DataSource dateSource;
+    private final SpringDataLookUpRepository repository;
 
     public void save(RRLookUp RRLookUp) {
-        // TODO : converter
+        repository.save(RRLookUp);
     }
 
     public List<RRLookUp> findBy(OrderId orderId) {
-        return null;
+        return repository.findById(orderId);
     }
 
     public List<RRLookUp> findBy(Key rrk) {
-        return null;
+        return repository.findById(rrk);
     }
 
 
