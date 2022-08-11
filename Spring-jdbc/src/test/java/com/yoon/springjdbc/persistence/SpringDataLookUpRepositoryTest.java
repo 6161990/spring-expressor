@@ -1,7 +1,8 @@
-package com.yoon.springjdbc.persistence.config;
+package com.yoon.springjdbc.persistence;
 
 import com.yoon.springjdbc.domain.*;
 import com.yoon.springjdbc.persistence.SpringDataLookUpRepository;
+import com.yoon.springjdbc.persistence.config.JdbcConfig;
 import io.zonky.test.db.AutoConfigureEmbeddedDatabase;
 import io.zonky.test.db.AutoConfigureEmbeddedDatabase.DatabaseType;
 import org.junit.jupiter.api.BeforeEach;

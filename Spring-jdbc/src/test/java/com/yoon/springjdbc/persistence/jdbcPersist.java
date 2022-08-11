@@ -1,4 +1,4 @@
-package com.yoon.springjdbc.persistence.config;
+package com.yoon.springjdbc.persistence;
 
 import com.yoon.springjdbc.domain.*;
 import com.yoon.springjdbc.persistence.RevenueRepositoryImpl;
