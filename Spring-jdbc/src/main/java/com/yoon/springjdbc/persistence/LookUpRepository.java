@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface LookUpRepository {
     void save(RRLookUp revenueRecognitionLookUp);
-    List<RRLookUp> findById(OrderId orderId);
+    List<RRLookUp> findAllByOrderId(OrderId orderId);
     List<RRLookUp> findById(Key rrk);
 
 }

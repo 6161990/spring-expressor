@@ -6,7 +6,6 @@ import com.yoon.springjdbc.domain.Key;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 @Service
@@ -20,7 +19,7 @@ public class RRLookUpRepository {
     }
 
     public List<RRLookUp> findBy(OrderId orderId) {
-        return repository.findById(orderId);
+        return repository.findAllByOrderId(orderId);
     }
 
     public List<RRLookUp> findBy(Key rrk) {

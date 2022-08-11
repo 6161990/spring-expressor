@@ -39,6 +39,6 @@ class SpringDataLookUpRepositoryTest {
                         new ConfirmationValue(ConfirmationType.MEETING, "key")
                         ,LocalDateTime.now());
 
-        assertThat(repository.findById(lookUp.getId().getId())).isNull();
+        assertThat(repository.findById(lookUp.getId())).isNull();
     }
 }
