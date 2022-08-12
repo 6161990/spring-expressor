@@ -22,7 +22,7 @@ public class RRLookUp {
     @Id
     private RRLookUpId id;
     private OrderId orderId;
-    private List<String> ledgers;
+    private List<Ledger> ledgers;
     private ConfirmationValue pcv;
     private LocalDateTime revenueRecognizedAt;
 
@@ -33,11 +33,19 @@ public class RRLookUp {
     private Long version;
 
 
-    public RRLookUp(RRLookUpId id, OrderId orderId, List<String> ledgers, ConfirmationValue pcv, LocalDateTime revenueRecognizedAt) {
+    public RRLookUp(RRLookUpId id, OrderId orderId, List<Ledger> ledgers, ConfirmationValue pcv, LocalDateTime revenueRecognizedAt) {
         this.id = id;
         this.orderId = orderId;
         this.ledgers = ledgers;
         this.pcv = pcv;
         this.revenueRecognizedAt = revenueRecognizedAt;
+    }
+
+    public Object getTotalAmount() {
+        return null;
+    }
+
+    public Key getRecognizedKey() {
+        return (Key) pcv.getValue();
     }
 }

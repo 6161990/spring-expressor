@@ -13,7 +13,9 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static io.zonky.test.db.AutoConfigureEmbeddedDatabase.DatabaseType.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -32,11 +34,12 @@ class SpringDataLookUpRepositoryTest {
 
     @BeforeEach
     void setUp() {
+        Ledger dd = new Ledger(0, 100, LocalDateTime.now());
         lookUp =
                 new RRLookUp(
                         new RRLookUpId(12L),
                         OrderId.of("orderId"),
-                        Arrays.asList("ledger"),
+                        Arrays.asList(dd),
                         new ConfirmationValue(ConfirmationType.MEETING, "key")
                         ,LocalDateTime.now());
 

@@ -1,7 +1,6 @@
 package com.yoon.springjdbc.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Value;
 
 @Value(staticConstructor = "of")

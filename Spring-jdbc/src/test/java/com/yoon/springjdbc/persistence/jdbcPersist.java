@@ -16,8 +16,8 @@ public class jdbcPersist {
 
     @Test
     void name() {
-        List<String> ledgers = new ArrayList<>();
-        String dd = "";
+        List<Ledger> ledgers = new ArrayList<>();
+        Ledger dd = new Ledger(0, 100, LocalDateTime.now());
         ledgers.add(dd);
         ConfirmationValue pcv = new ConfirmationValue(ConfirmationType.MEETING, "key");
 
